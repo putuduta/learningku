@@ -1,0 +1,22 @@
+App_Data -> Nyimpen database
+Factories -> nyimpen factory
+Handlers -> nyimpen handler
+Model -> nyimpen model dari database
+Repositories -> nyimpen repository
+Controllers -> nyimpen controller
+View -> nyimpen interfacenya
+
+Urutan
+View -> ngambil value yang diinput
+Controller -> validasi
+Handlers -> business logic -> dia yang manggil repository/ manggil factory
+
+Insert doang
+Factory -> bikin objek (new Product. .... udah diisi value)
+
+Repository -> berhubungan langsung sama database
+ngambil data dari tabel
+update data 
+delete data
+
+

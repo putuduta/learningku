@@ -1,0 +1,88 @@
+.bg-dark-grayish-blue {
+    background-color: #31353d !important;
+}
+.text-light-grayish-blue {
+    color: #818896 !important;
+}
+.border-gray {
+    border-color: #c2c2c2 !important;
+}
+.page-wrapper .sidebar-wrapper,
+.sidebar-wrapper .sidebar-brand > a,
+.sidebar-wrapper .sidebar-dropdown > a:after,
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before,
+.sidebar-wrapper ul li a i,
+.page-wrapper .page-content,
+.sidebar-wrapper .sidebar-menu ul li a,
+#show-sidebar,
+#close-sidebar {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+// .page-wrapper {
+//     height: 100vh;
+// }
+/* !Override .sidebar-wrapper { left: -18rem } */
+.page-wrapper.toggled .sidebar-wrapper {
+    left: 0rem;
+}
+@media screen and (min-width: 992px) {
+    .page-wrapper.toggled .page-content {
+        // padding-left: 256px;
+        opacity: 0.3;
+    }
+}
+.sidebar-content {
+    max-height: calc(100% - 40px);
+    height: calc(100% - 40px);
+}
+.sidebar-wrapper {
+    width: 16rem;
+    left: -16rem;
+}
+.sidebar-wrapper .sidebar-content .sidebar-brand #close-sidebar {
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+.sidebar-dropdown a {
+    cursor: pointer;
+}
+.sidebar-wrapper .sidebar-menu .sidebar-submenu {
+    display: none;
+}
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a i.fa-angle-right {
+    transform: rotate(90deg);
+    right: 0px;
+}
+// .sidebar-wrapper ul li:hover > a i,
+// .sidebar-wrapper ul li:hover > a span,
+// .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a > i,
+// .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a > span
+// {
+//     color: #e2e2e2;
+//     text-shadow: 0 0 10px #e2e2e2;
+// }
+.sidebar-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+}
+.sidebar-footer > a {
+    flex-grow: 1;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+
+.side-item {
+    padding: 0.3rem 0.5rem;
+}
+
+.side-item:hover {
+    background-color: #3f3f3f;
+}
