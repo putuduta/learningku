@@ -19,11 +19,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'phone_number',
-        'role_id',
-        'reg_number',
-        'institution_id',
-        'class_id',
+        'role',
+        'photo_profile',
         'password',
     ];
 
@@ -50,11 +47,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Role', 'id','role_id')->withDefault();
     }
 
-    public function class(){
-        return $this->hasOne('App\Models\ClassDetail', 'id','class_id')->withDefault();
+    public function teacherclass(){
+        return $this->hasMany('App\Models\ClassHeader', 'teacher_id','id')->withDefault();
     }
 
-    public function institution(){
-        return $this->hasOne('App\Models\Institution', 'id','institution_id')->withDefault();
+    public function studentClass(){
+        return $this->hasMany('App\Models\ClassDetail', 'student_id','id')->withDefault();
     }
 }

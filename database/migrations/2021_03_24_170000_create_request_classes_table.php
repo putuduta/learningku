@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassDetailsTable extends Migration
+class CreateRequestClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateClassDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_details', function (Blueprint $table) {
+        Schema::create('request_classes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('class_header_id');
-            $table->foreign('class_header_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('status');
+            $table->mediumText('comment');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateClassDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_details');
+        Schema::dropIfExists('request_classes');
     }
 }

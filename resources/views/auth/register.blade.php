@@ -1,4 +1,4 @@
-<x-master title="Register Institution - L-Man">
+<x-master title="Register - Learningku">
     <x-slot name="navbar"></x-slot>
     <div class="container py-5 my-5">
         <div class="row justify-content-center">
@@ -8,19 +8,19 @@
                         <h5>REGISTER NEW ACCOUNT</h5>
                     </div>
                     <div class="card-body my-2">
-                        <form method="POST" action="{{ route('payment-validate') }}">
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group row my-3">
-                                <label for="pic_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('PIC Name') }}</label>
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control @error('pic_name') is-invalid @enderror" name="pic_name"
-                                        value="{{ old('pic_name') }}" required autocomplete="pic_name" autofocus>
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                    @error('pic_name')
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -29,15 +29,15 @@
                             </div>
 
                             <div class="form-group row my-3">
-                                <label for="pic_email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('PIC Email') }}</label>
+                                <label for="email"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="pic_email" type="email"
-                                        class="form-control @error('pic_email') is-invalid @enderror" name="pic_email"
-                                        value="{{ old('pic_email') }}" required autocomplete="pic__email">
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
 
-                                    @error('pic_email')
+                                    @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -46,16 +46,15 @@
                             </div>
 
                             <div class="form-group row my-3">
-                                <label for="institution_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Institution Name') }}</label>
+                                <label for="password"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="institution_name" type="text"
-                                        class="form-control @error('institution_name') is-invalid @enderror"
-                                        name="institution_name" value="{{ old('institution_name') }}" required
-                                        autocomplete="institution_name">
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        value="{{ old('password') }}" required autocomplete="password">
 
-                                    @error('institution_name')
+                                    @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -64,50 +63,17 @@
                             </div>
 
                             <div class="form-group row my-3">
-                                <label for="institution_email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Institution Email') }}</label>
+                                <label for="role"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="institution_email"" type=" email"
-                                        class="form-control @error('institution_email"') is-invalid @enderror" name="institution_email""
-                                        value="{{ old('institution_email"') }}" required autocomplete="institution_email">
+                                    <select class="form-control" name="role" id="role" required @error('role') is-invalid @enderror>
+                                        <option selected>Choose..</option>
+                                        <option value="Teacher">Teacher</option>
+                                        <option value="Student">Student</option>
+                                    </select>
 
-                                    @error(' institution_email"') <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row my-3">
-                                <label for="institution_address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Institution Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="institution_address" type="text"
-                                        class="form-control @error('institution_address') is-invalid @enderror"
-                                        name="institution_address" value="{{ old('institution_address') }}" required
-                                        autocomplete="institution_address">
-
-                                    @error('institution_address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row my-3">
-                                <label for="phone_number"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="phone_number" type="text"
-                                        class="form-control @error('phone_number') is-invalid @enderror"
-                                        name="phone_number" value="{{ old('phone_number') }}" required
-                                        autocomplete="phone_number">
-
-                                    @error('phone_number')
+                                    @error('role')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -118,9 +84,15 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn bg-color-lightblue">
-                                        {{ __('Proceed to payment') }}
+                                        {{ __('Sign up') }}
                                     </button>
                                 </div>
+                            </div>
+
+                            <div class="text-right mt-3">
+                                <a class="btn btn-link" href="{{ route('login') }}">
+                                    {{ __('Already have an account?') }}
+                                </a>
                             </div>
                         </form>
                     </div>

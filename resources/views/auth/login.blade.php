@@ -1,4 +1,4 @@
-<x-master title="Login - L-Man">
+<x-master title="Login - Learningku">
 
     <x-slot name="navbar"></x-slot>
 

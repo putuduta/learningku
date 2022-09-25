@@ -11,6 +11,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ClassCourseController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\ClassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,22 +32,24 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
 
-// Registration Payment
-Route::prefix('payment')->name('payment-')->group(function () {
-    Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
-    Route::post('/create', [RegistrationPaymentController::class, 'validateData'])->name('validate');
-    Route::post('/create/post', [RegistrationPaymentController::class, 'create'])->name('create');
-    Route::get('/confirm/{payment}', [RegistrationPaymentController::class, 'confirm'])->name('confirm')->middleware('auth');
-    Route::get('/reject/{payment}', [RegistrationPaymentController::class, 'reject'])->name('reject')->middleware('auth');
-});
+// // Registration Payment
+// Route::prefix('payment')->name('payment-')->group(function () {
+//     Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
+//     Route::post('/create', [RegistrationPaymentController::class, 'validateData'])->name('validate');
+//     Route::post('/create/post', [RegistrationPaymentController::class, 'create'])->name('create');
+//     Route::get('/confirm/{payment}', [RegistrationPaymentController::class, 'confirm'])->name('confirm')->middleware('auth');
+//     Route::get('/reject/{payment}', [RegistrationPaymentController::class, 'reject'])->name('reject')->middleware('auth');
+// });
 
 
 // Class
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
-    Route::get('list', [AdminController::class, 'viewListClass'])->name('view-list');
-    Route::get('create', [AdminController::class, 'viewCreateClass'])->name('view-create');
-    Route::get('create/post', [AdminController::class, 'createClass'])->name('create');
-    Route::get('student/{class}', [AdminController::class, 'viewClassStudent'])->name('view-student');
+    Route::get('list', [ClassController::class, 'viewListClass'])->name('view-list');
+    Route::get('create', [ClassController::class, 'viewCreateClass'])->name('view-create');
+    Route::get('create/post', [ClassController::class, 'createClass'])->name('create');
+    Route::get('student/{class}', [ClassController::class, 'viewClassStudent'])->name('view-student');
+    Route::get('request-join/{guid}', [ClassController::class, 'viewJoinClass'])->name('view-join');
+    Route::post('create-request-join/post', [ClassController::class, 'requestClass'])->name('request-join');
 });
 
 Route::prefix('student')->middleware('auth')->name('student-')->group(function () {

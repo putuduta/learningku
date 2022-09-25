@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function viewListClass(){
-        return view('admin.class-list',[
-            'classes' => ClassDetail::where('institution_id', auth()->user()->institution_id)->get(),
-        ]);
-    }
+    // public function viewListClass(){
+    //     return view('admin.class-list',[
+    //         'classes' => ClassDetail::where('institution_id', auth()->user()->institution_id)->get(),
+    //     ]);
+    // }
 
     public function viewCreateClass(){
         return view('admin.class-create',[

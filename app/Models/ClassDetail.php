@@ -13,11 +13,11 @@ class ClassDetail extends Model
     protected $timestamp = true;
     protected $guarded = [];
 
-    public function homeroom(){
-        return $this->hasOne('App\Models\User','id','homeroom_id')->withDefault();
+    public function student(){
+        return $this->hasMany('App\Models\User','id','student_id')->withDefault();
     }
 
-    public function student(){
-        return $this->hasMany('App\Models\User','class_id','id');
+    public function classHeader(){
+        return $this->hasOne('App\Models\ClassHeader','id','class_header_id');
     }
 }

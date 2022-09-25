@@ -13,8 +13,7 @@
                 <img src="/storage/assets/man.svg" class="rounded border-teal w-25 rounded-circle bg-color-lightblue"
                     alt="">
                 <span class="mt-1">{{ auth()->user()->name }}</span>
-                <small class="text-secondary">{{ auth()->user()->role->name }}</small>
-                <small class="text-secondary">{{ auth()->user()->institution->name }}</small>
+                <small class="text-secondary">{{ auth()->user()->role}}</small>
             </div>
         </div>
         <div class="sidebar-menu border-top border-gray overflow-auto" style="height: calc(100% - 196px);">
@@ -29,15 +28,8 @@
                         <span class="ms-2">Main Dashboard</span>
                     </a>
                 </li>
-                @if (auth()->user()->role->name == 'Admin')
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('class-view-list') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Class List</span>
-                        </a>
-                    </li>
+                @if (auth()->user()->role == 'Admin')
+
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('student-view-list') }}">
@@ -63,7 +55,7 @@
                         </a>
                     </li>
                 @endif
-                @if (auth()->user()->role->name == 'Student')
+                @if (auth()->user()->role == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('class-course.view-student') }}">
@@ -115,7 +107,15 @@
                         </a>
                     </li>
                 @endif
-                @if (auth()->user()->role->name == 'Teacher')
+                @if (auth()->user()->role == 'Teacher')
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('class-view-list') }}">
+                            <span class="fa-stack fa-sm ms-n1">
+                            </span>
+                            <span class="ms-2">Class List</span>
+                        </a>
+                    </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('attendance.view-teacher-list') }}">

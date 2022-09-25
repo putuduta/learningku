@@ -68,6 +68,7 @@ class RegistrationPaymentController extends Controller
     {
 
         if ($payment->is_confirmed == 0) {
+        
             $payment->update([
                 'is_confirmed' => 1,
             ]);
