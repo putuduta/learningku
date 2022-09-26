@@ -29,7 +29,6 @@
                     </a>
                 </li>
                 @if (auth()->user()->role == 'Admin')
-
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('student-view-list') }}">
@@ -56,6 +55,14 @@
                     </li>
                 @endif
                 @if (auth()->user()->role == 'Student')
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('class-list-request-join') }}">
+                            <span class="fa-stack fa-sm ms-n1">
+                            </span>
+                            <span class="ms-2">Request Class List</span>
+                        </a>
+                    </li> 
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('class-course.view-student') }}">
@@ -108,6 +115,14 @@
                     </li>
                 @endif
                 @if (auth()->user()->role == 'Teacher')
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('class-list-request-join') }}">
+                            <span class="fa-stack fa-sm ms-n1">
+                            </span>
+                            <span class="ms-2">Request Class List</span>
+                        </a>
+                    </li> 
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('class-view-list') }}">

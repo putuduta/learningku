@@ -15,7 +15,6 @@ class CreateClassDetailsTable extends Migration
     {
         Schema::create('class_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedBigInteger('class_header_id');
             $table->foreign('class_header_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('student_id');

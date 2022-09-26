@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function studentClass(){
         return $this->hasMany('App\Models\ClassDetail', 'student_id','id')->withDefault();
     }
+
+    public function studentRequestClass(){
+        return $this->hasMany('App\Models\RequestClass','student_id','id')->withDefault();
+    }
 }

@@ -18,6 +18,10 @@ class ClassHeader extends Model
     }
 
     public function classDetail(){
-        return $this->hasMany('App\Models\ClassDetail','class_header_id','id');
+        return $this->hasMany('App\Models\ClassDetail','class_header_id','id')->withDefault();
+    }
+
+    public function requestClass(){
+        return $this->hasMany('App\Models\RequestClass','class_id','id')->withDefault();
     }
 }

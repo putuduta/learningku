@@ -50,6 +50,8 @@ Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
     Route::get('student/{class}', [ClassController::class, 'viewClassStudent'])->name('view-student');
     Route::get('request-join/{guid}', [ClassController::class, 'viewJoinClass'])->name('view-join');
     Route::post('create-request-join/post', [ClassController::class, 'requestClass'])->name('request-join');
+    Route::get('request-joins', [ClassController::class, 'listRequestClass'])->name('list-request-join');
+    Route::get('request-action/{classRequestId}/{action}', [ClassController::class, 'requestClassAction'])->name('request-action');
 });
 
 Route::prefix('student')->middleware('auth')->name('student-')->group(function () {

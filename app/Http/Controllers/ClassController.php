@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassDetail;
 use App\Models\ClassHeader;
 use App\Models\RequestClass;
 use Illuminate\Http\Request;
@@ -67,6 +68,46 @@ class ClassController extends Controller
         ]);
 
         return redirect()->route('home')->with('success','Request Join Class');
+    }
+
+    public function listRequestClass(){
+        
+        if (auth()->user()->role == 'Teacher') {
+            return view('request-class.list',[
+                'requestClasses' => RequestClass::select('request_classes.id','request_classes.status','request_classes.comment', 'users.id as studentId', 'users.name as studentName', 'users.role', 'class_headers.id as classId', 'class_headers.name as className')
+                ->join('class_headers','class_headers.id','request_classes.class_id')
+                ->join('users','users.id','request_classes.student_id')
+                ->where('class_headers.teacher_id',auth()->user()->id)
+                ->get(),
+            ]);
+        }else if (auth()->user()->role == 'Student') {
+            return view('request-class.list',[
+                'requestClasses' => RequestClass::where('student_id', auth()->user()->id)->get(),
+            ]);
+        } else 
+             return redirect()->route('home');
+    }
+
+    public function requestClassAction($classRequestId, $action){
+        
+        $requestClass = RequestClass::where('id', $classRequestId)->first();
+        $message = '';
+
+        if ($action == 'Approve')  {
+            ClassDetail::create([
+                'class_header_id' => $requestClass->class_id,
+                'student_id' => $requestClass->student_id,
+            ]);
+            $message = 'Approve Request Class';
+        } else {
+            $message = 'Reject Request Class';
+        }
+
+        $requestClass->update([
+            'status' => $action
+        ]);
+
+        return redirect()->route('home')->with('success', $message);
     }
 
 }
