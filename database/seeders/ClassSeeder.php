@@ -14,11 +14,28 @@ class ClassSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('class_headers')->insert([
+            [
+                'name' => 'Matematika B',
+                'description' => 'Test',
+                'teacher_id' => 1,
+                'guid' => bin2hex(random_bytes('16')),
+            ],
+            [
+                'name' => 'Matematika X',
+                'description' => 'Test',
+                'teacher_id' => 2,
+                'guid' => bin2hex(random_bytes('16')),
+            ],
+        ]);
         DB::table('class_details')->insert([
             [
-                'name' => '12 IPA 2',
-                'homeroom_id' => 2,
-                'institution_id' => 1,
+                'class_header_id' => 1,
+                'student_id' => 3,
+            ],
+            [
+                'class_header_id' => 1,
+                'student_id' => 4,
             ],
         ]);
     }

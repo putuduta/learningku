@@ -65,53 +65,19 @@
                     </li> 
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('class-course.view-student') }}">
+                        href="#" role="button" id="dropdownMenuLink">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
                             </span>
-                            <span class="ms-2">Class Schedule</span>
+                            <span class="ms-2">Class List</span>
                         </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('attendance.view-student-list') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Attendances</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('activity.view-student-list') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Activity Log</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('thread.index') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Forum Discussion</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('assignment.index') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Assignment</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('score.index') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Score</span>
-                        </a>
+
+                        <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
+                            @foreach ($classes as $class)
+                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class', $class->classId) }}">{{ $class->className }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
                 @endif
                 @if (auth()->user()->role == 'Teacher')
@@ -133,51 +99,13 @@
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('attendance.view-teacher-list') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Daily Attendance</span>
+                        href="#" role="button" id="dropdownMenuLink">
                         </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('activity.view-teacher-list') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Activity Log</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('class-course.view-teacher') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Class Schedule</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('thread.index') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Forum Discussion</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('assignment.index') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Assignment</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('score.manage', 0) }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Score</span>
-                        </a>
+                        <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
+                            @foreach ($classes as $class)
+                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class', $class->classId) }}">{{ $class->className }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
                 @endif
             </ul>
@@ -193,3 +121,6 @@
         </form>
     </div>
 </nav>
+
+
+

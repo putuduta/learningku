@@ -4,7 +4,7 @@
     <div id="content" class="container py-5 my-5">
         <h3 class="fw-bold">Assignment List</h3>
         <hr>
-        @if (auth()->user()->role->name == 'Teacher')
+        @if (auth()->user()->role == 'Teacher')
             <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
                 data-bs-target="#newAssignment">
                 Create New Assignment
@@ -16,7 +16,7 @@
                     <th class="align-middle text-center">No</th>
                     <th class="align-middle text-center">Title</th>
                     <th class="align-middle text-center">Deadline</th>
-                    @if (auth()->user()->role->name == 'Student')
+                    @if (auth()->user()->role == 'Student')
                         <th class="align-middle text-center">Status</th>
                     @endif
                     <th class="align-middle text-center">Action</th>
@@ -29,7 +29,7 @@
                             <td class="align-middle text-center">
                                 {{ date_format(date_create($assignment->end_time), 'd F Y H:i') }}
                             </td>
-                            @if (auth()->user()->role->name == 'Student')
+                            @if (auth()->user()->role == 'Student')
                                 @if (count($assignment->submissionUser) > 0)
                                     <td class="align-middle text-center bg-success text-white">Submitted</td>
                                 @else
@@ -41,7 +41,7 @@
                                     class="btn btn-success text-white">
                                     Download
                                 </a>
-                                @if (auth()->user()->role->name == 'Student')
+                                @if (auth()->user()->role == 'Student')
                                     @if (strtotime($assignment->end_time) > time())
                                         <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
                                             data-bs-target="#submit-{{ $assignment->id }}">
@@ -52,7 +52,7 @@
                                         data-bs-target="#history-{{ $assignment->id }}">
                                         History
                                     </button>
-                                @elseif(auth()->user()->role->name == 'Teacher')
+                                @elseif(auth()->user()->role == 'Teacher')
                                     <a href="{{ route('assignment.show', $assignment) }}"
                                         class="btn btn-primary text-white">
                                         Show Detail
@@ -68,7 +68,7 @@
 </x-app>
 
 <!-- Modal -->
-@if (auth()->user()->role->name == 'Teacher')
+@if (auth()->user()->role == 'Teacher')
     <div class="modal fade" id="newAssignment" tabindex="-1" aria-labelledby="newAssignmentLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -110,7 +110,7 @@
     </div>
 @endif
 
-@if (auth()->user()->role->name == 'Student')
+@if (auth()->user()->role == 'Student')
     @foreach ($assignments as $assignment)
         <div class="modal fade" id="submit-{{ $assignment->id }}" tabindex="-1" aria-labelledby="submitLabel"
             aria-hidden="true">

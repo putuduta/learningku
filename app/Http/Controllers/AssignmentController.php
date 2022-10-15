@@ -13,7 +13,7 @@ class AssignmentController extends Controller
 
     public function index()
     {
-        if (auth()->user()->role->name == 'Teacher') {
+        if (auth()->user()->role == 'Teacher') {
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
                     ->join('class_courses', 'assignment_headers.class_course_id', 'class_courses.id')

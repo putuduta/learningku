@@ -10,7 +10,7 @@ class ThreadController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->role->name == 'Teacher') {
+        if (auth()->user()->role == 'Teacher') {
             return view('thread.index', [
                 'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_course_id')
                     ->join('class_courses', 'threads.class_course_id', 'class_courses.id')

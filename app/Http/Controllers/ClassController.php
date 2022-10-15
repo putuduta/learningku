@@ -82,7 +82,11 @@ class ClassController extends Controller
             ]);
         }else if (auth()->user()->role == 'Student') {
             return view('request-class.list',[
-                'requestClasses' => RequestClass::where('student_id', auth()->user()->id)->get(),
+                'requestClasses' => RequestClass::select('request_classes.id','request_classes.status','request_classes.comment', 'users.id as teacherId', 'users.name as teacherName', 'users.role', 'class_headers.id as classId', 'class_headers.name as className')
+                ->join('class_headers','class_headers.id','request_classes.class_id')
+                ->join('users','users.id','class_headers.teacher_id')
+                ->where('request_classes.student_id',auth()->user()->id)
+                ->get(),
             ]);
         } else 
              return redirect()->route('home');
@@ -93,7 +97,7 @@ class ClassController extends Controller
         $requestClass = RequestClass::where('id', $classRequestId)->first();
         $message = '';
 
-        if ($action == 'Approve')  {
+        if ($action == 'Approved')  {
             ClassDetail::create([
                 'class_header_id' => $requestClass->class_id,
                 'student_id' => $requestClass->student_id,

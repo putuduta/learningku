@@ -32,6 +32,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
 
+Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
+
 // // Registration Payment
 // Route::prefix('payment')->name('payment-')->group(function () {
 //     Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
