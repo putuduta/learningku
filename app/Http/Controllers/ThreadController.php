@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassCourse;
+use App\Models\ClassHeader;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
-    public function index()
+    public function index($classId)
     {
         if (auth()->user()->role == 'Teacher') {
             return view('thread.index', [
@@ -16,6 +17,8 @@ class ThreadController extends Controller
                     ->join('class_courses', 'threads.class_course_id', 'class_courses.id')
                     ->where('teacher_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
                 'class_courses' => ClassCourse::where('teacher_id', auth()->user()->id)->get(),
+                'class' => ClassHeader::where('id', $classId)
+                ->first()
             ]);
         } else {
             return view('thread.index', [
@@ -23,6 +26,8 @@ class ThreadController extends Controller
                     ->join('class_courses', 'threads.class_course_id', 'class_courses.id')
                     ->where('class_id', auth()->user()->class_id)->orderBy('id', 'desc')->get(),
                 'class_courses' => ClassCourse::where('class_id', auth()->user()->class_id)->get(),
+                'class' => ClassHeader::where('id', $classId)
+                ->first()
             ]);
         }
     }

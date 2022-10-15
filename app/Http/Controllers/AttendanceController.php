@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\AttendanceDetail;
 use App\Models\AttendanceHeader;
 use App\Models\ClassDetail;
+use App\Models\ClassHeader;
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class AttendanceController extends Controller
 {
-    public function viewTeacherList()
+    public function viewTeacherList($classId)
     {
 
-        $class = ClassDetail::where('homeroom_id', auth()->user()->id)->first();
+        $class = ClassHeader::where('id', $classId)->first();
 
         if ($class != NULL) {
             return view('attendance.teacher_list', [
@@ -22,7 +23,8 @@ class AttendanceController extends Controller
                     'attendance_headers.class_id',
                     'attendance_headers.date'
                 )->join('class_details', 'attendance_headers.class_id', 'class_details.id')
-                    ->where('class_details.homeroom_id', auth()->user()->id)->get(),
+                ->join('class_headers', 'class_details.class_header_id', 'class_headers.id')
+                    ->where('class_headers.teacher_id', auth()->user()->id)->get(),
                 'class' => $class,
             ]);
         } else {
@@ -30,10 +32,12 @@ class AttendanceController extends Controller
         }
     }
 
-    public function viewStudentList()
+    public function viewStudentList($classId)
     {
         return view('attendance.student_list', [
             'attendances' => AttendanceDetail::where('user_id', auth()->user()->id)->get(),
+            'class' => ClassHeader::where('id', $classId)
+            ->first()
         ]);
     }
 

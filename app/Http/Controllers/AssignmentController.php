@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\AssignmentDetail;
 use App\Models\AssignmentHeader;
 use App\Models\ClassCourse;
+use App\Models\ClassHeader;
 use Illuminate\Http\Request;
 use PDO;
 
 class AssignmentController extends Controller
 {
 
-    public function index()
+    public function index($classId)
     {
         if (auth()->user()->role == 'Teacher') {
             return view('assignment.index', [
@@ -19,12 +20,16 @@ class AssignmentController extends Controller
                     ->join('class_courses', 'assignment_headers.class_course_id', 'class_courses.id')
                     ->where('teacher_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
                 'class_courses' => ClassCourse::where('teacher_id', auth()->user()->id)->get(),
+                'class' => ClassHeader::where('id', $classId)
+                ->first()
             ]);
         } else {
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
                     ->join('class_courses', 'assignment_headers.class_course_id', 'class_courses.id')
                     ->where('class_id',   auth()->user()->class_id)->orderBy('id', 'desc')->get(),
+                'class' => ClassHeader::where('id', $classId)
+                    ->first()
             ]);
         }
     }

@@ -69,8 +69,8 @@ Route::prefix('teacher')->middleware('auth')->name('teacher-')->group(function (
 });
 
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
-    Route::get('list/teacher', [AttendanceController::class, 'viewTeacherList'])->name('view-teacher-list');
-    Route::get('list/student', [AttendanceController::class, 'viewStudentList'])->name('view-student-list');
+    Route::get('list/teacher/{classId}', [AttendanceController::class, 'viewTeacherList'])->name('view-teacher-list');
+    Route::get('list/student/{classId}', [AttendanceController::class, 'viewStudentList'])->name('view-student-list');
     Route::get('create', [AttendanceController::class, 'viewCreate'])->name('view-create');
     Route::post('create/post', [AttendanceController::class, 'create'])->name('create');
 });
@@ -93,15 +93,18 @@ Route::prefix('class-course')->middleware('auth')->name('class-course.')->group(
 });
 
 // Forum Thread
-Route::resource('thread', ThreadController::class)->except('edit', 'create');
+Route::get('thread/{classId}', [ThreadController::class, 'index'])->name('thread.index');
+Route::resource('thread', ThreadController::class)->except('edit', 'create', 'index');
 Route::resource('reply-thread', ReplyThreadController::class)->only('store', 'update', 'destroy');
 
 // Assignment
-Route::resource('assignment', AssignmentController::class)->only('index', 'store');
+Route::get('assignment/{classId}', [AssignmentController::class, 'index'])->name('assignment.index');
+Route::resource('assignment', AssignmentController::class)->only('store');
 Route::post('assignment/submit/{assignmentHeader}', [AssignmentController::class, 'submit'])->name('assignment.submit');
 Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
 
 // Score
-Route::resource('score', ScoreController::class)->except('create');
+Route::get('score/{classId}', [ScoreController::class, 'index'])->name('score.index');
+Route::resource('score', ScoreController::class)->except('create', 'index');
 Route::get('score/create/{classCourseId}/{userId}', [ScoreController::class, 'create'])->name('score.create');
-Route::get('score/manage/{id}', [ScoreController::class, 'manage'])->name('score.manage');
+Route::get('score/manage/{id}/{classId}', [ScoreController::class, 'manage'])->name('score.manage');

@@ -6,10 +6,11 @@ use App\Models\ClassCourse;
 use Illuminate\Http\Request;
 use App\Models\Score;
 use App\Models\User;
+use App\Models\ClassHeader;
 
 class ScoreController extends Controller
 {
-    public function manage($id)
+    public function manage($id, $classId)
     {
         if ($id == 0) {
             $class_course = ClassCourse::where('teacher_id', auth()->user()->id)->first();
@@ -20,6 +21,8 @@ class ScoreController extends Controller
         return view('score.manage', [
             'class_courses' => ClassCourse::where('teacher_id', auth()->user()->id)->get(),
             'class_course' => $class_course,
+            'class' => ClassHeader::where('id', $classId)
+            ->first()
         ]);
     }
 
@@ -28,10 +31,12 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($classId)
     {
         return view('score.index', [
             'scores' => Score::where('user_id', auth()->user()->id)->get(),
+            'class' => ClassHeader::where('id', $classId)
+            ->first()
         ]);
     }
 
