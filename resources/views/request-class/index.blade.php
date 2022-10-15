@@ -1,4 +1,4 @@
-<x-app title="Join Class">
+<x-app title="Join Class - Learningku">
 
     <x-slot name="navbar"></x-slot>
 

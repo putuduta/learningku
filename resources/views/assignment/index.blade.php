@@ -1,4 +1,4 @@
-<x-app title="Assignment List">
+<x-app title="Assignment List - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">

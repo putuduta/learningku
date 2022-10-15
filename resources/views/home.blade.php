@@ -1,4 +1,4 @@
-<x-master title="L-Man">
+<x-master title="Learningku">
     <x-slot name="navbar"></x-slot>
 
     <div class="landing">

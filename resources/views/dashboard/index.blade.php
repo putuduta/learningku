@@ -1,4 +1,4 @@
-<x-app title="Dashboard - L-Man">
+<x-app title="Dashboard - Learningku">
 
     <div id="content" class="container pt-5 mt-5">
         <div class="card shadow-sm border-0 mb-3">

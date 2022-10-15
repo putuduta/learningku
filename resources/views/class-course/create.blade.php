@@ -1,4 +1,4 @@
-<x-app title="Create Class Course - {{ auth()->user()->institution->name }}">
+<x-app title="Create Class Course - Learningku">
 
      <x-slot name="navbar"></x-slot>
  

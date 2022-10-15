@@ -1,4 +1,4 @@
-<x-app title="Score">
+<x-app title="Score - Learningku">
 
     <x-slot name="navbar"></x-slot>
 

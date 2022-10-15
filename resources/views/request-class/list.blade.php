@@ -1,4 +1,4 @@
-<x-app title="List Request Class">
+<x-app title="List Request Class - Learningku">
 
     <x-slot name="navbar"></x-slot>
 
