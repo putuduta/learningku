@@ -17,7 +17,7 @@
             <div class="container">
                 <ul class="nav navbar-nav mx-auto">
                     @if (auth()->user()->role == 'Teacher')
-                        <li class="nav-item"><a class="nav-link" style="color: black" href="#">Material</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $class->id)}}">Material</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view-teacher-list', $class->id ) }}">Daily Attendance</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('thread.index', $class->id ) }}">Forum</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $class->id ) }}">Assignment</a></li>

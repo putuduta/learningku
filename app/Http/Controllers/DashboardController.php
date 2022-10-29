@@ -29,4 +29,11 @@ class DashboardController extends Controller
             ->first()
         ]);
     }
+
+    public function viewMaterialClass($classId){
+        return view('material.index', [
+            'class' => ClassHeader::where('id', $classId)
+            ->first()
+        ]);
+    }
 }

@@ -34,6 +34,9 @@ Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard'
 
 Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
 
+//Material
+Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('material.index')->middleware('auth');
+
 // // Registration Payment
 // Route::prefix('payment')->name('payment-')->group(function () {
 //     Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
