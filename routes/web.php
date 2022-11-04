@@ -35,17 +35,21 @@ Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard'
 Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
 
 //Material
-Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('material.index')->middleware('auth');
+// Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('material.index')->middleware('auth');
+Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
+    Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('index');
+});
 
-// // Registration Payment
-// Route::prefix('payment')->name('payment-')->group(function () {
-//     Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
-//     Route::post('/create', [RegistrationPaymentController::class, 'validateData'])->name('validate');
-//     Route::post('/create/post', [RegistrationPaymentController::class, 'create'])->name('create');
-//     Route::get('/confirm/{payment}', [RegistrationPaymentController::class, 'confirm'])->name('confirm')->middleware('auth');
-//     Route::get('/reject/{payment}', [RegistrationPaymentController::class, 'reject'])->name('reject')->middleware('auth');
-// });
-
+/*
+// Registration Payment
+Route::prefix('payment')->name('payment-')->group(function () {
+    Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
+    Route::post('/create', [RegistrationPaymentController::class, 'validateData'])->name('validate');
+    Route::post('/create/post', [RegistrationPaymentController::class, 'create'])->name('create');
+    Route::get('/confirm/{payment}', [RegistrationPaymentController::class, 'confirm'])->name('confirm')->middleware('auth');
+    Route::get('/reject/{payment}', [RegistrationPaymentController::class, 'reject'])->name('reject')->middleware('auth');
+});
+*/
 
 // Class
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
