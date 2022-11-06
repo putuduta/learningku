@@ -15,7 +15,7 @@ class AttendanceHeader extends Model
     protected $guarded = [];
 
     public function class(){
-        return $this->hasOne('App\Models\ClassDetail','id','class_id')->withDefault();
+        return $this->hasOne('App\Models\ClassHeader','id','class_id')->withDefault();
     }
 
     public function details(){

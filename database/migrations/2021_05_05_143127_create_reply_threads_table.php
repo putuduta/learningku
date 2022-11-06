@@ -16,7 +16,7 @@ class CreateReplyThreadsTable extends Migration
         Schema::create('reply_threads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('thread_id');
-            $table->foreign('thread_id')->references('id')->on('class_courses')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('thread_id')->references('id')->on('threads')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->mediumText('body');

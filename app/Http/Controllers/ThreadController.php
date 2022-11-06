@@ -13,19 +13,17 @@ class ThreadController extends Controller
     {
         if (auth()->user()->role == 'Teacher') {
             return view('thread.index', [
-                'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_course_id')
-                    ->join('class_courses', 'threads.class_course_id', 'class_courses.id')
+                'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_id')
+                    ->join('class_headers', 'threads.class_id', 'class_headers.id')
                     ->where('teacher_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
-                'class_courses' => ClassCourse::where('teacher_id', auth()->user()->id)->get(),
                 'class' => ClassHeader::where('id', $classId)
                 ->first()
             ]);
         } else {
             return view('thread.index', [
-                'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_course_id')
-                    ->join('class_courses', 'threads.class_course_id', 'class_courses.id')
-                    ->where('class_id', auth()->user()->class_id)->orderBy('id', 'desc')->get(),
-                'class_courses' => ClassCourse::where('class_id', auth()->user()->class_id)->get(),
+                'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_id')
+                    ->join('class_headers', 'threads.class_id', 'class_headers.id')
+                    ->where('class_id', $classId)->orderBy('id', 'desc')->get(),
                 'class' => ClassHeader::where('id', $classId)
                 ->first()
             ]);
@@ -35,7 +33,7 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'class_course_id' => 'required',
+            'class_id' => 'required',
             'title' => 'required|string',
             'body' => 'required|string',
             'file' => 'nullable|max:4999|file',
@@ -52,7 +50,7 @@ class ThreadController extends Controller
 
         Thread::create([
             'user_id' => auth()->user()->id,
-            'class_course_id' => $request->class_course_id,
+            'class_id' => $request->class_id,
             'title' => $request->title,
             'body' => $request->body,
             'file' => $file_name,
@@ -61,10 +59,11 @@ class ThreadController extends Controller
         return redirect()->back()->with('success', 'New Thread Created');
     }
 
-    public function show(Thread $thread)
+    public function show($threadId, $classId)
     {
         return view('thread.show', [
-            'thread' => $thread,
+            'thread' => Thread::where('id', $threadId)->first(),
+            'class' => ClassHeader::where('id', $classId)->first(),
         ]);
     }
 

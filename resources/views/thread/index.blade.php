@@ -48,8 +48,6 @@
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
                     <th class="align-middle text-center">No</th>
-                    <th class="align-middle text-center">Course Name</th>
-                    <th class="align-middle text-center">Class</th>
                     <th class="align-middle text-center">Title</th>
                     <th class="align-middle text-center">Created by</th>
                     <th class="align-middle text-center">Created at</th>
@@ -61,8 +59,6 @@
                     @foreach($threads as $index=>$thread)
                     <tr>
                         <td class="align-middle text-center">{{ $index+1 }}</td>
-                        <td class="align-middle text-center">{{ $thread->class_course->course->name }}</td>
-                        <td class="align-middle text-center">{{ $thread->class_course->class->name }}</td>
                         <td class="align-middle text-center">{{ $thread->title }}</td>
                         <td class="align-middle text-center">{{ $thread->user->name }}</td>
                         <td class="align-middle text-center">
@@ -77,7 +73,7 @@
                         <td class="align-middle text-center bg-danger text-white">Not Replied</td>
                         @endif
                         <td class="align-middle text-center">
-                            <a href="{{ route('thread.show', $thread->id) }}" class="btn btn-primary text-white">
+                            <a href="{{ route('thread.show', ['threadId' => $thread->id, 'classId' => $class->id]) }}" class="btn btn-primary text-white">
                                 Show
                             </a>
                             @if($thread->user_id == auth()->user()->id)
@@ -110,15 +106,6 @@
                 <form action="{{ route('thread.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="my-3">
-                        <label for="title" class="form-label">Class Course</label>
-                        <select name="class_course_id" id="class_course_id" class="form-select" required>
-                            @foreach ($class_courses as $class_course)
-                            <option value="{{ $class_course->id }}">{{ $class_course->class->name }} -
-                                {{ $class_course->course->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="my-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="title" id="title" required>
                     </div>
@@ -131,6 +118,7 @@
                         <input class="form-control" name="file" type="file" id="file">
                     </div>
                     <div class="d-grid">
+                        <input type="hidden" name="class_id" value="{{ $class->id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>

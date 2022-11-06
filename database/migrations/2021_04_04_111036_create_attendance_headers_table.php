@@ -16,7 +16,7 @@ class CreateAttendanceHeadersTable extends Migration
         Schema::create('attendance_headers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('class_details')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('date');
             $table->timestamps();
         });

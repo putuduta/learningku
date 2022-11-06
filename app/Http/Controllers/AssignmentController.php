@@ -17,17 +17,17 @@ class AssignmentController extends Controller
         if (auth()->user()->role == 'Teacher') {
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
-                    ->join('class_courses', 'assignment_headers.class_course_id', 'class_courses.id')
+                    ->join('class_headers', 'assignment_headers.class_id', 'class_headers.id')
                     ->where('teacher_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
-                'class_courses' => ClassCourse::where('teacher_id', auth()->user()->id)->get(),
                 'class' => ClassHeader::where('id', $classId)
                 ->first()
             ]);
         } else {
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
-                    ->join('class_courses', 'assignment_headers.class_course_id', 'class_courses.id')
-                    ->where('class_id',   auth()->user()->class_id)->orderBy('id', 'desc')->get(),
+                    ->join('class_headers', 'assignment_headers.class_id', 'class_headers.id')
+                    ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
+                    ->where('claclass_detailsss_id',   $classId)->orderBy('id', 'desc')->get(),
                 'class' => ClassHeader::where('id', $classId)
                     ->first()
             ]);
@@ -37,7 +37,6 @@ class AssignmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'class_course_id' => 'required',
             'title' => 'required|string',
             'end_time' => 'required',
             'file' => 'required|file|max:4999'
@@ -53,8 +52,8 @@ class AssignmentController extends Controller
         }
 
         AssignmentHeader::create([
-            'class_course_id' => $request->class_course_id,
             'title' => $request->title,
+            'class_id' => $request->class_id,
             'end_time' => $request->end_time,
             'file' => $file_name,
         ]);
@@ -62,10 +61,11 @@ class AssignmentController extends Controller
         return redirect()->back()->with('success', 'New Assignment Created');
     }
 
-    public function show(AssignmentHeader $assignmentHeader)
+    public function show($assignmentId, $classId)
     {
         return view('assignment.show', [
-            'assignment' => $assignmentHeader,
+            'assignment' => AssignmentHeader::where('id', $assignmentId)->first(),
+            'class' => ClassHeader::where('id', $classId)->first(),
         ]);
     }
 

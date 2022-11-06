@@ -2,12 +2,12 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
-        <a href="{{ route('thread.index') }}" class="btn btn-primary text-white mb-3">Back to thread list</a>
+        <a href="{{ route('thread.index', $class->id) }}" class="btn btn-primary text-white mb-3">Back to thread list</a>
         <div class="card shadow-sm border-0">
             <div class="card-body my-2">
                 <h3 class="fw-bold">{{ $thread->title }}</h3>
                 <p>
-                    {{ $thread->class_course->course->name }} - {{ $thread->class_course->class->name }}
+                    {{ $class->name }}
                     <br>
                     Created at {{ $thread->created_at }}</p>
                 <hr>

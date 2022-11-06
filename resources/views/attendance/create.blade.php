@@ -1,4 +1,4 @@
-<x-app title="Create Attendance - {{ auth()->user()->institution->name }}">
+<x-app title="Create Attendance - {{ $class->name }}">
 
     <x-slot name="navbar"></x-slot>
 
@@ -25,13 +25,13 @@
                                     <th class="align-middle text-center">Present</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($class->student as $student)
+                                    @foreach($class_details as $student)
                                     <tr>
-                                        <td class="align-middle text-center">{{ $student->reg_number }}</td>
-                                        <td class="align-middle text-center">{{ $student->name }}</td>
+                                        <td class="align-middle text-center">{{ $student->studentId }}</td>
+                                        <td class="align-middle text-center">{{ $student->studentName }}</td>
                                         <td class="align-middle text-center">
                                             <input type="checkbox" value="1" class="form-check-input attend"
-                                                name="{{$student->id}}">
+                                                name="{{$student->studentId}}">
                                         </td>
                                     </tr>
                                     @endforeach

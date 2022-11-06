@@ -78,7 +78,7 @@ Route::prefix('teacher')->middleware('auth')->name('teacher-')->group(function (
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
     Route::get('list/teacher/{classId}', [AttendanceController::class, 'viewTeacherList'])->name('view-teacher-list');
     Route::get('list/student/{classId}', [AttendanceController::class, 'viewStudentList'])->name('view-student-list');
-    Route::get('create', [AttendanceController::class, 'viewCreate'])->name('view-create');
+    Route::get('create/{classId}', [AttendanceController::class, 'viewCreate'])->name('view-create');
     Route::post('create/post', [AttendanceController::class, 'create'])->name('create');
 });
 
@@ -101,11 +101,13 @@ Route::prefix('class-course')->middleware('auth')->name('class-course.')->group(
 
 // Forum Thread
 Route::get('thread/{classId}', [ThreadController::class, 'index'])->name('thread.index');
-Route::resource('thread', ThreadController::class)->except('edit', 'create', 'index');
+Route::get('thread-show/{threadId}/{classId}', [ThreadController::class, 'show'])->name('thread.show');
+Route::resource('thread', ThreadController::class)->except('edit', 'create', 'index', 'show');
 Route::resource('reply-thread', ReplyThreadController::class)->only('store', 'update', 'destroy');
 
 // Assignment
 Route::get('assignment/{classId}', [AssignmentController::class, 'index'])->name('assignment.index');
+Route::get('assignment-show/{assignmentId}/{classId}', [AssignmentController::class, 'show'])->name('assignment.showDetails');
 Route::resource('assignment', AssignmentController::class)->only('store');
 Route::post('assignment/submit/{assignmentHeader}', [AssignmentController::class, 'submit'])->name('assignment.submit');
 Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');

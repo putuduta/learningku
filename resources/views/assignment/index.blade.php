@@ -89,7 +89,7 @@
                                         History
                                     </button>
                                 @elseif(auth()->user()->role == 'Teacher')
-                                    <a href="{{ route('assignment.show', $assignment) }}"
+                                    <a href="{{ route('assignment.showDetails', ['assignmentId' => $assignment->id, 'classId' => $class->id]) }}"
                                         class="btn btn-primary text-white">
                                         Show Detail
                                     </a>
@@ -116,15 +116,6 @@
                     <form action="{{ route('assignment.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="title" class="form-label">Class Course</label>
-                            <select name="class_course_id" id="class_course_id" class="form-select" required>
-                                @foreach ($class_courses as $class_course)
-                                    <option value="{{ $class_course->id }}">{{ $class_course->class->name }} -
-                                        {{ $class_course->course->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="my-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" name="title" id="title" required>
                         </div>
@@ -137,6 +128,7 @@
                             <input class="form-control" name="file" type="file" id="file">
                         </div>
                         <div class="d-grid">
+                            <input type="hidden" name="class_id" value="{{ $class->id }}">
                             <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                         </div>
                     </form>

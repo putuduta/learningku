@@ -41,16 +41,18 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function viewCreate()
+    public function viewCreate($classId)
     {
 
-        $class = ClassDetail::where('homeroom_id', auth()->user()->id)->first();
-
-        if (AttendanceHeader::where([['class_id', $class->id], ['date', date('y-m-d')]])->first() != NULL) {
+        if (AttendanceHeader::where([['class_id', $classId], ['date', date('y-m-d')]])->first() != NULL) {
             return redirect()->back()->with('error', 'You have submitted your attendance for your class today');
         } else {
             return view('attendance.create', [
-                'class' => ClassDetail::where('homeroom_id', auth()->user()->id)->first(),
+                'class' => ClassHeader::where('id', $classId)->first(),
+                'class_details' => User::select('users.id as studentId','users.name as studentName')
+                ->join('class_details','class_details.student_id','users.id')
+                ->where([['users.role','Student'],['class_details.class_header_id', $classId]])
+                ->get(),
             ]);
         }
     }
@@ -65,16 +67,19 @@ class AttendanceController extends Controller
 
         $last_attendance = AttendanceHeader::where('class_id', request('class_id'))->latest('created_at')->first();
 
-        $students = User::where('class_id', request('class_id'))->get();
+        $students = User::select('users.id as studentId','users.name as studentName')
+        ->join('class_details','class_details.student_id','users.id')
+        ->where([['users.role','Student'],['class_details.class_header_id', request('class_id')]])
+        ->get();
 
         foreach ($students as $student) {
             AttendanceDetail::create([
                 'attendance_id' => $last_attendance->id,
-                'user_id' => $student->id,
-                'is_attend' => request($student->id) ? 1 : 0,
+                'user_id' => $student->studentId,
+                'is_attend' => request($student->studentId) ? 1 : 0,
             ]);
         }
 
-        return redirect()->route('attendance.view-teacher-list')->with('success', 'New Attendance created');
+        return redirect()->route('attendance.view-teacher-list', request('class_id'))->with('success', 'New Attendance created');
     }
 }
