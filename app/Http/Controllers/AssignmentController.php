@@ -27,7 +27,7 @@ class AssignmentController extends Controller
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
                     ->join('class_headers', 'assignment_headers.class_id', 'class_headers.id')
                     ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                    ->where('claclass_detailsss_id',   $classId)->orderBy('id', 'desc')->get(),
+                    ->where('class_details.id',   $classId)->orderBy('id', 'desc')->get(),
                 'class' => ClassHeader::where('id', $classId)
                     ->first()
             ]);
