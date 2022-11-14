@@ -8,7 +8,6 @@
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
                     <th class="align-middle text-center">No</th>
-                    <th class="align-middle text-center">Student ID</th>
                     <th class="align-middle text-center">Student Name</th>
                     <th class="align-middle text-center">Submission Time</th>
                     <th class="align-middle text-center">Action</th>
@@ -17,12 +16,11 @@
                     @foreach($assignment->submission as $index=>$submission)
                     <tr>
                         <td class="align-middle text-center">{{ $index+1 }}</td>
-                        <td class="align-middle text-center">{{ $submission->user->reg_number }}</td>
                         <td class="align-middle text-center">{{ $submission->user->name }}</td>
                         <td class="align-middle text-center">
                             {{ date_format(date_create($submission->end_time),"d F Y H:i") }}
                         </td>
-                        @if(auth()->user()->role->name == 'Student')
+                        @if(auth()->user()->role == 'Student')
                         @if (count($submission->submission) > 0)
                         <td class="align-middle text-center bg-success text-white">Submitted</td>
                         @else
