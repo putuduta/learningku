@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 'email' => 'james@gmail.com',
                 'role' => 'Student',
                 'password' => Hash::make('kualat'),
-            ],
+            ]
         ]);
     }
 }

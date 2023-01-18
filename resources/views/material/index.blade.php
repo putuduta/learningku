@@ -46,105 +46,14 @@
                 Create New Material
             </button>
         @endif
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <thead class="table-dark">
-                    <th class="align-middle text-center">ID</th>
-                    <th class="align-middle text-center">Class Name</th>
-                    <th class="align-middle text-center">Class ID</th>
-                    {{-- @if (auth()->user()->role == 'Student')
-                        <th class="align-middle text-center">Status</th>
-                    @endif --}}
-                    <th class="align-middle text-center">Description</th>
-                    <th class="align-middle text-center">Resources</th>
-                    <th class="align-middle text-center">Created By</th>
-                    <th class="align-middle text-center">Created At</th>
-                </thead>
-                <tbody>
-                    {{-- @foreach ($assignments as $index => $assignment)
-                        <tr>
-                            <td class="align-middle text-center">{{ $index + 1 }}</td>
-                            <td class="align-middle text-center">{{ $assignment->title }}</td>
-                            <td class="align-middle text-center">
-                                {{ date_format(date_create($assignment->end_time), 'd F Y H:i') }}
-                            </td>
-                            @if (auth()->user()->role == 'Student')
-                                @if (count($assignment->submissionUser) > 0)
-                                    <td class="align-middle text-center bg-success text-white">Submitted</td>
-                                @else
-                                    <td class="align-middle text-center bg-danger text-white">Not Submitted</td>
-                                @endif
-                            @endif
-                            <td class="align-middle text-center">
-                                <a href="/storage/assignment/{{ $assignment->file }}" download
-                                    class="btn btn-success text-white">
-                                    Download
-                                </a>
-                                @if (auth()->user()->role == 'Student')
-                                    @if (strtotime($assignment->end_time) > time())
-                                        <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#submit-{{ $assignment->id }}">
-                                            Add Submission
-                                        </button>
-                                    @endif
-                                    <button type="button" class="btn btn-dark text-white" data-bs-toggle="modal"
-                                        data-bs-target="#history-{{ $assignment->id }}">
-                                        History
-                                    </button>
-                                @elseif(auth()->user()->role == 'Teacher')
-                                    <a href="{{ route('assignment.show', $assignment) }}"
-                                        class="btn btn-primary text-white">
-                                        Show Detail
-                                    </a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach --}}
-                </tbody>
-            </table>
-        </div>
+        @foreach($materials as $material)
+        <div class="card mb-2" style="width: 100%">
+            <div class="card-body">
+              <h5 class="card-title">{{ $material->title }}</h5>
+              <p class="card-text">{{ $material->description }}</p>
+              <a href="#" class="btn btn-primary" href="{{ $material->resource }}">link</a>
+            </div>
+          </div>
+        @endforeach
     </div>
 </x-app>
-
-<!-- Modal -->
-@if (auth()->user()->role == 'Teacher')
-    <div class="modal fade" id="newAssignment" tabindex="-1" aria-labelledby="newAssignmentLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newAssignmentLabel">Create New Material</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('assignment.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        {{-- <div class="my-3">
-                            <label for="title" class="form-label">Class Course</label>
-                            <select name="class_course_id" id="class_course_id" class="form-select" required>
-                                @foreach ($class_courses as $class_course)
-                                    <option value="{{ $class_course->id }}">{{ $class_course->class->name }} -
-                                        {{ $class_course->course->name }}</option>
-                                @endforeach 
-                            </select>
-                        </div> --}}
-                        <div class="my-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" required>
-                        </div>
-                        <div class="my-3">
-                            <label for="body" class="form-label">Description</label>
-                            <input type="datetime-local" class="form-control" name="end_time" id="end_time" required>
-                        </div>
-                        <div class="my-3">
-                            <label for="file" class="form-label">Resource File</label>
-                            <input class="form-control" name="file" type="file" id="file">
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif

@@ -12,6 +12,7 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ClassCourseController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\MaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,8 @@ Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClass
 
 //Material
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
-    Route::get('/student-material/{classId}', [DashboardController::class, 'viewMaterialStudent'])->name('view-student');
-    Route::get('/teacher-material/{classId}', [DashboardController::class, 'viewMaterialTeacher'])->name('view-teacher');
+    Route::get('/student-material/{classId}', [MaterialController::class, 'viewMaterialStudent'])->name('view-student');
+    Route::get('/teacher-material/{classId}', [MaterialController::class, 'viewMaterialTeacher'])->name('view-teacher');
 });
 
 /*
