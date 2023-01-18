@@ -48,7 +48,7 @@ class ClassController extends Controller
                         ->join('class_details','class_details.student_id','users.id')
                         ->where([['users.role','Student'],['class_details.class_header_id',$class->id]])
                         ->get(),
-            'class' => $class,
+            'class' => $class
         ]);
     }
 

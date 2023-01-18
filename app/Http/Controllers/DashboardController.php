@@ -30,7 +30,14 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function viewMaterialClass($classId){
+    public function viewMaterialStudent($classId){
+        return view('material.index', [
+            'class' => ClassHeader::where('id', $classId)
+            ->first()
+        ]);
+    }
+
+    public function viewMaterialTeacher($classId){
         return view('material.index', [
             'class' => ClassHeader::where('id', $classId)
             ->first()

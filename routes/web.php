@@ -35,9 +35,9 @@ Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard'
 Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
 
 //Material
-// Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('material.index')->middleware('auth');
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
-    Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('index');
+    Route::get('/student-material/{classId}', [DashboardController::class, 'viewMaterialStudent'])->name('view-student');
+    Route::get('/teacher-material/{classId}', [DashboardController::class, 'viewMaterialTeacher'])->name('view-teacher');
 });
 
 /*
