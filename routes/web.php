@@ -32,13 +32,13 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
-
 Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
 
 //Material
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
     Route::get('/student-material/{classId}', [MaterialController::class, 'viewMaterialStudent'])->name('view-student');
     Route::get('/teacher-material/{classId}', [MaterialController::class, 'viewMaterialTeacher'])->name('view-teacher');
+    Route::post('/teacher-material/{material}', [MaterialController::class, 'store'])->name('insert');
 });
 
 /*
