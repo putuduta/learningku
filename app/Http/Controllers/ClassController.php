@@ -13,7 +13,7 @@ class ClassController extends Controller
 {
     public function viewListClass(){
         return view('class.list',[
-            'classes' => ClassHeader::where('teacher_id', auth()->user()->id)->get(),
+            'classes' => ClassHeader::where('teacher_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -54,7 +54,7 @@ class ClassController extends Controller
 
     public function viewJoinClass($guid){
         return view('request-class.index',[
-            'classes' => ClassHeader::where('guid', $guid)->first(),
+            'classes' => ClassHeader::where('guid', $guid)->first()
         ]);
     }
    
@@ -78,7 +78,7 @@ class ClassController extends Controller
                 ->join('class_headers','class_headers.id','request_classes.class_id')
                 ->join('users','users.id','request_classes.student_id')
                 ->where('class_headers.teacher_id',auth()->user()->id)
-                ->get(),
+                ->get()
             ]);
         }else if (auth()->user()->role == 'Student') {
             return view('request-class.list',[
@@ -86,7 +86,7 @@ class ClassController extends Controller
                 ->join('class_headers','class_headers.id','request_classes.class_id')
                 ->join('users','users.id','class_headers.teacher_id')
                 ->where('request_classes.student_id',auth()->user()->id)
-                ->get(),
+                ->get()
             ]);
         } else 
              return redirect()->route('home');
@@ -100,7 +100,7 @@ class ClassController extends Controller
         if ($action == 'Approved')  {
             ClassDetail::create([
                 'class_header_id' => $requestClass->class_id,
-                'student_id' => $requestClass->student_id,
+                'student_id' => $requestClass->student_id
             ]);
             $message = 'Approve Request Class';
         } else {

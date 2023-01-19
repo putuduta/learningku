@@ -20,31 +20,31 @@ class UserSeeder extends Seeder
                 'name' => 'Budi',
                 'email' => 'budi@gmail.com',
                 'role' => 'Teacher',
-                'password' => Hash::make('kualat'),
+                'password' => Hash::make('kualat')
             ],
             [
                 'name' => 'Andre',
                 'email' => 'andre@gmail.com',
                 'role' => 'Teacher',
-                'password' => Hash::make('kualat'),
+                'password' => Hash::make('kualat')
             ],
             [
                 'name' => 'John',
                 'email' => 'john@gmail.com',
                 'role' => 'Student',
-                'password' => Hash::make('kualat'),
+                'password' => Hash::make('kualat')
             ],
             [
                 'name' => 'Claire',
                 'email' => 'claire@gmail.com',
                 'role' => 'Student',
-                'password' => Hash::make('kualat'),
+                'password' => Hash::make('kualat')
             ],
             [
                 'name' => 'James',
                 'email' => 'james@gmail.com',
                 'role' => 'Student',
-                'password' => Hash::make('kualat'),
+                'password' => Hash::make('kualat')
             ]
         ]);
     }
