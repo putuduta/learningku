@@ -57,7 +57,9 @@ class MaterialController extends Controller
     }
 
     public function destroy($id){
-
+        $deleteMaterial = Material::find($id);
+        $deleteMaterial->delete();
+        return redirect()->back()->with('success', 'Material Deleted');
     }
     
 }

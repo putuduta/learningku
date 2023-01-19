@@ -48,10 +48,17 @@
             @foreach($materials as $material)
             <div class="card mb-2" style="width: 100%">
                 <div class="card-body">
-                  <h5 class="card-title">{{ $material->title }}</h5>
-                  <p class="card-text">{{ $material->description }}</p>
-                  <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
-                  <a class="btn btn-primary text-white" href="#">Update</a>
+                    <h5 class="card-title">{{ $material->title }}</h5>
+                    <p class="card-text">{{ $material->description }}</p>
+                    <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
+                    <a class="btn btn-primary text-white" href="#">Update</a>
+                    <form action="{{ route('material.delete', $material->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger text-white">
+                            Delete
+                        </button>
+                    </form>
                 </div>
               </div>
             @endforeach
@@ -77,6 +84,43 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="submitLabel">Create New Material - {{ $class->name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="my-3">
+                        <label for="class_id" class="form-label">Class Id</label>
+                        <input type="text" class="form-control" name="class_id" id="class_id" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" name="description" id="description" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="resource" class="form-label">Resource</label>
+                        <input type="text" class="form-control" name="resource" id="resource" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateMaterial" tabindex="-1" aria-labelledby="updateMaterial"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="submitLabel">Update Material - {{ $class->name }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
