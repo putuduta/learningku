@@ -12,6 +12,7 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ClassCourseController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\MaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,15 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
-
 Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
 
 //Material
-// Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('material.index')->middleware('auth');
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
-    Route::get('/material/{classId}', [DashboardController::class, 'viewMaterialClass'])->name('index');
+    Route::get('/student-material/{classId}', [MaterialController::class, 'viewMaterialStudent'])->name('view-student');
+    Route::get('/teacher-material/{classId}', [MaterialController::class, 'viewMaterialTeacher'])->name('view-teacher');
+    Route::post('/teacher-material', [MaterialController::class, 'store'])->name('create');
+    Route::delete('/delete-material/{material}', [MaterialController::class, 'destroy'])->name('delete');
+    Route::put('/update-material/{id}', [MaterialController::class, 'update'])->name('update');
 });
 
 /*

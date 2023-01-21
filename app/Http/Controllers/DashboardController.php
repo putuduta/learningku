@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ClassDetail;
 use App\Models\ClassHeader;
+use App\Models\Material;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -29,11 +30,5 @@ class DashboardController extends Controller
             ->first()
         ]);
     }
-
-    public function viewMaterialClass($classId){
-        return view('material.index', [
-            'class' => ClassHeader::where('id', $classId)
-            ->first()
-        ]);
-    }
+    
 }

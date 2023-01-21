@@ -1,4 +1,4 @@
-<x-app title="Assignment List - Learningku">
+<x-app title="Material List - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container pt-5 mt-5">
@@ -18,15 +18,15 @@
             <div class="container">
                 <ul class="nav navbar-nav mx-auto">
                     @if (auth()->user()->role == 'Teacher')
-                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $class->id)}}">Material</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.view-teacher', $class->id)}}">Material</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view-teacher-list', $class->id ) }}">Daily Attendance</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('thread.index', $class->id ) }}">Forum</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $class->id ) }}">Assignment</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', $class->id ) }}">Score</a></li>
                     @endif
-
+    
                     @if (auth()->user()->role == 'Student')
-                        <li class="nav-item"><a class="nav-link" style="color: black" href="#">Material</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.view-student', $class->id)}}">Material</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view-student-list', $class->id ) }}">Attendances</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('thread.index', $class->id ) }}">Forum Discussion</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $class->id ) }}">Assignment</a></li>
@@ -42,102 +42,113 @@
         <hr>
         @if (auth()->user()->role == 'Teacher')
             <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
-                data-bs-target="#newAssignment">
+                data-bs-target="#newMaterial">
                 Create New Material
             </button>
+            @foreach($materials as $material)
+            <div class="card mb-2" style="width: 100%">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $material->title }}</h5>
+                    <p class="card-text">{{ $material->description }}</p>
+                    <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
+                    <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
+                        data-bs-target="#updateMaterial{{ $material->id }}">
+                        Update
+                        <label class="form-label">{{ $material->id }}</label>
+                    </button>
+                    <form action="{{ route('material.delete', $material->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger text-white mt-2">
+                            Delete
+                        </button>
+                    </form>
+                    
+                </div>
+              </div>
+            @endforeach
         @endif
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <thead class="table-dark">
-                    <th class="align-middle text-center">ID</th>
-                    <th class="align-middle text-center">Class Name</th>
-                    <th class="align-middle text-center">Class ID</th>
-                    {{-- @if (auth()->user()->role == 'Student')
-                        <th class="align-middle text-center">Status</th>
-                    @endif --}}
-                    <th class="align-middle text-center">Description</th>
-                    <th class="align-middle text-center">Resources</th>
-                    <th class="align-middle text-center">Created By</th>
-                    <th class="align-middle text-center">Created At</th>
-                </thead>
-                <tbody>
-                    {{-- @foreach ($assignments as $index => $assignment)
-                        <tr>
-                            <td class="align-middle text-center">{{ $index + 1 }}</td>
-                            <td class="align-middle text-center">{{ $assignment->title }}</td>
-                            <td class="align-middle text-center">
-                                {{ date_format(date_create($assignment->end_time), 'd F Y H:i') }}
-                            </td>
-                            @if (auth()->user()->role == 'Student')
-                                @if (count($assignment->submissionUser) > 0)
-                                    <td class="align-middle text-center bg-success text-white">Submitted</td>
-                                @else
-                                    <td class="align-middle text-center bg-danger text-white">Not Submitted</td>
-                                @endif
-                            @endif
-                            <td class="align-middle text-center">
-                                <a href="/storage/assignment/{{ $assignment->file }}" download
-                                    class="btn btn-success text-white">
-                                    Download
-                                </a>
-                                @if (auth()->user()->role == 'Student')
-                                    @if (strtotime($assignment->end_time) > time())
-                                        <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#submit-{{ $assignment->id }}">
-                                            Add Submission
-                                        </button>
-                                    @endif
-                                    <button type="button" class="btn btn-dark text-white" data-bs-toggle="modal"
-                                        data-bs-target="#history-{{ $assignment->id }}">
-                                        History
-                                    </button>
-                                @elseif(auth()->user()->role == 'Teacher')
-                                    <a href="{{ route('assignment.show', $assignment) }}"
-                                        class="btn btn-primary text-white">
-                                        Show Detail
-                                    </a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach --}}
-                </tbody>
-            </table>
-        </div>
+
+        @if (auth()->user()->role == 'Student')
+            @foreach($materials as $material)
+            <div class="card mb-2" style="width: 100%">
+                <div class="card-body">
+                <h5 class="card-title">{{ $material->title }}</h5>
+                <p class="card-text">{{ $material->description }}</p>
+                <a class="btn btn-primary text-white" href="{{ $material->resource }}">link</a>
+                </div>
+            </div>
+            @endforeach
+        @endif
     </div>
 </x-app>
 
-<!-- Modal -->
-@if (auth()->user()->role == 'Teacher')
-    <div class="modal fade" id="newAssignment" tabindex="-1" aria-labelledby="newAssignmentLabel" aria-hidden="true">
+<div class="modal fade" id="newMaterial" tabindex="-1" aria-labelledby="newMaterialLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="submitLabel">Create New Material</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('material.create') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="my-3">
+                        <label for="class_id" class="form-label">Class Id</label>
+                        <input type="text" class="form-control" name="class_id" id="class_id" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" name="description" id="description" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="resource" class="form-label">Resource</label>
+                        <input type="text" class="form-control" name="resource" id="resource" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach($materials as $material)
+    <div class="modal fade" id="updateMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="updateMaterial"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newAssignmentLabel">Create New Material</h5>
+                    <h5 class="modal-title" id="submitLabel">Update Material</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('assignment.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('material.update', $material->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
-                        {{-- <div class="my-3">
-                            <label for="title" class="form-label">Class Course</label>
-                            <select name="class_course_id" id="class_course_id" class="form-select" required>
-                                @foreach ($class_courses as $class_course)
-                                    <option value="{{ $class_course->id }}">{{ $class_course->class->name }} -
-                                        {{ $class_course->course->name }}</option>
-                                @endforeach 
-                            </select>
-                        </div> --}}
+                        @method('put')
+                        <div class="my-3">
+                            <label for="class_id" class="form-label">Class Id</label>
+                            <input type="text" class="form-control" name="class_id" id="class_id" required>
+                        </div>
                         <div class="my-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" name="title" id="title" required>
                         </div>
                         <div class="my-3">
-                            <label for="body" class="form-label">Description</label>
-                            <input type="datetime-local" class="form-control" name="end_time" id="end_time" required>
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" name="description" id="description" required>
                         </div>
                         <div class="my-3">
-                            <label for="file" class="form-label">Resource File</label>
-                            <input class="form-control" name="file" type="file" id="file">
+                            <label for="resource" class="form-label">Resource</label>
+                            <input type="text" class="form-control" name="resource" id="resource" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
@@ -147,4 +158,4 @@
             </div>
         </div>
     </div>
-@endif
+@endforeach
