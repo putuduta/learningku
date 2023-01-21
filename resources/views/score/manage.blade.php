@@ -22,7 +22,7 @@
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view-teacher-list', $class->id ) }}">Daily Attendance</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('thread.index', $class->id ) }}">Forum</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $class->id ) }}">Assignment</a></li>
-                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', [0, $class->id] ) }}">Score</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', $class->id ) }}">Score</a></li>
                     @endif
     
                     @if (auth()->user()->role == 'Student')
@@ -37,7 +37,7 @@
         </nav>
     </div>
 
-    <div id="content" class="container my-5">
+    {{-- <div id="content" class="container my-5">
         <h3 class="fw-bold">Class Score - {{ $class_course->course->name }} - {{ $class_course->class->name }}</h3>
         <hr>
         <div class="d-flex mb-3">
@@ -69,6 +69,35 @@
                                 </a>
                             </td>
                         </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div> --}}
+
+    <div id="content" class="container my-5">
+        <h3 class="fw-bold">Student List</h3>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                    <th class="align-middle text-center">No</th>
+                    <th class="align-middle text-center">Student Name</th>
+                    <th class="align-middle text-center">Action</th>
+                </thead>
+                <tbody>
+                    @foreach($class_details as $student)
+                                <tr>
+                                    <td class="align-middle text-center">{{ $student->studentId }}</td>
+                                    <td class="align-middle text-center">{{ $student->studentName }}</td>
+                                    <td class="align-middle text-center">
+                                        <a href="{{ URL::to('/') }}/score/detail/{{ $class->id }}/{{ $student->studentId }}"
+                                            class="btn btn-primary text-white">
+                                            Show Detail
+                                        </a>
+
+                                    </td>
+                                </tr>
                     @endforeach
                 </tbody>
             </table>

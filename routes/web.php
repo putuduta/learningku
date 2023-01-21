@@ -114,6 +114,9 @@ Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'
 
 // Score
 Route::get('score/{classId}', [ScoreController::class, 'index'])->name('score.index');
+Route::get('score/manage/{classId}', [ScoreController::class, 'manage'])->name('score.manage');
+// Route::get('score/detail/{student}', [ScoreController::class, 'detail'])->name('score.detail');
+Route::get('score/detail/{classId}/{student}', [ScoreController::class, 'detail'])->name('score.detail');
+Route::get('score/edit/{classId}/{score}', [ScoreController::class, 'change'])->name('score.change');
 Route::resource('score', ScoreController::class)->except('create', 'index');
 Route::get('score/create/{classCourseId}/{userId}', [ScoreController::class, 'create'])->name('score.create');
-Route::get('score/manage/{id}/{classId}', [ScoreController::class, 'manage'])->name('score.manage');

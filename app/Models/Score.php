@@ -15,11 +15,11 @@ class Score extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user_id', 'id')->withDefault();
+        return $this->hasOne('App\Models\User', 'student_id', 'id')->withDefault();
     }
 
-    public function class_course()
-    {
-        return $this->belongsTo('App\Models\ClassCourse', 'class_course_id', 'id')->withDefault();
-    }
+    // public function class_course()
+    // {
+    //     return $this->belongsTo('App\Models\ClassCourse', 'class_header_id', 'id')->withDefault();
+    // }
 }

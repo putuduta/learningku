@@ -22,7 +22,7 @@
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view-teacher-list', $class->id ) }}">Daily Attendance</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('thread.index', $class->id ) }}">Forum</a></li>
                         <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $class->id ) }}">Assignment</a></li>
-                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', [0, $class->id] ) }}">Score</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', $class->id ) }}">Score</a></li>
                     @endif
     
                     @if (auth()->user()->role == 'Student')
@@ -44,21 +44,15 @@
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
                     <th class="align-middle text-center">No</th>
-                    <th class="align-middle text-center">Class</th>
-                    <th class="align-middle text-center">Course</th>
-                    <th class="align-middle text-center">Assignment</th>
-                    <th class="align-middle text-center">Mid</th>
-                    <th class="align-middle text-center">Final</th>
+                    <th class="align-middle text-center">Score Name</th>
+                    <th class="align-middle text-center">Score</th>
                 </thead>
                 <tbody>
-                    @foreach ($scores as $index => $score)
+                    @foreach ($scores as $index => $s)
                         <tr>
                             <td class="align-middle text-center">{{ $index + 1 }}</td>
-                            <td class="align-middle text-center">{{ $score->class_course->class->name }}</td>
-                            <td class="align-middle text-center">{{ $score->class_course->course->name }}</td>
-                            <td class="align-middle text-center">{{ $score->assignment }}</td>
-                            <td class="align-middle text-center">{{ $score->mid }}</td>
-                            <td class="align-middle text-center">{{ $score->final }}</td>
+                            <td class="align-middle text-center">{{ $s->score_name }}</td>
+                            <td class="align-middle text-center">{{ $s->score }}</td>
                         </tr>
                     @endforeach
                 </tbody>

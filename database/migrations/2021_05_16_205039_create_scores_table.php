@@ -15,14 +15,13 @@ class CreateScoresTable extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('class_course_id');
-            $table->unsignedBigInteger('user_id');
-            $table->integer('assignment')->nullable();
-            $table->integer('mid')->nullable();
-            $table->integer('final')->nullable();
+            $table->unsignedBigInteger('class_header_id');
+            $table->unsignedBigInteger('student_id');
+            $table->string('score_name');
+            $table->integer('score');
+            $table->foreign('class_header_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
-            $table->foreign('class_course_id')->references('id')->on('class_courses')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

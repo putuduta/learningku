@@ -55,6 +55,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ClassDetail', 'student_id','id')->withDefault();
     }
 
+    // public function classes(){
+    //     return $this->belongsToMany('App\Models\ClassHeader');
+    // }
+
     public function studentRequestClass(){
         return $this->hasMany('App\Models\RequestClass','student_id','id')->withDefault();
     }
