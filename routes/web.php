@@ -38,8 +38,9 @@ Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClass
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
     Route::get('/student-material/{classId}', [MaterialController::class, 'viewMaterialStudent'])->name('view-student');
     Route::get('/teacher-material/{classId}', [MaterialController::class, 'viewMaterialTeacher'])->name('view-teacher');
-    Route::post('/teacher-material/{material}', [MaterialController::class, 'store'])->name('create');
+    Route::post('/teacher-material', [MaterialController::class, 'store'])->name('create');
     Route::delete('/delete-material/{material}', [MaterialController::class, 'destroy'])->name('delete');
+    Route::put('/update-material/{id}', [MaterialController::class, 'update'])->name('update');
 });
 
 /*

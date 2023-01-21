@@ -31,7 +31,7 @@ class MaterialController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function store(Request $request){   
         $material = new Material();
 
         $material->class_id = $request->class_id;
@@ -52,8 +52,16 @@ class MaterialController extends Controller
 
     }
 
-    public function update(Request $request, $id){
-
+    public function update(Request $request){
+        $updateMaterial = Material::find($request->id);
+        
+        $updateMaterial->class_id = $request->class_id;
+        $updateMaterial->title = $request->title;
+        $updateMaterial->description = $request->title;
+        $updateMaterial->resource = $request->title;
+        dd($updateMaterial);
+        
+        return redirect()->back()->with('success', 'Reply Thread Updated');
     }
 
     public function destroy($id){

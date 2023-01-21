@@ -51,14 +51,19 @@
                     <h5 class="card-title">{{ $material->title }}</h5>
                     <p class="card-text">{{ $material->description }}</p>
                     <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
-                    <a class="btn btn-primary text-white" href="#">Update</a>
+                    <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
+                        data-bs-target="#updateMaterial{{ $material->id }}">
+                        Update
+                        <label class="form-label">{{ $material->id }}</label>
+                    </button>
                     <form action="{{ route('material.delete', $material->id) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger text-white">
+                        <button type="submit" class="btn btn-danger text-white mt-2">
                             Delete
                         </button>
                     </form>
+                    
                 </div>
               </div>
             @endforeach
@@ -83,11 +88,11 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="submitLabel">Create New Material - {{ $class->name }}</h5>
+                <h5 class="modal-title" id="submitLabel">Create New Material</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST"
+                <form action="{{ route('material.create') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="my-3">
@@ -115,39 +120,42 @@
     </div>
 </div>
 
-<div class="modal fade" id="updateMaterial" tabindex="-1" aria-labelledby="updateMaterial"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="submitLabel">Update Material - {{ $class->name }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="my-3">
-                        <label for="class_id" class="form-label">Class Id</label>
-                        <input type="text" class="form-control" name="class_id" id="class_id" required>
-                    </div>
-                    <div class="my-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" name="title" id="title" required>
-                    </div>
-                    <div class="my-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description" id="description" required>
-                    </div>
-                    <div class="my-3">
-                        <label for="resource" class="form-label">Resource</label>
-                        <input type="text" class="form-control" name="resource" id="resource" required>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
-                    </div>
-                </form>
+@foreach($materials as $material)
+    <div class="modal fade" id="updateMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="updateMaterial"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitLabel">Update Material</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('material.update', $material->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('put')
+                        <div class="my-3">
+                            <label for="class_id" class="form-label">Class Id</label>
+                            <input type="text" class="form-control" name="class_id" id="class_id" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title" id="title" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" name="description" id="description" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="resource" class="form-label">Resource</label>
+                            <input type="text" class="form-control" name="resource" id="resource" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endforeach
