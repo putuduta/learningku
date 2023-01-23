@@ -59,9 +59,8 @@ class MaterialController extends Controller
         $updateMaterial->title = $request->title;
         $updateMaterial->description = $request->title;
         $updateMaterial->resource = $request->title;
-        dd($updateMaterial);
         
-        return redirect()->back()->with('success', 'Reply Thread Updated');
+        return redirect()->back()->with('success', 'Material Updated');
     }
 
     public function destroy($id){

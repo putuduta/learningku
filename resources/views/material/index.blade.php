@@ -50,22 +50,30 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $material->title }}</h5>
                     <p class="card-text">{{ $material->description }}</p>
-                    <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
-                    <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                        data-bs-target="#updateMaterial{{ $material->id }}">
-                        Update
-                        <label class="form-label">{{ $material->id }}</label>
-                    </button>
-                    <form action="{{ route('material.delete', $material->id) }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger text-white mt-2">
-                            Delete
-                        </button>
-                    </form>
-                    
+                    <div class="left d-flex justify-content-between">
+                        <div>
+                            <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
+                        </div>
+                        <div class="d-flex">
+                            <div class="me-2">
+                                <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
+                                data-bs-target="#updateMaterial{{ $material->id }}">
+                                    Update
+                                </button>
+                            </div>
+                            <div>
+                                <form action="{{ route('material.delete', $material->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger text-white">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </div>
             @endforeach
         @endif
 
@@ -97,7 +105,7 @@
                     @csrf
                     <div class="my-3">
                         <label for="class_id" class="form-label">Class Id</label>
-                        <input type="text" class="form-control" name="class_id" id="class_id" required>
+                        <input value="{{ $class->id }}" type="text" class="form-control" name="class_id" id="class_id" readonly required>
                     </div>
                     <div class="my-3">
                         <label for="title" class="form-label">Title</label>
@@ -136,7 +144,7 @@
                         @method('put')
                         <div class="my-3">
                             <label for="class_id" class="form-label">Class Id</label>
-                            <input type="text" class="form-control" name="class_id" id="class_id" required>
+                            <input value="{{ $class->id }}" type="text" class="form-control" name="class_id" id="class_id" readonly required>
                         </div>
                         <div class="my-3">
                             <label for="title" class="form-label">Title</label>
