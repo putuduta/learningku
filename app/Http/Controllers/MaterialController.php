@@ -34,10 +34,14 @@ class MaterialController extends Controller
     public function store(Request $request){   
         $material = new Material();
 
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
+        $image = $request->file('file')->storeAs('public/material', $file_name);
+
         $material->class_id = $request->class_id;
         $material->title = $request->title;
         $material->description = $request->description;
-        $material->resource = $request->resource;
+        $material->resource = $image;
 
         $material->save();
 

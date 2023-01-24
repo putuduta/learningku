@@ -52,7 +52,7 @@
                     <p class="card-text">{{ $material->description }}</p>
                     <div class="left d-flex justify-content-between">
                         <div>
-                            <a class="btn btn-primary text-white" href="{{ $material->resource }}">Link</a>
+                            <a class="btn btn-success text-white" href="{{ $material->resource }}">Download</a>
                         </div>
                         <div class="d-flex">
                             <div class="me-2">
@@ -117,7 +117,7 @@
                     </div>
                     <div class="my-3">
                         <label for="resource" class="form-label">Resource</label>
-                        <input type="text" class="form-control" name="resource" id="resource" required>
+                        <input type="file" class="form-control" name="file" id="file" required>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
