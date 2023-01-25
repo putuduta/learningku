@@ -6,6 +6,7 @@ use App\Models\ClassDetail;
 use App\Models\ClassHeader;
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
@@ -73,4 +74,20 @@ class MaterialController extends Controller
         return redirect()->back()->with('success', 'Material Deleted');
     }
     
+    public function download($id){
+        $downloadMaterial = Material::find($id);
+        $fileLoc = substr($downloadMaterial->resource, 7);
+
+        if(Storage::disk('public')->exists($fileLoc)){
+            $path = Storage::disk('public')->path($fileLoc);
+            $content = file_get_contents($path);
+            return response($content)->withHeaders([
+                'Content-type' => mime_content_type($path)
+            ]);
+        }else{
+            return redirect('/404');
+        }
+
+        //return response()->download(storage_path('app\material\Material_BAB 1_1674658639.txt'));
+    }
 }

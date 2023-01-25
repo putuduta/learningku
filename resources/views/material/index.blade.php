@@ -52,7 +52,7 @@
                     <p class="card-text">{{ $material->description }}</p>
                     <div class="left d-flex justify-content-between">
                         <div>
-                            <a class="btn btn-success text-white" href="{{ $material->resource }}">Download</a>
+                            <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}">Download</a>
                         </div>
                         <div class="d-flex">
                             <div class="me-2">

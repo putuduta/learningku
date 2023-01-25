@@ -41,6 +41,7 @@ Route::prefix('material')->middleware('auth')->name('material.')->group(function
     Route::post('/teacher-material', [MaterialController::class, 'store'])->name('create');
     Route::delete('/delete-material/{material}', [MaterialController::class, 'destroy'])->name('delete');
     Route::put('/update-material/{id}', [MaterialController::class, 'update'])->name('update');
+    Route::get('/download-material/{id}', [MaterialController::class, 'download'])->name('download');
 });
 
 /*
