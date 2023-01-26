@@ -18,8 +18,26 @@ class ScoreSeeder extends Seeder
             [
                 'class_header_id' => 1,
                 'student_id' => 3,
-                'score_name' => 'UAS',
+                'score_name' => 'Ulangan matematika diskrit minggu 1',
                 'score' => 90,
+            ],            
+            [
+                'class_header_id' => 1,
+                'student_id' => 4,
+                'score_name' => 'Ulangan matematika diskrit minggu 1',
+                'score' => 95,
+            ],
+            [
+                'class_header_id' => 1,
+                'student_id' => 3,
+                'score_name' => 'Ulangan matematika diskrit minggu 2',
+                'score' => 80,
+            ],            
+            [
+                'class_header_id' => 1,
+                'student_id' => 4,
+                'score_name' => 'Ulangan matematika diskrit minggu 2',
+                'score' => 98,
             ],
         ]);
     }

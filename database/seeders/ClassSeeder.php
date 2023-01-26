@@ -17,13 +17,13 @@ class ClassSeeder extends Seeder
         DB::table('class_headers')->insert([
             [
                 'name' => 'Matematika B',
-                'description' => 'Test',
+                'description' => 'Kelas pak Budi guru matematika di sekolah Andals',
                 'teacher_id' => 1,
                 'guid' => bin2hex(random_bytes('16')),
             ],
             [
                 'name' => 'Matematika X',
-                'description' => 'Test',
+                'description' => 'Kelas pak Andre guru matematika di sekolah Andals',
                 'teacher_id' => 2,
                 'guid' => bin2hex(random_bytes('16')),
             ],
