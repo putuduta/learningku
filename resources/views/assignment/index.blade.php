@@ -192,7 +192,7 @@
                                                     {{ date_format(date_create($submission->created_at), 'd F Y H:i') }}
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <a href="/storage/assignment/{{ $submission->file }}" download
+                                                    <a href="/storage/assignment/submission/{{ $submission->file }}" download
                                                         class="btn btn-success text-white">
                                                         Download
                                                     </a>
