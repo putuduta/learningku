@@ -104,8 +104,8 @@
                     enctype="multipart/form-data">
                     @csrf
                     <div class="my-3">
-                        <label for="class_id" class="form-label">Class Id</label>
-                        <input value="{{ $class->id }}" type="text" class="form-control" name="class_id" id="class_id" readonly required>
+                        <label for="class_id" class="form-label" hidden>Class Id</label>
+                        <input value="{{ $class->id }}" type="text" class="form-control" name="class_id" id="class_id" readonly required hidden>
                     </div>
                     <div class="my-3">
                         <label for="title" class="form-label">Title</label>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="my-3">
                         <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description" id="description" required>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
                     </div>
                     <div class="my-3">
                         <label for="resource" class="form-label">Resource</label>
@@ -143,8 +143,8 @@
                         @csrf
                         @method('put')
                         <div class="my-3">
-                            <label for="class_id" class="form-label">Class Id</label>
-                            <input value="{{ $class->id }}" type="text" class="form-control" name="class_id" id="class_id" readonly required>
+                            <label for="class_id" class="form-label" hidden>Class Id</label>
+                            <input value="{{ $class->id }}" type="text" class="form-control" name="class_id" id="class_id" readonly required hidden>
                         </div>
                         <div class="my-3">
                             <label for="title" class="form-label">Title</label>
@@ -152,7 +152,7 @@
                         </div>
                         <div class="my-3">
                             <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" name="description" id="description" required>
+                            <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
                         </div>
                         <div class="my-3">
                             <label for="resource" class="form-label">Resource</label>
