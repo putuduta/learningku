@@ -156,7 +156,7 @@
                         </div>
                         <div class="my-3">
                             <label for="resource" class="form-label">Resource</label>
-                            <input type="text" class="form-control" name="resource" id="resource" required>
+                            <input type="file" class="form-control" name="file" id="file" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
