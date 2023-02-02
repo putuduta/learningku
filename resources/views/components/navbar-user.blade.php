@@ -5,7 +5,7 @@
                 <h2 class="text-white">☰</h2>
             </span>
             <a class="navbar-brand" href="/dashboard">
-                <img src="/storage/assets/logo.png" class="img-navbar">
+                <h2 class="text-white">LEARNINGKU</h2>
             </a>
         </div>
     </nav>

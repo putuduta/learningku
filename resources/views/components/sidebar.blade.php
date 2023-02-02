@@ -5,7 +5,7 @@
                 <h2>☰</h2>
             </span>
             <a class="navbar-brand" href="{{ route('dashboard') }}">
-                <img src="/storage/assets/logo.png" class="img-navbar">
+                <h2 class="text-white">LEARNINGKU</h2>
             </a>
         </div>
         <div class="sidebar-header border-top border-gray" style="height: 139px; padding: 0.5rem 1rem;">
@@ -75,7 +75,7 @@
 
                         <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
                             @foreach ($classes as $class)
-                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class', $class->classId) }}">{{ $class->className }}</a></li>
+                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('material.view-student', $class->classId) }}">{{ $class->className }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -93,6 +93,8 @@
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('class-view-list') }}">
                             <span class="fa-stack fa-sm ms-n1">
+                                <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                                <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
                             </span>
                             <span class="ms-2">Class List</span>
                         </a>
@@ -103,7 +105,7 @@
                         </a>
                         <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
                             @foreach ($classes as $class)
-                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class', $class->classId) }}">{{ $class->className }}</a></li>
+                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('material.view-student', $class->classId) }}">{{ $class->className }}</a></li>
                             @endforeach
                         </ul>
                     </li>

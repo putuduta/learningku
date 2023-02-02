@@ -52,7 +52,7 @@
                     <p class="card-text">{{ $material->description }}</p>
                     <div class="left d-flex justify-content-between">
                         <div>
-                            <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}">Download</a>
+                            <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}" target="_blank">Download</a>
                         </div>
                         <div class="d-flex">
                             <div class="me-2">
@@ -148,15 +148,15 @@
                         </div>
                         <div class="my-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" required>
+                            <input type="text" value="{{ $material->title }}" class="form-control" name="title" id="title" required>
                         </div>
                         <div class="my-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
+                            <textarea name="description" value="{{ $material->description }}"  id="description" cols="30" rows="10" class="form-control" required>{{ $material->description }}</textarea>
                         </div>
                         <div class="my-3">
                             <label for="resource" class="form-label">Resource</label>
-                            <input type="file" class="form-control" name="file" id="file" required>
+                            <input type="file" class="form-control" name="file" id="file">
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>

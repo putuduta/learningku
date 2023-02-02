@@ -60,13 +60,17 @@ class MaterialController extends Controller
     public function update(Request $request){
         $updateMaterial = Material::find($request->id);
         
-        $extension = $request->file('file')->getClientOriginalExtension();
-        $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
-        $image = $request->file('file')->storeAs('public/material', $file_name);
+        if ($request->hasFile('file')) {
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
+            $image = $request->file('file')->storeAs('public/material', $file_name);
+        } else {
+            $image = $updateMaterial->resource;
+        }
 
         $updateMaterial->class_id = $request->class_id;
         $updateMaterial->title = $request->title;
-        $updateMaterial->description = $request->title;
+        $updateMaterial->description = $request->description;
         $updateMaterial->resource = $image;
         
         $updateMaterial->save();
