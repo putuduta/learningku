@@ -1,7 +1,9 @@
-<x-app title="Class List - L-Man">
+<x-app title="School Year List - L-Man">
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
+        <h3 class="fw-bold">School Year List</h3>
+        <hr>
         <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
         data-bs-target="#newSchoolYear">
         Create School Year
@@ -15,10 +17,10 @@
                         <th class="align-middle text-center">Action</th>
                    </thead>
                    <tbody>
-                        @foreach ($shoolYears as $shoolYear)
+                        @foreach ($schoolYears as $schoolYear)
                              <tr>
                                   <td class="align-middle text-center">{{$schoolYear->id}}</td>
-                                  <td class="align-middle text-center">{{$schoolYear->name}}</td>
+                                  <td class="align-middle text-center">{{$schoolYear->year}}</td>
                                   <td class="align-middle text-center">{{$schoolYear->semester}}</td>
                                   <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
@@ -43,7 +45,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="">
+                        <form method="POST" action="{{ route('admin-school-year-create') }}">
                             @csrf
                             <div class="my-3">
                                  <label for="year" class="form-label">Year</label>
@@ -52,7 +54,7 @@
                             <div class="my-3">
                                  <label for="semester" class="form-label">Semester</label>
                                  <select name="semester" class="form-select" required>
-                                    <option selected>--Please Choose--</option>
+                                    <option value="" selected>--Please Choose--</option>
                                     <option value="Semester 1">Semester 1</option>
                                     <option value="Semester 2">Semester 2</option>
                                  </select>
@@ -74,11 +76,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST"
+                            <form action="{{ route('admin-school-year-update', $schoolYear->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
-                                <input value="{{ $schoolYear->id }}" type="text" class="form-control" name="schoolYear_id" id="schoolYear_id" hidden>
                                 <div class="my-3">
                                     <label for="year" class="form-label">Year</label>
                                     <input type="text" class="form-control" value="{{ $schoolYear->year }}" name="year" required>
@@ -86,7 +87,7 @@
                                <div class="my-3">
                                     <label for="semester" class="form-label">Semester</label>
                                     <select name="semester" class="form-select" required>
-                                       <option selected>--Please Choose--</option>
+                                       <option value="" selected>--Please Choose--</option>
                                        <option value="Semester 1" {{($schoolYear->semester === 'Semester 1') ? 'selected' : ''}}>Semester 1</option>
                                        <option value="Semester 2" {{($schoolYear->semester === 'Semester 2') ? 'selected' : ''}}>Semester 2</option>
                                     </select>

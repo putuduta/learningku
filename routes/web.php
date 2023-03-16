@@ -44,22 +44,25 @@ Route::prefix('material')->middleware('auth')->name('material.')->group(function
     Route::get('/download-material/{id}', [MaterialController::class, 'download'])->name('download');
 });
 
-/*
-// Registration Payment
-Route::prefix('payment')->name('payment-')->group(function () {
-    Route::get('/list', [RegistrationPaymentController::class, 'viewList'])->name('view-list');
-    Route::post('/create', [RegistrationPaymentController::class, 'validateData'])->name('validate');
-    Route::post('/create/post', [RegistrationPaymentController::class, 'create'])->name('create');
-    Route::get('/confirm/{payment}', [RegistrationPaymentController::class, 'confirm'])->name('confirm')->middleware('auth');
-    Route::get('/reject/{payment}', [RegistrationPaymentController::class, 'reject'])->name('reject')->middleware('auth');
+Route::prefix('admin/school-year')->middleware('auth')->name('admin-school-year-')->group(function () {
+    Route::get('/view', [AdminController::class, 'viewSchoolYear'])->name('view');
+    Route::post('/create', [AdminController::class, 'createSchoolYear'])->name('create');
+    Route::put('/update/{id}', [AdminController::class, 'updateSchoolYear'])->name('update');
 });
-*/
+
+Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(function () {
+    Route::get('/choose-school-year', [AdminController::class, 'viewChooseSchoolYear'])->name('view-choose-school-year');
+    Route::post('/choose-school-year', [AdminController::class, 'postChooseSchoolYear'])->name('post-choose-school-year');
+    Route::get('/view/{schoolYearId}', [AdminController::class, 'viewClassList'])->name('view');
+    Route::post('/create/{schoolYearId}', [AdminController::class, 'createClass'])->name('create');
+    Route::post('/update/{id}', [AdminController::class, 'updateClass'])->name('update');
+});
 
 // Class
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
     Route::get('list', [ClassController::class, 'viewListClass'])->name('view-list');
-    Route::get('create', [ClassController::class, 'viewCreateClass'])->name('view-create');
-    Route::get('create/post', [ClassController::class, 'createClass'])->name('create');
+    // Route::get('create', [ClassController::class, 'viewCreateClass'])->name('view-create');
+    // Route::get('create/post', [ClassController::class, 'createClass'])->name('create');
     Route::get('student/{class}', [ClassController::class, 'viewClassStudent'])->name('view-student');
     Route::get('request-join/{guid}', [ClassController::class, 'viewJoinClass'])->name('view-join');
     Route::post('create-request-join/post', [ClassController::class, 'requestClass'])->name('request-join');

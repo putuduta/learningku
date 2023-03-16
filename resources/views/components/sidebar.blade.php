@@ -47,10 +47,18 @@
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('class-course.view-list') }}">
+                            href="{{ route('admin-school-year-view') }}">
                             <span class="fa-stack fa-sm ms-n1">
                             </span>
-                            <span class="ms-2">Class Course List</span>
+                            <span class="ms-2">School Year List</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('admin-class-view-choose-school-year') }}">
+                            <span class="fa-stack fa-sm ms-n1">
+                            </span>
+                            <span class="ms-2">Class List</span>
                         </a>
                     </li>
                 @endif

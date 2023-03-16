@@ -16,7 +16,10 @@ class CreateClassHeadersTable extends Migration
         Schema::create('class_headers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->mediumText('description')->nullable();
+            $table->unsignedBigInteger('school_year_id');
+            $table->foreign('school_year_id')->references('id')->on('school_years')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('homeroom_teacher_id');
+            $table->foreign('homeroom_teacher_id')->references('user_id')->on('teachers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
