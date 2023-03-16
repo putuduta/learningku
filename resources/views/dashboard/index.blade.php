@@ -9,7 +9,7 @@
                     </div>
                     <div class="col-md-10">
                         <h1 class="fw-bold">Welcome, {{ auth()->user()->name }}</h1>
-                        <p>{{ auth()->user()->role }}</p>
+                        <p>{{ auth()->user()->role->name }}</p>
                         <hr>
                     </div>           
                 </div>

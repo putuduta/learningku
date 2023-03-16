@@ -13,7 +13,7 @@
                 <img src="/storage/assets/man.svg" class="rounded border-teal w-25 rounded-circle bg-color-lightblue"
                     alt="">
                 <span class="mt-1">{{ auth()->user()->name }}</span>
-                <small class="text-secondary">{{ auth()->user()->role}}</small>
+                <small class="text-secondary">{{ auth()->user()->role->name}}</small>
             </div>
         </div>
         <div class="sidebar-menu border-top border-gray overflow-auto" style="height: calc(100% - 196px);">
@@ -28,7 +28,7 @@
                         <span class="ms-2">Main Dashboard</span>
                     </a>
                 </li>
-                @if (auth()->user()->role == 'Admin')
+                @if (auth()->user()->role->name == 'Admin')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('student-view-list') }}">
@@ -54,7 +54,7 @@
                         </a>
                     </li>
                 @endif
-                @if (auth()->user()->role == 'Student')
+                @if (auth()->user()->role->name == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('class-list-request-join') }}">
@@ -80,7 +80,7 @@
                         </ul>
                     </li>
                 @endif
-                @if (auth()->user()->role == 'Teacher')
+                @if (auth()->user()->role->name == 'Teacher')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('class-list-request-join') }}">
