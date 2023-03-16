@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassHeadersTable extends Migration
+class CreateClassSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateClassHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_headers', function (Blueprint $table) {
+        Schema::create('class_subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->mediumText('description')->nullable();
-            $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('guid');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('teachers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

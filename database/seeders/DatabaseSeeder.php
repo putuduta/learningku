@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TeacherSeeder::class,
             StudentSeeder::class,
-            ClassSeeder::class,
-            ScoreSeeder::class,
-            MaterialSeeder::class,
-            AttendanceSeeder::class,
-            AssignmentSeeder::class,
-            RequestClassSeeder::class,
-            ThreadSeeder::class,
+            // ClassSeeder::class,
+            // ScoreSeeder::class,
+            // MaterialSeeder::class,
+            // AttendanceSeeder::class,
+            // AssignmentSeeder::class,
+            // RequestClassSeeder::class,
+            // ThreadSeeder::class,
         ]);
     }
 }
