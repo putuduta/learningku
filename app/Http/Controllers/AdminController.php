@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassDetail;
 use App\Models\ClassHeader;
 use App\Models\SchoolYear;
+use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -37,7 +38,7 @@ class AdminController extends Controller
             'semester' => $request->semester,
         ]);
 
-        return redirect()->route('school-year-view')->with('success','New School Year Created');
+        return redirect()->route('admin-school-year-view')->with('success','New School Year Created');
     }
 
     public function updateSchoolYear($id, Request $request){
@@ -59,12 +60,12 @@ class AdminController extends Controller
 
     // Class
     public function postChooseSchoolYear(Request $request){
-        return $this->viewClassList($request->school_year_id);
+        return redirect()->route('admin-class-view', $request->school_year_id);
     }
 
     public function viewClassList($schoolYearId){
         return view('admin.class-list',[
-            'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_id as homeroom_teacher_id')
+            'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_id as homeroomTeacherId')
                 ->join('school_years','school_years.id','class_headers.school_year_id')
                 ->join('teachers', 'teachers.user_id', 'class_headers.homeroom_teacher_id')
                 ->join('users', 'users.id', 'teachers.user_id')
@@ -74,6 +75,13 @@ class AdminController extends Controller
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->join('roles','roles.id','users.role_id')
                 ->where('roles.name','Teacher')
+                ->get(),
+            'teachersNotAssigned' => Teacher::select('users.id as id', 'users.name as name')
+                ->join('users', 'users.id', 'teachers.user_id')
+                ->join('roles','roles.id','users.role_id')
+                ->leftJoin('class_headers', 'class_headers.homeroom_teacher_id', 'teachers.user_id')
+                ->where('roles.name','Teacher')
+                ->whereNull('class_headers.homeroom_teacher_id')
                 ->get(),
             'schoolYear' => SchoolYear::where('id', $schoolYearId)->first()
         ]);
@@ -91,13 +99,13 @@ class AdminController extends Controller
             'homeroom_teacher_id' => $request->homeroom_teacher_id,
         ]);
 
-        return redirect()->route('admin-class-view')->with('success','New Class Created');
+        return redirect()->back()->with('success','New Class Created');
     }
 
     public function updateClass($id, Request $request){
         $class = ClassHeader::find($id);
 
-        $class->name = $request->name;
+        $class->name = $request->class_name;
         $class->school_year_id = $request->school_year_id;
         $class->homeroom_teacher_id = $request->homeroom_teacher_id;
         
@@ -106,15 +114,36 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Class Updated');
     }
 
-    public function viewClassStudent(ClassDetail $class){
+    public function viewClassStudent(ClassHeader $class){
         return view('admin.class-student-list',[
-            'students' => User::select('users.id','users.name')
-                        ->join('roles','roles.id','users.role_id')
-                        ->where([['roles.name','Student'],['class_id',$class->id]])
-                        ->get(),
+            'students' => ClassDetail::select('users.id as id', 'users.name as name')
+                ->join('students', 'students.user_id', 'class_details.user_id')
+                ->join('users', 'users.id', 'students.user_id')
+                ->join('roles','roles.id','users.role_id')
+                ->where('roles.name','Student')
+                ->get(),
             'class' => $class,
+            'studentsNotAssigned' => Student::select('users.id as id', 'users.name as name', 'students.nisn as nisn')
+                ->join('users', 'users.id', 'students.user_id')
+                ->join('roles','roles.id','users.role_id')
+                ->leftJoin('class_details', 'class_details.user_id', 'students.user_id')
+                ->where('roles.name','Student')
+                ->whereNull('class_details.user_id')
+            ->get(),
+            'schoolYear' => SchoolYear::where('id', $class->school_year_id)->first()
         ]);
     }
+
+    public function assignStudentToClass($classId, Request $request){
+
+        ClassDetail::create([
+            'class_header_id' => $classId,
+            'user_id' => $request->student_id
+        ]);
+
+        return redirect()->back()->with('success','Success Assign Student to Class');
+    }
+
 
     public function viewListStudent(){
         return view('admin.student-list',[
