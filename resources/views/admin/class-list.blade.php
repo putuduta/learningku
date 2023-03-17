@@ -1,11 +1,11 @@
-<x-app title="Class List - L-Man">
+<x-app title="Class List - {{$schoolYear->year}} {{$schoolYear->semester}}">
      <x-slot name="navbar"></x-slot>
 
      <div id="content" class="container py-5 my-5">
           <h3 class="fw-bold">Class List - Tahun Ajaran {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
           <hr>
-          <a type="button" class="btn btn-dark text-white mb-3" href="{{ route('admin-class-view-choose-school-year') }}">
-          Back to Choose School Year
+          <a type="button" class="btn btn-dark text-white mb-3" href="{{ url()->previous() }}">
+          Back
           </a>
           <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
           data-bs-target="#newClass">
@@ -17,7 +17,7 @@
                          <th class="align-middle text-center">ID</th>
                          <th class="align-middle text-center">Class Name</th>
                          <th class="align-middle text-center">Homeroom Teacher/Wali Kelas</th>
-                         <th class="align-middle text-center" colspan="2">Action</th>
+                         <th class="align-middle text-center" colspan="3">Action</th>
                     </thead>
                     <tbody>
                          @foreach ($classes as $class)
@@ -30,6 +30,8 @@
                                         data-bs-target="#updateClass{{ $class->id }}">
                                              Update
                                         </button>
+                                        <a href="{{route('admin-class-view-subject',$class)}}"
+                                        class="btn btn-warning">Subject</a>
                                         <a href="{{route('admin-class-view-student',$class)}}"
                                              class="btn btn-success">Student List</a>
                                    </td>
@@ -50,7 +52,7 @@
                        <div class="modal-body">
                          <form method="POST" action="{{route('admin-class-create', $schoolYear->id)}}">
                               @csrf
-                              <div class="my-3">
+                              <div class="">
                                    <label for="school_year" class="form-label">School Year</label>
                                    <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
                               </div>
@@ -67,7 +69,7 @@
                                         @endforeach
                                    </select>
                               </div>
-                              <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                              <button type="submit" class="btn btn-primary">Submit</button>
                          </form>
                        </div>
                    </div>
@@ -88,7 +90,7 @@
                                   enctype="multipart/form-data">
                                   @csrf
                                   @method('put')
-                                  <div class="my-3">
+                                  <div class="">
                                        <input type="text" class="form-control" name="school_year_id" value="{{$schoolYear->id}}" hidden>
                                        <label for="school_year" class="form-label">School Year</label>
                                        <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
@@ -108,7 +110,7 @@
                                             @endforeach
                                        </select>
                                   </div>
-                                  <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                                  <button type="submit" class="btn btn-primary">Submit</button>
                               </form>
                           </div>
                       </div>

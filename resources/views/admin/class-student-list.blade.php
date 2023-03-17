@@ -1,4 +1,4 @@
-<x-app title="Class Student List">
+<x-app title="Student List - {{$class->name}} {{$schoolYear->year}} - {{$schoolYear->semester}}">
      <x-slot name="navbar"></x-slot>
 
      <div id="content" class="container py-5 my-5">
@@ -15,12 +15,18 @@
                     <thead>
                          <th class="align-middle text-center">ID</th>
                          <th class="align-middle text-center">Student Name</th>
+                         <th class="align-middle text-center">Action</th>
                     </thead>
                     <tbody>
                          @foreach ($students as $student)
                               <tr>
                                    <td class="align-middle text-center">{{$student->id}}</td>
                                    <td class="align-middle text-center">{{$student->name}}</td>
+                                   <td class="align-middle text-center">
+                                        <a href="{{ route('admin-class-remove-student', $student->classDetailId) }}"
+                                             class="btn btn-danger text-white justify-content-between">Remove</a>
+                                       </th>
+                                   </td>
                               </tr>
                          @endforeach
                     </tbody>
@@ -39,7 +45,7 @@
                   <div class="modal-body">
                     <form method="POST" action="{{route('admin-class-assign-student',$class->id)}}">
                          @csrf
-                         <div class="my-3">
+                         <div class="">
                               <label for="school_year" class="form-label">School Year</label>
                               <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
                          </div>
@@ -56,7 +62,7 @@
                                    @endforeach
                               </select>
                          </div>
-                         <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                   </div>
               </div>

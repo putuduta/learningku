@@ -14,7 +14,7 @@
                         <th class="align-middle text-center">ID</th>
                         <th class="align-middle text-center">Year</th>
                         <th class="align-middle text-center">Semester</th>
-                        <th class="align-middle text-center">Action</th>
+                        <th class="align-middle text-center" colspan="2">Action</th>
                    </thead>
                    <tbody>
                         @foreach ($schoolYears as $schoolYear)
@@ -27,6 +27,8 @@
                                     data-bs-target="#updateSchoolYear{{ $schoolYear->id }}">
                                         Update
                                     </button>
+                                    <a href="{{route('admin-class-view', $schoolYear->id)}}"
+                                    class="btn btn-warning">Class List</a>
                                   </td>
                              </tr>
                         @endforeach
