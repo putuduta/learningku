@@ -6,14 +6,15 @@
             <div class="card-body m-3">
                 <div class="row align-items-center">
                     <div class="col-md-10">
-                        <h1 class="fw-bold">{{ $classSubject->name }}</h1>
-                        <p>{{ $classSubject->description }}</p>
+                        <h1 class="fw-bold">Mata Pelajaran {{ $classSubject->name }}</h1>
+                        <h3>Kelas {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h3>
+                        <h5>Guru Pengajar {{ $classSubject->teacherName }} </h5> <p> {{ $classSubject->description }}</p>
                         <hr>
                     </div>           
                 </div>
             </div>
         </div>
-
+    
         <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light main-nav card shadow-sm border-0 mb-3" style="background-color: #fff;">
             <div class="container">
                 <ul class="nav navbar-nav mx-auto">
@@ -40,7 +41,7 @@
     <div id="content" class="container my-5">
         <h3 class="fw-bold">Material List</h3>
         <hr>
-        @if (auth()->user()->role == 'Teacher')
+        @if (auth()->user()->role->name == 'Teacher')
             <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
                 data-bs-target="#newMaterial">
                 Create New Material
@@ -52,7 +53,9 @@
                     <p class="card-text">{{ $material->description }}</p>
                     <div class="left d-flex justify-content-between">
                         <div>
-                            <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}" target="_blank">Download</a>
+                            @if ($material->resource != null || $material->resource != "")                       
+                                <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}" target="_blank">Download</a>
+                            @endif
                         </div>
                         <div class="d-flex">
                             <div class="me-2">
@@ -77,7 +80,7 @@
             @endforeach
         @endif
 
-        @if (auth()->user()->role == 'Student')
+        @if (auth()->user()->role->name == 'Student')
             @foreach($materials as $material)
             <div class="card mb-2" style="width: 100%">
                 <div class="card-body">
@@ -117,7 +120,7 @@
                     </div>
                     <div class="my-3">
                         <label for="resource" class="form-label">Resource</label>
-                        <input type="file" class="form-control" name="file" id="file" required>
+                        <input type="file" class="form-control" name="file" id="file">
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>

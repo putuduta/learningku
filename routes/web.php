@@ -70,9 +70,10 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
 // Class
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
     Route::get('list', [ClassController::class, 'viewListClass'])->name('view-list');
+    Route::get('get-list/{schoolYearId}', [ClassController::class, 'getListClass'])->name('get-list');
     // Route::get('create', [ClassController::class, 'viewCreateClass'])->name('view-create');
     // Route::get('create/post', [ClassController::class, 'createClass'])->name('create');
-    Route::get('student/{class}', [ClassController::class, 'viewClassStudent'])->name('view-student');
+    Route::get('student/{classSubjectId}', [ClassController::class, 'viewClassStudent'])->name('view-student');
     Route::get('request-join/{guid}', [ClassController::class, 'viewJoinClass'])->name('view-join');
     Route::post('create-request-join/post', [ClassController::class, 'requestClass'])->name('request-join');
     Route::get('request-joins', [ClassController::class, 'listRequestClass'])->name('list-request-join');

@@ -31,12 +31,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('components.sidebar', function ($view) {
-            if (auth()->user()->role->name == 'Teacher') {
-                $view->with('classes', ClassHeader::select('class_headers.id as classId', 'class_headers.name as className')
-                ->where('class_headers.teacher_id',auth()->user()->id)
-                ->get());
-            }
-
             if (auth()->user()->role->name == 'Student') {
                 $view->with('classes', ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester')
                 ->join('school_years','school_years.id','class_headers.school_year_id')

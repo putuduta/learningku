@@ -15,29 +15,40 @@ class AttendanceController extends Controller
     public function viewTeacherList($classSubjectId)
     {
 
-        $classSubject = ClassSubject::where('id', $classSubjectId)->first();
-
-        if ($classSubject != NULL) {
-            return view('attendance.teacher_list', [
-                'attendances' => AttendanceHeader::select(
+        
+        return view('attendance.teacher_list', [
+            'attendances' => AttendanceHeader::select(
                     'attendance_headers.id',
                     'attendance_headers.class_subject_id',
-                    'attendance_headers.date'
-                )->join('class_subjects', 'attendance_headers.class_subject_id', 'class_subjects.id')
-                    ->where('class_subjects.user_id', auth()->user()->id)->get(),
-                'class' => $classSubject,
-            ]);
-        } else {
-            return redirect()->back();
-        }
+                    'attendance_headers.date',
+                    'class_subjects.name as subjectName',
+                    'class_headers.name as className')
+                ->join('class_subjects', 'attendance_headers.class_subject_id', 'class_subjects.id')
+                ->join('class_headers', 'class_subjects.class_header_id', 'class_headers.id')
+                ->where('class_subjects.user_id', auth()->user()->id)->get(),
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName'
+                , 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester')
+                ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                ->join('users', 'users.id', 'teachers.user_id')
+                ->join('roles','roles.id','users.role_id')
+                ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                ->where('roles.name','Teacher')
+                ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+        ]);
     }
 
     public function viewStudentList($classSubjectId)
     {
         return view('attendance.student_list', [
             'attendances' => AttendanceDetail::where('student_user_id', auth()->user()->id)->get(),
-            'classSubject' => ClassSubject::where('id', $classSubjectId)
-            ->first()
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+            ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+            ->join('users', 'users.id', 'teachers.user_id')
+            ->where('class_subjects.class_header_id', $classSubjectId)->first(),
         ]);
     }
 
@@ -48,7 +59,15 @@ class AttendanceController extends Controller
             return redirect()->back()->with('error', 'You have submitted your attendance for your class today');
         } else {
             return view('attendance.create', [
-                'class' => ClassSubject::where('id', $classSubjectId)->first(),
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName'
+                , 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester')
+                ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                ->join('users', 'users.id', 'teachers.user_id')
+                ->join('roles','roles.id','users.role_id')
+                ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                ->where('roles.name','Teacher')
+                ->where('class_subjects.class_header_id', $classSubjectId)->first(),
                 'class_details' => ClassDetail::select('users.id as studentId', 'users.name as studentName', 'class_details.id as classDetailId')
                     ->join('students', 'students.user_id', 'class_details.user_id')
                     ->join('users', 'users.id', 'students.user_id')
@@ -65,7 +84,7 @@ class AttendanceController extends Controller
     {
 
         AttendanceHeader::create([
-            'class_id' => request('class_id'),
+            'class_subject_id' => request('class_subject_id'),
             'date' => date('y-m-d'),
         ]);
 
@@ -88,6 +107,6 @@ class AttendanceController extends Controller
             ]);
         }
 
-        return redirect()->route('attendance.view-teacher-list', request('class_id'))->with('success', 'New Attendance created');
+        return redirect()->route('attendance.view-teacher-list', request('class_subject_id'))->with('success', 'New Attendance created');
     }
 }

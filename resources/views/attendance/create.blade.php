@@ -1,11 +1,12 @@
-<x-app title="Create Attendance - {{ $class->name }}">
+<x-app title="Create Attendance - {{ $classSubject->name }} {{ $classSubject->className }}">
 
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container my-5 py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h3>Create Attendance - {{ $class->name }}</h3>
+                <h3>Create Attendance - Mata Pelajaran {{ $classSubject->name }}</h3>
+                <h5>Kelas {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h5>
                 <hr>
                 <form action="{{ route('attendance.create') }}" method="POST">
                     @csrf
@@ -39,7 +40,7 @@
                             </table>
                         </div>
                     </div>
-                    <input type="hidden" name="class_id" value="{{ $class->id }}">
+                    <input type="hidden" name="class_subject_id" value="{{ $classSubject->id }}">
                     <button type="submit" class="btn btn-primary text-white mt-4">Submit</button>
                 </form>
             </div>

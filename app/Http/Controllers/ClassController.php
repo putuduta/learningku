@@ -4,17 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\ClassDetail;
 use App\Models\ClassHeader;
+use App\Models\ClassSubject;
 use App\Models\RequestClass;
+use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ClassController extends Controller
 {
     public function viewListClass(){
         return view('class.list',[
-            'classes' => ClassHeader::where('teacher_id', auth()->user()->id)->get()
+            'schoolYears' => SchoolYear::get()
         ]);
+    }
+
+    public function getListClass($schoolYearId) {
+        $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName')
+        ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+        ->join('users', 'users.id', 'teachers.user_id')
+        ->join('roles','roles.id','users.role_id')
+        ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+        ->where('roles.name','Teacher')
+        ->where('class_headers.school_year_id', $schoolYearId)
+        ->where('class_subjects.user_id', auth()->user()->id)
+        ->get();
+        
+        return $classAndSubjects;
     }
 
     public function viewCreateClass(){

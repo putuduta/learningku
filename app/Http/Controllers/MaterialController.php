@@ -13,15 +13,27 @@ class MaterialController extends Controller
 {
     public function viewMaterialStudent($classSubjectId){
         return view('material.index', [
-            'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+            ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+            ->join('users', 'users.id', 'teachers.user_id')
+            ->where('class_subjects.class_header_id', $classSubjectId)->first(),
             'materials' => Material::where('class_subject_id', $classSubjectId)->get()
         ]);
     }
 
     public function viewMaterialTeacher($classSubjectId){
         return view('material.index', [
-            'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
-            'materials' => Material::where('class_id', $classSubjectId)->get()
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+            ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+            ->join('users', 'users.id', 'teachers.user_id')
+            ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+            'materials' => Material::where('class_subject_id', $classSubjectId)->get()
         ]);
     }
 
@@ -36,9 +48,13 @@ class MaterialController extends Controller
     public function store(Request $request){   
         $material = new Material();
 
-        $extension = $request->file('file')->getClientOriginalExtension();
-        $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
-        $image = $request->file('file')->storeAs('public/material', $file_name);
+        if ($request->hasFile('file')) {
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
+            $image = $request->file('file')->storeAs('public/material', $file_name);
+        } else {
+            $image = "";
+        }
 
         $material->class_subject_id = $request->class_subject_id;
         $material->title = $request->title;

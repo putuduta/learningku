@@ -6,13 +6,15 @@
             <div class="card-body m-3">
                 <div class="row align-items-center">
                     <div class="col-md-10">
-                        <h1 class="fw-bold">{{ $classSubject->name }}</h1>
-                        <p>{{ $classSubject->description }}</p>
+                        <h1 class="fw-bold">Mata Pelajaran {{ $classSubject->name }}</h1>
+                        <h3>Kelas {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h3>
+                        <h5>Guru Pengajar {{ $classSubject->teacherName }} </h5> <p> {{ $classSubject->description }}</p>
                         <hr>
                     </div>           
                 </div>
             </div>
         </div>
+    
     
         <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light main-nav card shadow-sm border-0 mb-3" style="background-color: #fff;">
             <div class="container">

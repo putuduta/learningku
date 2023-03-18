@@ -16,17 +16,27 @@ class ThreadController extends Controller
             return view('thread.index', [
                 'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_subject_id')
                     ->join('class_subjects', 'threads.class_subject_id', 'class_subjects.id')
-                    ->where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
-                'classSubject' => ClassSubject::where('id', $classSubjectId)
-                ->first()
+                    ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                    ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                    ->join('users', 'users.id', 'teachers.user_id')
+                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
             ]);
         } else {
             return view('thread.index', [
                 'threads' => Thread::select('threads.id', 'threads.user_id', 'threads.title', 'threads.class_subject_id')
                     ->join('class_subjects', 'threads.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
-                'classSubject' => ClassSubject::where('id', $classSubjectId)
-                ->first()
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                    ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                    ->join('users', 'users.id', 'teachers.user_id')
+                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
             ]);
         }
     }
