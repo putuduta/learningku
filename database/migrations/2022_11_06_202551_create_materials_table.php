@@ -15,8 +15,8 @@ class CreateMaterialsTable extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('class_subject_id');
+            $table->foreign('class_subject_id')->references('id')->on('class_subjects')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->mediumText('description');
             $table->string('resource');

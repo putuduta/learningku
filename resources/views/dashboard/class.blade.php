@@ -1,19 +1,52 @@
 <x-app title="{{ $class->name }} - Learningku">
 
+    <style>
+        .title-line {
+            width: 80px;
+            height: 3px;
+            background: black;
+            margin: 0 auto;
+        }
+    </style>
+
     <div id="content" class="container pt-5 mt-5">
         <div class="card shadow-sm border-0 mb-3">
             <div class="card-body m-3">
                 <div class="row align-items-center">
                     <div class="col-md-10">
-                        <h1 class="fw-bold">{{ $class->name }}</h1>
+                        <h1 class="fw-bold">{{ $class->name }} - {{ $class->semester }}</h1>
                         <p>{{ $class->description }}</p>
-                        <hr>
+                        <p>Wali Kelas {{ $class->homeroomTeacherName }}</p>
                     </div>           
                 </div>
+                <hr>
             </div>
         </div>
+
+        <div class="pt-2 pb-2">
+            <h2 class="text-dark text-center pb-3 pt-2">Class Subjects</h2>
+            <div class="title-line"></div>
+        </div>
+
+
+        <div class="row justify-content-md-start mt-3 row-cols-sm-auto" style="margin-left: 0 !important;margin-right: 0 !important;">
+            @foreach ($subjects as $subject)
+                <div class="card shadow-sm border-0">
+                    <a href="{{ route('material.view-student', $subject->id)}}" style="text-decoration:none;">
+                        <div class="card-body m-2">
+                            <div class="row align-items-center">
+                                <div class="col-md-20">
+                                    <h3 class="fw-bold">{{ $subject->name }}</h3>
+                                    <p>Guru: {{ $subject->teacherName }}</p>
+                                </div>           
+                            </div>
+                        </div>
+                    </a>       
+                </div>     
+            @endforeach
+        </div>
     
-        <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light main-nav card shadow-sm border-0 mb-3" style="background-color: #fff;">
+        {{-- <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light main-nav card shadow-sm border-0 mb-3" style="background-color: #fff;">
             <div class="container">
                 <ul class="nav navbar-nav mx-auto">
                     @if (auth()->user()->role == 'Teacher')
@@ -33,6 +66,6 @@
                     @endif
                 </ul>
             </div>
-        </nav>
+        </nav> --}}
     </div>
 </x-app>

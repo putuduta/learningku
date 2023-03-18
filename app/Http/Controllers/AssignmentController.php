@@ -6,30 +6,29 @@ use App\Models\AssignmentDetail;
 use App\Models\AssignmentHeader;
 use App\Models\ClassCourse;
 use App\Models\ClassHeader;
+use App\Models\ClassSubject;
 use Illuminate\Http\Request;
 use PDO;
 
 class AssignmentController extends Controller
 {
 
-    public function index($classId)
+    public function index($classSubjectId)
     {
         if (auth()->user()->role == 'Teacher') {
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
-                    ->join('class_headers', 'assignment_headers.class_id', 'class_headers.id')
+                    ->join('class_subjects', 'assignment_headers.class_subject_id', 'class_subjects.id')
+                    ->where('class_subjects.id',   $classSubjectId)
                     ->where('teacher_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
-                'class' => ClassHeader::where('id', $classId)
-                ->first()
+                'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
             ]);
         } else {
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
-                    ->join('class_headers', 'assignment_headers.class_id', 'class_headers.id')
-                    ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                    ->where('class_details.id',   $classId)->orderBy('id', 'desc')->get(),
-                'class' => ClassHeader::where('id', $classId)
-                    ->first()
+                    ->join('class_subjects', 'assignment_headers.class_subject_id', 'class_subjects.id')
+                    ->where('class_subjects.id',   $classSubjectId)->orderBy('id', 'desc')->get(),
+                    'classSubject' => ClassSubject::where('id', $classSubjectId)->first()
             ]);
         }
     }
@@ -53,7 +52,7 @@ class AssignmentController extends Controller
 
         AssignmentHeader::create([
             'title' => $request->title,
-            'class_id' => $request->class_id,
+            'class_subject_id' => $request->class_subject_id,
             'end_time' => $request->end_time,
             'file' => $file_name,
         ]);
@@ -61,11 +60,11 @@ class AssignmentController extends Controller
         return redirect()->back()->with('success', 'New Assignment Created');
     }
 
-    public function show($assignmentId, $classId)
+    public function show($assignmentId, $classSubjectId)
     {
         return view('assignment.show', [
             'assignment' => AssignmentHeader::where('id', $assignmentId)->first(),
-            'class' => ClassHeader::where('id', $classId)->first(),
+            'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
         ]);
     }
 
@@ -86,7 +85,7 @@ class AssignmentController extends Controller
 
         AssignmentDetail::create([
             'assignment_id' => $assignmentHeader->id,
-            'user_id' => auth()->user()->id,
+            'student_user_id' => auth()->user()->id,
             'file' => $file_name,
         ]);
 

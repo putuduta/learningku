@@ -4,23 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\ClassDetail;
 use App\Models\ClassHeader;
+use App\Models\ClassSubject;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
-    public function viewMaterialStudent($classId){
+    public function viewMaterialStudent($classSubjectId){
         return view('material.index', [
-            'class' => ClassHeader::where('id', $classId)->first(),
-            'materials' => Material::where('class_id', $classId)->get()
+            'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
+            'materials' => Material::where('class_subject_id', $classSubjectId)->get()
         ]);
     }
 
-    public function viewMaterialTeacher($classId){
+    public function viewMaterialTeacher($classSubjectId){
         return view('material.index', [
-            'class' => ClassHeader::where('id', $classId)->first(),
-            'materials' => Material::where('class_id', $classId)->get()
+            'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
+            'materials' => Material::where('class_id', $classSubjectId)->get()
         ]);
     }
 
@@ -39,7 +40,7 @@ class MaterialController extends Controller
         $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
         $image = $request->file('file')->storeAs('public/material', $file_name);
 
-        $material->class_id = $request->class_id;
+        $material->class_subject_id = $request->class_subject_id;
         $material->title = $request->title;
         $material->description = $request->description;
         $material->resource = $image;
@@ -68,7 +69,7 @@ class MaterialController extends Controller
             $image = $updateMaterial->resource;
         }
 
-        $updateMaterial->class_id = $request->class_id;
+        $updateMaterial->class_subject_id = $request->class_subject_id;
         $updateMaterial->title = $request->title;
         $updateMaterial->description = $request->description;
         $updateMaterial->resource = $image;

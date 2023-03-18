@@ -65,14 +65,6 @@
                 @if (auth()->user()->role->name == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('class-list-request-join') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                            </span>
-                            <span class="ms-2">Request Class List</span>
-                        </a>
-                    </li> 
-                    <li class="side-item">
-                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                         href="#" role="button" id="dropdownMenuLink">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
@@ -83,7 +75,7 @@
 
                         <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
                             @foreach ($classes as $class)
-                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('material.view-student', $class->classId) }}">{{ $class->className }}</a></li>
+                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class', $class->id)}}">{{ $class->name }} - {{ $class->semester }}</a></li>
                             @endforeach
                         </ul>
                     </li>

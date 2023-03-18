@@ -16,7 +16,7 @@ class AttendanceDetail extends Model
 
     public function student()
     {
-        return $this->hasOne('App\Models\User', 'id', 'user_id')->withDefault();
+        return $this->hasOne('App\Models\Student', 'id', 'student_user_id')->withDefault();
     }
 
     public function header()

@@ -13,8 +13,8 @@ class AssignmentDetail extends Model
     protected $timestamp = true;
     protected $guarded = [];
 
-    public function user()
+    public function student()
     {
-        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+        return $this->belongsTo('App\Models\Users', 'student_user_id', 'id');
     }
 }
