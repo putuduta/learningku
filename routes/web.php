@@ -85,10 +85,10 @@ Route::prefix('student')->middleware('auth')->name('student-')->group(function (
     Route::get('create/post', [AdminController::class, 'createStudent'])->name('create');
 });
 
-Route::prefix('teacher')->middleware('auth')->name('teacher-')->group(function () {
-    Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view-list');
-    Route::get('create', [AdminController::class, 'viewCreateTeacher'])->name('view-create');
-    Route::get('create/post', [AdminController::class, 'createTeacher'])->name('create');
+Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->group(function () {
+    Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view');
+    Route::get('create', [AdminController::class, 'viewCreateTeacher'])->name('create');
+    Route::get('create/post', [AdminController::class, 'createTeacher'])->name('update');
 });
 
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
