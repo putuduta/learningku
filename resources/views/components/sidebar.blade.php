@@ -39,7 +39,7 @@
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('teacher-view-list') }}">
+                            href="{{ route('admin-teacher-view') }}">
                             <span class="fa-stack fa-sm ms-n1">
                             </span>
                             <span class="ms-2">Teacher List</span>

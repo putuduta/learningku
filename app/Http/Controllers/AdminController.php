@@ -266,10 +266,17 @@ class AdminController extends Controller
     }
 
     public function viewListTeacher(){
-        return view('admin.teacher-list',[
+        /*return view('admin.teacher-list',[
             'teachers' => User::select('users.id','users.name')
                         ->join('roles','roles.id','users.role_id')
                         ->where([['roles.name','Teacher'],['institution_id',auth()->user()->institution_id]])
+                        ->get()
+        ]);*/
+
+        return view('admin.teacher-list',[
+            'teachers' => User::select('users.id','users.name')
+                        ->join('roles','roles.id','users.role_id')
+                        ->where([['roles.name','Teacher']])
                         ->get()
         ]);
     }
