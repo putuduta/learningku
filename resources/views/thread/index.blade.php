@@ -51,7 +51,7 @@
     <div id="content" class="container my-3">
         <div class="text-end">
             <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
+                data-bs-target="#exampleModal" data-bs-focus="false">
                 Create New Thread
             </button>
         </div>
@@ -106,7 +106,7 @@
 </x-app>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,7 +122,7 @@
                     </div>
                     <div class="my-3">
                         <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="body" cols="30" rows="10" class="form-control" required></textarea>
+                        <textarea id="forumBody" name="body" id="body" cols="60" rows="20" class="form-control"></textarea>
                     </div>
                     <div class="my-3">
                         <label for="file" class="form-label">Attached File</label>
@@ -137,3 +137,16 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#forumBody' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+        $('#exampleModal').modal( {
+            focus: false
+        });
+</script>

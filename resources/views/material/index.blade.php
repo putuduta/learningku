@@ -61,11 +61,11 @@
             <div class="card mb-2" style="width: 100%">
                 <div class="card-body">
                     <h5 class="card-title">{{ $material->title }}</h5>
-                    <p class="card-text">{{ $material->description }}</p>
+                    <p class="card-text">{!! $material->description !!}</p>
                     <div class="left d-flex justify-content-between">
                         <div>
                             @if ($material->resource != null || $material->resource != "")                       
-                                <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}" target="_blank">Download</a>
+                                <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}" target="_blank">Download File</a>
                             @endif
                         </div>
                         <div class="d-flex">
@@ -95,9 +95,11 @@
             @foreach($materials as $material)
             <div class="card mb-2" style="width: 100%">
                 <div class="card-body">
-                <h5 class="card-title">{{ $material->title }}</h5>
-                <p class="card-text">{{ $material->description }}</p>
-                <a class="btn btn-primary text-white" href="{{ $material->resource }}">link</a>
+                    <h2 class="card-title pb-3">{{ $material->title }}</h2>
+                    {!! $material->description !!}</p>
+                    @if ($material->resource != null || $material->resource != "") 
+                        <div class="pt-3"><a class="btn btn-primary text-white" href="{{ $material->resource }}">Download File</a></div>
+                    @endif
                 </div>
             </div>
             @endforeach
@@ -106,7 +108,7 @@
 </x-app>
 
 <div class="modal fade" id="newMaterial" tabindex="-1" aria-labelledby="newMaterialLabel"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-focus="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -127,7 +129,7 @@
                     </div>
                     <div class="my-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
+                        <textarea id="createDescription" name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                     <div class="my-3">
                         <label for="resource" class="form-label">Resource</label>
@@ -144,7 +146,7 @@
 
 @foreach($materials as $material)
     <div class="modal fade" id="updateMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="updateMaterial"
-        aria-hidden="true">
+        aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -166,7 +168,7 @@
                         </div>
                         <div class="my-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea name="description" value="{{ $material->description }}"  id="description" cols="30" rows="10" class="form-control" required>{{ $material->description }}</textarea>
+                            <textarea id="updateDescription-{{ $material->id }}" name="description" value="{{ $material->description }}" cols="30" rows="10" class="form-control">{{ $material->description }}</textarea>
                         </div>
                         <div class="my-3">
                             <label for="resource" class="form-label">Resource</label>
@@ -181,3 +183,25 @@
         </div>
     </div>
 @endforeach
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#createDescription' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+    var materials = {!! json_encode($materials->toArray()) !!};
+    materials.forEach(function(item) {
+        ClassicEditor
+            .create(document.querySelector('#updateDescription-' + item.id))
+            .catch(error => {
+                console.error(error);
+        });
+    });
+
+    $('.modal').modal( {
+        focus: false
+    });
+    
+</script>

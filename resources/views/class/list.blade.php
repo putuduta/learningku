@@ -16,6 +16,7 @@
                          <div class="my-3">
                               <label for="school_year_id" class="form-label">School Year/Tahun Ajaran</label>
                               <select id="school_year_id" name="school_year_id" class="form-select" required>
+
                                    @foreach ($schoolYears as $schoolYear)
                                        <option value="{{$schoolYear->id}}">{{$schoolYear->year}} - {{$schoolYear->semester}}</option>
                                    @endforeach
@@ -26,44 +27,17 @@
           </div>
           <hr>
 
-          <div id="classAndSubjetTable" class="">
-               <div class="row">
-                    @foreach ($classAndSubjects as $classAndSubject)
-                    <div class="col-md-4">
-                         <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$classAndSubject->id}}">
-                              <div class="card-body">
-                                   <h3 class="fw-bold">{{ $classAndSubject->className }} - {{ $classAndSubject->name }}</h3>
-                                   <p>Guru: {{ $classAndSubject->teacherName }}</p>
-                              </div>
+          <div id="classAndSubjetTable" class="row">
+               @foreach ($classAndSubjects as $classAndSubject)
+               <div class="col-md-4">
+                    <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$classAndSubject->id}}">
+                         <div class="card-body">
+                              <h3 class="fw-bold">{{ $classAndSubject->className }} - {{ $classAndSubject->name }}</h3>
+                              <p>Guru: {{ $classAndSubject->teacherName }}</p>
                          </div>
                     </div>
-                    @endforeach
-                    <div class="col-md-4">
-                         <div class="classSubject card shadow-sm border-0 mb-3 bg-light"  data-id="1">
-                              <div class="card-body">
-                                   <h3 class="fw-bold">Test</h3>
-                                   <p>Guru: Tes</p>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="col-md-4">
-                         <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="1">
-                              <div class="card-body">
-                                   <h3 class="fw-bold">Test</h3>
-                                   <p>Guru: Tes</p>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="col-md-4">
-                         <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="1">
-                              <div class="card-body">
-                                   <h3 class="fw-bold">Test</h3>
-                                   <p>Guru: Tes</p>
-                              </div>
-                         </div>
-                    </div>
-     
                </div>
+               @endforeach
           </div>
      </div>
 </x-app>
@@ -91,25 +65,17 @@
 
                          var body = '';
                          data.forEach(function(item) {
-                              body = '<td class="align-middle text-center">' + item.id + '</td>' +
-                              '<td class="align-middle text-center">' + item.className + '</td>' +
-                              '<td class="align-middle text-center">' + item.name + '</td>' +
-                              '<td class="align-middle text-center">' + item.teacherName + '</td>' +
-                              '<td class="align-middle text-center"><a href="/class/student/' + item.classId +'" class="btn btn-success">Student List</a> <a href="/material/teacher-material/' + item.id +'" class="btn btn-warning">View Dashboard</a></td>'
+                              body = '<div class="col-md-4">' +
+                                        '<div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$classAndSubject->id}}">' +
+                                             '<div class="card-body">' +
+                                                  '<h3 class="fw-bold">' + item.className + ' - ' + item.name + '</h3>' +
+                                                  '<p>Guru: ' + item.teacherName + '</p>' +
+                                             '</div>' +
+                                        '</div>' +
+                                     '</div>';                 
                          });               
 
-                          var table = '<table class="table table-hover table-bordered">'
-                          + '<thead class="table-dark">'
-                          + '<th class="align-middle text-center">ID</th>'
-                          + ' <th class="align-middle text-center">Class</th>'
-                          + ' <th class="align-middle text-center">Subject</th>'
-                          + '  <th class="align-middle text-center">Teacher</th>'
-                          + '    <th class="align-middle text-center" colspan="2">Action</th>'
-                          + '</thead>'
-                          + '<tbody> '
-                          + '<tr>' + body + '</tr></tbody></table>';
-
-                         $("#classAndSubjetTable").html(table);
+                         $("#classAndSubjetTable").html(body);
                     }
                });                    
           }
