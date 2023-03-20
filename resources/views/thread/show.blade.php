@@ -2,7 +2,13 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
-        <a href="{{ route('thread.index', $classSubject->id) }}" class="btn btn-primary text-white mb-3">Back to thread list</a>
+        <div class="mb-3">
+            <span class="fa-stack fa-md ms-n1">
+                <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                <a href="{{ url()->previous() }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+            </span>
+        </div>
+        {{-- <a href="{{ route('thread.index', $classSubject->id) }}" class="btn btn-primary text-white mb-3">Back to thread list</a> --}}
         <div class="card shadow-sm border-0">
             <div class="card-body my-2">
                 <h3 class="fw-bold">{{ $thread->title }}</h3>

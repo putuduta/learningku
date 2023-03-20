@@ -2,6 +2,12 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
+        <div class="mb-3">
+            <span class="fa-stack fa-md ms-n1">
+                <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                <a href="{{ url()->previous() }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+            </span>
+        </div>
         <h3 class="fw-bold">Assignment Detail - {{ $assignment->title }}</h3>
         <hr>
         <div class="table-responsive">
