@@ -3,8 +3,14 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container my-5 py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="mb-3">
+            <span class="fa-stack fa-md ms-n1">
+                <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                <a href="{{ url()->previous() }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+            </span>
+        </div>
+        <div class="">
+            <div class="">
                 <h3>Create Attendance - Mata Pelajaran {{ $classSubject->name }}</h3>
                 <h5>Kelas {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h5>
                 <hr>
@@ -41,7 +47,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="class_subject_id" value="{{ $classSubject->id }}">
-                    <button type="submit" class="btn btn-primary text-white mt-4">Submit</button>
+                    <button type="submit" class="btn btn-primary text-white">Submit</button>
                 </form>
             </div>
         </div>

@@ -15,8 +15,21 @@ use Illuminate\Support\Facades\Hash;
 class ClassController extends Controller
 {
     public function viewListClass(){
+        $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
+
+        // dd($lastSchoolYearId);
+
         return view('class.list',[
-            'schoolYears' => SchoolYear::get()
+            'schoolYears' => SchoolYear::orderBy('id', 'DESC')->get(),
+            'classAndSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName')
+            ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+            ->join('users', 'users.id', 'teachers.user_id')
+            ->join('roles','roles.id','users.role_id')
+            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+            ->where('roles.name','Teacher')
+            ->where('class_headers.school_year_id', $lastSchoolYearId->id)
+            ->where('class_subjects.user_id', auth()->user()->id)
+            ->get()
         ]);
     }
 
@@ -59,13 +72,23 @@ class ClassController extends Controller
         return redirect()->route('class-view-list')->with('success','New Class Created');
     }
 
-    public function viewClassStudent(ClassHeader $class){
+    public function viewClassStudent($classSubjectId){
         return view('class.student-list',[
-            'students' => User::select('users.id','users.name')
-                        ->join('class_details','class_details.student_id','users.id')
-                        ->where([['users.role','Student'],['class_details.class_header_id',$class->id]])
-                        ->get(),
-            'class' => $class
+            'students' => ClassDetail::select('users.id as id', 'users.name as name', 'students.nisn as nisn', 'class_details.id as classDetailId')
+                ->join('students', 'students.user_id', 'class_details.user_id')
+                ->join('users', 'users.id', 'students.user_id')
+                ->join('roles','roles.id','users.role_id')
+                ->join('class_subjects', 'class_subjects.class_header_id', 'class_details.class_header_id')
+                ->where('roles.name','Student')
+                ->where('class_subjects.class_header_id', $classSubjectId)
+                ->get(),
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                ->join('users', 'users.id', 'teachers.user_id')
+                ->where('class_subjects.class_header_id', $classSubjectId)->first(),
         ]);
     }
 

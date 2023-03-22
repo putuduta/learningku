@@ -10,11 +10,6 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 @guest
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link px-4" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
-                        </li>
-                    @endif
                     @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a>

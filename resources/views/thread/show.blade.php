@@ -2,7 +2,13 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
-        <a href="{{ route('thread.index', $classSubject->id) }}" class="btn btn-primary text-white mb-3">Back to thread list</a>
+        <div class="mb-3">
+            <span class="fa-stack fa-md ms-n1">
+                <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                <a href="{{ route('thread.index', $classSubject->id ) }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+            </span>
+        </div>
+        {{-- <a href="{{ route('thread.index', $classSubject->id) }}" class="btn btn-primary text-white mb-3">Back to thread list</a> --}}
         <div class="card shadow-sm border-0">
             <div class="card-body my-2">
                 <h3 class="fw-bold">{{ $thread->title }}</h3>
@@ -12,7 +18,7 @@
                     Created at {{ $thread->created_at }}</p>
                 <hr>
                 <h5 class="fw-bold">{{ $thread->user->name }}</h5>
-                <p>{{ $thread->body }}
+                <p>{!! $thread->body !!}
                 </p>
                 <a href="/storage/forum/{{ $thread->file }}" target="_blank" download="">{{ $thread->file }}</a>
                 <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
@@ -28,7 +34,7 @@
                 @endif
 
                 <div class="modal fade" id="editThread" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                    aria-hidden="true" data-bs-focus="false">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -48,7 +54,7 @@
                                     <div class="my-3">
                                         <label for="body" class="form-label">Body</label>
                                         <textarea name="body" id="body" cols="30" rows="10" class="form-control"
-                                            required>{{ $thread->body }}</textarea>
+                                            >{{ $thread->body }}</textarea>
                                     </div>
                                     <div class="my-3">
                                         <label for="file" class="form-label">Attached File</label>
@@ -73,7 +79,7 @@
         <div class="card shadow-sm border-0 my-3">
             <div class="card-body my-2">
                 <h5 class="fw-bold">{{ $reply->user->name }}</h5>
-                <p>{{ $reply->body }}
+                <p>{!! $reply->body !!}
                 </p>
 
                 @if($reply->file)
@@ -100,7 +106,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="editReply" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editReply" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,8 +119,8 @@
                             @csrf
                             <div class="my-3">
                                 <label for="body" class="form-label">Body</label>
-                                <textarea name="body" id="body" cols="30" rows="10" class="form-control"
-                                    required>{{ $reply->body }}</textarea>
+                                <textarea name="body" id="bodyEditReply" cols="30" rows="10" class="form-control"
+                                    >{{ $reply->body }}</textarea>
                             </div>
                             <div class="my-3">
                                 <label for="file" class="form-label">Attached File</label>
@@ -133,33 +139,67 @@
 
         @endforeach
     </div>
-</x-app>
 
-<!-- Modal -->
-<div class="modal fade" id="createReply" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reply Thread</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('reply-thread.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="my-3">
-                        <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="body" cols="30" rows="10" class="form-control" required></textarea>
-                    </div>
-                    <div class="my-3">
-                        <label for="file" class="form-label">Attached File</label>
-                        <input class="form-control" name="file" type="file" id="file">
-                    </div>
-                    <input type="hidden" name="thread_id" value="{{ $thread->id }}">
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
-                    </div>
-                </form>
+    <!-- Modal -->
+    <div class="modal fade" id="createReply" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reply Thread</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('reply-thread.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="my-3">
+                            <label for="body" class="form-label">Body</label>
+                            <textarea name="body" id="bodyForum" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                        <div class="my-3">
+                            <label for="file" class="form-label">Attached File</label>
+                            <input class="form-control" name="file" type="file" id="file">
+                        </div>
+                        <input type="hidden" name="thread_id" value="{{ $thread->id }}">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+</x-app>
+
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#body' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+    ClassicEditor
+        .create( document.querySelector( '#bodyForum' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+    ClassicEditor
+        .create( document.querySelector( '#bodyEditReply' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+        $('#createReply').modal( {
+            focus: false
+        });
+
+        $('#editReply').modal( {
+            focus: false
+        });
+
+        $('#editThread').modal( {
+            focus: false
+        });
+</script>

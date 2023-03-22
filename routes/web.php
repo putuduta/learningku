@@ -72,8 +72,6 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
     Route::get('list', [ClassController::class, 'viewListClass'])->name('view-list');
     Route::get('get-list/{schoolYearId}', [ClassController::class, 'getListClass'])->name('get-list');
-    // Route::get('create', [ClassController::class, 'viewCreateClass'])->name('view-create');
-    // Route::get('create/post', [ClassController::class, 'createClass'])->name('create');
     Route::get('student/{classSubjectId}', [ClassController::class, 'viewClassStudent'])->name('view-student');
     Route::get('request-join/{guid}', [ClassController::class, 'viewJoinClass'])->name('view-join');
     Route::post('create-request-join/post', [ClassController::class, 'requestClass'])->name('request-join');
@@ -99,23 +97,6 @@ Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(func
     Route::get('list/student/{classSubjectId}', [AttendanceController::class, 'viewStudentList'])->name('view-student-list');
     Route::get('create/{classSubjectId}', [AttendanceController::class, 'viewCreate'])->name('view-create');
     Route::post('create/post', [AttendanceController::class, 'create'])->name('create');
-});
-
-Route::prefix('activity')->middleware('auth')->name('activity.')->group(function () {
-    Route::get('list/teacher', [ActivityController::class, 'viewTeacherList'])->name('view-teacher-list');
-    Route::get('list/student', [ActivityController::class, 'viewStudentList'])->name('view-student-list');
-    Route::get('create', [ActivityController::class, 'viewCreate'])->name('view-create');
-    Route::post('create/post', [ActivityController::class, 'create'])->name('create');
-    Route::get('delete/{activity}', [ActivityController::class, 'delete'])->name('delete');
-});
-
-Route::prefix('class-course')->middleware('auth')->name('class-course.')->group(function () {
-    Route::get('list', [ClassCourseController::class, 'viewList'])->name('view-list');
-    Route::get('schedule/student', [ClassCourseController::class, 'viewStudent'])->name('view-student');
-    Route::get('schedule/teacher', [ClassCourseController::class, 'viewTeacher'])->name('view-teacher');
-    Route::get('create', [ClassCourseController::class, 'viewCreate'])->name('view-create');
-    Route::post('create/post', [ClassCourseController::class, 'create'])->name('create');
-    Route::get('delete/{class_course}', [ClassCourseController::class, 'delete'])->name('delete');
 });
 
 // Forum Thread

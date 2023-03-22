@@ -8,9 +8,20 @@
     <link rel="icon" type="image/png" href="/storage/assets/logo.png">
 
     <title>{{ $title }}</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ mix('js/app.js') }}"></script>
+
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+        body {
+        --ck-z-default: 100;
+        --ck-z-modal: calc( var(--ck-z-default) + 999 );
+    }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -38,7 +49,6 @@
             </main>
         @endif
     </div>
-
 </body>
 
 </html>
