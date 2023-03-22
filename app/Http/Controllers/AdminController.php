@@ -128,7 +128,7 @@ class AdminController extends Controller
                 ->where('class_details.class_header_id', $class->id)
                 ->get(),
             'class' => $class,
-            'studentsNotAssigned' => Student::select('users.id as id', 'users.name as name', 'students.nisn as nisn')
+            'studentsNotAssigned' => Student::select('users.id as id', 'users.name as name', 'students.nisn as nisn', 'users.email as email')
                 ->join('users', 'users.id', 'students.user_id')
                 ->join('roles','roles.id','users.role_id')
                 ->leftJoin('class_details', 'class_details.user_id', 'students.user_id')
@@ -139,6 +139,15 @@ class AdminController extends Controller
         ]);
     }
 
+    public function assignStudentToClass($classId, Request $request){
+        ClassDetail::create([
+            'class_header_id' => $classId,
+            'user_id' => $request->student_id
+        ]);
+
+        return redirect()->back()->with('success','Success Assign Student to Class');
+    }
+    
     public function addStudent(Request $request){
         
         $request->validate([
@@ -214,6 +223,14 @@ class AdminController extends Controller
     public function removeStudent($id){
         $deleteStudent = User::find($id);
         $deleteStudent->delete();
+
+        return redirect()->back()->with('success', 'Student Deleted');
+    }
+
+    public function removeStudentFromClass($id){
+        $deleteClassDetail = ClassDetail::find($id);
+        $deleteClassDetail->delete();
+
 
         return redirect()->back()->with('success', 'Student Deleted');
     }
@@ -304,7 +321,11 @@ class AdminController extends Controller
 
         $student->name = $request->name;
         $student->email = $request->email;
-        $student->password = Hash::make($request->password);
+
+        if(Hash::check($request->password, $student->password)){
+            $student->password = Hash::make($request->password);
+        }
+
         if($request->image){
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
@@ -337,7 +358,11 @@ class AdminController extends Controller
 
         $teacher->name = $request->name;
         $teacher->email = $request->email;
-        $teacher->password = Hash::make($request->password);
+
+        if(Hash::check($request->password, $teacher->password)){
+            $teacher->password = Hash::make($request->password);
+        }
+        
         if($request->image){
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
@@ -363,8 +388,6 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Subject Deleted');
     }
 
-
-
     public function viewListStudent(){
         // return view('admin.student-list',[
         //     'students' => User::select('users.id','users.name')
@@ -380,35 +403,6 @@ class AdminController extends Controller
                         ->where([['roles.name','Student']])
                         ->get()
         ]);
-    }
-
-    public function viewCreateStudent(){
-        return view('admin.student-create',[
-            'classes' => ClassDetail::where('institution_id',auth()->user()->institution_id)->get()
-        ]);
-    }
-
-    public function createStudent(Request $request){
-        
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'reg_number' => 'required|numeric',
-            'phone_number' => 'required|numeric',
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'reg_number' => $request->reg_number,
-            'phone_number' => $request->phone_number,
-            'role_id' => 3,
-            'institution_id' => auth()->user()->institution->id,
-            'class_id' => $request->class_id,
-            'password' => Hash::make('abcd')
-        ]);
-
-        return redirect()->route('student-view-list')->with('success','New Student Created');
     }
 
     public function viewListTeacher(){

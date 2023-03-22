@@ -27,7 +27,7 @@
                                             Update
                                         </button>
                                         
-                                        <a href="{{ route('admin-class-remove-student', $student->id) }}"
+                                        <a href="{{ route('student-remove', $student->id) }}"
                                         class="btn btn-danger text-white justify-content-between">Remove</a>
                                    </td>
                               </tr>
@@ -48,7 +48,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                    <form action="{{route('admin-class-add-student')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('student-add')}}" method="POST" enctype="multipart/form-data">
                          @csrf
                          <div class="my-3">
                               <label for="name" class="form-label">Student Name</label>
@@ -83,7 +83,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('admin-class-update-student', $student->id) }}" method="POST"
+                        <form action="{{ route('student-update', $student->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')

@@ -4,12 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\ReplyThreadController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RegistrationPaymentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\ClassCourseController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\MaterialController;
@@ -58,9 +55,8 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
     Route::put('/update/{id}', [AdminController::class, 'updateClass'])->name('update');
     
     Route::get('/student/{class}', [AdminController::class, 'viewClassStudent'])->name('view-student');
-    Route::post('/add-student', [AdminController::class, 'addStudent'])->name('add-student');
-    Route::put('/update-student/{student}', [AdminController::class, 'updateStudent'])->name('update-student');
-    Route::get('/remove-student/{student}', [AdminController::class, 'removeStudent'])->name('remove-student');
+    Route::post('/assign-student/{class}', [AdminController::class, 'assignStudentToClass'])->name('assign-student');
+    Route::get('/remove-student/{student}', [AdminController::class, 'removeStudentFromClass'])->name('remove-student');
 
     Route::get('/subject/{class}', [AdminController::class, 'viewClassSubject'])->name('view-subject');
     Route::post('/assign-subject/{class}', [AdminController::class, 'assignSubjectToClass'])->name('assign-subject');
@@ -81,13 +77,14 @@ Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
 
 Route::prefix('student')->middleware('auth')->name('student-')->group(function () {
     Route::get('list', [AdminController::class, 'viewListStudent'])->name('view-list');
-    Route::get('create', [AdminController::class, 'viewCreateStudent'])->name('view-create');
-    Route::get('create/post', [AdminController::class, 'createStudent'])->name('create');
+    Route::post('add', [AdminController::class, 'addStudent'])->name('add');
+    Route::get('/remove/{student}', [AdminController::class, 'removeStudent'])->name('remove');
+    Route::put('/update/{student}', [AdminController::class, 'updateStudent'])->name('update');
 });
 
 Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->group(function () {
-    Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view');
-    Route::post('create', [AdminController::class, 'addTeacher'])->name('create');
+    Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view-list');
+    Route::post('add', [AdminController::class, 'addTeacher'])->name('add');
     Route::put('update/{teacher}', [AdminController::class, 'updateTeacher'])->name('update');
     Route::get('/remove/{teacher}', [AdminController::class, 'removeTeacher'])->name('remove');
 });
