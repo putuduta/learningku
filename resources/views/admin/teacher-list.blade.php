@@ -25,10 +25,8 @@
                                         data-bs-target="">
                                             Update
                                         </button>
-                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal"
-                                        data-bs-target="">
-                                            Delete
-                                        </button>
+                                        <a href="{{ route('admin-teacher-remove', $teacher->id) }}"
+                                             class="btn btn-danger text-white justify-content-between">Remove</a>
                                    </td>
                               </tr>
                          @endforeach

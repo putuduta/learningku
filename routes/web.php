@@ -58,12 +58,13 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
     Route::put('/update/{id}', [AdminController::class, 'updateClass'])->name('update');
     
     Route::get('/student/{class}', [AdminController::class, 'viewClassStudent'])->name('view-student');
-    Route::post('/assign-student/{class}', [AdminController::class, 'assignStudentToClass'])->name('assign-student');
-    Route::get('/remove-student/{student}', [AdminController::class, 'removeStudentFromClass'])->name('remove-student');
+    Route::post('/assign-student', [AdminController::class, 'assignStudent'])->name('assign-student');
+    Route::put('/update-student/{student}', [AdminController::class, 'updateStudent'])->name('update-student');
+    Route::get('/remove-student/{student}', [AdminController::class, 'removeStudent'])->name('remove-student');
 
     Route::get('/subject/{class}', [AdminController::class, 'viewClassSubject'])->name('view-subject');
     Route::post('/assign-subject/{class}', [AdminController::class, 'assignSubjectToClass'])->name('assign-subject');
-    Route::post('/update-subject/{class}', [AdminController::class, 'updateSubject'])->name('update-subject');
+    Route::put('/update-subject/{class}', [AdminController::class, 'updateSubject'])->name('update-subject');
     Route::get('/remove-subject/{subject}', [AdminController::class, 'removeSubject'])->name('remove-subject');
 });
 
@@ -90,6 +91,7 @@ Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->grou
     Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view');
     Route::get('create', [AdminController::class, 'viewCreateTeacher'])->name('create');
     Route::get('create/post', [AdminController::class, 'createTeacher'])->name('update');
+    Route::get('/remove/{teacher}', [AdminController::class, 'removeTeacher'])->name('remove');
 });
 
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
