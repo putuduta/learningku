@@ -139,7 +139,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function assignStudent(Request $request){
+    public function addStudent(Request $request){
         
         $request->validate([
             'name' => 'required|string',
@@ -164,16 +164,8 @@ class AdminController extends Controller
         }
 
         $user->save();
-        // User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'role_id' => '3',
-        //     'password' => Hash::make(Str::random(8))
-        // ]);
 
         $student = DB::table('users')->find(DB::table('users')->max('id'));
-        // User::select('users.id')
-        // ->where('users.email', $request->email)->get();
         
         Student::create([
             'user_id' => $student->id,
@@ -181,6 +173,42 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back()->with('success','Success to Add Student');
+    }
+
+    public function addTeacher(Request $request){
+        
+        $request->validate([
+            'name' => 'required|string',
+            'nuptk' => 'required|string',
+            'email' => 'required|email',
+            'image' => 'image|max:5120'
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = '2';
+        $user->password = Hash::make(Str::random(8));
+
+        if($request->image){
+            $file = $request->file('image');
+            $imageName = time().'_'.$file->getClientOriginalName();
+
+            Storage::putFileAs('public/images', $file, $imageName);
+            $imagePath = 'images/'.$imageName;
+            $user->photo_profile = $imagePath;
+        }
+
+        $user->save();
+
+        $student = DB::table('users')->find(DB::table('users')->max('id'));
+        
+        Teacher::create([
+            'user_id' => $student->id,
+            'nuptk' => $request->nuptk,
+        ]);
+
+        return redirect()->back()->with('success','Success to Add Teacher');
     }
 
     public function removeStudent($id){
@@ -268,7 +296,8 @@ class AdminController extends Controller
             'name' => 'required|string',
             'nisn' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'image' => 'image|max:5120'
         ]);
 
         $student = User::find($id);
@@ -291,7 +320,40 @@ class AdminController extends Controller
         $student->save();
         $studentDetail->save();
 
-        return redirect()->back()->with('success', 'Subject Updated');
+        return redirect()->back()->with('success', 'Student Data Updated');
+    }
+
+    public function updateTeacher($id, Request $request){
+
+        $request->validate([
+            'name' => 'required|string',
+            'nuptk' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'image' => 'image|max:5120'
+        ]);
+
+        $teacher = User::find($id);
+
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->password = Hash::make($request->password);
+        if($request->image){
+            $file = $request->file('image');
+            $imageName = time().'_'.$file->getClientOriginalName();
+
+            Storage::putFileAs('public/images', $file, $imageName);
+            $imagePath = 'images/'.$imageName;
+            $teacher->photo_profile = $imagePath;
+        }
+
+        $teacherDetail = Teacher::find($id);
+        $teacherDetail->nuptk = $request->nuptk;
+        
+        $teacher->save();
+        $teacherDetail->save();
+
+        return redirect()->back()->with('success', 'Teacher Data Updated');
     }
 
     public function removeSubject($id){
@@ -358,8 +420,9 @@ class AdminController extends Controller
         ]);*/
 
         return view('admin.teacher-list',[
-            'teachers' => User::select('users.id','users.name')
+            'teachers' => User::select('users.id','users.name','teachers.nuptk','users.email','users.password')
                         ->join('roles','roles.id','users.role_id')
+                        ->join('teachers','teachers.user_id','users.id')
                         ->where([['roles.name','Teacher']])
                         ->get()
         ]);

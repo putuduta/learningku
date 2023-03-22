@@ -58,7 +58,7 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
     Route::put('/update/{id}', [AdminController::class, 'updateClass'])->name('update');
     
     Route::get('/student/{class}', [AdminController::class, 'viewClassStudent'])->name('view-student');
-    Route::post('/assign-student', [AdminController::class, 'assignStudent'])->name('assign-student');
+    Route::post('/add-student', [AdminController::class, 'addStudent'])->name('add-student');
     Route::put('/update-student/{student}', [AdminController::class, 'updateStudent'])->name('update-student');
     Route::get('/remove-student/{student}', [AdminController::class, 'removeStudent'])->name('remove-student');
 
@@ -87,8 +87,8 @@ Route::prefix('student')->middleware('auth')->name('student-')->group(function (
 
 Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->group(function () {
     Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view');
-    Route::get('create', [AdminController::class, 'viewCreateTeacher'])->name('create');
-    Route::get('create/post', [AdminController::class, 'createTeacher'])->name('update');
+    Route::post('create', [AdminController::class, 'addTeacher'])->name('create');
+    Route::put('update/{teacher}', [AdminController::class, 'updateTeacher'])->name('update');
     Route::get('/remove/{teacher}', [AdminController::class, 'removeTeacher'])->name('remove');
 });
 

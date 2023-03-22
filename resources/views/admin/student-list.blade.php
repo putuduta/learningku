@@ -7,14 +7,13 @@
                data-bs-target="#newStudent">
                Add New Student
           </button>
-          {{-- <a href="{{route('student-view-create')}}" class="btn btn-primary mb-3">Add New Student</a> --}}
           <div class="table-responsive">
                <table class="table table-hover">
                     <thead>
                          <th class="align-middle text-center">ID</th>
                          <th class="align-middle text-center">Student Name</th>
                          <th class="align-middle text-center">NISN</th>
-                         <th class="w-25 align-middle text-center">Action</th>
+                         <th class="align-middle text-center">Action</th>
                     </thead>
                     <tbody>
                          @foreach ($students as $student)
@@ -49,7 +48,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                    <form action="{{route('admin-class-assign-student')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin-class-add-student')}}" method="POST" enctype="multipart/form-data">
                          @csrf
                          <div class="my-3">
                               <label for="name" class="form-label">Student Name</label>
