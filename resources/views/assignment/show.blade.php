@@ -22,7 +22,7 @@
                     @foreach($assignment->submission as $index=>$submission)
                     <tr>
                         <td class="align-middle text-center">{{ $index+1 }}</td>
-                        <td class="align-middle text-center">{{ $submission->user->name }}</td>
+                        <td class="align-middle text-center">{{ $submission->student->name }}</td>
                         <td class="align-middle text-center">
                             {{ date_format(date_create($submission->end_time),"d F Y H:i") }}
                         </td>
