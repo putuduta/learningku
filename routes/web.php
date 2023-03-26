@@ -106,6 +106,7 @@ Route::resource('reply-thread', ReplyThreadController::class)->only('store', 'up
 Route::get('assignment/{classSubjectId}', [AssignmentController::class, 'index'])->name('assignment.index');
 Route::get('assignment-show/{assignmentId}/{classSubjectId}', [AssignmentController::class, 'show'])->name('assignment.showDetails');
 Route::resource('assignment', AssignmentController::class)->only('store');
+Route::post('assignment/{classSubjectId}', [AssignmentController::class, 'addAssignment'])->name('assignment.add');
 Route::post('assignment/submit/{assignmentHeader}', [AssignmentController::class, 'submit'])->name('assignment.submit');
 Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
 

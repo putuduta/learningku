@@ -2,59 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignmentHeader;
+use App\Models\AssignmentScore;
 use App\Models\ClassCourse;
-use App\Models\ClassDetail;
 use Illuminate\Http\Request;
-use App\Models\Score;
 use App\Models\User;
 use App\Models\ClassHeader;
+use App\Models\ClassSubject;
 
 class ScoreController extends Controller
 {
-    public function manage($classId)
+    public function manage($classSubjectId)
     {
-        // if ($id == 0) {
-        //     $class_course = ClassCourse::where('teacher_id', auth()->user()->id)->first();
-        // } else {
-        //     $class_course = ClassCourse::find($id);
-        // }
-
-        // return view('score.manage', [
-        //     'class_courses' => ClassCourse::where('teacher_id', auth()->user()->id)->get(),
-        //     // 'class_course' => $class_course,
-        //     'class' => ClassHeader::where('id', $classId)
-        //     ->first()
-        // ]);
-
         return view('score.manage', [
-            'class' => ClassHeader::where('id', $classId)->first(),
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                    ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                    ->join('users', 'users.id', 'teachers.user_id')
+                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
             'class_details' => User::select('users.id as studentId','users.name as studentName')
-            ->join('class_details','class_details.student_id','users.id')
-            ->where([['users.role','Student'],['class_details.class_header_id', $classId]])
+            ->join('class_details','class_details.user_id','users.id')
+            ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
             ->get(),
         ]);
     }
 
-    // public function detail(User $student)
-    // {
-    //     return view('score.show', [
-    //         'scores' => Score::where('student_id', $student->id)->get(),
-    //         'student' => $student,
-    //         // 'class' => ClassHeader::where('id', $classId)
-    //         // ->first()
-    //     ]);
-    // }
-
     public function detail($classId, User $student)
     {
         return view('score.show', [
-            'scores' => Score::where('student_id', $student->id)->get(),
+            'scores' => AssignmentScore::where('student_user_id', $student->id)->get(),
             'student' => $student,
             'class' => $classId
         ]);
     }
 
-    public function change($classId, Score $score)
+    public function change($classId, AssignmentScore $score)
     {
         return view('score.change', [
             'score' => $score,
@@ -67,12 +51,17 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($classId)
+    public function index($classSubjectId)
     {
         return view('score.index', [
-            'scores' => Score::where('student_id', auth()->user()->id)->get(),
-            'class' => ClassHeader::where('id', $classId)
-            ->first()
+            'scores' => AssignmentScore::where('student_user_id', auth()->user()->id)->get(),
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                    ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
+                    ->join('users', 'users.id', 'teachers.user_id')
+                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
         ]);
     }
 
@@ -83,7 +72,7 @@ class ScoreController extends Controller
      */
     public function create($classCourseId, $userId)
     {
-        $score = Score::where([['class_course_id', $classCourseId], ['user_id', $userId]])->first();
+        $score = AssignmentScore::where([['class_course_id', $classCourseId], ['user_id', $userId]])->first();
 
         if ($score) return redirect()->route('score.edit', $score->id);
         else {
@@ -131,7 +120,7 @@ class ScoreController extends Controller
             'score' => 'required|integer',
         ]);
 
-        Score::create([
+        AssignmentScore::create([
             'class_header_id' => $request->class_id,
             'student_id' => $request->student_id,
             'score_name' => $request->score_name,
@@ -150,10 +139,8 @@ class ScoreController extends Controller
     public function show(User $student)
     {
         return view('score.show', [
-            'scores' => Score::where('student_id', $student->id)->get(),
+            'scores' => AssignmentScore::where('student_id', $student->id)->get(),
             'student' => $student
-            // 'class' => ClassHeader::where('id', $classId)
-            // ->first()
         ]);
     }
 
@@ -165,9 +152,7 @@ class ScoreController extends Controller
      */
     public function edit($id)
     {
-        return view('score.edit', [
-            'score' => Score::find($id),
-        ]);
+        
     }
 
     /**
@@ -177,38 +162,13 @@ class ScoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Score $score)
+    public function update(Request $request, AssignmentScore $score)
     {
-        // $request->validate([
-        //     'title' => 'required|string',
-        //     'body' => 'required|string',
-        //     'file' => 'nullable|max:4999|file',
-        // ]);
-
-        // if ($request->hasFile('file')) {
-        //     $extension = $request->file('file')->getClientOriginalExtension();
-        //     $file_name = 'THREAD_' . $request->title . '_' . time() . '.' . $extension;
-
-        //     $request->file('file')->storeAs('public/forum', $file_name);
-        // } else {
-        //     $file_name = $thread->file;
-        // }
-
-        // $thread->update([
-        //     'title' => $request->title,
-        //     'body' => $request->body,
-        //     'file' => $file_name,
-        // ]);
-
-        // return redirect()->back()->with('success', 'Thread Updated');
-        
         $request->validate([
-            'score_name' => 'required|string',
             'score' => 'required|integer',
         ]);
 
         $score->update([
-            'score_name' => $request->score_name,
             'score' => $request->score,
         ]);
 
