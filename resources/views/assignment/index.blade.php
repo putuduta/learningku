@@ -123,7 +123,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('assignment.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('assignment.add', $classSubject->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
                             <label for="title" class="form-label">Title</label>

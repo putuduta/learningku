@@ -8,7 +8,7 @@
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
                     <th class="align-middle text-center">No</th>
-                    <th class="align-middle text-center">Score Name</th>
+                    <th class="align-middle text-center">Assignment Name</th>
                     <th class="align-middle text-center">Score</th>
                     <th class="align-middle text-center">Action</th>
                 </thead>
@@ -16,26 +16,22 @@
                     <div>
                         <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
                             data-bs-target="#newScore">
-                            Create New Score
+                            Give Score
                         </button>
-                        <a href="{{ route('score.manage', $class) }}" class="btn btn-primary text-white mb-3">Back to student list</a>
+                        <a href="{{ route('score.manage', $class) }}" class="btn btn-primary text-white mb-3">Back to Student List</a>
 
                     </div>
 
                     @foreach ($scores as $index => $s)
                         <tr>
                             <td class="align-middle text-center">{{ $index + 1 }}</td>
-                            <td class="align-middle text-center">{{ $s->score_name }}</td>
+                            <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
                             <td class="align-middle text-center">{{ $s->score }}</td>
                             <td class="align-middle text-center">
                                 <a href="{{ URL::to('/') }}/score/edit/{{ $class }}/{{ $s->id }}"
                                     class="btn btn-primary text-white">
                                     Edit Score
                                 </a>
-                                {{-- <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
-                                    data-bs-target="#editScore">
-                                    Edit Score
-                                </button> --}}
                             </td>
                         </tr>
                     @endforeach
