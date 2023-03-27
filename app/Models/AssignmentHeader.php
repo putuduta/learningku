@@ -22,4 +22,9 @@ class AssignmentHeader extends Model
     {
         return $this->submission()->where('student_user_id', auth()->user()->id);
     }
+    
+    public function assignment_scores(){
+        return $this->hasMany('App\Models\AssignmentScore', 'assignment_header_id', 'id');
+    }
+
 }

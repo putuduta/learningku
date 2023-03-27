@@ -52,7 +52,7 @@ class ClassSubjectController extends Controller
             'name' => 'required|string',
             'description' => 'required|string'
         ]);
-
+        
         ClassSubject::create([
             'name' => $request->name,
             'description' => $request->description,

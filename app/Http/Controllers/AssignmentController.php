@@ -73,7 +73,7 @@ class AssignmentController extends Controller
         $assignment = DB::table('assignment_headers')->find(DB::table('assignment_headers')->max('id'));
 
         $students = ClassDetail::select('users.id as id')
-        ->join('students', 'students.user_id', 'class_details.user_id')
+        ->join('students', 'students.user_id', 'class_details.student_user_id')
         ->join('users', 'users.id', 'students.user_id')
         ->join('roles','roles.id','users.role_id')
         ->where('roles.name','Student')
@@ -116,7 +116,7 @@ class AssignmentController extends Controller
         // $assignment = DB::table('assignment_headers')->find(DB::table('assignment_headers')->max('id'));
 
         // $students = ClassDetail::select('users.id as id', 'users.name as name', 'class_details.id as classDetailId')
-        // ->join('students', 'students.user_id', 'class_details.user_id')
+        // ->join('students', 'students.user_id', 'class_details.student_user_id')
         // ->join('users', 'users.id', 'students.user_id')
         // ->join('roles','roles.id','users.role_id')
         // ->where('roles.name','Student')
@@ -135,6 +135,7 @@ class AssignmentController extends Controller
                 ->whereRaw('b.student_user_id = a.student_user_id');
             })->join('assignment_headers as c','c.id','a.assignment_id')->join('users as u','u.id','a.student_user_id')->get(),
             'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
+            'assignmentScore' => AssignmentScore::where('assignment_header_id', $assignmentId)->get()
         ]);
     }
 

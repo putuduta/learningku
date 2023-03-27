@@ -8,7 +8,7 @@
                 <a href="{{ url()->previous() }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
-        <h3 class="fw-bold">Assignment Detail - {{ $assignments[0]->assignmentTitle}}</h3>
+        <h3 class="fw-bold">Assignment Detail - {{ $assignment->title }}</h3>
         <hr>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
@@ -20,20 +20,24 @@
                 </thead>
                 <tbody>
                     @php($i = 1)
-                    @foreach($assignments as $assignment)
-                    <tr>
-                        <td class="align-middle text-center">{{ $i }}</td>
-                        <td class="align-middle text-center">{{ $assignment->studentName }}</td>
-                        <td class="align-middle text-center">
-                            {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
-                        </td>
-                        <td class="align-middle text-center">
-                            <a href="/storage/assignment/submission/{{ $assignment->file }}" download
-                                class="btn btn-success text-white">
-                                Download
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach($assignmentScore as $score)
+                        @foreach($assignments as $assignment)
+                            @if ($score->assignment_header_id == $assignment->assignmentId)
+                            <tr>
+                                <td class="align-middle text-center">{{ $i }}</td>
+                                <td class="align-middle text-center">{{ $assignment->studentName }}</td>
+                                <td class="align-middle text-center">
+                                    {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
+                                </td>
+                                <td class="align-middle text-center">
+                                    <a href="/storage/assignment/submission/{{ $assignment->file }}" download
+                                        class="btn btn-success text-white">
+                                        Download
+                                    </a>
+                                </td>
+                            </tr>
+                            @endif
+                        @endforeach
                     @php($i++)
                     @endforeach
                 </tbody>

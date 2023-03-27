@@ -11,36 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
-<<<<<<< HEAD
-    public function viewMaterialStudent($classSubjectId){
-        return view('material.index', [
-            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
-            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-            ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
-            ->join('users', 'users.id', 'teachers.user_id')
-            ->where('class_subjects.class_header_id', $classSubjectId)->first(),
-            'materials' => Material::where('class_subject_id', $classSubjectId)->get()
-        ]);
-    }
-
-    public function viewMaterialTeacher($classSubjectId){
-        return view('material.index', [
-            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
-            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-            ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
-            ->join('users', 'users.id', 'teachers.user_id')
-            ->where('class_subjects.class_header_id', $classSubjectId)->first(),
-            'materials' => Material::where('class_subject_id', $classSubjectId)->get()
-        ]);
-    }
-
-    public function index(){
-
-=======
     public function index($classSubjectId){
         if (auth()->user()->role->name == 'Student') {
             return view('material.index', [
@@ -65,7 +35,6 @@ class MaterialController extends Controller
                 'materials' => Material::where('class_subject_id', $classSubjectId)->get()
             ]);
         }
->>>>>>> da60039 (Update)
     }
 
     public function create(){
