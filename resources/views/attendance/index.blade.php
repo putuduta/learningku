@@ -1,5 +1,5 @@
 @if (auth()->user()->role->name == 'Student')
-<x-app title="Attendance - Learningku">
+<x-app title="Attendances - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <section id="headerClassSubject">
