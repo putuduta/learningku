@@ -64,7 +64,7 @@ class ClassDetailController extends Controller
     public function assignStudentToClass($classId, Request $request){
         ClassDetail::create([
             'class_header_id' => $classId,
-            'user_id' => $request->student_id
+            'student_user_id' => $request->student_id
         ]);
 
         return redirect()->back()->with('success','Success Assign Student to Class');

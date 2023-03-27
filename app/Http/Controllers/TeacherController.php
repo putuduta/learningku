@@ -55,8 +55,8 @@ class TeacherController extends Controller
     }
 
     public function destroy($id){
-        $deleteStudent = User::find($id);
-        $deleteStudent->delete();
+        $deleteTeacher = User::find($id);
+        $deleteTeacher->delete();
 
         return redirect()->back()->with('success', 'Teacher Deleted');
     }
