@@ -8,7 +8,7 @@
                 <a href="{{ url()->previous() }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
-        <h3 class="fw-bold">Assignment Detail - {{ $assignment->title }}</h3>
+        <h3 class="fw-bold">Assignment Detail - {{ $assignmentHeader->title }}</h3>
         <hr>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
@@ -21,23 +21,48 @@
                 <tbody>
                     @php($i = 1)
                     @foreach($assignmentScore as $score)
-                        @foreach($assignments as $assignment)
-                            @if ($score->assignment_header_id == $assignment->assignmentId)
+
+                        @if($assignments->count() > 0)
+                            @foreach($assignments as $assignment)
+                                @if ($score->assignmentHeaderId == $assignment->assignmentId && $score->studentUserId == $assignment->studentUserId)
+                                <tr>
+                                    <td class="align-middle text-center">{{ $i }}</td>
+                                    <td class="align-middle text-center">{{ $assignment->studentName }}</td>
+                                    <td class="align-middle text-center">
+                                        {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <a href="/storage/assignment/submission/{{ $assignment->file }}" download
+                                            class="btn btn-success text-white">
+                                            Download
+                                        </a>
+                                    </td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <td class="align-middle text-center">{{ $i }}</td>
+                                    <td class="align-middle text-center">{{ $score->studentName }}</td>
+                                    <td class="align-middle text-center">
+                                    Not Yet Submitted
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        -
+                                    </td>
+                                </tr>
+                                @endif
+                            @endforeach
+                            @else 
                             <tr>
                                 <td class="align-middle text-center">{{ $i }}</td>
-                                <td class="align-middle text-center">{{ $assignment->studentName }}</td>
+                                <td class="align-middle text-center">{{ $score->studentName }}</td>
                                 <td class="align-middle text-center">
-                                    {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
+                                Not Yet Submitted
                                 </td>
                                 <td class="align-middle text-center">
-                                    <a href="/storage/assignment/submission/{{ $assignment->file }}" download
-                                        class="btn btn-success text-white">
-                                        Download
-                                    </a>
+                                    -
                                 </td>
-                            </tr>
+                            </tr> 
                             @endif
-                        @endforeach
                     @php($i++)
                     @endforeach
                 </tbody>

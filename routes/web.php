@@ -7,6 +7,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\AssignmentDetailController;
+use App\Http\Controllers\AssignmentHeaderController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassDetailController;
@@ -103,9 +105,7 @@ Route::prefix('material')->middleware('auth')->name('material.')->group(function
     Route::get('download/{id}', [MaterialController::class, 'download'])->name('download');
 });
 
-
-
-
+// Attendance
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
     Route::get('index/{classSubjectId}', [AttendanceController::class, 'viewAttendance'])->name('view');
     Route::get('create/{classSubjectId}', [AttendanceController::class, 'viewCreate'])->name('view-create');
@@ -119,12 +119,12 @@ Route::resource('forum', ForumController::class)->except('edit', 'create', 'inde
 Route::resource('reply-forum', ReplyForumController::class)->only('store', 'update', 'destroy');
 
 // Assignment
-Route::get('assignment/{classSubjectId}', [AssignmentController::class, 'index'])->name('assignment.index');
-Route::get('assignment-show/{assignmentId}/{classSubjectId}', [AssignmentController::class, 'show'])->name('assignment.showDetails');
-Route::resource('assignment', AssignmentController::class)->only('store');
-Route::post('assignment/{classSubjectId}', [AssignmentController::class, 'addAssignment'])->name('assignment.add');
-Route::post('assignment/submit/{assignmentHeader}', [AssignmentController::class, 'submit'])->name('assignment.submit');
-Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
+Route::get('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'index'])->name('assignment.index');
+Route::get('assignment-show/{assignmentId}/{classSubjectId}', [AssignmentDetailController::class, 'viewAssignmentSubmission'])->name('assignment.showDetails');
+// Route::resource('assignment', AssignmentController::class)->only('store');
+Route::post('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'store'])->name('assignment.add');
+Route::post('assignment/submit/{assignmentHeader}', [AssignmentDetailController::class, 'submitAssignmentAnswer'])->name('assignment.submit');
+// Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
 
 // Score
 Route::get('score/{classId}', [ScoreController::class, 'index'])->name('score.index');

@@ -1,4 +1,4 @@
-<x-app title="Assignment - Learningku">
+<x-app title="Assignments - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <section id="headerClassSubject">
@@ -26,19 +26,19 @@
                 {{-- <div class="container"> --}}
                     <ul class="nav nav-tabs">
                         @if (auth()->user()->role->name == 'Teacher')
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Material</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forum</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignment</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', $classSubject->id ) }}">Assignment Score</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Daily Attendance</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.manage', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Daily Attendances</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('class-view-student', $classSubject->id ) }}">Students</a></li>
                         @endif
         
                         @if (auth()->user()->role->name == 'Student')
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Material</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forum Discussion</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignment</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Score</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forum Discussions</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                         @endif
                     </ul>

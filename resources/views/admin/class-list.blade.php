@@ -3,13 +3,13 @@
 
      <div id="content" class="container py-5 my-5">
           <h3 class="fw-bold">Class List - Tahun Ajaran {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
-          <hr>
+
           <a type="button" class="btn btn-dark text-white mb-3" href="{{ url()->previous() }}">
           Back
           </a>
           <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
           data-bs-target="#newClass">
-          Create Class
+          Add Class
           </button>
           <div class="table-responsive">
                <table class="table table-hover">

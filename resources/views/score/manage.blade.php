@@ -1,4 +1,4 @@
-<x-app title="Class Score - Learningku">
+<x-app title="Assignment Scores - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <section id="headerClassSubject">
