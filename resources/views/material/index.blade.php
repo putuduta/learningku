@@ -79,7 +79,7 @@
                                 <form action="{{ route('material.delete', $material->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger text-white">
+                                    <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Are you sure?')">
                                         Delete
                                     </button>
                                 </form>

@@ -27,7 +27,7 @@
                                             Update
                                         </button>
                                         <a href="{{ route('admin-teacher-remove', $teacher->id) }}"
-                                             class="btn btn-danger text-white justify-content-between">Remove</a>
+                                             class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
                                    </td>
                               </tr>
                          @endforeach

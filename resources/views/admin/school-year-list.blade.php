@@ -3,7 +3,6 @@
 
     <div id="content" class="container py-5 my-5">
         <h3 class="fw-bold">School Year List</h3>
-        <hr>
         <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
         data-bs-target="#newSchoolYear">
         Add School Year
