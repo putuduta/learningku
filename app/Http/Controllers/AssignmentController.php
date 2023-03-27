@@ -16,29 +16,17 @@ class AssignmentController extends Controller
 
     public function index($classSubjectId)
     {
-<<<<<<< HEAD
-        if (auth()->user()->role == 'Teacher') {
-=======
         if (auth()->user()->role->name == 'Teacher') {
->>>>>>> da60039 (Update)
             return view('assignment.index', [
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
                     ->join('class_subjects', 'assignment_headers.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id',   $classSubjectId)
-<<<<<<< HEAD
-                    ->where('teacher_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
-=======
                     ->where('class_subjects.teacher_user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
->>>>>>> da60039 (Update)
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-<<<<<<< HEAD
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
-=======
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
->>>>>>> da60039 (Update)
                     ->join('users', 'users.id', 'teachers.user_id')
                     ->where('class_subjects.class_header_id', $classSubjectId)->first(),
             ]);
@@ -51,11 +39,7 @@ class AssignmentController extends Controller
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-<<<<<<< HEAD
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.user_id')
-=======
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
->>>>>>> da60039 (Update)
                     ->join('users', 'users.id', 'teachers.user_id')
                     ->where('class_subjects.class_header_id', $classSubjectId)->first(),
             ]);
