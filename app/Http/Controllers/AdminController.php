@@ -299,8 +299,8 @@ class AdminController extends Controller
 
         $subject->name = $request->name;
         $subject->description = $request->description;
-        $subject->class_header_id = $request->class_header_id;
-        $subject->teacher_id = $request->teacher_id;
+        $subject->class_header_id = $request->class_id;
+        $subject->teacher_user_id = $request->teacher_id;
         
         $subject->save();
 

@@ -8,6 +8,7 @@ use App\Models\ClassCourse;
 use App\Models\ClassHeader;
 use App\Models\ClassSubject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDO;
 
 class AssignmentController extends Controller
@@ -75,7 +76,11 @@ class AssignmentController extends Controller
     public function show($assignmentId, $classSubjectId)
     {
         return view('assignment.show', [
-            'assignment' => AssignmentHeader::where('id', $assignmentId)->first(),
+            'assignments' => DB::table('assignment_details as a')->select('a.id as id', 'a.assignment_id as assignmentId', 'c.title as assignmentTitle', 'a.file as file', 'a.created_at as createdAt', 'a.student_user_id as studentUserId', 'u.name as studentName')->where('a.assignment_id', $assignmentId)->where('a.id', function ($query) {
+                $query->select(DB::raw('max(id) as id'))
+                ->from('assignment_details as b')
+                ->whereRaw('b.student_user_id = a.student_user_id');
+            })->join('assignment_headers as c','c.id','a.assignment_id')->join('users as u','u.id','a.student_user_id')->get(),
             'classSubject' => ClassSubject::where('id', $classSubjectId)->first(),
         ]);
     }
