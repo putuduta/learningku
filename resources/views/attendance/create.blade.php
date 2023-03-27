@@ -11,7 +11,7 @@
         </div>
         <div class="">
             <div class="">
-                <h3>Create Attendance - Mata Pelajaran {{ $classSubject->name }}</h3>
+                <h3>Add Attendance - Mata Pelajaran {{ $classSubject->name }}</h3>
                 <h5>Kelas {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h5>
                 <hr>
                 <form action="{{ route('attendance.create') }}" method="POST">

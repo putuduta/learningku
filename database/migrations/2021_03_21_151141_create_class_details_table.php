@@ -17,8 +17,8 @@ class CreateClassDetailsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('class_header_id');
             $table->foreign('class_header_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('students')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('student_user_id');
+            $table->foreign('student_user_id')->references('user_id')->on('students')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -70,12 +70,12 @@
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
                             </span>
-                            <span class="ms-2">Class List</span>
+                            <span class="ms-2">Classes</span>
                         </a>
 
                         <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
                             @foreach ($classes as $class)
-                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class', $class->id)}}">{{ $class->name }} - {{ $class->semester }}</a></li>
+                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class-student', $class->id)}}">{{ $class->name }} - {{ $class->semester }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -83,12 +83,12 @@
                 @if (auth()->user()->role->name == 'Teacher')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('class-view-list') }}">
+                            href="{{ route('dashboard-class-teacher') }}">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
                             </span>
-                            <span class="ms-2">Class & Subject List</span>
+                            <span class="ms-2">Classes</span>
                         </a>
                     </li>
                 @endif

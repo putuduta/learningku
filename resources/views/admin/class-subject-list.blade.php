@@ -8,7 +8,7 @@
          </a>
          <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
          data-bs-target="#addSubject">
-         Assign Subject
+         Add Subject and Teacher
          </button>
          <div class="table-responsive">
               <table class="table table-hover">
@@ -31,7 +31,7 @@
                                     </button>
 
                                     <a href="{{ route('admin-class-remove-subject', $subject->id) }}"
-                                        class="btn btn-danger text-white justify-content-between">Remove</a>
+                                        class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
                                   </th>
                              </tr>
                         @endforeach
@@ -45,7 +45,7 @@
          <div class="modal-dialog modal-dialog-centered modal-lg">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h5 class="modal-title" id="submitLabel">Assign Subject to Class</h5>
+                     <h5 class="modal-title" id="submitLabel">Add Subject and Teacher</h5>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body">
@@ -134,4 +134,5 @@
     @endforeach
 </div>
 
+</x-app>
 </x-app>

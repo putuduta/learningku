@@ -9,7 +9,16 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ClassDetailController;
+use App\Http\Controllers\ClassHeaderController;
+use App\Http\Controllers\ClassSubjectController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ReplyForumController;
+use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Models\SchoolYear;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,78 +38,85 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard')->middleware('auth');
-Route::get('/dashboard/class/{classId}', [DashboardController::class, 'viewClassDashboard'])->name('dashboard-class')->middleware('auth');
+
+// Admin 
+// Admin Manage - School Year
+Route::prefix('admin/school-year')->middleware('auth')->name('admin-school-year-')->group(function () {
+    Route::get('/view', [SchoolYearController::class, 'index'])->name('view');
+    Route::post('/create', [SchoolYearController::class, 'store'])->name('create');
+    Route::put('/update/{id}', [SchoolYearController::class, 'update'])->name('update');
+    Route::get('/remove/{id}', [SchoolYearController::class, 'destroy'])->name('remove');
+});
+
+// Admin Manage Class, Class Details, Class Subject
+Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(function () {
+    Route::get('choose-school-year', [ClassHeaderController::class, 'viewChooseSchoolYear'])->name('view-choose-school-year');
+    Route::post('choose-school-year', [ClassHeaderController::class, 'postChooseSchoolYear'])->name('post-choose-school-year');
+    Route::get('view/{schoolYearId}', [ClassHeaderController::class, 'viewAdminClassList'])->name('view');
+    Route::post('create/{schoolYearId}', [ClassHeaderController::class, 'store'])->name('create');
+    Route::put('update/{id}', [ClassHeaderController::class, 'update'])->name('update');
+    Route::get('remove/{id}', [ClassHeaderController::class, 'destroy'])->name('remove');
+    
+    Route::get('student/{class}', [ClassDetailController::class, 'viewClassDetails'])->name('view-student');
+    Route::post('assign-student/{class}', [ClassDetailController::class, 'assignStudentToClass'])->name('assign-student');
+    Route::get('remove-student/{student}', [ClassDetailController::class, 'removeStudentFromClass'])->name('remove-student');
+
+    Route::get('subject/{class}', [ClassSubjectController::class, 'index'])->name('view-subject');
+    Route::post('assign-subject/{class}', [ClassSubjectController::class, 'store'])->name('assign-subject');
+    Route::put('update-subject/{class}', [ClassSubjectController::class, 'update'])->name('update-subject');
+    Route::get('remove-subject/{subject}', [ClassSubjectController::class, 'destroy'])->name('remove-subject');
+});
+
+// Admin Manage Teacher
+Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->group(function () {
+    Route::get('list', [TeacherController::class, 'index'])->name('view-list');
+    Route::post('add', [TeacherController::class, 'store'])->name('add');
+    Route::put('update/{teacher}', [TeacherController::class, 'update'])->name('update');
+    Route::get('remove/{teacher}', [TeacherController::class, 'destroy'])->name('remove');
+});
+
+// Admin Manage Student
+Route::prefix('admin/student')->middleware('auth')->name('student-')->group(function () {
+    Route::get('list', [StudentController::class, 'index'])->name('view-list');
+    Route::post('add', [StudentController::class, 'store'])->name('add');
+    Route::get('/remove/{student}', [StudentController::class, 'update'])->name('remove');
+    Route::put('/update/{student}', [StudentController::class, 'destroy'])->name('update');
+});
+
+// Teacher & Student 
+
+// Class
+Route::get('/dashboard/class-student/{classId}', [ClassHeaderController::class, 'viewClassStudentDashboard'])->name('dashboard-class-student')->middleware('auth');
+Route::get('/dashboard/class-teacher', [ClassHeaderController::class, 'viewClassTeacherDashboard'])->name('dashboard-class-teacher')->middleware('auth');
+
+Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
+    Route::get('get-list/{schoolYearId}', [ClassHeaderController::class, 'getTeacherClassTaught'])->name('get-list');
+    Route::get('student/{classSubjectId}', [ClassDetailController::class, 'viewClassDetails'])->name('view-student');
+});
 
 //Material
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
-    Route::get('/student-material/{classSubjectId}', [MaterialController::class, 'viewMaterialStudent'])->name('view-student');
-    Route::get('/teacher-material/{classSubjectId}', [MaterialController::class, 'viewMaterialTeacher'])->name('view-teacher');
-    Route::post('/teacher-material', [MaterialController::class, 'store'])->name('create');
-    Route::delete('/delete-material/{material}', [MaterialController::class, 'destroy'])->name('delete');
-    Route::put('/update-material/{id}', [MaterialController::class, 'update'])->name('update');
-    Route::get('/download-material/{id}', [MaterialController::class, 'download'])->name('download');
+    Route::get('index/{classSubjectId}', [MaterialController::class, 'index'])->name('index');
+    Route::post('store', [MaterialController::class, 'store'])->name('create');
+    Route::delete('destroy/{material}', [MaterialController::class, 'destroy'])->name('delete');
+    Route::put('update/{id}', [MaterialController::class, 'update'])->name('update');
+    Route::get('download/{id}', [MaterialController::class, 'download'])->name('download');
 });
 
-Route::prefix('admin/school-year')->middleware('auth')->name('admin-school-year-')->group(function () {
-    Route::get('/view', [AdminController::class, 'viewSchoolYear'])->name('view');
-    Route::post('/create', [AdminController::class, 'createSchoolYear'])->name('create');
-    Route::put('/update/{id}', [AdminController::class, 'updateSchoolYear'])->name('update');
-});
 
-Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(function () {
-    Route::get('/choose-school-year', [AdminController::class, 'viewChooseSchoolYear'])->name('view-choose-school-year');
-    Route::post('/choose-school-year', [AdminController::class, 'postChooseSchoolYear'])->name('post-choose-school-year');
-    Route::get('/view/{schoolYearId}', [AdminController::class, 'viewClassList'])->name('view');
-    Route::post('/create/{schoolYearId}', [AdminController::class, 'createClass'])->name('create');
-    Route::put('/update/{id}', [AdminController::class, 'updateClass'])->name('update');
-    
-    Route::get('/student/{class}', [AdminController::class, 'viewClassStudent'])->name('view-student');
-    Route::post('/assign-student/{class}', [AdminController::class, 'assignStudentToClass'])->name('assign-student');
-    Route::get('/remove-student/{student}', [AdminController::class, 'removeStudentFromClass'])->name('remove-student');
 
-    Route::get('/subject/{class}', [AdminController::class, 'viewClassSubject'])->name('view-subject');
-    Route::post('/assign-subject/{class}', [AdminController::class, 'assignSubjectToClass'])->name('assign-subject');
-    Route::put('/update-subject/{class}', [AdminController::class, 'updateSubject'])->name('update-subject');
-    Route::get('/remove-subject/{subject}', [AdminController::class, 'removeSubject'])->name('remove-subject');
-});
-
-// Class
-Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
-    Route::get('list', [ClassController::class, 'viewListClass'])->name('view-list');
-    Route::get('get-list/{schoolYearId}', [ClassController::class, 'getListClass'])->name('get-list');
-    Route::get('student/{classSubjectId}', [ClassController::class, 'viewClassStudent'])->name('view-student');
-    Route::get('request-join/{guid}', [ClassController::class, 'viewJoinClass'])->name('view-join');
-    Route::post('create-request-join/post', [ClassController::class, 'requestClass'])->name('request-join');
-    Route::get('request-joins', [ClassController::class, 'listRequestClass'])->name('list-request-join');
-    Route::get('request-action/{classRequestId}/{action}', [ClassController::class, 'requestClassAction'])->name('request-action');
-});
-
-Route::prefix('student')->middleware('auth')->name('student-')->group(function () {
-    Route::get('list', [AdminController::class, 'viewListStudent'])->name('view-list');
-    Route::post('add', [AdminController::class, 'addStudent'])->name('add');
-    Route::get('/remove/{student}', [AdminController::class, 'removeStudent'])->name('remove');
-    Route::put('/update/{student}', [AdminController::class, 'updateStudent'])->name('update');
-});
-
-Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->group(function () {
-    Route::get('list', [AdminController::class, 'viewListTeacher'])->name('view-list');
-    Route::post('add', [AdminController::class, 'addTeacher'])->name('add');
-    Route::put('update/{teacher}', [AdminController::class, 'updateTeacher'])->name('update');
-    Route::get('/remove/{teacher}', [AdminController::class, 'removeTeacher'])->name('remove');
-});
 
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
-    Route::get('list/teacher/{classSubjectId}', [AttendanceController::class, 'viewTeacherList'])->name('view-teacher-list');
-    Route::get('list/student/{classSubjectId}', [AttendanceController::class, 'viewStudentList'])->name('view-student-list');
+    Route::get('index/{classSubjectId}', [AttendanceController::class, 'viewAttendance'])->name('view');
     Route::get('create/{classSubjectId}', [AttendanceController::class, 'viewCreate'])->name('view-create');
     Route::post('create/post', [AttendanceController::class, 'create'])->name('create');
 });
 
-// Forum Thread
-Route::get('thread/{classSubjectId}', [ThreadController::class, 'index'])->name('thread.index');
-Route::get('thread-show/{threadId}/{classSubjectId}', [ThreadController::class, 'show'])->name('thread.show');
-Route::resource('thread', ThreadController::class)->except('edit', 'create', 'index', 'show');
-Route::resource('reply-thread', ReplyThreadController::class)->only('store', 'update', 'destroy');
+// Forum
+Route::get('forum/{classSubjectId}', [ForumController::class, 'index'])->name('forum.index');
+Route::get('forum-show/{forumId}/{classSubjectId}', [ForumController::class, 'show'])->name('forum.show');
+Route::resource('forum', ForumController::class)->except('edit', 'create', 'index', 'show');
+Route::resource('reply-forum', ReplyForumController::class)->only('store', 'update', 'destroy');
 
 // Assignment
 Route::get('assignment/{classSubjectId}', [AssignmentController::class, 'index'])->name('assignment.index');

@@ -17,7 +17,7 @@
                          <th class="align-middle text-center">ID</th>
                          <th class="align-middle text-center">Class Name</th>
                          <th class="align-middle text-center">Homeroom Teacher/Wali Kelas</th>
-                         <th class="align-middle text-center" colspan="3">Action</th>
+                         <th class="align-middle text-center" colspan="4">Action</th>
                     </thead>
                     <tbody>
                          @foreach ($classes as $class)
@@ -31,9 +31,12 @@
                                              Update
                                         </button>
                                         <a href="{{route('admin-class-view-subject',$class)}}"
-                                        class="btn btn-warning">Subject</a>
-                                        <a href="{{route('admin-class-view-student',$class)}}"
+                                        class="btn btn-warning">Subject and Teacher List</a>
+                                        <a href="{{route('admin-class-view-student',$class->id)}}"
                                              class="btn btn-success">Student List</a>
+
+                                        <a href="{{ route('admin-class-remove', $class->id) }}"
+                                             class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove Class</a>
                                    </td>
                               </tr>
                          @endforeach

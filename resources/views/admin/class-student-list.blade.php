@@ -24,7 +24,7 @@
                                    <td class="align-middle text-center">{{$student->name}}</td>
                                    <td class="align-middle text-center">
                                         <a href="{{ route('admin-class-remove-student', $student->classDetailId) }}"
-                                             class="btn btn-danger text-white justify-content-between">Remove</a>
+                                             class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
                                        </th>
                                    </td>
                               </tr>
@@ -69,4 +69,5 @@
           </div>
      </div>
 
+</x-app>
 </x-app>

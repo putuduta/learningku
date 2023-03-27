@@ -14,7 +14,7 @@ class ThreadSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('threads')->insert([
+        DB::table('forums')->insert([
             [
                 'class_id' => 1,
                 'user_id' => 1,
@@ -26,7 +26,7 @@ class ThreadSeeder extends Seeder
             ]
         ]);
 
-        DB::table('reply_threads')->insert([
+        DB::table('reply_forums')->insert([
             [
                 'thread_id' => 1,
                 'user_id' => 3,
