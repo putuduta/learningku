@@ -81,8 +81,8 @@ Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->grou
 Route::prefix('admin/student')->middleware('auth')->name('student-')->group(function () {
     Route::get('list', [StudentController::class, 'index'])->name('view-list');
     Route::post('add', [StudentController::class, 'store'])->name('add');
-    Route::get('/remove/{student}', [StudentController::class, 'update'])->name('remove');
-    Route::put('/update/{student}', [StudentController::class, 'destroy'])->name('update');
+    Route::get('/remove/{student}', [StudentController::class, 'destroy'])->name('remove');
+    Route::put('/update/{student}', [StudentController::class, 'update'])->name('update');
 });
 
 // Teacher & Student 

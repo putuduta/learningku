@@ -51,12 +51,12 @@ class TeacherController extends Controller
             'nuptk' => $request->nuptk,
         ]);
 
-        return redirect()->back()->with('success','Success to Add Teacher');
+        return redirect()->back()->with('success','Success Add Teacher');
     }
 
     public function destroy($id){
-        $deleteTeacher = Teacher::find($id);
-        $deleteTeacher->delete();
+        // dd($id);
+        DB::table('teachers')->where('user_id', $id)->delete();
 
         return redirect()->back()->with('success', 'Teacher Deleted');
     }

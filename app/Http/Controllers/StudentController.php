@@ -55,8 +55,7 @@ class StudentController extends Controller
 
 
     public function destroy($id){
-        $deleteStudent = Student::find($id);
-        $deleteStudent->delete();
+        DB::table('students')->where('user_id', $id)->delete();
 
         return redirect()->back()->with('success', 'Student Deleted');
     }
