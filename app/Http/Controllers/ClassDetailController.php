@@ -23,7 +23,7 @@ class ClassDetailController extends Controller
 
             return view('admin.class-student-list',[
                 'students' => ClassDetail::select('users.id as id', 'users.name as name', 'class_details.id as classDetailId')
-                    ->join('students', 'students.user_id', 'class_details.user_id')
+                    ->join('students', 'students.user_id', 'class_details.student_user_id')
                     ->join('users', 'users.id', 'students.user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->where('roles.name','Student')
@@ -33,16 +33,16 @@ class ClassDetailController extends Controller
                 'studentsNotAssigned' => Student::select('users.id as id', 'users.name as name', 'students.nisn as nisn', 'users.email as email')
                     ->join('users', 'users.id', 'students.user_id')
                     ->join('roles','roles.id','users.role_id')
-                    ->leftJoin('class_details', 'class_details.user_id', 'students.user_id')
+                    ->leftJoin('class_details', 'class_details.student_user_id', 'students.user_id')
                     ->where('roles.name','Student')
-                    ->whereNull('class_details.user_id')
+                    ->whereNull('class_details.student_user_id')
                 ->get(),
                 'schoolYear' => SchoolYear::where('id', $class->school_year_id)->first()
             ]);
         } else {
             return view('class.student-list',[
                 'students' => ClassDetail::select('users.id as id', 'users.name as name', 'students.nisn as nisn', 'class_details.id as classDetailId')
-                    ->join('students', 'students.user_id', 'class_details.user_id')
+                    ->join('students', 'students.user_id', 'class_details.student_user_id')
                     ->join('users', 'users.id', 'students.user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->join('class_subjects', 'class_subjects.class_header_id', 'class_details.class_header_id')
