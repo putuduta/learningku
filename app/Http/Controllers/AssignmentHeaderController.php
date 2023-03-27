@@ -28,7 +28,7 @@ class AssignmentHeaderController extends Controller
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                     ->join('users', 'users.id', 'teachers.user_id')
-                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+                    ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         } else {
             return view('assignment.index', [
@@ -41,7 +41,7 @@ class AssignmentHeaderController extends Controller
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                     ->join('users', 'users.id', 'teachers.user_id')
-                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+                    ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         }
     }

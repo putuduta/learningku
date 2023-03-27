@@ -90,7 +90,7 @@
                 @if($reply->user_id == auth()->user()->id)
                 <div class="mt-3">
                     <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
-                        data-bs-target="#editReply">
+                        data-bs-target="#editReply-{{ $reply->id }}">
                         Edit Reply
                     </button>
 
@@ -105,40 +105,41 @@
                 @endif
             </div>
         </div>
+        @endforeach
+    </div>
 
-        <div class="modal fade" id="editReply" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Reply Thread</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('reply-forum.update',$reply->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="my-3">
-                                <label for="body" class="form-label">Body</label>
-                                <textarea name="body" id="bodyEditReply" cols="30" rows="10" class="form-control"
-                                    >{{ $reply->body }}</textarea>
-                            </div>
-                            <div class="my-3">
-                                <label for="file" class="form-label">Attached File</label>
-                                <input class="form-control" name="file" type="file" id="file"
-                                    value="{{ $reply->file }}">
-                            </div>
-                            <div class="d-grid">
-                                @method('put')
-                                <button type="submit" class="btn btn-primary my-4 text-white">Update</button>
-                            </div>
-                        </form>
-                    </div>
+    @foreach($forum->replies as $reply)
+    <div class="modal fade" id="editReply-{{ $reply->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Reply Thread</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('reply-forum.update',$reply->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="my-3">
+                            <label for="body" class="form-label">Body</label>
+                            <textarea name="body" id="bodyEditReply-{{ $reply->id }}" cols="30" rows="10" class="form-control"
+                                >{{ $reply->body }}</textarea>
+                        </div>
+                        <div class="my-3">
+                            <label for="file" class="form-label">Attached File</label>
+                            <input class="form-control" name="file" type="file" id="file"
+                                value="{{ $reply->file }}">
+                        </div>
+                        <div class="d-grid">
+                            @method('put')
+                            <button type="submit" class="btn btn-primary my-4 text-white">Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        @endforeach
     </div>
+    @endforeach
 
     <!-- Modal -->
     <div class="modal fade" id="createReply" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
@@ -185,21 +186,22 @@
             console.error( error );
         } );
 
-    ClassicEditor
-        .create( document.querySelector( '#bodyEditReply' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-
-        $('#createReply').modal( {
-            focus: false
+    var replies = {!! json_encode($forum->replies->toArray()) !!};
+    replies.forEach(function(item) {
+        ClassicEditor
+            .create(document.querySelector('#bodyEditReply-' + item.id))
+            .catch(error => {
+                console.error(error);
         });
+    });
 
-        $('#editReply').modal( {
-            focus: false
-        });
-
-        $('#editThread').modal( {
-            focus: false
-        });
+    $('#createReply').modal( {
+        focus: false
+    });
+    $('#editReply').modal( {
+        focus: false
+    });
+    $('#editThread').modal( {
+        focus: false
+    });
 </script>

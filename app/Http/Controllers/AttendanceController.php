@@ -33,7 +33,7 @@ class AttendanceController extends Controller
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->where('roles.name','Teacher')
-                    ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+                    ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         } else {
             return view('attendance.index', [
@@ -44,7 +44,7 @@ class AttendanceController extends Controller
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
-                ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+                ->where('class_subjects.id', $classSubjectId)->first(),
             ]);           
         }
     }
@@ -64,7 +64,7 @@ class AttendanceController extends Controller
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                 ->where('roles.name','Teacher')
-                ->where('class_subjects.class_header_id', $classSubjectId)->first(),
+                ->where('class_subjects.id', $classSubjectId)->first(),
                 'class_details' => ClassDetail::select('users.id as studentId', 'users.name as studentName', 'class_details.id as classDetailId')
                     ->join('students', 'students.user_id', 'class_details.student_user_id')
                     ->join('users', 'users.id', 'students.user_id')
