@@ -85,7 +85,7 @@
                             <td class="align-middle text-center">
                                 <a href="/storage/assignment/{{ $assignment->file }}" download
                                     class="btn btn-success text-white">
-                                    Download
+                                    Download Assignment
                                 </a>
                                 @if (auth()->user()->role->name == 'Student')
                                     @if (strtotime($assignment->end_time) > time())
@@ -99,10 +99,12 @@
                                         History
                                     </button>
                                 @elseif(auth()->user()->role->name == 'Teacher')
+                                    @if (!(strtotime($assignment->end_time) > time()))
                                     <a href="{{ route('assignment.showDetails', ['assignmentId' => $assignment->id, 'classSubjectId' => $classSubject->id]) }}"
                                         class="btn btn-primary text-white">
-                                        Show Detail
+                                        Show Submissions
                                     </a>
+                                    @endif
                                 @endif
                             </td>
                         </tr>
@@ -221,3 +223,14 @@
         </div>
     @endforeach
 @endif
+
+<script>
+    function checkEndTime(id) {
+        if (id == 1) {
+            alert("The deadline is not over yet!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
