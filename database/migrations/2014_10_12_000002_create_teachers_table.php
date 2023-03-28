@@ -21,6 +21,9 @@ class CreateTeachersTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
             $table->string('nuptk', 20);
+            $table->string('last_education');
+            $table->string('position')->nullable();
+            $table->string('subject_taught');
             $table->timestamps();
         });
     }

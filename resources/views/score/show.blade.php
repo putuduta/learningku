@@ -3,7 +3,7 @@
 
     <div id="content" class="container py-5 my-5">
         <h3 class="fw-bold">{{ $student->name }}'s score</h3>
-        <hr>
+
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
@@ -17,6 +17,7 @@
                         <a href="{{ route('score.manage', $class) }}" class="btn btn-primary text-white mb-3">Back to Student List</a>
                     </div>
                     @foreach ($scores as $index => $s)
+                        @if ($s->score != null)
                         <tr>
                             <td class="align-middle text-center">{{ $index + 1 }}</td>
                             <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
@@ -28,6 +29,7 @@
                                 </a>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

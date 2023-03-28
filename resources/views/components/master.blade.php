@@ -18,9 +18,12 @@
             min-height: 200px;
         }
         body {
-        --ck-z-default: 100;
-        --ck-z-modal: calc( var(--ck-z-default) + 999 );
-    }
+            --ck-z-default: 100;
+            --ck-z-modal: calc( var(--ck-z-default) + 999 );
+        }
+        .required {
+            color: red;
+        }
     </style>
 </head>
 

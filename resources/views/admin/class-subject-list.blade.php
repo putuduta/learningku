@@ -27,7 +27,7 @@
                                   <th class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
                                     data-bs-target="#updateSubject{{ $subject->id }}">
-                                        Update
+                                        Edit
                                     </button>
 
                                     <a href="{{ route('admin-class-remove-subject', $subject->id) }}"

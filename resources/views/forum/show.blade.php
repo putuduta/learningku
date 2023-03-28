@@ -29,7 +29,7 @@
                 @if($forum->user_id == auth()->user()->id)
                 <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
                     data-bs-target="#editThread">
-                    Edit Thread
+                    Edit Forum
                 </button>
                 @endif
 

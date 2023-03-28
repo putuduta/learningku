@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassDetail;
 use App\Models\ClassHeader;
 use App\Models\ClassSubject;
+use App\Models\Role;
 use App\Models\SchoolYear;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -20,18 +21,25 @@ class TeacherController extends Controller
 
     public function store(Request $request){
         
+        $role = Role::where('name', 'Teacher')->first();
+
         $request->validate([
             'name' => 'required|string',
             'nuptk' => 'required|string',
             'email' => 'required|email',
-            'image' => 'image|max:5120'
+            'image' => 'image|max:5120',
+            'gender' => 'required|string',
+            'position' => 'required|string',
+            'last_education' => 'required|string',
+            'subject_taught' => 'required|string'
         ]);
 
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role_id = '2';
-        $user->password = Hash::make(Str::random(8));
+        $user->gender = $request->gender;
+        $user->role_id = $role->id;
+        $user->password = Hash::make("BHKLearningku");
 
         if($request->image){
             $file = $request->file('image');
@@ -49,6 +57,9 @@ class TeacherController extends Controller
         Teacher::create([
             'user_id' => $student->id,
             'nuptk' => $request->nuptk,
+            'last_education' => $request->last_education,
+            'position' => $request->position,
+            'subject_taught' => $request->subject_taught,
         ]);
 
         return redirect()->back()->with('success','Success Add Teacher');
@@ -69,13 +80,18 @@ class TeacherController extends Controller
             'nuptk' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
-            'image' => 'image|max:5120'
+            'image' => 'image|max:5120',
+            'gender' => 'required|string',
+            'position' => 'required|string',
+            'last_education' => 'required|string',
+            'subject_taught' => 'required|string'
         ]);
 
         $teacher = User::find($id);
 
         $teacher->name = $request->name;
         $teacher->email = $request->email;
+        $teacher->gender = $request->gender;
 
         if(Hash::check($request->password, $teacher->password)){
             $teacher->password = Hash::make($request->password);
@@ -92,6 +108,9 @@ class TeacherController extends Controller
 
         $teacherDetail = Teacher::find($id);
         $teacherDetail->nuptk = $request->nuptk;
+        $teacherDetail->position = $request->position;
+        $teacherDetail->last_education = $request->last_education;
+        $teacherDetail->subject_taught = $request->subject_taught;
         
         $teacher->save();
         $teacherDetail->save();
@@ -108,7 +127,8 @@ class TeacherController extends Controller
         ]);*/
 
         return view('admin.teacher-list',[
-            'teachers' => User::select('users.id','users.name','teachers.nuptk','users.email','users.password')
+            'teachers' => User::select('users.id','users.name','teachers.nuptk','users.email','users.password', 
+                        'users.gender', 'teachers.last_education', 'teachers.position', 'teachers.subject_taught')
                         ->join('roles','roles.id','users.role_id')
                         ->join('teachers','teachers.user_id','users.id')
                         ->where([['roles.name','Teacher']])

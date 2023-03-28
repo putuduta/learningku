@@ -49,16 +49,43 @@
                     <form action="{{route('admin-teacher-add')}}" method="POST" enctype="multipart/form-data">
                          @csrf
                          <div class="my-3">
-                              <label for="name" class="form-label">Teacher Name</label>
+                              <label for="name" class="form-label">Teacher Name <span class="required">*</span></label>
                               <input type="text" class="form-control" name="name" required>
                          </div>
                          <div class="my-3">
-                              <label for="nuptk" class="form-label">NUPTK</label>
-                              <input type="text" class="form-control" name="nuptk" required>
+                              <label for="nuptk" class="form-label">NUPTK <span class="required">*</span></label>
+                              <input type="text" class="form-control" name="nuptk" maxlength="20" required>
                          </div>
                          <div class="my-3">
-                              <label for="email" class="form-label">Email</label>
+                              <label for="email" class="form-label">Email <span class="required">*</span></label>
                               <input type="email" class="form-control" name="email" required>
+                         </div>
+                         <div class="my-3">
+                              <label for="gender" class="form-label">Gender <span class="required">*</span></label>
+                              <div>
+                                   <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                          <input type="radio" class="form-check-input" value="Male" name="gender" required> Male
+                                        </label>
+                                      </div>
+                                      <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                          <input type="radio" class="form-check-input" value="Female"  name="gender"> Female
+                                        </label>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="my-3">
+                              <label for="last_education" class="form-label">Last Education <span class="required">*</span></label>
+                              <input type="text" class="form-control" name="last_education" required>
+                         </div>
+                         <div class="my-3">
+                              <label for="position" class="form-label">Position <span class="required">*</span></label>
+                              <input type="text" class="form-control" name="position" required>
+                         </div>
+                         <div class="my-3">
+                              <label for="subject_taught" class="form-label">Subject Taught <span class="required">*</span></label>
+                              <input type="text" class="form-control" name="subject_taught" required>
                          </div>
                          <div class="my-3">
                               <label for="image" class="form-label">Teacher Image</label>
@@ -86,20 +113,51 @@
                             @csrf
                             @method('put')
                             <div class="my-3">
-                                 <label for="name" class="form-label">Teacher Name</label>
+                                 <label for="name" class="form-label">Teacher Name <span class="required">*</span></label>
                                  <input type="text" class="form-control" name="name" value="{{ $teacher->name }}" required>
                             </div>
                             <div class="my-3">
-                                 <label for="nuptk" class="form-label">NUPTK</label>
-                                 <input type="text" class="form-control" name="nuptk" value="{{ $teacher->nuptk }}" required>
+                                 <label for="nuptk" class="form-label">NUPTK <span class="required">*</span></label>
+                                 <input type="text" class="form-control" name="nuptk" value="{{ $teacher->nuptk }}" maxlength="20" required>
                             </div>
                             <div class="my-3">
-                                 <label for="email" class="form-label">Email</label>
+                                 <label for="email" class="form-label">Email <span class="required">*</span></label>
                                  <input type="email" class="form-control" name="email" value="{{ $teacher->email }}" required>
                             </div>
                             <div class="my-3">
-                                 <label for="password" class="form-label">Password</label>
+                                 <label for="password" class="form-label">Password <span class="required">*</span></label>
                                  <input type="password" class="form-control" name="password" value="{{ $teacher->password }}" required>
+                            </div>
+                            <div class="my-3">
+                              <label for="gender" class="form-label">Gender <span class="required">*</span></label>
+                                   <div>
+                                        <div class="form-check-inline">
+                                             <label class="form-check-label">
+                                             <input type="radio" class="form-check-input" name="gender" value="Male" @if ($teacher->gender == "Male")
+                                                checked 
+                                             @endif required> Male
+                                             </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                             <label class="form-check-label">
+                                             <input type="radio" class="form-check-input" name="gender" value="Female" @if ($teacher->gender == "Female")
+                                                  checked 
+                                             @endif> Female
+                                             </label>
+                                        </div>
+                                   </div>
+                            </div>
+                            <div class="my-3">
+                              <label for="last_education" class="form-label">Last Education <span class="required">*</span></label>
+                              <input type="text" class="form-control" name="last_education" value="{{ $teacher->last_education }}" required>
+                            </div>
+                            <div class="my-3">
+                                 <label for="position" class="form-label">Position <span class="required">*</span></label>
+                                 <input type="text" class="form-control" name="position" value="{{ $teacher->position }}" required>
+                            </div>
+                            <div class="my-3">
+                                 <label for="subject_taught" class="form-label">Subject Taught <span class="required">*</span></label>
+                                 <input type="text" class="form-control" name="subject_taught" value="{{ $teacher->subject_taught }}" required>
                             </div>
                             <div class="my-3">
                               <label for="image" class="form-label">Teacher Image</label>

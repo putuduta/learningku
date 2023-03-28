@@ -28,15 +28,15 @@
                                    <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
                                         data-bs-target="#updateClass{{ $class->id }}">
-                                             Update
+                                             Edit
                                         </button>
                                         <a href="{{route('admin-class-view-subject',$class)}}"
                                         class="btn btn-warning">Subject and Teacher List</a>
                                         <a href="{{route('admin-class-view-student',$class->id)}}"
-                                             class="btn btn-success">Student List</a>
+                                             class="btn btn-success">Students</a>
 
                                         <a href="{{ route('admin-class-remove', $class->id) }}"
-                                             class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove Class</a>
+                                             class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
                                    </td>
                               </tr>
                          @endforeach

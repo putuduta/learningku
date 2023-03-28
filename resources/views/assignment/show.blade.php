@@ -32,6 +32,10 @@
                                         {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
                                     </td>
                                     <td class="align-middle text-center">
+                                        <a href="/storage/assignment/submission/{{ $assignment->file }}" download
+                                            class="btn btn-success text-white">
+                                            Download
+                                        </a>
                                         @if ($score->score == null)
                                             <button type="button" class="btn btn-success text-white" data-bs-toggle="modal"
                                                 data-bs-target="#newScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
@@ -43,10 +47,6 @@
                                                 Edit Score
                                             </button>
                                         @endif
-                                        <a href="/storage/assignment/submission/{{ $assignment->file }}" download
-                                            class="btn btn-success text-white">
-                                            Download
-                                        </a>
                                     </td>
                                 </tr>
                                 @else
@@ -54,7 +54,7 @@
                                     <td class="align-middle text-center">{{ $i }}</td>
                                     <td class="align-middle text-center">{{ $score->studentName }}</td>
                                     <td class="align-middle text-center">
-                                    Not Yet Submitted
+                                    Not Submitted
                                     </td>
                                     <td class="align-middle text-center">
                                         -
@@ -67,7 +67,7 @@
                                 <td class="align-middle text-center">{{ $i }}</td>
                                 <td class="align-middle text-center">{{ $score->studentName }}</td>
                                 <td class="align-middle text-center">
-                                Not Yet Submitted
+                                    Not Submitted
                                 </td>
                                 <td class="align-middle text-center">
                                     -

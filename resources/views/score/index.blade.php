@@ -1,4 +1,4 @@
-<x-app title="Assignment Scores - Learningku">
+<x-app title="Assignments Score - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <section id="headerClassSubject">
@@ -29,8 +29,8 @@
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.manage', $classSubject->id ) }}">Assignment Scores</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Daily Attendances</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.manage', $classSubject->id ) }}">Assignments Score</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('class-view-student', $classSubject->id ) }}">Students</a></li>
                         @endif
         
@@ -38,7 +38,7 @@
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forum Discussions</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignments Score</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                         @endif
                     </ul>
@@ -57,11 +57,13 @@
                 </thead>
                 <tbody>
                     @foreach ($scores as $index => $s)
+                        @if ($s->score != null)
                         <tr>
                             <td class="align-middle text-center">{{ $index + 1 }}</td>
                             <td class="align-middle text-center">{{ $s->assignment_header->title}}</td>
                             <td class="align-middle text-center">{{ $s->score }}</td>
                         </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

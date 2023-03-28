@@ -24,13 +24,13 @@
                                   <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
                                     data-bs-target="#updateSchoolYear{{ $schoolYear->id }}">
-                                        Update
+                                        Edit School Year
                                     </button>
                                     <a href="{{route('admin-class-view', $schoolYear->id)}}"
                                     class="btn btn-warning  text-white justify-content-between">Class List</a>
 
                                     <a href="{{ route('admin-school-year-remove', $schoolYear->id) }}"
-                                        class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove School Year</a>
+                                        class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
                                   </td>
                              </tr>
                         @endforeach
@@ -45,7 +45,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="submitLabel">Create New School Year</h5>
+                        <h5 class="modal-title" id="submitLabel">Add School Year</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

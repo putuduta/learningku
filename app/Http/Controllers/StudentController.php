@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassDetail;
 use App\Models\ClassHeader;
 use App\Models\ClassSubject;
+use App\Models\Role;
 use App\Models\SchoolYear;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -19,18 +20,22 @@ class StudentController extends Controller
 {
     public function store(Request $request){
         
+        $role = Role::where('name', 'Student')->first();
+
         $request->validate([
             'name' => 'required|string',
             'nisn' => 'required|string',
             'email' => 'required|email',
-            'image' => 'image|max:5120'
+            'image' => 'image|max:5120',
+            'gender' => 'required|string',
         ]);
 
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role_id = '3';
-        $user->password = Hash::make(Str::random(8));
+        $user->gender = $request->gender;
+        $user->role_id = $role->id;
+        $user->password = Hash::make("BHKLearningku");
 
         if($request->image){
             $file = $request->file('image');
@@ -67,13 +72,15 @@ class StudentController extends Controller
             'nisn' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
-            'image' => 'image|max:5120'
+            'image' => 'image|max:5120',
+            'gender' => 'required|string',
         ]);
 
         $student = User::find($id);
 
         $student->name = $request->name;
         $student->email = $request->email;
+        $student->gender = $request->gender;
 
         if(Hash::check($request->password, $student->password)){
             $student->password = Hash::make($request->password);
@@ -99,7 +106,7 @@ class StudentController extends Controller
 
     public function index(){
         return view('admin.student-list',[
-            'students' => User::select('users.id','users.name','students.nisn','users.email','users.password')
+            'students' => User::select('users.id','users.name','students.nisn','users.email','users.password', 'users.gender')
                         ->join('roles','roles.id','users.role_id')
                         ->join('students','students.user_id','users.id')
                         ->where([['roles.name','Student']])
