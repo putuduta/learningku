@@ -32,6 +32,17 @@
                                         {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
                                     </td>
                                     <td class="align-middle text-center">
+                                        @if ($score->score == null)
+                                            <button type="button" class="btn btn-success text-white" data-bs-toggle="modal"
+                                                data-bs-target="#newScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
+                                                Add Score
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn btn-success text-white" data-bs-toggle="modal"
+                                                data-bs-target="#updateScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
+                                                Edit Score
+                                            </button>
+                                        @endif
                                         <a href="/storage/assignment/submission/{{ $assignment->file }}" download
                                             class="btn btn-success text-white">
                                             Download
@@ -70,3 +81,55 @@
         </div>
     </div>
 </x-app>
+
+@foreach($assignmentScore as $score)
+<div class="modal fade" id="newScore{{ $score->assignmentHeaderId }}{{ $score->studentUserId }}" tabindex="-1" aria-labelledby="newScoreLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newAssignmentLabel">Create New Score</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('score.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="my-3">
+                        <label for="score" class="form-label">Score</label>
+                        <input type="number" class="form-control" name="score" id="score" required>
+                    </div>
+                    <div class="d-grid">
+                        <input type="hidden" name="score_id" value="{{ $score->id }}">
+                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+@foreach($assignmentScore as $score)
+<div class="modal fade" id="updateScore{{ $score->assignmentHeaderId }}{{ $score->studentUserId }}" tabindex="-1" aria-labelledby="newScoreLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newAssignmentLabel">Create New Score</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('score.update', $score->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+                    <div class="my-3">
+                        <label for="score" class="form-label">Score</label>
+                        <input type="number" class="form-control" name="score" id="score" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach

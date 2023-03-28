@@ -72,15 +72,7 @@ class ScoreController extends Controller
      */
     public function create($classCourseId, $userId)
     {
-        $score = AssignmentScore::where([['class_course_id', $classCourseId], ['user_id', $userId]])->first();
-
-        if ($score) return redirect()->route('score.edit', $score->id);
-        else {
-            return view('score.create', [
-                'class_course' => ClassCourse::find($classCourseId),
-                'user' => User::find($userId),
-            ]);
-        }
+        
     }
 
     /**
@@ -91,43 +83,17 @@ class ScoreController extends Controller
      */
     public function store(Request $request)
     {
-
-        // $request->validate([
-        //     'title' => 'required|string',
-        //     'end_time' => 'required',
-        //     'file' => 'required|file|max:4999'
-        // ]);
-
-        // if ($request->hasFile('file')) {
-        //     $extension = $request->file('file')->getClientOriginalExtension();
-        //     $file_name = 'ASG_' . $request->title . '_' . time() . '.' . $extension;
-
-        //     $request->file('file')->storeAs('public/assignment', $file_name);
-        // } else {
-        //     $file_name = NULL;
-        // }
-
-        // AssignmentHeader::create([
-        //     'title' => $request->title,
-        //     'class_id' => $request->class_id,
-        //     'end_time' => $request->end_time,
-        //     'file' => $file_name,
-        // ]);
-
-        // return redirect()->back()->with('success', 'New Assignment Created');
         $request->validate([
-            'score_name' => 'required|string',
             'score' => 'required|integer',
         ]);
 
-        AssignmentScore::create([
-            'class_header_id' => $request->class_id,
-            'student_id' => $request->student_id,
-            'score_name' => $request->score_name,
-            'score' => $request->score,
-        ]);
+        $asg_score = AssignmentScore::find($request->score_id);
 
-        return redirect()->back()->with('success', 'Score Created');
+        $asg_score->score = $request->score;
+        
+        $asg_score->save();
+
+        return redirect()->back()->with('success', 'Score Added Successfully');
     }
 
     /**
@@ -167,7 +133,6 @@ class ScoreController extends Controller
         $request->validate([
             'score' => 'required|integer',
         ]);
-
         $score->update([
             'score' => $request->score,
         ]);

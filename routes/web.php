@@ -134,3 +134,5 @@ Route::get('score/detail/{classId}/{student}', [ScoreController::class, 'detail'
 Route::get('score/edit/{classId}/{score}', [ScoreController::class, 'change'])->name('score.change');
 Route::resource('score', ScoreController::class)->except('create', 'index');
 Route::get('score/create/{classCourseId}/{userId}', [ScoreController::class, 'create'])->name('score.create');
+// Route::put('/update/{student}', [ScoreController::class, 'update'])->name('update');
+
