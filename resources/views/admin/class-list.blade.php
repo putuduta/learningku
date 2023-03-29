@@ -31,7 +31,7 @@
                                              Edit
                                         </button>
                                         <a href="{{route('admin-class-view-subject',$class)}}"
-                                        class="btn btn-warning">Subject and Teacher List</a>
+                                        class="btn btn-success">Subject and Teacher List</a>
                                         <a href="{{route('admin-class-view-student',$class->id)}}"
                                              class="btn btn-success">Students</a>
 

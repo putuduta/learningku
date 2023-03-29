@@ -27,7 +27,7 @@
                                         Edit School Year
                                     </button>
                                     <a href="{{route('admin-class-view', $schoolYear->id)}}"
-                                    class="btn btn-warning  text-white justify-content-between">Class List</a>
+                                    class="btn btn-success  text-white justify-content-between">Class List</a>
 
                                     <a href="{{ route('admin-school-year-remove', $schoolYear->id) }}"
                                         class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
