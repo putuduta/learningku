@@ -104,6 +104,11 @@
                                         class="btn btn-primary text-white">
                                         Show Submissions
                                     </a>
+                                    @else 
+                                    <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
+                                    data-bs-target="#updateAssignment{{ $assignment->id }}">
+                                        Edit Assignment
+                                    </button>
                                     @endif
                                 @endif
                             </td>
@@ -137,7 +142,7 @@
                         </div>
                         <div class="my-3">
                             <label for="file" class="form-label">Assignment File</label>
-                            <input class="form-control" name="file" type="file" id="file">
+                            <input class="form-control" name="file" type="file" id="file" required>
                         </div>
                         <div class="d-grid">
                             <input type="hidden" name="class_subject_id" value="{{ $classSubject->id }}">
@@ -148,6 +153,42 @@
             </div>
         </div>
     </div>
+
+    @foreach ($assignments as $assignment)
+    <div class="modal fade" id="updateAssignment{{ $assignment->id }}" tabindex="-1" aria-labelledby="updateAssignmentLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateAssignmentLabel">Edit Assignment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('assignment.update', $assignment->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('put')
+                        <div class="my-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title" value="{{$assignment->title}}" id="title" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="body" class="form-label">Deadline</label>
+                            <input type="datetime-local" class="form-control" name="end_time" value="{{$assignment->end_time}}" id="end_time" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="file" class="form-label">Assignment File</label>
+                            <input class="form-control" name="file" type="file" id="file">
+                            <input class="form-control" name="assignment_file" type="text" id="assignment_file" value="{{$assignment->file}}" hidden>
+                        </div>
+                        <div class="d-grid">
+                            <input type="hidden" name="class_subject_id" value="{{ $classSubject->id }}">
+                            <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 @endif
 
 @if (auth()->user()->role->name == 'Student')

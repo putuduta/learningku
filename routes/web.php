@@ -123,6 +123,7 @@ Route::get('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'i
 Route::get('assignment-show/{assignmentId}/{classSubjectId}', [AssignmentDetailController::class, 'viewAssignmentSubmission'])->name('assignment.showDetails');
 // Route::resource('assignment', AssignmentController::class)->only('store');
 Route::post('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'store'])->name('assignment.add');
+Route::put('assignment/update/{id}', [AssignmentHeaderController::class, 'update'])->name('assignment.update');
 Route::post('assignment/submit/{assignmentHeader}', [AssignmentDetailController::class, 'submitAssignmentAnswer'])->name('assignment.submit');
 // Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
 

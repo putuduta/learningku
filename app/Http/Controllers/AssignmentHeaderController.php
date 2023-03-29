@@ -89,4 +89,32 @@ class AssignmentHeaderController extends Controller
 
         return redirect()->back()->with('success', 'New Assignment Created');
     }
+
+    
+    public function update($assignmentId, Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'end_time' => 'required'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $file_name = 'ASG_' . $request->title . '_' . time() . '.' . $extension;
+
+            $request->file('file')->storeAs('public/assignment', $file_name);
+        } else {
+            $file_name = $request->assignment_file;
+        }
+
+        $assignment = AssignmentHeader::find($assignmentId);
+
+        $assignment->title = $request->title;
+        $assignment->end_time = $request->end_time;
+        $assignment->file = $file_name;
+        
+        $assignment->save();
+
+        return redirect()->back()->with('success', 'New Assignment Created');
+    }
 }
