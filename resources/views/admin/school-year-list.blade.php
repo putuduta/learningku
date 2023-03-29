@@ -10,15 +10,15 @@
          <div class="table-responsive">
               <table class="table table-hover">
                    <thead>
-                        <th class="align-middle text-center">ID</th>
+                        <th class="align-middle text-center">No</th>
                         <th class="align-middle text-center">Year</th>
                         <th class="align-middle text-center">Semester</th>
                         <th class="align-middle text-center" colspan="3">Action</th>
                    </thead>
                    <tbody>
-                        @foreach ($schoolYears as $schoolYear)
+                        @foreach ($schoolYears as $index => $schoolYear)
                              <tr>
-                                  <td class="align-middle text-center">{{$schoolYear->id}}</td>
+                                  <td class="align-middle text-center">{{$index+1}}</td>
                                   <td class="align-middle text-center">{{$schoolYear->year}}</td>
                                   <td class="align-middle text-center">{{$schoolYear->semester}}</td>
                                   <td class="align-middle text-center">
@@ -52,11 +52,11 @@
                         <form method="POST" action="{{ route('admin-school-year-create') }}">
                             @csrf
                             <div class="my-3">
-                                 <label for="year" class="form-label">Year</label>
+                                 <label for="year" class="form-label">Year <span class="required">*</span></label>
                                  <input type="text" class="form-control" name="year" required>
                             </div>
                             <div class="my-3">
-                                 <label for="semester" class="form-label">Semester</label>
+                                 <label for="semester" class="form-label">Semester <span class="required">*</span></label>
                                  <select name="semester" class="form-select" required>
                                     <option value="" selected>--Please Choose--</option>
                                     <option value="Semester 1">Semester 1</option>
@@ -85,11 +85,11 @@
                                 @csrf
                                 @method('put')
                                 <div class="my-3">
-                                    <label for="year" class="form-label">Year</label>
+                                    <label for="year" class="form-label">Year <span class="required">*</span></label>
                                     <input type="text" class="form-control" value="{{ $schoolYear->year }}" name="year" required>
                                </div>
                                <div class="my-3">
-                                    <label for="semester" class="form-label">Semester</label>
+                                    <label for="semester" class="form-label">Semester <span class="required">*</span></label>
                                     <select name="semester" class="form-select" required>
                                        <option value="" selected>--Please Choose--</option>
                                        <option value="Semester 1" {{($schoolYear->semester === 'Semester 1') ? 'selected' : ''}}>Semester 1</option>

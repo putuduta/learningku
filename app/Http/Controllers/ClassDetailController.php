@@ -22,7 +22,7 @@ class ClassDetailController extends Controller
             $class = ClassHeader::where('id', $id)->first();
 
             return view('admin.class-student-list',[
-                'students' => ClassDetail::select('users.id as id', 'users.name as name', 'class_details.id as classDetailId')
+                'students' => ClassDetail::select('users.id as id', 'users.name as name', 'class_details.id as classDetailId','students.nisn as nisn')
                     ->join('students', 'students.user_id', 'class_details.student_user_id')
                     ->join('users', 'users.id', 'students.user_id')
                     ->join('roles','roles.id','users.role_id')

@@ -14,15 +14,15 @@
           <div class="table-responsive">
                <table class="table table-hover">
                     <thead>
-                         <th class="align-middle text-center">ID</th>
+                         <th class="align-middle text-center">No</th>
                          <th class="align-middle text-center">Class Name</th>
                          <th class="align-middle text-center">Homeroom Teacher/Wali Kelas</th>
                          <th class="align-middle text-center" colspan="4">Action</th>
                     </thead>
                     <tbody>
-                         @foreach ($classes as $class)
+                         @foreach ($classes as $index => $class)
                               <tr>
-                                   <td class="align-middle text-center">{{$class->id}}</td>
+                                   <td class="align-middle text-center">{{$index+1}}</td>
                                    <td class="align-middle text-center">{{$class->name}}</td>
                                    <td class="align-middle text-center">{{$class->homeroomTeacherName}}</td>
                                    <td class="align-middle text-center">
@@ -31,9 +31,9 @@
                                              Edit
                                         </button>
                                         <a href="{{route('admin-class-view-subject',$class)}}"
-                                        class="btn btn-success">Subject and Teacher List</a>
+                                        class="btn btn-success text-white">Subject and Teacher List</a>
                                         <a href="{{route('admin-class-view-student',$class->id)}}"
-                                             class="btn btn-success">Students</a>
+                                             class="btn btn-secondary text-white">Students</a>
 
                                         <a href="{{ route('admin-class-remove', $class->id) }}"
                                              class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
@@ -60,15 +60,15 @@
                                    <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
                               </div>
                               <div class="my-3">
-                                   <label for="class_name" class="form-label">Class Name</label>
+                                   <label for="class_name" class="form-label">Class Name <span class="required">*</span></label>
                                    <input type="text" class="form-control" name="class_name" required>
                               </div>
                               <div class="my-3">
-                                   <label for="homeroom_teacher_id" class="form-label">Homeroom Teacher</label>
+                                   <label for="homeroom_teacher_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
                                    <select name="homeroom_teacher_id" class="form-select" required>
                                         <option value="" selected>--Please Choose--</option>
                                         @foreach ($teachersNotAssigned as $teacher)
-                                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                            <option value="{{$teacher->id}}">{{$teacher->teacherNuptk}} - {{$teacher->name}}</option>
                                         @endforeach
                                    </select>
                               </div>
@@ -99,17 +99,17 @@
                                        <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
                                   </div>
                                   <div class="my-3">
-                                       <label for="class_name" class="form-label">Class Name</label>
+                                       <label for="class_name" class="form-label">Class Name <span class="required">*</span></label>
                                        <input type="text" class="form-control" value="{{$class->name}}" name="class_name" required>
                                   </div>
                                   <div class="my-3">
-                                       <label for="homeroom_teacher_id" class="form-label">Homeroom Teacher</label>
+                                       <label for="homeroom_teacher_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
                                        <select name="homeroom_teacher_id" class="form-select" required>
                                             <option value="" selected>--Please Choose--</option>
-                                            <option value="{{$class->homeroomTeacherId}}" selected>{{$class->homeroomTeacherName}}</option> 
+                                            <option value="{{$class->homeroomTeacherId}}" selected>{{$class->teacherNuptk}} - {{$class->homeroomTeacherName}}</option> 
                             
                                             @foreach ($teachersNotAssigned as $teacher)
-                                                <option value="{{$teacher->id}}" {{($class->homeroom_teacher_id === $teacher->id) ? 'selected' : ''}}>{{$teacher->name}}</option>
+                                                <option value="{{$teacher->id}}" {{($class->homeroom_teacher_id === $teacher->id) ? 'selected' : ''}}>{{$teacher->teacherNuptk}} - {{$teacher->name}}</option>
                                             @endforeach
                                        </select>
                                   </div>

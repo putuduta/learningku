@@ -13,17 +13,19 @@
          <div class="table-responsive">
               <table class="table table-hover">
                    <thead>
-                        <th class="align-middle text-center">ID</th>
+                        <th class="align-middle text-center">No</th>
                         <th class="align-middle text-center">Subject Name</th>
-                        <th class="align-middle text-center">Teacher</th>
+                        <th class="align-middle text-center">Teacher Name</th>
+                        <th class="align-middle text-center">Teacher NUPTK</th>
                         <th class="align-middle text-center" colspan="2">Action</th>
                    </thead>
                    <tbody>
-                        @foreach ($classSubjects as $subject)
+                        @foreach ($classSubjects as $index => $subject)
                              <tr>
-                                  <td class="align-middle text-center">{{$subject->id}}</td>
+                                  <td class="align-middle text-center">{{$index+1}}</td>
                                   <td class="align-middle text-center">{{$subject->name}}</td>
                                   <td class="align-middle text-center">{{$subject->teacherName}}</td>
+                                  <td class="align-middle text-center">{{$subject->teacherNuptk}}</td>
                                   <th class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
                                     data-bs-target="#updateSubject{{ $subject->id }}">
@@ -61,19 +63,19 @@
                        </div>
                         <div class="my-3">
                             <input type="text" class="form-control" name="class_id" value="{{$class->id}}"  hidden>
-                             <label for="name" class="form-label">Subject Name</label>
+                             <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
                              <input type="text" class="form-control" name="name" value="" required>
                         </div>
                         <div class="my-3">
-                            <label for="description" class="form-label">Subject Description</label>
+                            <label for="description" class="form-label">Subject Description <span class="required">*</span></label>
                             <textarea name="description" class="form-control" id="" cols="20" rows="5" required></textarea>
                        </div>
                         <div class="my-3">
-                             <label for="teacher_id" class="form-label">Teacher</label>
+                             <label for="teacher_id" class="form-label">Teacher <span class="required">*</span></label>
                              <select name="teacher_id" class="form-select" required>
                                   <option value="" selected>--Please Choose--</option>
                                   @foreach ($teachersNotAssigned as $teacher)
-                                      <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                      <option value="{{$teacher->id}}">{{$teacher->nuptk}} - {{$teacher->name}}</option>
                                   @endforeach
                              </select>
                         </div>
@@ -108,20 +110,20 @@
                             </div>
                             <div class="my-3">
                                 <input type="text" class="form-control" name="class_id" value="{{$class->id}}"  hidden>
-                                 <label for="name" class="form-label">Subject Name</label>
+                                 <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
                                  <input type="text" class="form-control" name="name" value="{{$subject->name}}" required>
                             </div>
                             <div class="my-3">
-                                <label for="description" class="form-label">Subject Description</label>
+                                <label for="description" class="form-label">Subject Description <span class="required">*</span></label>
                                 <textarea name="description" class="form-control" id="" cols="20" rows="5" required>{{$subject->description}}</textarea>
                            </div>
                             <div class="my-3">
-                                 <label for="teacher_id" class="form-label">Teacher</label>
+                                 <label for="teacher_id" class="form-label">Teacher <span class="required">*</span></label>
                                  <select name="teacher_id" class="form-select" required>
                                       <option value="" selected>--Please Choose--</option>
-                                      <option value="{{$subject->teacherId}}" selected>{{$subject->teacherName}}</option> 
+                                      <option value="{{$subject->teacherId}}" selected>{{$subject->teacherNuptk}} - {{$subject->teacherName}}</option> 
                                       @foreach ($teachersNotAssigned as $teacher)
-                                          <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                          <option value="{{$teacher->id}}">{{$teacher->nuptk}} - {{$teacher->name}}</option>
                                       @endforeach
                                  </select>
                             </div>

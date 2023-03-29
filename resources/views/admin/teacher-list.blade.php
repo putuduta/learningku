@@ -10,15 +10,15 @@
           <div class="table-responsive">
                <table class="table table-hover">
                     <thead>
-                         <th class="align-middle text-center">ID</th>
+                         <th class="align-middle text-center">No</th>
                          <th class="align-middle text-center">Teacher Name</th>
                          <th class="align-middle text-center">NUPTK</th>
                          <th class="align-middle text-center">Action</th>
                     </thead>
                     <tbody>
-                         @foreach ($teachers as $teacher)
+                         @foreach ($teachers as $index => $teacher)
                               <tr>
-                                   <td class="align-middle text-center">{{$teacher->id}}</td>
+                                   <td class="align-middle text-center">{{$index+1}}</td>
                                    <td class="align-middle text-center">{{$teacher->name}}</td>
                                    <td class="align-middle text-center">{{$teacher->nuptk}}</td>
                                    <td class="align-middle text-center">
