@@ -107,7 +107,7 @@
                                     @else 
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
                                     data-bs-target="#updateAssignment{{ $assignment->id }}">
-                                        Edit Assignment
+                                        Update
                                     </button>
                                     @endif
                                 @endif
