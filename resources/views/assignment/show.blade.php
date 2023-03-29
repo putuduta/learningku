@@ -8,7 +8,7 @@
                 <a href="{{ url()->previous() }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
-        <h3 class="fw-bold">Assignment Detail - {{ $assignmentHeader->title }}</h3>
+        <h3 class="fw-bold">Assignment Submissions - {{ $assignmentHeader->title }}</h3>
         <hr>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
