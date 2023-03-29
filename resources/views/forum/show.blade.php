@@ -17,7 +17,26 @@
                     <br>
                     Created at {{ $forum->created_at }}</p>
                 <hr>
-                <h5 class="fw-bold">{{ $forum->user->name }}</h5>
+                <h5 class="fw-bold">{{ $forum->user->name }} 
+                    <br>
+                    <span class="smallFont">
+                        @if ($forum->user->role->name == 'Student')
+                        @foreach ($students as $student)
+                            @if ($student->id == $forum->user_id)
+                                NISN: {{ $student->nisn }}
+                            @endif
+                        @endforeach
+                        @else 
+                            @foreach ($teachers as $teacher)
+                                @if ($teacher->id == $forum->user_id)
+                                    NUPTK: {{ $teacher->nuptk }}
+                                @endif 
+                            @endforeach
+                        @endif
+                    </span>
+                </h5>
+     
+             
                 <p>{!! $forum->body !!}
                 </p>
                 <a href="/storage/forum/{{ $forum->file }}" target="_blank" download="">{{ $forum->file }}</a>
@@ -47,12 +66,12 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="my-3">
-                                        <label for="title" class="form-label">Title</label>
+                                        <label for="title" class="form-label">Title <span class="required">*</span></label>
                                         <input type="text" class="form-control" name="title" id="title" required
                                             value="{{ $forum->title }}">
                                     </div>
                                     <div class="my-3">
-                                        <label for="body" class="form-label">Body</label>
+                                        <label for="body" class="form-label">Body <span class="required">*</span></label>
                                         <textarea name="body" id="body" cols="30" rows="10" class="form-control"
                                             >{{ $forum->body }}</textarea>
                                     </div>
@@ -78,7 +97,24 @@
         @foreach ($forum->replies as $reply)
         <div class="card shadow-sm border-0 my-3">
             <div class="card-body my-2">
-                <h5 class="fw-bold">{{ $reply->user->name }}</h5>
+                <h5 class="fw-bold">{{ $reply->user->name }}
+                    <br>
+                    <span class="smallFont">
+                        @if ($reply->user->role->name == 'Student')
+                            @foreach ($students as $student)
+                                @if ($student->id == $reply->user_id)
+                                    NISN: {{ $student->nisn }}
+                                @endif
+                            @endforeach
+                        @else 
+                            @foreach ($teachers as $teacher)
+                                @if ($teacher->id == $reply->user_id)
+                                    NUPTK: {{ $teacher->nuptk }}
+                                @endif 
+                            @endforeach
+                        @endif
+                    </span>
+                </h5>
                 <p>{!! $reply->body !!}
                 </p>
 
@@ -121,7 +157,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="body" class="form-label">Body</label>
+                            <label for="body" class="form-label">Body <span class="required">*</span></label>
                             <textarea name="body" id="bodyEditReply-{{ $reply->id }}" cols="30" rows="10" class="form-control"
                                 >{{ $reply->body }}</textarea>
                         </div>
@@ -153,7 +189,7 @@
                     <form action="{{ route('reply-forum.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="body" class="form-label">Body</label>
+                            <label for="body" class="form-label">Body <span class="required">*</span></label>
                             <textarea name="body" id="bodyForum" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                         <div class="my-3">

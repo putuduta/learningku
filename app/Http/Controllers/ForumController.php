@@ -6,6 +6,7 @@ use App\Models\ClassCourse;
 use App\Models\ClassHeader;
 use App\Models\ClassSubject;
 use App\Models\Forum;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -18,11 +19,14 @@ class ForumController extends Controller
                     ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                     ->join('users', 'users.id', 'teachers.user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
+                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         } else {
@@ -31,11 +35,14 @@ class ForumController extends Controller
                     ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                     ->join('users', 'users.id', 'teachers.user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
+                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         }
@@ -74,6 +81,18 @@ class ForumController extends Controller
     {
         return view('forum.show', [
             'forum' => Forum::where('id', $forumId)->first(),
+            'teachers' => User::select('users.id','users.name','teachers.nuptk','users.email','users.password', 
+                'users.gender', 'teachers.last_education', 'teachers.position', 'teachers.subject_taught')
+                ->join('roles','roles.id','users.role_id')
+                ->join('teachers','teachers.user_id','users.id')
+                ->where([['roles.name','Teacher']])
+                ->get(),
+            'students' => User::select('users.id','users.name','students.nisn','users.email','users.password', 
+                'users.gender')
+                ->join('roles','roles.id','users.role_id')
+                ->join('students','students.user_id','users.id')
+                ->where([['roles.name','Student']])
+                ->get(),
             'classSubject' => ClassSubject::where('id', $classSubjectId)->first()
         ]);
     }

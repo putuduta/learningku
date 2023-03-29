@@ -24,6 +24,9 @@
         .required {
             color: red;
         }
+        span.smallFont {
+            font-size: smaller;
+        }
     </style>
 </head>
 
