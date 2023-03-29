@@ -27,14 +27,16 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
                                 <thead class="table-dark">
-                                    <th class="align-middle text-center">Student ID</th>
+                                    <th class="align-middle text-center">No</th>
+                                    <th class="align-middle text-center">Student NISN</th>
                                     <th class="align-middle text-center">Student Name</th>
                                     <th class="align-middle text-center">Present</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($class_details as $student)
+                                    @foreach($class_details as $index=>$student)
                                     <tr>
-                                        <td class="align-middle text-center">{{ $student->studentId }}</td>
+                                        <td class="align-middle text-center">{{ $index+1 }}</td>
+                                        <td class="align-middle text-center">{{ $student->studentNisn }}</td>
                                         <td class="align-middle text-center">{{ $student->studentName }}</td>
                                         <td class="align-middle text-center">
                                             <input type="checkbox" value="1" class="form-check-input attend"
