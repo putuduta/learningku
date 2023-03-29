@@ -36,7 +36,7 @@
             <div class="row">
                  @foreach ($subjects as $subject)
                  <div class="col-md-4">
-                      <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$subject->id}}">
+                      <div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="{{$subject->id}}">
                            <div class="card-body">
                                 <h3 class="fw-bold">{{ $subject->name }}</h3>
                                 <p>Guru: {{ $subject->teacherName }} - {{ $subject->teacherNuptk }}</p>

@@ -30,7 +30,7 @@
          <div id="classAndSubjetTable" class="row">
               @foreach ($classAndSubjects as $classAndSubject)
               <div class="col-md-4">
-                   <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$classAndSubject->id}}">
+                   <div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="{{$classAndSubject->id}}">
                         <div class="card-body">
                              <h3 class="fw-bold">{{ $classAndSubject->className }} - {{ $classAndSubject->name }}</h3>
                              <p>Wali Kelas: {{ $classAndSubject->homeroomTeacherName }} - {{ $classAndSubject->homeroomTeacherNuptk }}</p>
@@ -66,7 +66,7 @@
                         var body = '';
                         data.forEach(function(item) {
                              body = '<div class="col-md-4">' +
-                                       '<div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="' + item.id + '">' +
+                                       '<div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="' + item.id + '">' +
                                             '<div class="card-body">' +
                                                  '<h3 class="fw-bold">' + item.className + ' - ' + item.name + '</h3>' +
                                                  '<p>Guru: ' + item.homeroomTeacherName + ' - ' + item.homeroomTeacherNuptk + '</p>' +
