@@ -20,7 +20,7 @@
                     <div class="col-md-10">
                         <h1 class="fw-bold">{{ $class->name }} - {{ $class->semester }}</h1>
                         <p>{{ $class->description }}</p>
-                        <p>Wali Kelas {{ $class->homeroomTeacherName }}</p>
+                        <p>Wali Kelas: {{ $class->homeroomTeacherName }} - {{ $class->teacherNuptk }}</p>
                     </div>           
                 </div>
             </div>
@@ -39,7 +39,7 @@
                       <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$subject->id}}">
                            <div class="card-body">
                                 <h3 class="fw-bold">{{ $subject->name }}</h3>
-                                <p>Guru: {{ $subject->teacherName }}</p>
+                                <p>Guru: {{ $subject->teacherName }} - {{ $subject->teacherNuptk }}</p>
                            </div>
                       </div>
                  </div>

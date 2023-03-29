@@ -33,7 +33,7 @@
                    <div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="{{$classAndSubject->id}}">
                         <div class="card-body">
                              <h3 class="fw-bold">{{ $classAndSubject->className }} - {{ $classAndSubject->name }}</h3>
-                             <p>Guru: {{ $classAndSubject->teacherName }}</p>
+                             <p>Wali Kelas: {{ $classAndSubject->homeroomTeacherName }} - {{ $classAndSubject->homeroomTeacherNuptk }}</p>
                         </div>
                    </div>
               </div>
@@ -69,7 +69,7 @@
                                        '<div class="classSubject card shadow-sm border-0 mb-3 bg-light" data-id="' + item.id + '">' +
                                             '<div class="card-body">' +
                                                  '<h3 class="fw-bold">' + item.className + ' - ' + item.name + '</h3>' +
-                                                 '<p>Guru: ' + item.teacherName + '</p>' +
+                                                 '<p>Guru: ' + item.homeroomTeacherName + ' - ' + item.homeroomTeacherNuptk + '</p>' +
                                             '</div>' +
                                        '</div>' +
                                     '</div>';                 

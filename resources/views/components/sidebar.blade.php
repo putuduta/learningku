@@ -13,6 +13,11 @@
                 <img src="/storage/assets/man.svg" class="rounded border-teal w-25 rounded-circle bg-color-lightblue"
                     alt="">
                 <span class="mt-1">{{ auth()->user()->name }}</span>
+                @if (auth()->user()->role->name == 'Teacher')
+                <small class="text-secondary">NUPTK: {{$teacher->nuptk}}</small>
+                @elseif (auth()->user()->role->name == 'Student')
+                <small class="text-secondary">NISN: {{$student->nisn}}</small>
+                @endif
                 <small class="text-secondary">{{ auth()->user()->role->name}}</small>
             </div>
         </div>
@@ -75,7 +80,7 @@
 
                         <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
                             @foreach ($classes as $class)
-                                <li style="background-color: grey;"><a class="dropdown-item" href="{{ route('dashboard-class-student', $class->id)}}">{{ $class->name }} - {{ $class->semester }}</a></li>
+                                <li style="background-color: rgba(255, 241, 241, 0.746);"><a class="dropdown-item" href="{{ route('dashboard-class-student', $class->id)}}">{{ $class->name }} - {{ $class->semester }}</a></li>
                             @endforeach
                         </ul>
                     </li>
