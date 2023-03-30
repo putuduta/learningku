@@ -5,6 +5,7 @@
     <div id="content" class="container my-5 py-5">
          <div class="row justify-content-center">
               <div class="col-md-6">
+               <h3 class="fw-bold">Class List</h3>
                    <form method="POST" action="{{route('admin-class-post-choose-school-year')}}">
                         @csrf
                         <div class="my-3">
