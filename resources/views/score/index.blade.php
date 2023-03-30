@@ -135,7 +135,7 @@
                                     <td class="align-middle text-center">{{ $student->studentId }}</td>
                                     <td class="align-middle text-center">{{ $student->studentName }}</td>
                                     <td class="align-middle text-center">
-                                        <a href="{{ URL::to('/') }}/score/detail/{{ $classSubject->id }}/{{ $student->studentId }}"
+                                        <a href="{{ URL::to('/') }}/assignment-score/detail/{{ $classSubject->id }}/{{ $student->studentId }}"
                                             class="btn btn-primary text-white">
                                             Show Assignment Score
                                         </a>

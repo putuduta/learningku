@@ -14,7 +14,7 @@
                 </thead>
                 <tbody>
                     <div>
-                        <a href="{{ route('score.manage', $class) }}" class="btn btn-primary text-white mb-3">Back to Student List</a>
+                        <a href="{{ route('score.index', $class) }}" class="btn btn-primary text-white mb-3">Back to Student List</a>
                     </div>
                     @foreach ($scores as $index => $s)
                         @if ($s->score != null)

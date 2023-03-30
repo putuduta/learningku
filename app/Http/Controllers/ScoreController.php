@@ -76,7 +76,7 @@ class ScoreController extends Controller
                 'class_details' => User::select('users.id as studentId','users.name as studentName')
                 ->join('class_details','class_details.student_user_id','users.id')
                 ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
-                ->get(),
+                ->get()
             ]);
         }
     }
