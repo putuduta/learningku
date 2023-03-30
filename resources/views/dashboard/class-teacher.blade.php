@@ -1,4 +1,4 @@
-<x-app title="Teacher Classes - Learningku">
+<x-app title="Teacher Class and Subject - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <style>

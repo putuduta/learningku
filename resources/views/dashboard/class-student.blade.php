@@ -1,4 +1,4 @@
-<x-app title="{{ $class->name }} - Learningku">
+<x-app title="Student Class and Subject - Learningku">
 
     <style>
         .title-line {
