@@ -70,7 +70,7 @@
                 @if (auth()->user()->role->name == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                        href="{{ route('dashboard-class-student', '') }}" role="button" id="dropdownMenuLink">
+                        href="{{ route('dashboard-class-student', 'index') }}" role="button" id="dropdownMenuLink">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
@@ -112,7 +112,7 @@
                 @if (auth()->user()->role->name == 'Teacher')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', '') }}">
+                            href="{{ route('dashboard-class-teacher', 'index') }}">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
