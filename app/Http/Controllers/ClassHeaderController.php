@@ -107,7 +107,7 @@ class ClassHeaderController extends Controller
         ]);
     }
 
-    public function viewClassTeacherDashboard(){
+    public function viewClassTeacherDashboard($route = null){
         $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
 
         // dd($lastSchoolYearId);
@@ -124,7 +124,8 @@ class ClassHeaderController extends Controller
             ->where('roles.name','Teacher')
             ->where('class_headers.school_year_id', $lastSchoolYearId->id)
             ->where('class_subjects.teacher_user_id', auth()->user()->id)
-            ->get()
+            ->get(),
+            'route' => $route
         ]);
     }
 

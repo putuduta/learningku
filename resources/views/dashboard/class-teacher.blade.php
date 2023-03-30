@@ -11,7 +11,7 @@
     <div id="content" class="container py-5 my-5">
          <div class="">
               <div class="col-md-6">
-                   <h3>Classes</h3>
+                   <h3>Class and Subject</h3>
                    <form id="formChooseSchoolYear" method="GET">
                         <div class="my-3">
                              <label for="school_year_id" class="form-label">School Year/Tahun Ajaran</label>
@@ -44,9 +44,10 @@
 
 <script>
 
+     $route =  {!! json_encode($route) !!};
     $(".classSubject").on('click', function (e) {
          event.preventDefault();
-         window.location.href = "/material/index/" + $(this).attr("data-id");
+         window.location.href = "/" + $route + "/" + $(this).attr("data-id");
     });
     
     $("#school_year_id").on('change', function (e) {

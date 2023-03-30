@@ -89,7 +89,7 @@ Route::prefix('admin/student')->middleware('auth')->name('student-')->group(func
 
 // Class
 Route::get('/dashboard/class-student/{classId}', [ClassHeaderController::class, 'viewClassStudentDashboard'])->name('dashboard-class-student')->middleware('auth');
-Route::get('/dashboard/class-teacher', [ClassHeaderController::class, 'viewClassTeacherDashboard'])->name('dashboard-class-teacher')->middleware('auth');
+Route::get('/dashboard/class-teacher/{route?}', [ClassHeaderController::class, 'viewClassTeacherDashboard'])->name('dashboard-class-teacher')->middleware('auth');
 
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
     Route::get('get-list/{schoolYearId}', [ClassHeaderController::class, 'getTeacherClassTaught'])->name('get-list');
@@ -98,7 +98,7 @@ Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
 
 //Material
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
-    Route::get('index/{classSubjectId}', [MaterialController::class, 'index'])->name('index');
+    Route::get('/{classSubjectId}', [MaterialController::class, 'index'])->name('index');
     Route::post('store', [MaterialController::class, 'store'])->name('create');
     Route::delete('destroy/{material}', [MaterialController::class, 'destroy'])->name('delete');
     Route::put('update/{id}', [MaterialController::class, 'update'])->name('update');
@@ -107,7 +107,7 @@ Route::prefix('material')->middleware('auth')->name('material.')->group(function
 
 // Attendance
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
-    Route::get('index/{classSubjectId}', [AttendanceController::class, 'viewAttendance'])->name('view');
+    Route::get('/{classSubjectId}', [AttendanceController::class, 'viewAttendance'])->name('view');
     Route::get('create/{classSubjectId}', [AttendanceController::class, 'viewCreate'])->name('view-create');
     Route::post('create/post', [AttendanceController::class, 'create'])->name('create');
 });
@@ -129,7 +129,6 @@ Route::post('assignment/submit/{assignmentHeader}', [AssignmentDetailController:
 
 // Score
 Route::get('score/{classId}', [ScoreController::class, 'index'])->name('score.index');
-Route::get('score/manage/{classId}', [ScoreController::class, 'manage'])->name('score.manage');
 // Route::get('score/detail/{student}', [ScoreController::class, 'detail'])->name('score.detail');
 Route::get('score/detail/{classId}/{student}', [ScoreController::class, 'detail'])->name('score.detail');
 Route::get('score/edit/{classId}/{score}', [ScoreController::class, 'change'])->name('score.change');

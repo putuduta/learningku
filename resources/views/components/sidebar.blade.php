@@ -88,12 +88,48 @@
                 @if (auth()->user()->role->name == 'Teacher')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher') }}">
+                            href="{{ route('dashboard-class-teacher', '') }}">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
                             </span>
-                            <span class="ms-2">Classes</span>
+                            <span class="ms-2">Class and Subject</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-teacher', 'material') }}">
+                            <span class="ms-2">Materials</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-teacher', 'forum') }}">
+                            <span class="ms-2">Forums</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-teacher', 'assignment') }}">
+                            <span class="ms-2">Assignments</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-teacher', 'assignment-score') }}">
+                            <span class="ms-2">Assignment Scores</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-teacher', 'attendance') }}">
+                            <span class="ms-2">Attendances</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-teacher', 'student') }}">
+                            <span class="ms-2">Students</span>
                         </a>
                     </li>
                 @endif

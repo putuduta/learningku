@@ -53,16 +53,32 @@ class ScoreController extends Controller
      */
     public function index($classSubjectId)
     {
-        return view('score.index', [
-            'scores' => AssignmentScore::where('student_user_id', auth()->user()->id)->get(),
-            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
-                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->where('class_subjects.id', $classSubjectId)->first(),
-        ]);
+        if (auth()->user()->role->name == 'Student') {
+            return view('score.index', [
+                'scores' => AssignmentScore::where('student_user_id', auth()->user()->id)->get(),
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                        'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                        ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                        ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                        ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
+                        ->join('users', 'users.id', 'teachers.user_id')
+                        ->where('class_subjects.id', $classSubjectId)->first(),
+            ]);
+        } else {
+            return view('score.index', [
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                        'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                        ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                        ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                        ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
+                        ->join('users', 'users.id', 'teachers.user_id')
+                        ->where('class_subjects.id', $classSubjectId)->first(),
+                'class_details' => User::select('users.id as studentId','users.name as studentName')
+                ->join('class_details','class_details.student_user_id','users.id')
+                ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
+                ->get(),
+            ]);
+        }
     }
 
     /**
