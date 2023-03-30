@@ -93,8 +93,9 @@ Route::get('/dashboard/class-teacher/{route?}', [ClassHeaderController::class, '
 
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
     Route::get('get-list/{schoolYearId}', [ClassHeaderController::class, 'getTeacherClassTaught'])->name('get-list');
-    Route::get('student/{classSubjectId}', [ClassDetailController::class, 'viewClassDetails'])->name('view-student');
 });
+
+Route::get('student/{classSubjectId}', [ClassDetailController::class, 'viewClassDetails'])->name('class-view-student');
 
 //Material
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
@@ -128,11 +129,11 @@ Route::post('assignment/submit/{assignmentHeader}', [AssignmentDetailController:
 // Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
 
 // Score
-Route::get('score/{classId}', [ScoreController::class, 'index'])->name('score.index');
+Route::get('assignment-score/{classId}', [ScoreController::class, 'index'])->name('score.index');
 // Route::get('score/detail/{student}', [ScoreController::class, 'detail'])->name('score.detail');
-Route::get('score/detail/{classId}/{student}', [ScoreController::class, 'detail'])->name('score.detail');
-Route::get('score/edit/{classId}/{score}', [ScoreController::class, 'change'])->name('score.change');
-Route::resource('score', ScoreController::class)->except('create', 'index');
-Route::get('score/create/{classCourseId}/{userId}', [ScoreController::class, 'create'])->name('score.create');
+Route::get('assignment-score/detail/{classId}/{student}', [ScoreController::class, 'detail'])->name('score.detail');
+Route::get('assignment-score/edit/{classId}/{score}', [ScoreController::class, 'change'])->name('score.change');
+Route::resource('assignment-score', ScoreController::class)->except('create', 'index');
+Route::get('assignment-score/create/{classCourseId}/{userId}', [ScoreController::class, 'create'])->name('score.create');
 // Route::put('/update/{student}', [ScoreController::class, 'update'])->name('update');
 
