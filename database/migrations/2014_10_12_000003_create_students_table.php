@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('user_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');           
-            $table->string('nisn', 10);
+            $table->string('nisn', 12);
             $table->timestamps();
         });
     }
