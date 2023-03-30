@@ -70,19 +70,43 @@
                 @if (auth()->user()->role->name == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                        href="#" role="button" id="dropdownMenuLink">
+                        href="{{ route('dashboard-class-student', '') }}" role="button" id="dropdownMenuLink">
                             <span class="fa-stack fa-sm ms-n1">
                                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
                                 <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
                             </span>
-                            <span class="ms-2">Classes</span>
+                            <span class="ms-2">Class and Subject</span>
                         </a>
-
-                        <ul id="dropdownMenu" style="list-style-type: none;" aria-labelledby="dropdownMenuLink">
-                            @foreach ($classes as $class)
-                                <li style="background-color: rgba(255, 241, 241, 0.746);"><a class="dropdown-item" href="{{ route('dashboard-class-student', $class->id)}}">{{ $class->name }} - {{ $class->semester }}</a></li>
-                            @endforeach
-                        </ul>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-student', 'material') }}">
+                            <span class="ms-2">Materials</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-student', 'forum') }}">
+                            <span class="ms-2">Forums</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-student', 'assignment') }}">
+                            <span class="ms-2">Assignments</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-student', 'assignment-score') }}">
+                            <span class="ms-2">Assignment Scores</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
+                            href="{{ route('dashboard-class-student', 'attendance') }}">
+                            <span class="ms-2">Attendances</span>
+                        </a>
                     </li>
                 @endif
                 @if (auth()->user()->role->name == 'Teacher')

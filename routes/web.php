@@ -88,11 +88,12 @@ Route::prefix('admin/student')->middleware('auth')->name('student-')->group(func
 // Teacher & Student 
 
 // Class
-Route::get('/dashboard/class-student/{classId}', [ClassHeaderController::class, 'viewClassStudentDashboard'])->name('dashboard-class-student')->middleware('auth');
+Route::get('/dashboard/class-student/{route?}', [ClassHeaderController::class, 'viewClassStudentDashboard'])->name('dashboard-class-student')->middleware('auth');
 Route::get('/dashboard/class-teacher/{route?}', [ClassHeaderController::class, 'viewClassTeacherDashboard'])->name('dashboard-class-teacher')->middleware('auth');
 
 Route::prefix('class')->middleware('auth')->name('class-')->group(function () {
-    Route::get('get-list/{schoolYearId}', [ClassHeaderController::class, 'getTeacherClassTaught'])->name('get-list');
+    Route::get('teacher-get-list/{schoolYearId}', [ClassHeaderController::class, 'getTeacherClassTaught'])->name('get-list');
+    Route::get('student-get-list/{classId}', [ClassHeaderController::class, 'getStudentClass'])->name('get-list');
 });
 
 Route::get('student/{classSubjectId}', [ClassDetailController::class, 'viewClassDetails'])->name('class-view-student');

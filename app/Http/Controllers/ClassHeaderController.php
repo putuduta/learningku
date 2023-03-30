@@ -89,21 +89,37 @@ class ClassHeaderController extends Controller
         return redirect()->back()->with('success', 'Class deleted');
     }
 
-    public function viewClassStudentDashboard($classId) {
-        return view('dashboard.class-student', [
-            'class' => ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_id as homeroomTeacherId', 'teachers.nuptk as teacherNuptk')
+    public function viewClassStudentDashboard($route = null) {
+        $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
+
+        $class = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_id as homeroomTeacherId', 'teachers.nuptk as teacherNuptk')
                 ->join('school_years','school_years.id','class_headers.school_year_id')
+                ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
                 ->join('teachers', 'teachers.user_id', 'class_headers.homeroom_teacher_id')
                 ->join('users', 'users.id', 'teachers.user_id')
-                ->where('class_headers.id', $classId)
-                ->first(),
+                ->where('class_headers.school_year_id', $lastSchoolYearId->id)
+                ->where('class_details.student_user_id', auth()->user()->id)
+                ->first();
+
+        $classes = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_id as homeroomTeacherId', 'teachers.nuptk as teacherNuptk')
+                ->join('school_years','school_years.id','class_headers.school_year_id')
+                ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
+                ->join('teachers', 'teachers.user_id', 'class_headers.homeroom_teacher_id')
+                ->join('users', 'users.id', 'teachers.user_id')
+                ->where('class_details.student_user_id', auth()->user()->id)
+                ->orderBy('class_headers.school_year_id', 'DESC')->get();
+
+        return view('dashboard.class-student', [
+            'class' => $class,
+            'classes' => $classes,
             'subjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk')
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->join('roles','roles.id','users.role_id')
                 ->where('roles.name','Teacher')
-                ->where('class_subjects.class_header_id', $classId)
-                ->get()
+                ->where('class_subjects.class_header_id', $class->id)
+                ->get(),
+            'route' => $route
         ]);
     }
 
@@ -139,6 +155,21 @@ class ClassHeaderController extends Controller
         ->where('class_headers.school_year_id', $schoolYearId)
         ->where('class_subjects.teacher_user_id', auth()->user()->id)
         ->get();
+        
+        return $classAndSubjects;
+    }
+
+    public function getStudentClass($classId) {
+        $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+            'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+            ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
+            ->join('users', 'users.id', 'teachers.user_id')
+            ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
+            ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+            ->where('class_headers.id', $classId)->get();
         
         return $classAndSubjects;
     }

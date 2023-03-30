@@ -11,10 +11,10 @@
     <div id="content" class="container py-5 my-5">
          <div class="">
               <div class="col-md-6">
-                   <h3>Class and Subject</h3>
+                    <h2 class="fw-bold">Class and Subject</h2>
                    <form id="formChooseSchoolYear" method="GET">
                         <div class="my-3">
-                             <label for="school_year_id" class="form-label">School Year/Tahun Ajaran</label>
+                             <label for="school_year_id" class="form-label">School Year</label>
                              <select id="school_year_id" name="school_year_id" class="form-select" required>
 
                                   @foreach ($schoolYears as $schoolYear)
@@ -33,7 +33,7 @@
                    <div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="{{$classAndSubject->id}}">
                         <div class="card-body">
                              <h3 class="fw-bold">{{ $classAndSubject->className }} - {{ $classAndSubject->name }}</h3>
-                             <p>Wali Kelas: {{ $classAndSubject->homeroomTeacherName }} - {{ $classAndSubject->homeroomTeacherNuptk }}</p>
+                             <h8 class="pt-3">Homeroom Teacher: {{ $classAndSubject->homeroomTeacherName }} - {{ $classAndSubject->homeroomTeacherNuptk }}</h8>
                         </div>
                    </div>
               </div>
@@ -47,7 +47,11 @@
      $route =  {!! json_encode($route) !!};
     $(".classSubject").on('click', function (e) {
          event.preventDefault();
-         window.location.href = "/" + $route + "/" + $(this).attr("data-id");
+         if ($route != null && $route != '' && $route != 'null') {
+            window.location.href = "/" + $route + "/" + $(this).attr("data-id");
+         } else {
+            window.location.href = "/material/" + $(this).attr("data-id");
+         }
     });
     
     $("#school_year_id").on('change', function (e) {
@@ -60,7 +64,7 @@
               $.ajax({
                    type:"GET",
                    dataType: "json",
-                   url:"/class/get-list/" + $schoolYearId,
+                   url:"/class-teacher/get-list/" + $schoolYearId,
                    success:function(data)
                    {
 
@@ -70,7 +74,7 @@
                                        '<div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="' + item.id + '">' +
                                             '<div class="card-body">' +
                                                  '<h3 class="fw-bold">' + item.className + ' - ' + item.name + '</h3>' +
-                                                 '<p>Guru: ' + item.homeroomTeacherName + ' - ' + item.homeroomTeacherNuptk + '</p>' +
+                                                 '<h8 class="pt-3">Teacher: ' + item.homeroomTeacherName + ' - ' + item.homeroomTeacherNuptk + '</h8>' +
                                             '</div>' +
                                        '</div>' +
                                     '</div>';                 
