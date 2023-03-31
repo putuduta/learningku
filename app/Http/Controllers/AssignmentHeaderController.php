@@ -23,11 +23,14 @@ class AssignmentHeaderController extends Controller
                     ->where('class_subjects.id',   $classSubjectId)
                     ->where('class_subjects.teacher_user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                     ->join('users', 'users.id', 'teachers.user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
+                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         } else {
@@ -35,12 +38,15 @@ class AssignmentHeaderController extends Controller
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
                     ->join('class_subjects', 'assignment_headers.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id',   $classSubjectId)->orderBy('id', 'desc')->get(),
-                    'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                     ->join('users', 'users.id', 'teachers.user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
+                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         }
@@ -83,7 +89,8 @@ class AssignmentHeaderController extends Controller
         foreach ($students as $s) {
             AssignmentScore::create([
                 'assignment_header_id' => $assignment->id,
-                'student_user_id' => $s->id
+                'student_user_id' => $s->id,
+                'score' => 0
             ]);
         }
 

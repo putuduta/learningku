@@ -1,4 +1,4 @@
-<x-app title="Student Class and Subject - Learningku">
+<x-app title="{{ $title }} - Learningku">
 
     <style>
         .title-line {
@@ -18,7 +18,7 @@
     <div id="content" class="container py-5 my-5">
         <div class="">
             <div class="col-md-6">
-                <h2 class="fw-bold">@if($route != "index" && $route != "assignment-score") {{ ucfirst($route) }}s @elseif($route == "assignment-score") {{substr_replace($route,"Assignment Scores",0)}} @else Class and Subject @endif</h2>
+                <h2 class="fw-bold">{{ $title }}</h2>
                 <form id="formChooseSchoolYear" method="GET">
                     <div class="my-3">
                             <label for="class_id" class="form-label">Class - School Year</label>

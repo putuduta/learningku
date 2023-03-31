@@ -1,4 +1,4 @@
-<x-app title="Create Attendance - {{ $classSubject->name }} {{ $classSubject->className }}">
+<x-app title="Attendance - {{ $classSubject->name }} {{ $classSubject->className }}">
 
     <x-slot name="navbar"></x-slot>
 
@@ -11,8 +11,8 @@
         </div>
         <div class="">
             <div class="">
-                <h3>Add Attendance - Mata Pelajaran {{ $classSubject->name }}</h3>
-                <h5>Kelas {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h5>
+                <h3>Attendance - Subject {{ $classSubject->name }}</h3>
+                <h5>{{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h5>
                 <hr>
                 <form action="{{ route('attendance.create') }}" method="POST">
                     @csrf
@@ -28,7 +28,7 @@
                             <table class="table table-hover table-bordered">
                                 <thead class="table-dark">
                                     <th class="align-middle text-center">No</th>
-                                    <th class="align-middle text-center">Student NISN</th>
+                                    <th class="align-middle text-center">NISN</th>
                                     <th class="align-middle text-center">Student Name</th>
                                     <th class="align-middle text-center">Present</th>
                                 </thead>

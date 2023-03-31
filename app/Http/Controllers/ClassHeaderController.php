@@ -109,6 +109,15 @@ class ClassHeaderController extends Controller
                 ->where('class_details.student_user_id', auth()->user()->id)
                 ->orderBy('class_headers.school_year_id', 'DESC')->get();
 
+        $title = "";
+        if($route != "index" && $route != "assignment-score") { 
+            $title = ucfirst($route)."s"; 
+        } else if($route == "assignment-score") { 
+            $title = substr_replace($route,"Assignment Scores",0); 
+        } else {
+            $title = "Class and Subject"; 
+        }
+
         return view('dashboard.class-student', [
             'class' => $class,
             'classes' => $classes,
@@ -119,7 +128,8 @@ class ClassHeaderController extends Controller
                 ->where('roles.name','Teacher')
                 ->where('class_subjects.class_header_id', $class->id)
                 ->get(),
-            'route' => $route
+            'route' => $route,
+            'title' => $title
         ]);
     }
 
@@ -127,6 +137,14 @@ class ClassHeaderController extends Controller
         $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
 
         // dd($lastSchoolYearId);
+        $title = "";
+        if($route != "index" && $route != "assignment-score") { 
+            $title = ucfirst($route)."s"; 
+        } else if($route == "assignment-score") { 
+            $title = substr_replace($route,"Assignment Scores",0); 
+        } else {
+            $title = "Class and Subject"; 
+        }
 
         return view('dashboard.class-teacher',[
             'schoolYears' => SchoolYear::orderBy('id', 'DESC')->get(),
@@ -141,7 +159,8 @@ class ClassHeaderController extends Controller
             ->where('class_headers.school_year_id', $lastSchoolYearId->id)
             ->where('class_subjects.teacher_user_id', auth()->user()->id)
             ->get(),
-            'route' => $route
+            'route' => $route,
+            'title' => $title
         ]);
     }
 

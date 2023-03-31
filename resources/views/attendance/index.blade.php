@@ -20,9 +20,9 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-md-10">
-                                <h2 class="fw-bold">Mata Pelajaran {{ $classSubject->name }}</h2>
-                                <h5 class="pb-2">Guru Pengajar: {{ $classSubject->teacherName }} - {{ $classSubject->teacherNuptk }}</h5>
-                                <h5><span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-home fa-stack-1x fa-2xs fa-inverse text-white"></i></span> {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }} <span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-user fa-stack-1x fa-2xs fa-inverse text-white"></i></span> Wali Kelas: {{ $classSubject->homeRoomTeacherName }} - {{ $classSubject->homeRoomTeacherNuptk }}</h5>
+                                <h2 class="fw-bold">Subject {{ $classSubject->name }}</h2>
+                                <h5 class="pb-2">Teacher: {{ $classSubject->teacherName }} - {{ $classSubject->teacherNuptk }}</h5>
+                                <h5><span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-home fa-stack-1x fa-2xs fa-inverse text-white"></i></span> {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }} <span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-user fa-stack-1x fa-2xs fa-inverse text-white"></i></span> Homeroom Teacher: {{ $classSubject->homeRoomTeacherName }} - {{ $classSubject->homeRoomTeacherNuptk }}</h5>
                             </div>           
                         </div>
                     </div>
@@ -108,9 +108,9 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-md-10">
-                                <h2 class="fw-bold">Mata Pelajaran {{ $classSubject->name }}</h2>
-                                <h5 class="pb-2">Guru Pengajar: {{ $classSubject->teacherName }} - {{ $classSubject->teacherNuptk }}</h5>
-                                <h5><span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-home fa-stack-1x fa-2xs fa-inverse text-white"></i></span> {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }} <span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-user fa-stack-1x fa-2xs fa-inverse text-white"></i></span> Wali Kelas: {{ $classSubject->homeRoomTeacherName }} - {{ $classSubject->homeRoomTeacherNuptk }}</h5>
+                                <h2 class="fw-bold">Subject {{ $classSubject->name }}</h2>
+                                <h5 class="pb-2">Teacher: {{ $classSubject->teacherName }} - {{ $classSubject->teacherNuptk }}</h5>
+                                <h5><span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-home fa-stack-1x fa-2xs fa-inverse text-white"></i></span> {{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }} <span class="fa-stack small pb-4"><i class="fas fa-circle fa-stack-2x text-orange"></i><i class="fas fa-user fa-stack-1x fa-2xs fa-inverse text-white"></i></span> Homeroom Teacher: {{ $classSubject->homeRoomTeacherName }} - {{ $classSubject->homeRoomTeacherNuptk }}</h5>
                             </div>           
                         </div>
                     </div>
@@ -152,16 +152,16 @@
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
-                    <th class="align-middle text-center">ID</th>
+                    <th class="align-middle text-center">No</th>
                     <th class="align-middle text-center">Date</th>
                     <th class="align-middle text-center">Class</th>
                     <th class="align-middle text-center">Subject</th>
                     <th class="align-middle text-center">Actions</th>
                 </thead>
                 <tbody>
-                    @foreach($attendances as $attendance)
+                    @foreach($attendances as $index=>$attendance)
                     <tr>
-                        <td class="align-middle text-center">{{ $attendance->id }}</td>
+                        <td class="align-middle text-center">{{ $index+1 }}</td>
                         <td class="align-middle text-center">{{ date_format(date_create($attendance->date),"d F Y") }}
                         </td>
                         <td class="align-middle text-center">{{ $attendance->className }}</td>
@@ -193,7 +193,7 @@
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
                             <th class="align-middle text-center">No</th>
-                            <th class="align-middle text-center">Student NISN</th>
+                            <th class="align-middle text-center">NISN</th>
                             <th class="align-middle text-center">Student Name</th>
                             <th class="align-middle text-center">Status</th>
                         </thead>
