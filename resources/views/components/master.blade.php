@@ -30,6 +30,7 @@
 
         @media screen and (min-width: 992px) {
             .page-wrapper.toggled .page-content {
+                padding-left: 256px;
                 opacity: 1 !important;
             }
         }
