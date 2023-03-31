@@ -27,6 +27,12 @@
         span.smallFont {
             font-size: smaller;
         }
+
+        @media screen and (min-width: 992px) {
+            .page-wrapper.toggled .page-content {
+                opacity: 1 !important;
+            }
+        }
     </style>
 </head>
 
@@ -43,7 +49,7 @@
             <x-navbar-user></x-navbar-user>
         @endif
         @if (isset($sidebar))
-            <main id="toggled" class="page-wrapper bg-light">
+            <main id="toggled" class="page-wrapper bg-light toggled">
                 <x-sidebar></x-sidebar>
                 <div class="page-content">
                     {{ $slot }}
@@ -55,6 +61,14 @@
             </main>
         @endif
     </div>
+    
+    <script>
+        // var trigger = $('#close-sidebar');
+ 
+        // $('#close-sidebar h2').click(function(){
+        //     $("#toggled").removeClass("toggled");
+        // });
+    </script>
 </body>
 
 </html>
