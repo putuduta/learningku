@@ -140,7 +140,7 @@
                     @method('put')
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
-                        <input type="number" class="form-control" name="score" id="score" value="{{ $score->score }}" required>
+                        <input type="number" class="form-control" name="score" id="score" min="0" max="100" value="{{ $score->score }}" required>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
