@@ -56,11 +56,11 @@ class AssignmentDetailController extends Controller
         AssignmentDetail::create([
             'assignment_id' => $assignmentHeader->id,
             'student_user_id' => auth()->user()->id,
-            'file' => $file_name,
+            'file' => $file_name
         ]);
 
         // Students submit assignment set score back to null
-        $asg_score = AssignmentScore::where('assignment_header_id', $assignmentHeader->id);
+        $asg_score = AssignmentScore::where('assignment_header_id', $assignmentHeader->id)->first();
         $asg_score->score = null;
         $asg_score->save();
 
