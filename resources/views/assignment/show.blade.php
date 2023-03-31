@@ -113,7 +113,7 @@
                     @csrf
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
-                        <input type="number" class="form-control" name="score" id="score" required>
+                        <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="score_id" value="{{ $score->id }}">
