@@ -71,10 +71,6 @@
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                         href="{{ route('dashboard-class-student', 'index') }}" role="button" id="dropdownMenuLink">
-                            <span class="fa-stack fa-sm ms-n1">
-                                <i class="fas fa-circle fa-stack-2x text-orange"></i>
-                                <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
-                            </span>
                             <span class="ms-2">Class and Subject</span>
                         </a>
                     </li>
@@ -113,10 +109,6 @@
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
                             href="{{ route('dashboard-class-teacher', 'index') }}">
-                            <span class="fa-stack fa-sm ms-n1">
-                                <i class="fas fa-circle fa-stack-2x text-orange"></i>
-                                <i class="fas fa-calendar fa-stack-1x fa-inverse text-dark"></i>
-                            </span>
                             <span class="ms-2">Class and Subject</span>
                         </a>
                     </li>
