@@ -24,16 +24,16 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('kualat')
             ],
             [
-                'name' => 'Budi',
-                'email' => 'budi@gmail.com',
-                'gender' => 'Male',
+                'name' => 'Natalia Desi Aryani',
+                'email' => 'desi@gmail.com',
+                'gender' => 'Female',
                 'role_id' => '2',
                 'password' => Hash::make('kualat')
             ],
             [
-                'name' => 'Andre',
-                'email' => 'andre@gmail.com',
-                'gender' => 'Male',
+                'name' => 'Ambar Prasetyaningsih',
+                'email' => 'ambar@gmail.com',
+                'gender' => 'Female',
                 'role_id' => '2',
                 'password' => Hash::make('kualat')
             ],
@@ -252,6 +252,13 @@ class UserSeeder extends Seeder
                 'email' => 'edward@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
+                'password' => Hash::make('kualat')
+            ],
+            [
+                'name' => 'Gabriella Nina Suharlina',
+                'email' => 'nina@gmail.com',
+                'gender' => 'Female',
+                'role_id' => '2',
                 'password' => Hash::make('kualat')
             ]
         ]);

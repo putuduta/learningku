@@ -18,17 +18,24 @@ class TeacherSeeder extends Seeder
         DB::table('teachers')->insert([
             [
                 'user_id' => '2',
-                'nuptk' => '5241756659200013',
+                'nuptk' => '5543758660300003',
                 'last_education' => 'Sarjana S1',
-                'position' => 'Staff Tata Usaha',
-                'subject_taught' => 'Matematika'
+                'position' => 'Guru',
+                'subject_taught' => 'Bahasa Inggris'
             ],
             [
                 'user_id' => '3',
-                'nuptk' => '7746749651300092',
+                'nuptk' => '8347762663230123',
                 'last_education' => 'Sarjana S1',
                 'position' => 'Guru',
-                'subject_taught' => 'Bahasa Indonesia'
+                'subject_taught' => 'Kimia'
+            ],
+            [
+                'user_id' => '35',
+                'nuptk' => '9748755657300032',
+                'last_education' => 'Sarjana S1',
+                'position' => 'Guru',
+                'subject_taught' => 'Matematika Wajib'
             ]
         ]);
     }
