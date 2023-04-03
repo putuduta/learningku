@@ -82,7 +82,7 @@
                         @else
                         <td class="align-middle text-center bg-danger text-white">Not Replied</td>
                         @endif
-                        <td class="align-middle text-center">
+                        <td class="d-flex justify-content-around align-middle text-center">
                             <a href="{{ route('forum.show', ['forumId' => $forum->id, 'classSubjectId' => $classSubject->id]) }}" class="btn btn-primary text-white">
                                 Show
                             </a>

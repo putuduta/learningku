@@ -40,17 +40,22 @@
                 <p>{!! $forum->body !!}
                 </p>
                 <a href="/storage/forum/{{ $forum->file }}" target="_blank" download="">{{ $forum->file }}</a>
-                <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                    data-bs-target="#createReply">
-                    Reply
-                </button>
-
-                @if($forum->user_id == auth()->user()->id)
-                <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
-                    data-bs-target="#editThread">
-                    Edit Forum
-                </button>
-                @endif
+                <div class="d-flex justify-content-start mt-3">
+                    <div class="mx-1">
+                        <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
+                            data-bs-target="#createReply">
+                            Reply
+                        </button>
+                    </div>
+                    <div class="mx-1">
+                        @if($forum->user_id == auth()->user()->id)
+                            <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
+                            data-bs-target="#editThread">
+                            Edit Forum
+                        </button>
+                        @endif
+                    </div>
+                </div>
 
                 <div class="modal fade" id="editThread" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true" data-bs-focus="false">
@@ -124,19 +129,23 @@
                 @endif
 
                 @if($reply->user_id == auth()->user()->id)
-                <div class="mt-3">
-                    <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
-                        data-bs-target="#editReply-{{ $reply->id }}">
-                        Edit Reply
-                    </button>
-
-                    <form action="{{ route('reply-forum.destroy', $reply->id) }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Are you sure?')">
-                            Delete
+                <div class="d-flex mt-3 justify-content-start my-1">
+                    <div class="mx-1">
+                        <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
+                            data-bs-target="#editReply-{{ $reply->id }}">
+                            Edit Reply
                         </button>
-                    </form>
+                    </div>
+
+                    <div class="mx-1">
+                        <form action="{{ route('reply-forum.destroy', $reply->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Are you sure?')">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 @endif
             </div>
