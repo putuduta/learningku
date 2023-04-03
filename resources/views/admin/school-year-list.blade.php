@@ -53,7 +53,7 @@
                             @csrf
                             <div class="my-3">
                                  <label for="year" class="form-label">Year <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="year" required>
+                                 <input type="number" class="form-control" name="year" min="2023" required>
                             </div>
                             <div class="my-3">
                                  <label for="semester" class="form-label">Semester <span class="required">*</span></label>
