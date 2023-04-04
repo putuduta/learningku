@@ -15,11 +15,11 @@
                 <p>
                     Mata Pelajaran {{ $classSubject->name }}
                     <br>
-                    Created at {{ $forum->created_at }}</p>
+                    Created at  {{ date_format(date_create($forum->created_at),"d F Y H:i") }}</p>
                 <hr>
                 <h5 class="fw-bold">{{ $forum->user->name }} 
                     <br>
-                    <span class="smallFont">
+                    <span class="smallFont" style="font-weight: normal !important;">
                         @if ($forum->user->role->name == 'Student')
                         @foreach ($students as $student)
                             @if ($student->id == $forum->user_id)
@@ -104,7 +104,7 @@
             <div class="card-body my-2">
                 <h5 class="fw-bold">{{ $reply->user->name }}
                     <br>
-                    <span class="smallFont">
+                    <span class="smallFont" style="font-weight: normal !important;">
                         @if ($reply->user->role->name == 'Student')
                             @foreach ($students as $student)
                                 @if ($student->id == $reply->user_id)
@@ -119,6 +119,8 @@
                             @endforeach
                         @endif
                     </span>
+                    <br>
+                    <span class="smallFont" style="font-weight: normal !important;">Created at  {{ date_format(date_create($reply->created_at),"d F Y H:i") }}</p></span>
                 </h5>
                 <p>{!! $reply->body !!}
                 </p>
