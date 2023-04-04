@@ -27,70 +27,74 @@
                         @if($assignments->count() > 0)
                             @foreach($assignments as $assignment)
                                 @if ($score->assignmentHeaderId == $assignment->assignmentId && $score->studentUserId == $assignment->studentUserId)
-                                <tr>
-                                    <td class="align-middle text-center">{{ $i }}</td>
-                                    <td class="align-middle text-center">{{ $score->nisn }}</td>
-                                    <td class="align-middle text-center">{{ $assignment->studentName }}</td>
-                                    <td class="align-middle text-center bg-success text-white">
-                                        {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        @if ($score->score == null)
-                                            -
-                                        @else
+                                    @if ($score->score == 0 && $assignment->file == null)
+                                    <tr>
+                                        <td class="align-middle text-center">{{ $i }}</td>
+                                        <td class="align-middle text-center">{{ $score->nisn }}</td>
+                                        <td class="align-middle text-center">{{ $score->studentName }}</td>
+                                        <td class="align-middle text-center bg-danger text-white">
+                                        Not Submitted
+                                        </td>
+                                        <td class="align-middle text-center">
                                             {{ $score->score }}
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <a href="/storage/assignment/submission/{{ $assignment->file }}" download
-                                            class="btn btn-success text-white">
-                                            Download Submission
-                                        </a>
-                                        @if ($score->score == null)
-                                            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                                data-bs-target="#newScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
-                                                Give Score
-                                            </button>
-                                        @else
-                                            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                                data-bs-target="#updateScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
-                                                Edit Score
-                                            </button>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @else
-                                <tr>
-                                    <td class="align-middle text-center">{{ $i }}</td>
-                                    <td class="align-middle text-center">{{ $score->nisn }}</td>
-                                    <td class="align-middle text-center">{{ $score->studentName }}</td>
-                                    <td class="align-middle text-center bg-danger text-white">
-                                    Not Submitted
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        {{ $score->score }}
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        -
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            -
+                                        </td>
+                                    </tr>
+                                    @else
+                                    <tr>
+                                        <td class="align-middle text-center">{{ $i }}</td>
+                                        <td class="align-middle text-center">{{ $score->nisn }}</td>
+                                        <td class="align-middle text-center">{{ $assignment->studentName }}</td>
+                                        <td class="align-middle text-center bg-success text-white">
+                                            {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            @if ($score->score == null)
+                                                -
+                                            @else
+                                                {{ $score->score }}
+                                            @endif
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <a href="/storage/assignment/submission/{{ $assignment->file }}" download
+                                                class="btn btn-success text-white">
+                                                Download Submission
+                                            </a>
+                                            @if ($score->score == null)
+                                                <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
+                                                    data-bs-target="#newScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
+                                                    Give Score
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
+                                                    data-bs-target="#updateScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
+                                                    Edit Score
+                                                </button>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @else 
+                                    @if ($score->score == 0)
+                                    <tr>
+                                        <td class="align-middle text-center">{{ $i }}</td>
+                                        <td class="align-middle text-center">{{ $score->nisn }}</td>
+                                        <td class="align-middle text-center">{{ $score->studentName }}</td>
+                                        <td class="align-middle text-center bg-danger text-white">
+                                        Not Submitted
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            {{ $score->score }}
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            -
+                                        </td>
+                                    </tr> 
+                                    @endif
                                 @endif
                             @endforeach
-                            @else 
-                            <tr>
-                                <td class="align-middle text-center">{{ $i }}</td>
-                                <td class="align-middle text-center">{{ $score->nisn }}</td>
-                                <td class="align-middle text-center">{{ $score->studentName }}</td>
-                                <td class="align-middle text-center bg-danger text-white">
-                                Not Submitted
-                                </td>
-                                <td class="align-middle text-center">
-                                    {{ $score->score }}
-                                </td>
-                                <td class="align-middle text-center">
-                                    -
-                                </td>
-                            </tr> 
                             @endif
                     @php($i++)
                     @endforeach

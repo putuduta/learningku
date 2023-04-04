@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SchoolYear;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,13 +20,14 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TeacherSeeder::class,
             StudentSeeder::class,
-            // ClassSeeder::class,
-            // ScoreSeeder::class,
-            // MaterialSeeder::class,
-            // AttendanceSeeder::class,
-            // AssignmentSeeder::class,
-            // RequestClassSeeder::class,
-            // ThreadSeeder::class,
+            SchoolYearSeeder::class,
+            ClassSeeder::class,
+            MaterialSeeder::class,
+            AttendanceSeeder::class,
+            AssignmentSeeder::class,
+            ForumSeeder::class,
+            ReplyForumSeeder::class,
+            AssignmentScoreSeeder::class
         ]);
     }
 }
