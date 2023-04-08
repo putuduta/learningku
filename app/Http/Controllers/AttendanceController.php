@@ -112,7 +112,7 @@ class AttendanceController extends Controller
             AttendanceDetail::create([
                 'attendance_id' => $last_attendance->id,
                 'student_user_id' => $student->studentId,
-                'is_attend' => request($student->studentId) ? 1 : 0,
+                'status' => request('present-'.$student->studentId) ? 'Present' : (request('sick-'.$student->studentId) ? 'Sick' : (request('absencePermit-'.$student->studentId) ? 'Absence Permit' : (request('absent-'.$student->studentId) ? 'Absent' : '')))
             ]);
         }
 

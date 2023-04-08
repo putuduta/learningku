@@ -70,6 +70,10 @@
                             <label for="description" class="form-label">Subject Description <span class="required">*</span></label>
                             <textarea name="description" class="form-control" id="" cols="20" rows="5" required></textarea>
                        </div>
+                       <div class="my-3">
+                            <label for="minimum_score" class="form-label">Minimum Score <span class="required">*</span></label>
+                            <input type="number" class="form-control" name="minimum_score" required>
+                        </div>
                         <div class="my-3">
                              <label for="teacher_id" class="form-label">Teacher <span class="required">*</span></label>
                              <select name="teacher_id" class="form-select" required>
@@ -117,6 +121,10 @@
                                 <label for="description" class="form-label">Subject Description <span class="required">*</span></label>
                                 <textarea name="description" class="form-control" id="" cols="20" rows="5" required>{{$subject->description}}</textarea>
                            </div>
+                           <div class="my-3">
+                                <label for="minimum_score" class="form-label">Minimum Score <span class="required">*</span></label>
+                                <input type="number" class="form-control" name="minimum_score"  value="{{$subject->minimum_score}}" required>
+                            </div>
                             <div class="my-3">
                                  <label for="teacher_id" class="form-label">Teacher <span class="required">*</span></label>
                                  <select name="teacher_id" class="form-select" required>

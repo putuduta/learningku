@@ -19,7 +19,7 @@ class CreateAttendanceDetailsTable extends Migration
             $table->foreign('attendance_id')->references('id')->on('attendance_headers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('student_user_id');
             $table->foreign('student_user_id')->references('user_id')->on('students')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('is_attend');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -22,6 +22,14 @@ class AssignmentSeeder extends Seeder
                 'end_time' => '2023-04-01T23:59',
                 'created_at' => '2023-03-27 07:00:10',
                 'updated_at' => '2023-03-27 07:00:10'
+            ],
+            [
+                'class_subject_id' => '1',
+                'title' => 'Writing Connection',
+                'file' => 'ASG_Writing Connection_1680855997.txt',
+                'end_time' => '2023-04-04T15:24',
+                'created_at' => '2023-03-27 15:26:38',
+                'updated_at' => '2023-03-27 15:26:38'
             ]
         ]);
         DB::table('assignment_details')->insert([
@@ -212,6 +220,194 @@ class AssignmentSeeder extends Seeder
                 'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
                 'created_at' => '2023-03-30 07:58:10',
                 'updated_at' => '2023-03-30 07:58:10'
+            ],
+            [
+                'assignment_id' => 2,
+                'student_user_id' => 4,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-03-29 17:58:10',
+                'updated_at' => '2023-03-29 17:58:10'
+            ],
+            [
+                'assignment_id' => 2,
+                'student_user_id' => 5,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-03-28 18:58:10',
+                'updated_at' => '2023-03-28 18:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 6,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-03-31 17:58:10',
+                'updated_at' => '2023-03-31 17:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 7,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 12:38:10',
+                'updated_at' => '2023-04-01 12:38:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 8,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 21:58:10',
+                'updated_at' => '2023-04-01 21:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 9,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 11:59:10',
+                'updated_at' => '2023-04-02 11:59:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 10,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 13:48:10',
+                'updated_at' => '2023-04-02 13:48:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 11,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 11:58:10',
+                'updated_at' => '2023-04-02 11:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 12,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 12:51:10',
+                'updated_at' => '2023-04-02 12:51:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 13,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 12:18:10',
+                'updated_at' => '2023-04-02 12:18:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 14,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 11:11:10',
+                'updated_at' => '2023-04-02 11:11:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 15,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 10:33:10',
+                'updated_at' => '2023-04-03 10:33:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 16,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 22:18:20',
+                'updated_at' => '2023-04-03 22:18:20'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 17,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 05:58:10',
+                'updated_at' => '2023-04-03 05:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 18,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 13:58:10',
+                'updated_at' => '2023-04-01 13:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 19,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 11:18:10',
+                'updated_at' => '2023-04-01 11:18:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 20,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 19:38:10',
+                'updated_at' => '2023-04-03 19:38:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 21,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 17:28:10',
+                'updated_at' => '2023-04-03 17:28:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 22,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 16:18:10',
+                'updated_at' => '2023-04-03 16:18:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 23,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 15:28:10',
+                'updated_at' => '2023-04-03 15:28:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 24,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 15:58:10',
+                'updated_at' => '2023-04-03 15:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 25,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 08:58:10',
+                'updated_at' => '2023-04-03 08:58:10'
+            ],                 [
+                'assignment_id' => 2,
+                'student_user_id' => 26,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-03 06:58:10',
+                'updated_at' => '2023-04-03 06:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 27,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 07:58:10',
+                'updated_at' => '2023-04-02 07:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 28,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 01:38:10',
+                'updated_at' => '2023-04-01 01:38:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 29,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 21:38:10',
+                'updated_at' => '2023-04-01 21:38:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 30,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 11:58:10',
+                'updated_at' => '2023-04-02 11:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 31,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-03-31 04:58:10',
+                'updated_at' => '2023-03-31 04:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 32,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-01 03:58:10',
+                'updated_at' => '2023-04-01 03:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 33,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-02 22:58:10',
+                'updated_at' => '2023-04-02 22:58:10'
+            ],            [
+                'assignment_id' => 2,
+                'student_user_id' => 34,
+                'file' => 'SUB_ASG_Membuat Personal Letter_34_1680605251.txt',
+                'created_at' => '2023-04-04 11:58:10',
+                'updated_at' => '2023-04-04 12:58:10'
             ]
         ]);
     }

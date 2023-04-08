@@ -56,6 +56,7 @@
                     <th class="align-middle text-center">Score</th>
                 </thead>
                 <tbody>
+                    @php $score = 0; $count = 0; @endphp
                     @foreach ($scores as $index => $s)
                         @if (!(strtotime($s->assignment_header->end_time) > time()))
                         <tr>
@@ -63,8 +64,27 @@
                             <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
                             <td class="align-middle text-center">{{ $s->score }}</td>
                         </tr>
+                        @php $score += $s->score; $count += 1; @endphp
                         @endif
                     @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                    <th class="align-middle text-center">Overall Score</th>
+                    <th class="align-middle text-center">Minimum Score</th>
+                </thead>
+                <tbody>
+                    @if ( $score/$count > $classSubject->minimum_score)
+                    <td class="align-middle text-center bg-success">  
+                    @else
+                    <td class="align-middle text-center bg-danger">
+                    @endif
+                        {{ $score/$count }}</td>
+                    <td class="align-middle text-center">
+                        {{ $classSubject->minimum_score }}</td></td>                         
                 </tbody>
             </table>
         </div>
@@ -166,17 +186,37 @@
                             <th class="align-middle text-center">Score</th>
                         </thead>
                         <tbody>
-                            @foreach ($scores as $index => $s)
+                            @php $score = 0; $count = 0; @endphp
+                            @foreach ($scores as $s)
                                 @if ($s->student_user_id == $student->studentId)
                                     @if (!(strtotime($s->assignment_header->end_time) > time()))
+                                    @php $score += $s->score; $count += 1; @endphp
                                     <tr>
-                                        <td class="align-middle text-center">{{ $index + 1 }}</td>
+                                        <td class="align-middle text-center">{{ $count }}</td>
                                         <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
                                         <td class="align-middle text-center">{{ $s->score }}</td>
                                     </tr>
                                     @endif
                                 @endif
                             @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive-sm">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-dark">
+                            <th class="align-middle text-center">Overall Score</th>
+                            <th class="align-middle text-center">Minimum Score</th>
+                        </thead>
+                        <tbody>
+                            @if ( $score/$count > $classSubject->minimum_score)
+                            <td class="align-middle text-center bg-success">  
+                            @else
+                            <td class="align-middle text-center bg-danger">
+                            @endif
+                                {{ $score/$count }}</td>
+                            <td class="align-middle text-center">
+                                {{ $classSubject->minimum_score }}</td></td>                         
                         </tbody>
                     </table>
                 </div>

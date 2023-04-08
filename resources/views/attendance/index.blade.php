@@ -53,6 +53,26 @@
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
+                    <th class="align-middle text-center">Total Present</th>
+                    <th class="align-middle text-center">Total Sick</th>
+                    <th class="align-middle text-center">Total Absence Permit</th>
+                    <th class="align-middle text-center">Total Absent</th>
+                </thead>
+                <tbody>
+                    <td class="align-middle text-center">
+                        {{ count($attendances->where("status", "Present")) }}</td>
+                    <td class="align-middle text-center">
+                        {{ count($attendances->where("status", "Sick")) }}</td></td>
+                    <td class="align-middle text-center">
+                        {{ count($attendances->where("status", "Absence Permit")) }}</td></td>
+                    <td class="align-middle text-center">
+                        {{ count($attendances->where("status", "Absent")) }}</td></td>                            
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
                     <th class="align-middle text-center">No</th>
                     <th class="align-middle text-center">Date</th>
                     <th class="align-middle text-center">Status</th>
@@ -64,11 +84,19 @@
                         <td class="align-middle text-center">
                             {{ date_format(date_create($attendance->header->date),"d F Y") }}
                         </td>
-                        @if($attendance->is_attend == 1)
+                        @if($attendance->status == 'Present')
                         <td class="align-middle text-center bg-success text-white">
                             Present
                         </td>
-                        @else
+                        @elseif ($attendance->status == 'Sick')
+                        <td class="align-middle text-center text-white" style="background-color: orange;">
+                            Sick
+                        </td>  
+                        @elseif ($attendance->status == 'Absence Permit')
+                        <td class="align-middle text-center text-white" style="background-color: orange;">
+                            Absence Permit
+                        </td>
+                        @else 
                         <td class="align-middle text-center bg-danger text-white">
                             Absent
                         </td>
@@ -177,6 +205,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <h5>Date: {{ date_format(date_create($attendance->date),"d F Y") }}</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-dark">
+                            <th class="align-middle text-center">Total Present</th>
+                            <th class="align-middle text-center">Total Sick</th>
+                            <th class="align-middle text-center">Total Absence Permit</th>
+                            <th class="align-middle text-center">Total Absent</th>
+                        </thead>
+                        <tbody>
+                            <td class="align-middle text-center">
+                                {{ count($attendance->details->where("status", "Present")) }}</td>
+                            <td class="align-middle text-center">
+                                {{ count($attendance->details->where("status", "Sick")) }}</td></td>
+                            <td class="align-middle text-center">
+                                {{ count($attendance->details->where("status", "Absence Permit")) }}</td></td>
+                            <td class="align-middle text-center">
+                                {{ count($attendance->details->where("status", "Absent")) }}</td></td>                            
+                        </tbody>
+                    </table>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
@@ -186,7 +235,6 @@
                             <th class="align-middle text-center">Status</th>
                         </thead>
                         <tbody>
-                            <h5>Date: {{ date_format(date_create($attendance->date),"d F Y") }}</h5>
                             @foreach($attendance->details as $index => $detail)
                             @foreach($students as $student)
                             @if ($student->studentId == $detail->student->id)
@@ -198,18 +246,25 @@
                                 <td class="align-middle text-center">
                                     {{ $detail->student->name }}</td>
 
-                                @if($detail->is_attend == 1)
-                                <td class="align-middle text-center bg-success text-white">
-                                    Present
-                                </td>
-                                @else
-                                <td class="align-middle text-center bg-danger text-white">
-                                    Absent
-                                </td>
-                                @endif
+                                    @if($detail->status == 'Present')
+                                    <td class="align-middle text-center bg-success text-white">
+                                        Present
+                                    </td>
+                                    @elseif ($detail->status == 'Sick')
+                                    <td class="align-middle text-center text-white" style="background-color: orange;">
+                                        Sick
+                                    </td>  
+                                    @elseif ($detail->status == 'Absence Permit')
+                                    <td class="align-middle text-center text-white" style="background-color: orange;">
+                                        Absence Permit
+                                    </td>
+                                    @else 
+                                    <td class="align-middle text-center bg-danger text-white">
+                                        Absent
+                                    </td>
+                                    @endif
                             </tr>                                
                             @endif
-
                             @endforeach
                             @endforeach
                         </tbody>

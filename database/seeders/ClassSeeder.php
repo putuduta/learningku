@@ -23,22 +23,25 @@ class ClassSeeder extends Seeder
         ]);
         DB::table('class_subjects')->insert([
             [
-                'name' => 'Bahasa Ingris',
+                'name' => 'Bahasa Inggris',
                 'description' => "Perkembangan dunia pendidikan dan era teknologi informasi saat ini, semakin meningkatkan peran bahasa Inggris dalam pembelajaran, mengingat banyak sekali sumber belajar dalam bahasa Inggris dibanding sumber-sumber lainnya. Makin datarnya dunia dengan teknologi informasi dan komunikasi menyebabkan pergaulan tidak lagi dapat dibatasi oleh batasan-batasan negara, dan hal ini semakin meningkatkan kebutuhan terhadap penguasaan bahasa Inggris sebagai bahasa pergaulan dunia.",
                 'class_header_id' => 1,
-                'teacher_user_id' => 2
+                'teacher_user_id' => 2,
+                'minimum_score' => 75
             ],
             [
                 'name' => 'Kimia',
                 'description' => "Kimia SMA merupakan mata pelajaran wajib yang dipelajari oleh siswa siswi SMA pada kelas 10, 11 dan 12. Secara garis besar, gambaran materi kimia yang dipelajari di SMA cukup beragam. Seperti kimia unsur, ikatan kimia, kesetimbangan kimia, bilangan kuantum, struktur atom, teori atom, hukum dasar kimia, dll.",
                 'class_header_id' => 1,
-                'teacher_user_id' => 3
+                'teacher_user_id' => 3,
+                'minimum_score' => 75
             ],
             [
                 'name' => 'Matematika Wajib',
                 'description' => "Pembelajaran matematika bertujuan agar siswa memiliki kecakapan dan kemampuan di bidang matematika yang merupakan bagian dari kecakapan hidup yang harus dimiliki siswa terutama dalam pengembangan penalaran, komunikasi, dan pemecahan masalah yang dihadapi dalam kehidupan sehari-hari",
                 'class_header_id' => 1,
-                'teacher_user_id' => 35
+                'teacher_user_id' => 35,
+                'minimum_score' => 75
             ]
         ]);
         DB::table('class_details')->insert([

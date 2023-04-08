@@ -31,6 +31,9 @@
                                     <th class="align-middle text-center">NISN</th>
                                     <th class="align-middle text-center">Student Name</th>
                                     <th class="align-middle text-center">Present</th>
+                                    <th class="align-middle text-center">Sick</th>
+                                    <th class="align-middle text-center">Absence Permit</th>
+                                    <th class="align-middle text-center">Absent</th>
                                 </thead>
                                 <tbody>
                                     @foreach($class_details as $index=>$student)
@@ -40,7 +43,19 @@
                                         <td class="align-middle text-center">{{ $student->studentName }}</td>
                                         <td class="align-middle text-center">
                                             <input type="checkbox" value="1" class="form-check-input attend"
-                                                name="{{$student->studentId}}">
+                                                name="present-{{$student->studentId}}">
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <input type="checkbox" value="1" class="form-check-input"
+                                                name="sick-{{$student->studentId}}">
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <input type="checkbox" value="1" class="form-check-input"
+                                                name="absencePermit-{{$student->studentId}}">
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <input type="checkbox" value="1" class="form-check-input"
+                                                name="absent-{{$student->studentId}}">
                                         </td>
                                     </tr>
                                     @endforeach

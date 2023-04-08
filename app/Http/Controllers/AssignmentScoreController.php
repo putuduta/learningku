@@ -58,7 +58,7 @@ class AssignmentScoreController extends Controller
                 'scores' => AssignmentScore::where('student_user_id', auth()->user()->id)->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
@@ -71,7 +71,7 @@ class AssignmentScoreController extends Controller
             return view('score.index', [
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                     ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')

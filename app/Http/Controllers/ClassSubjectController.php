@@ -27,7 +27,7 @@ class ClassSubjectController extends Controller
             ->where('class_subjects.class_header_id', $class->id)->get()->toArray();
 
         return view('admin.class-subject-list',[
-            'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk')
+            'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->join('roles','roles.id','users.role_id')
@@ -57,7 +57,8 @@ class ClassSubjectController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'class_header_id' => $classId,
-            'teacher_user_id' => $request->teacher_id
+            'teacher_user_id' => $request->teacher_id,
+            'minimum_score' => $request->minimum_score
         ]);
 
         return redirect()->back()->with('success','Success Add Subject and Teacher to Class');
@@ -76,6 +77,7 @@ class ClassSubjectController extends Controller
         $subject->description = $request->description;
         $subject->class_header_id = $request->class_id;
         $subject->teacher_user_id = $request->teacher_id;
+        $subject->minimum_score = $request->minimum_score;
         
         $subject->save();
 
