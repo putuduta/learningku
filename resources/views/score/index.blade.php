@@ -1,5 +1,5 @@
 @if (auth()->user()->role->name == 'Student')
-<x-app title="Assignment Scores - Learningku">
+<x-app title="Scores - Learningku">
     <style>
         .fa-stack.small { font-size: 0.5em; }
         i { vertical-align: middle; }
@@ -29,7 +29,7 @@
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('class-view-student', $classSubject->id ) }}">Students</a></li>
                         @endif
@@ -38,7 +38,7 @@
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                         @endif
                     </ul>
@@ -91,7 +91,7 @@
     </div>
 </x-app>
 @else
-<x-app title="Assignment Scores - Learningku">
+<x-app title="Scores - Learningku">
     <style>
         .fa-stack.small { font-size: 0.5em; }
         i { vertical-align: middle; }
@@ -122,7 +122,7 @@
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('class-view-student', $classSubject->id ) }}">Students</a></li>
                         @endif
@@ -131,7 +131,7 @@
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                         @endif
                     </ul>
@@ -158,7 +158,7 @@
                                     <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
                                         data-bs-target="#detail-{{ $student->studentId }}">
-                                            Show Assignment Scores
+                                            Show Scores
                                         </button>
                                     </td>
                                 </tr>
@@ -174,7 +174,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Assignment Scores -  ({{ $student->studentName }} - {{ $student->studentNisn }})</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Scores -  ({{ $student->studentName }} - {{ $student->studentNisn }})</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

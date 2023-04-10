@@ -7,6 +7,7 @@ use App\Models\AssignmentHeader;
 use App\Models\AssignmentScore;
 use App\Models\ClassDetail;
 use App\Models\ClassSubject;
+use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
@@ -29,7 +30,7 @@ class AssignmentDetailController extends Controller
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->where('class_subjects.id', $classSubjectId)->first(),
-            'assignmentScore' => AssignmentScore::select('assignment_scores.id as id', 'assignment_scores.assignment_header_id as assignmentHeaderId', 'assignment_scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'students.nisn')
+            'assignmentScore' => Score::select('assignment_scores.id as id', 'assignment_scores.assignment_header_id as assignmentHeaderId', 'assignment_scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'students.nisn')
                                 ->where('assignment_header_id', $assignmentId)
                                 ->join('class_details', 'class_details.student_user_id', 'assignment_scores.student_user_id')
                                 ->join('users', 'users.id', 'assignment_scores.student_user_id')
@@ -60,7 +61,7 @@ class AssignmentDetailController extends Controller
         ]);
 
         // Students submit assignment set score back to null
-        $asg_score = AssignmentScore::where('assignment_header_id', $assignmentHeader->id)->first();
+        $asg_score = Score::where('assignment_header_id', $assignmentHeader->id)->first();
         $asg_score->score = null;
         $asg_score->save();
 

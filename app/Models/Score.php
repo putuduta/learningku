@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AssignmentScore extends Model
+class Score extends Model
 {
     use HasFactory;
-    protected $table = "assignment_scores";
+    protected $table = "scores";
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];

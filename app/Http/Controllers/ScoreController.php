@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\AssignmentHeader;
-use App\Models\AssignmentScore;
+use App\Models\Score;
 use App\Models\ClassCourse;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ClassHeader;
 use App\Models\ClassSubject;
 
-class AssignmentScoreController extends Controller
+class ScoreController extends Controller
 {
     public function manage($classSubjectId)
     {
@@ -32,13 +32,13 @@ class AssignmentScoreController extends Controller
     public function detail($classId, User $student)
     {
         return view('score.show', [
-            'scores' => AssignmentScore::where('student_user_id', $student->id)->get(),
+            'scores' => Score::where('student_user_id', $student->id)->get(),
             'student' => $student,
             'class' => $classId
         ]);
     }
 
-    public function change($classId, AssignmentScore $score)
+    public function change($classId, Score $score)
     {
         return view('score.change', [
             'score' => $score,
@@ -55,7 +55,7 @@ class AssignmentScoreController extends Controller
     {
         if (auth()->user()->role->name == 'Student') {
             return view('score.index', [
-                'scores' => AssignmentScore::where('student_user_id', auth()->user()->id)->get(),
+                'scores' => Score::where('student_user_id', auth()->user()->id)->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
@@ -84,7 +84,7 @@ class AssignmentScoreController extends Controller
                 ->join('students', 'students.user_id', 'class_details.student_user_id')
                 ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
                 ->get(),
-                'scores' => AssignmentScore::get()
+                'scores' => Score::get()
             ]);
         }
     }
@@ -111,7 +111,7 @@ class AssignmentScoreController extends Controller
             'score' => 'required|integer',
         ]);
 
-        $asg_score = AssignmentScore::find($request->score_id);
+        $asg_score = Score::find($request->score_id);
 
         $asg_score->score = $request->score;
         
@@ -129,7 +129,7 @@ class AssignmentScoreController extends Controller
     public function show(User $student)
     {
         return view('score.show', [
-            'scores' => AssignmentScore::where('student_id', $student->id)->get(),
+            'scores' => Score::where('student_id', $student->id)->get(),
             'student' => $student
         ]);
     }
@@ -152,7 +152,7 @@ class AssignmentScoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AssignmentScore $score)
+    public function update(Request $request, Score $score)
     {
         $request->validate([
             'score' => 'required|integer',

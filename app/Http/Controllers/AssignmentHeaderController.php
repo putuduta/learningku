@@ -7,6 +7,7 @@ use App\Models\AssignmentHeader;
 use App\Models\AssignmentScore;
 use App\Models\ClassDetail;
 use App\Models\ClassSubject;
+use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
@@ -87,7 +88,7 @@ class AssignmentHeaderController extends Controller
         ->get();
 
         foreach ($students as $s) {
-            AssignmentScore::create([
+            Score::create([
                 'assignment_header_id' => $assignment->id,
                 'student_user_id' => $s->id,
                 'score' => 0
