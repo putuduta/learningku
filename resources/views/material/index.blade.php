@@ -29,7 +29,7 @@
                             <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('class-view-student', $classSubject->id ) }}">Students</a></li>
                         @endif
@@ -38,7 +38,7 @@
                             <li class="nav-item"><a class="nav-link active" style="color: black" href="{{ route('material.index', $classSubject->id)}}">Materials</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('forum.index', $classSubject->id ) }}">Forums</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('assignment.index', $classSubject->id ) }}">Assignments</a></li>
-                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Assignment Scores</a></li>
+                            <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('score.index', $classSubject->id ) }}">Scores</a></li>
                             <li class="nav-item"><a class="nav-link" style="color: black" href="{{ route('attendance.view', $classSubject->id ) }}">Attendances</a></li>
                         @endif
                     </ul>
@@ -96,7 +96,7 @@
             <div class="card mb-2" style="width: 100%">
                 <div class="card-body">
                     <h2 class="card-title pb-3">{{ $material->title }}</h2>
-                    {!! $material->description !!}</p>
+                    {!! $material->description !!}
                     @if ($material->resource != null || $material->resource != "") 
                         <div class="pt-3"><a class="btn btn-primary text-white" href="{{ $material->resource }}">Download File</a></div>
                     @endif

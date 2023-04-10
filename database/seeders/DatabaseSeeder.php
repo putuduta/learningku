@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             AssignmentSeeder::class,
             ForumSeeder::class,
             ReplyForumSeeder::class,
-            AssignmentScoreSeeder::class
+            ScoreSeeder::class
         ]);
     }
 }

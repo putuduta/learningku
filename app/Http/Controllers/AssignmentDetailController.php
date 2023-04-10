@@ -30,10 +30,10 @@ class AssignmentDetailController extends Controller
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->where('class_subjects.id', $classSubjectId)->first(),
-            'assignmentScore' => Score::select('assignment_scores.id as id', 'assignment_scores.assignment_header_id as assignmentHeaderId', 'assignment_scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'students.nisn')
+            'assignmentScore' => Score::select('scores.id as id', 'scores.assignment_header_id as assignmentHeaderId', 'scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'students.nisn')
                                 ->where('assignment_header_id', $assignmentId)
-                                ->join('class_details', 'class_details.student_user_id', 'assignment_scores.student_user_id')
-                                ->join('users', 'users.id', 'assignment_scores.student_user_id')
+                                ->join('class_details', 'class_details.student_user_id', 'scores.student_user_id')
+                                ->join('users', 'users.id', 'scores.student_user_id')
                                 ->join('students', 'students.user_id', 'class_details.student_user_id')->get(),
             'assignmentHeader' => AssignmentHeader::where('id', $assignmentId)->first()
         ]);

@@ -54,15 +54,22 @@
                     <th class="align-middle text-center">No</th>
                     <th class="align-middle text-center">Assignment Name</th>
                     <th class="align-middle text-center">Score</th>
+                    <th class="align-middle text-center">Notes/Feedback</th>
                 </thead>
                 <tbody>
                     @php $score = 0; $count = 0; @endphp
                     @foreach ($scores as $index => $s)
-                        @if (!(strtotime($s->assignment_header->end_time) > time()))
+                        @if (!(strtotime($s->assignment_header->end_time) > time()) && $s->score != null)
                         <tr>
                             <td class="align-middle text-center">{{ $index + 1 }}</td>
                             <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
                             <td class="align-middle text-center">{{ $s->score }}</td>
+                            <td class="align-middle text-center">
+                                <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
+                                data-bs-target="#notes{{ $s->id }}">
+                                    Show
+                                </button>
+                            </td>
                         </tr>
                         @php $score += $s->score; $count += 1; @endphp
                         @endif
@@ -82,13 +89,32 @@
                     @else
                     <td class="align-middle text-center bg-danger">
                     @endif
-                        {{ $score/$count }}</td>
+                        {{ round($score/$count) }}</td>
                     <td class="align-middle text-center">
                         {{ $classSubject->minimum_score }}</td></td>                         
                 </tbody>
             </table>
         </div>
     </div>
+
+    @foreach($scores as $score)
+    @if (!(strtotime($s->assignment_header->end_time) > time()))
+    <div class="modal fade" id="notes{{ $score->id }}" tabindex="-1" aria-labelledby="notesModal"
+        aria-hidden="true" data-bs-focus="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @if ($score->notes == null) 
+                    <h5>No Notes/Feedback</h5>
+                    @else
+                    {!! $score->notes !!}
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    @endforeach
 </x-app>
 @else
 <x-app title="Scores - Learningku">
@@ -189,7 +215,7 @@
                             @php $score = 0; $count = 0; @endphp
                             @foreach ($scores as $s)
                                 @if ($s->student_user_id == $student->studentId)
-                                    @if (!(strtotime($s->assignment_header->end_time) > time()))
+                                    @if (!(strtotime($s->assignment_header->end_time) > time()) && $s->score !== null)
                                     @php $score += $s->score; $count += 1; @endphp
                                     <tr>
                                         <td class="align-middle text-center">{{ $count }}</td>
@@ -214,7 +240,7 @@
                             @else
                             <td class="align-middle text-center bg-danger">
                             @endif
-                                {{ $score/$count }}</td>
+                                {{ round($score/$count) }}</td>
                             <td class="align-middle text-center">
                                 {{ $classSubject->minimum_score }}</td></td>                         
                         </tbody>

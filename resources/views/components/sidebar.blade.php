@@ -94,7 +94,7 @@
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-student', 'assignment-score') }}">
+                            href="{{ route('dashboard-class-student', 'score') }}">
                             <span class="ms-2">Scores</span>
                         </a>
                     </li>
@@ -132,7 +132,7 @@
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'assignment-score') }}">
+                            href="{{ route('dashboard-class-teacher', 'score') }}">
                             <span class="ms-2">Scores</span>
                         </a>
                     </li>

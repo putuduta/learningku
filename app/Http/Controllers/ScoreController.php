@@ -114,7 +114,10 @@ class ScoreController extends Controller
         $asg_score = Score::find($request->score_id);
 
         $asg_score->score = $request->score;
-        
+        if ($request->notes != null) {
+            $asg_score->notes = $request->notes;
+        }
+
         $asg_score->save();
 
         return redirect()->back()->with('success', 'Score Added Successfully');
@@ -159,6 +162,7 @@ class ScoreController extends Controller
         ]);
         $score->update([
             'score' => $request->score,
+            'notes' => $request->notes,
         ]);
 
         return redirect()->back()->with('success', 'Score Updated');

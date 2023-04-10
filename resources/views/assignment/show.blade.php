@@ -113,11 +113,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('assignment-score.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
+                    </div>
+                    <div class="pt-2">
+                        <label for="score" class="form-label">Notes/Feedback (Optional)</label>
+                        <textarea name="notes" id="bodyNewScore{{ $score->assignmentHeaderId }}{{ $score->studentUserId }}" cols="20" rows="10" class="form-control"
+                        ></textarea>
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="score_id" value="{{ $score->id }}">
@@ -139,12 +144,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('assignment-score.update', $score->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.update', $score->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" value="{{ $score->score }}" required>
+                    </div>
+                    <div class="">
+                        <label for="score" class="form-label">Notes/Feedback (Optional)</label>
+                        <textarea name="notes" id="bodyUpdateScore{{ $score->assignmentHeaderId }}{{ $score->studentUserId }}" cols="30" rows="10" class="form-control"
+                        >{{ $score->notes }}</textarea>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
@@ -155,3 +165,27 @@
     </div>
 </div>
 @endforeach
+
+
+<script>
+    var scores = {!! json_encode($assignmentScore->toArray()) !!};
+    scores.forEach(function(item) {
+        console.log('#bodyNewScore' + item.assignmentHeaderId + item.studentUserId)
+        ClassicEditor
+            .create(document.querySelector('#bodyNewScore' + item.assignmentHeaderId + item.studentUserId))
+            .catch(error => {
+                console.error(error);
+        });
+
+        ClassicEditor
+            .create(document.querySelector('#bodyUpdateScore' + item.assignmentHeaderId + item.studentUserId))
+            .catch(error => {
+                console.error(error);
+        });
+    });
+
+    $('.modal').modal( {
+        focus: false
+    });
+    
+</script>
