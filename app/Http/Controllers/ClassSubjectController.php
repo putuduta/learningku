@@ -27,7 +27,7 @@ class ClassSubjectController extends Controller
             ->where('class_subjects.class_header_id', $class->id)->get()->toArray();
 
         return view('admin.class-subject-list',[
-            'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
+            'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->join('roles','roles.id','users.role_id')
@@ -55,7 +55,6 @@ class ClassSubjectController extends Controller
         
         ClassSubject::create([
             'name' => $request->name,
-            'description' => $request->description,
             'class_header_id' => $classId,
             'teacher_user_id' => $request->teacher_id,
             'minimum_score' => $request->minimum_score
@@ -68,13 +67,11 @@ class ClassSubjectController extends Controller
 
         $request->validate([
             'name' => 'required|string',
-            'description' => 'required|string'
         ]);
 
         $subject = ClassSubject::find($id);
 
         $subject->name = $request->name;
-        $subject->description = $request->description;
         $subject->class_header_id = $request->class_id;
         $subject->teacher_user_id = $request->teacher_id;
         $subject->minimum_score = $request->minimum_score;

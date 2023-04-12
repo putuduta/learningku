@@ -23,7 +23,7 @@ class AssignmentDetailController extends Controller
                 ->from('assignment_details as b')
                 ->whereRaw('b.student_user_id = a.student_user_id');
             })->join('assignment_headers as c','c.id','a.assignment_id')->join('users as u','u.id','a.student_user_id')->get(),
-            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')

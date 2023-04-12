@@ -18,7 +18,7 @@ class ForumController extends Controller
                 'forums' => Forum::select('forums.id', 'forums.user_id', 'forums.title', 'forums.class_subject_id')
                     ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
@@ -34,7 +34,7 @@ class ForumController extends Controller
                 'forums' => Forum::select('forums.id', 'forums.user_id', 'forums.title', 'forums.class_subject_id')
                     ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')

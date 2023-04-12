@@ -23,7 +23,7 @@ class AssignmentHeaderController extends Controller
                     ->join('class_subjects', 'assignment_headers.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id',   $classSubjectId)
                     ->where('class_subjects.teacher_user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
@@ -39,7 +39,7 @@ class AssignmentHeaderController extends Controller
                 'assignments' => AssignmentHeader::select('assignment_headers.id', 'title', 'file', 'assignment_headers.end_time')
                     ->join('class_subjects', 'assignment_headers.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id',   $classSubjectId)->orderBy('id', 'desc')->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')

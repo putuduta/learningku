@@ -66,10 +66,6 @@
                              <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
                              <input type="text" class="form-control" name="name" value="" required>
                         </div>
-                        <div class="my-3">
-                            <label for="description" class="form-label">Subject Description <span class="required">*</span></label>
-                            <textarea name="description" class="form-control" id="" cols="20" rows="5" required></textarea>
-                       </div>
                        <div class="my-3">
                             <label for="minimum_score" class="form-label">Minimum Score <span class="required">*</span></label>
                             <input type="number" class="form-control" name="minimum_score" required>
@@ -96,7 +92,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="submitLabel">Update Class Subject</h5>
+                        <h5 class="modal-title" id="submitLabel">Edit Subject and Teacher</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -117,10 +113,6 @@
                                  <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
                                  <input type="text" class="form-control" name="name" value="{{$subject->name}}" required>
                             </div>
-                            <div class="my-3">
-                                <label for="description" class="form-label">Subject Description <span class="required">*</span></label>
-                                <textarea name="description" class="form-control" id="" cols="20" rows="5" required>{{$subject->description}}</textarea>
-                           </div>
                            <div class="my-3">
                                 <label for="minimum_score" class="form-label">Minimum Score <span class="required">*</span></label>
                                 <input type="number" class="form-control" name="minimum_score"  value="{{$subject->minimum_score}}" required>

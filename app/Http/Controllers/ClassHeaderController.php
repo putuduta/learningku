@@ -121,7 +121,7 @@ class ClassHeaderController extends Controller
         return view('dashboard.class-student', [
             'class' => $class,
             'classes' => $classes,
-            'subjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk')
+            'subjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk')
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
                 ->join('roles','roles.id','users.role_id')
@@ -148,7 +148,7 @@ class ClassHeaderController extends Controller
 
         return view('dashboard.class-teacher',[
             'schoolYears' => SchoolYear::orderBy('id', 'DESC')->get(),
-            'classAndSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk', 'userB.name as homeroomTeacherName', 'teacherB.nuptk as homeroomTeacherNuptk')
+            'classAndSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk', 'userB.name as homeroomTeacherName', 'teacherB.nuptk as homeroomTeacherNuptk')
             ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
             ->join('users', 'users.id', 'teachers.user_id')
             ->join('roles','roles.id','users.role_id')
@@ -165,7 +165,7 @@ class ClassHeaderController extends Controller
     }
 
     public function getTeacherClassTaught($schoolYearId) {
-        $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk')
+        $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk')
         ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
         ->join('users', 'users.id', 'teachers.user_id')
         ->join('roles','roles.id','users.role_id')
@@ -179,7 +179,7 @@ class ClassHeaderController extends Controller
     }
 
     public function getStudentClass($classId) {
-        $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+        $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
             'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
             'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
             ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')

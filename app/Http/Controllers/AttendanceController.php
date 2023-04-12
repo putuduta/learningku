@@ -25,7 +25,7 @@ class AttendanceController extends Controller
                     ->join('class_subjects', 'attendance_headers.class_subject_id', 'class_subjects.id')
                     ->join('class_headers', 'class_subjects.class_header_id', 'class_headers.id')
                     ->where('class_subjects.teacher_user_id', auth()->user()->id)->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
@@ -47,7 +47,7 @@ class AttendanceController extends Controller
         } else {
             return view('attendance.index', [
                 'attendances' => AttendanceDetail::where('student_user_id', auth()->user()->id)->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
@@ -68,7 +68,7 @@ class AttendanceController extends Controller
             return redirect()->back()->with('error', 'You have submitted your attendance for your class today');
         } else {
             return view('attendance.create', [
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description','users.id as teacherId', 'users.name as teacherName'
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName'
                 , 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester')
                 ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
                 ->join('users', 'users.id', 'teachers.user_id')
