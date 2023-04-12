@@ -2,7 +2,7 @@
      <x-slot name="navbar"></x-slot>
 
      <div id="content" class="container py-5 my-5">
-          <h3 class="fw-bold">Student List - {{$class->name}} Tahun Ajaran {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
+          <h3 class="fw-bold">Student List - {{$class->name}} {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
           <a type="button" class="btn btn-dark text-white mb-3" href="{{ route('admin-class-view', $schoolYear->id) }}">
                Back
           </a>
