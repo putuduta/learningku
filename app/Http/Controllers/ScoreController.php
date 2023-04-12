@@ -15,7 +15,7 @@ class ScoreController extends Controller
     public function manage($classSubjectId)
     {
         return view('score.manage', [
-            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
@@ -56,7 +56,7 @@ class ScoreController extends Controller
         if (auth()->user()->role->name == 'Student') {
             return view('score.index', [
                 'scores' => Score::where('student_user_id', auth()->user()->id)->get(),
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
@@ -69,7 +69,7 @@ class ScoreController extends Controller
             ]);
         } else {
             return view('score.index', [
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','class_subjects.description as description',
+                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
