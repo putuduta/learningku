@@ -93,6 +93,11 @@
                                             data-bs-target="#submit-{{ $assignment->id }}">
                                             Submit
                                         </button>
+                                    @else
+                                        <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
+                                            data-bs-target="#submit-{{ $assignment->id }}" disabled>
+                                            Submit Expired
+                                        </button>
                                     @endif
                                     <button type="button" class="btn btn-dark text-white" data-bs-toggle="modal"
                                         data-bs-target="#history-{{ $assignment->id }}">
