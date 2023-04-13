@@ -94,9 +94,9 @@
                                             Submit
                                         </button>
                                     @else
-                                        <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
                                             data-bs-target="#submit-{{ $assignment->id }}" disabled>
-                                            Submit Expired
+                                            Submit
                                         </button>
                                     @endif
                                     <button type="button" class="btn btn-dark text-white" data-bs-toggle="modal"
