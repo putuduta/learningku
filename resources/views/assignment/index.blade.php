@@ -114,6 +114,9 @@
                                         Update
                                     </button>
                                     @else 
+                                    <button type="button" class="btn btn-primary text-white justify-content-between" disabled>
+                                        Show Submissions
+                                    </button>
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
                                     data-bs-target="#updateAssignment{{ $assignment->id }}">
                                         Update
@@ -168,7 +171,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateAssignmentLabel">Edit Assignment</h5>
+                    <h5 class="modal-title" id="updateAssignmentLabel">Update Assignment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
