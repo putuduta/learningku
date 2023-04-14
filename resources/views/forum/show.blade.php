@@ -13,7 +13,7 @@
             <div class="card-body my-2">
                 <h3 class="fw-bold">{{ $forum->title }}</h3>
                 <p>
-                    Mata Pelajaran {{ $classSubject->name }}
+                    Subject {{ $classSubject->name }}
                     <br>
                     Created at  {{ date_format(date_create($forum->created_at),"d F Y H:i") }}</p>
                 <hr>
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="d-grid">
                                         @method('put')
-                                        <button type="submit" class="btn btn-primary my-4 text-white">Update</button>
+                                        <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -179,7 +179,7 @@
                         </div>
                         <div class="d-grid">
                             @method('put')
-                            <button type="submit" class="btn btn-primary my-4 text-white">Update</button>
+                            <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                         </div>
                     </form>
                 </div>
