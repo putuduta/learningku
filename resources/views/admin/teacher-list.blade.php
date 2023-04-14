@@ -8,8 +8,8 @@
                Add New Teacher
           </button>
           <div class="table-responsive">
-               <table class="table table-hover">
-                    <thead>
+               <table class="table table-hover table-bordered">
+                   <thead class="table-light">
                          <th class="align-middle text-center">No</th>
                          <th class="align-middle text-center">Teacher Name</th>
                          <th class="align-middle text-center">NUPTK</th>
@@ -91,7 +91,9 @@
                               <label for="image" class="form-label">Teacher Image</label>
                               <input type="file" class="form-control" name="image">
                          </div>
-                         <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                         <div class="d-grid">
+                              <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                          </div>
                     </form>
                </div>
         </div>
@@ -163,7 +165,9 @@
                               <label for="image" class="form-label">Teacher Image</label>
                               <input type="file" class="form-control" name="image">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="d-grid">
+                              <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                          </div>
                         </form>
                     </div>
                 </div>

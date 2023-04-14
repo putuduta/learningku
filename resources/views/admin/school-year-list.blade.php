@@ -7,9 +7,9 @@
         data-bs-target="#newSchoolYear">
         Add School Year
         </button>
-         <div class="table-responsive">
-              <table class="table table-hover">
-                   <thead>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="table-light">
                         <th class="align-middle text-center">No</th>
                         <th class="align-middle text-center">Year</th>
                         <th class="align-middle text-center">Semester</th>
@@ -63,7 +63,9 @@
                                     <option value="Semester 2">Semester 2</option>
                                  </select>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
+                            </div>
                        </form>
                     </div>
                 </div>

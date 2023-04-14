@@ -16,7 +16,7 @@
                                   @endforeach
                              </select>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                        <button type="submit" class="btn btn-primary text-white mt-4">Submit</button>
                    </form>
               </div>
          </div>
