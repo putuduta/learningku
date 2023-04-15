@@ -27,7 +27,7 @@
                         @if($assignments->count() > 0)
                             @foreach($assignments as $assignment)
                                 @if ($score->assignmentHeaderId == $assignment->assignmentId && $score->studentUserId == $assignment->studentUserId)
-                                    @if ($score->score == 0 && $assignment->file == null)
+                                    @if ($score->score == 0 && $assignment->file === null)
                                     <tr>
                                         <td class="align-middle text-center">{{ $i }}</td>
                                         <td class="align-middle text-center">{{ $score->nisn }}</td>
@@ -77,7 +77,7 @@
                                     </tr>
                                     @endif
                                 @else 
-                                    @if ($score->score == 0)
+                                    @if ($score->score === 0)
                                     <tr>
                                         <td class="align-middle text-center">{{ $i }}</td>
                                         <td class="align-middle text-center">{{ $score->nisn }}</td>

@@ -150,7 +150,7 @@
                         </div>
                         <div class="my-3">
                             <label for="body" class="form-label">Deadline <span class="required">*</span></label>
-                            <input type="datetime-local" class="form-control" name="end_time" id="end_time" required>
+                            <input type="datetime-local" class="form-control" name="end_time" id="end_time" min="<?=date('Y-m-d\Th:i')?>" required>
                         </div>
                         <div class="my-3">
                             <label for="file" class="form-label">Assignment File <span class="required">*</span></label>
@@ -184,7 +184,7 @@
                         </div>
                         <div class="my-3">
                             <label for="body" class="form-label">Deadline <span class="required">*</span></label>
-                            <input type="datetime-local" class="form-control" name="end_time" value="{{$assignment->end_time}}" id="end_time" required>
+                            <input type="datetime-local" class="form-control" name="end_time" value="{{$assignment->end_time}}" id="end_time" min="<?=date('Y-m-d\Th:i')?>" required>
                         </div>
                         <div class="my-3">
                             <label for="file" class="form-label">Assignment File</label>
