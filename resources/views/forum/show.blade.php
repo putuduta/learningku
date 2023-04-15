@@ -37,7 +37,7 @@
                 </h5>
      
              
-                <p>{!! $forum->body !!}
+                <p>{!! $forum->description !!}
                 </p>
                 <a href="/storage/forum/{{ $forum->file }}" target="_blank" download="">{{ $forum->file }}</a>
                 <div class="d-flex justify-content-start mt-3">
@@ -76,9 +76,9 @@
                                             value="{{ $forum->title }}">
                                     </div>
                                     <div class="my-3">
-                                        <label for="body" class="form-label">Description <span class="required">*</span></label>
-                                        <textarea name="body" id="body" cols="30" rows="10" class="form-control"
-                                            >{{ $forum->body }}</textarea>
+                                        <label for="description" class="form-label">Description <span class="required">*</span></label>
+                                        <textarea name="description" id="body" cols="30" rows="10" class="form-control"
+                                            >{{ $forum->description }}</textarea>
                                     </div>
                                     <div class="my-3">
                                         <label for="file" class="form-label">Attached File</label>
@@ -122,7 +122,7 @@
                     <br>
                     <span class="smallFont" style="font-weight: normal !important;">Created at  {{ date_format(date_create($reply->created_at),"d F Y H:i") }}</p></span>
                 </h5>
-                <p>{!! $reply->body !!}
+                <p>{!! $reply->description !!}
                 </p>
 
                 @if($reply->file)
@@ -168,9 +168,9 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="body" class="form-label">Description <span class="required">*</span></label>
-                            <textarea name="body" id="bodyEditReply-{{ $reply->id }}" cols="30" rows="10" class="form-control"
-                                >{{ $reply->body }}</textarea>
+                            <label for="description" class="form-label">Description <span class="required">*</span></label>
+                            <textarea name="description" id="bodyEditReply-{{ $reply->id }}" cols="30" rows="10" class="form-control"
+                                >{{ $reply->description }}</textarea>
                         </div>
                         <div class="my-3">
                             <label for="file" class="form-label">Attached File</label>
@@ -200,8 +200,8 @@
                     <form action="{{ route('reply-forum.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="body" class="form-label">Description <span class="required">*</span></label>
-                            <textarea name="body" id="bodyForum" cols="30" rows="10" class="form-control"></textarea>
+                            <label for="description" class="form-label">Description <span class="required">*</span></label>
+                            <textarea name="description" id="bodyForum" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                         <div class="my-3">
                             <label for="file" class="form-label">Attached File</label>

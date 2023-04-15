@@ -120,8 +120,8 @@
                         <input type="text" class="form-control" name="title" id="title" required>
                     </div>
                     <div class="my-3">
-                        <label for="body" class="form-label">Description <span class="required">*</span></label>
-                        <textarea id="forumDescription" name="body" id="body" cols="60" rows="20" class="form-control"></textarea>
+                        <label for="description" class="form-label">Description <span class="required">*</span></label>
+                        <textarea id="forumDescription" name="description" id="body" cols="60" rows="20" class="form-control"></textarea>
                     </div>
                     <div class="my-3">
                         <label for="file" class="form-label">Attached File</label>
