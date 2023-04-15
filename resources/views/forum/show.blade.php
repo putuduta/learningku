@@ -76,7 +76,7 @@
                                             value="{{ $forum->title }}">
                                     </div>
                                     <div class="my-3">
-                                        <label for="body" class="form-label">Body <span class="required">*</span></label>
+                                        <label for="body" class="form-label">Description <span class="required">*</span></label>
                                         <textarea name="body" id="body" cols="30" rows="10" class="form-control"
                                             >{{ $forum->body }}</textarea>
                                     </div>
@@ -168,7 +168,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="body" class="form-label">Body <span class="required">*</span></label>
+                            <label for="body" class="form-label">Description <span class="required">*</span></label>
                             <textarea name="body" id="bodyEditReply-{{ $reply->id }}" cols="30" rows="10" class="form-control"
                                 >{{ $reply->body }}</textarea>
                         </div>
@@ -200,7 +200,7 @@
                     <form action="{{ route('reply-forum.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
-                            <label for="body" class="form-label">Body <span class="required">*</span></label>
+                            <label for="body" class="form-label">Description <span class="required">*</span></label>
                             <textarea name="body" id="bodyForum" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                         <div class="my-3">

@@ -15,10 +15,10 @@ class CreateAssignmentDetailsTable extends Migration
     {
         Schema::create('assignment_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('assignment_id');
+            $table->unsignedBigInteger('assignment_header_id');
             $table->unsignedBigInteger('student_user_id')->nullable();
             $table->string('file');
-            $table->foreign('assignment_id')->references('id')->on('assignment_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('assignment_header_id')->references('id')->on('assignment_headers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('student_user_id')->references('user_id')->on('students')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });

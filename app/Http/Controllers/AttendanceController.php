@@ -110,7 +110,7 @@ class AttendanceController extends Controller
 
         foreach ($students as $student) {
             AttendanceDetail::create([
-                'attendance_id' => $last_attendance->id,
+                'attendance_header_id' => $last_attendance->id,
                 'student_user_id' => $student->studentId,
                 'status' => request('present-'.$student->studentId) ? 'Present' : (request('sick-'.$student->studentId) ? 'Sick' : (request('absencePermit-'.$student->studentId) ? 'Absence Permit' : (request('absent-'.$student->studentId) ? 'Absent' : '')))
             ]);

@@ -19,6 +19,6 @@ class AttendanceHeader extends Model
     }
 
     public function details(){
-        return $this->hasMany('App\Models\AttendanceDetail','attendance_id','id');
+        return $this->hasMany('App\Models\AttendanceDetail','attendance_header_id','id');
     }
 }

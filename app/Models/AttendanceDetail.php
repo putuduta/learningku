@@ -21,6 +21,6 @@ class AttendanceDetail extends Model
 
     public function header()
     {
-        return $this->belongsTo('App\Models\AttendanceHeader', 'attendance_id', 'id');
+        return $this->belongsTo('App\Models\AttendanceHeader', 'attendance_header_id', 'id');
     }
 }

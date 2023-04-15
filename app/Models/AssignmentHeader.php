@@ -15,7 +15,7 @@ class AssignmentHeader extends Model
 
     public function submission()
     {
-        return $this->hasMany('App\Models\AssignmentDetail', 'assignment_id', 'id');
+        return $this->hasMany('App\Models\AssignmentDetail', 'assignment_header_id', 'id');
     }
 
     public function submissionUser()

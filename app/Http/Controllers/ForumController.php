@@ -53,7 +53,7 @@ class ForumController extends Controller
         $request->validate([
             'class_subject_id' => 'required',
             'title' => 'required|string',
-            'body' => 'required|string',
+            'description' => 'required|string',
             'file' => 'nullable|max:4999|file',
         ]);
 
@@ -70,7 +70,7 @@ class ForumController extends Controller
             'user_id' => auth()->user()->id,
             'class_subject_id' => $request->class_subject_id,
             'title' => $request->title,
-            'body' => $request->body,
+            'description' => $request->description,
             'file' => $file_name,
         ]);
 
@@ -101,7 +101,7 @@ class ForumController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
-            'body' => 'required|string',
+            'description' => 'required|string',
             'file' => 'nullable|max:4999|file',
         ]);
 
@@ -116,7 +116,7 @@ class ForumController extends Controller
 
         $forum->update([
             'title' => $request->title,
-            'body' => $request->body,
+            'description' => $request->description,
             'file' => $file_name,
         ]);
 

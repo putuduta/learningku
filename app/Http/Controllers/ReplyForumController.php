@@ -11,7 +11,7 @@ class ReplyForumController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'body' => 'required|string',
+            'description' => 'required|string',
             'file' => 'nullable|max:4999|file',
             'forum_id' => 'required'
         ]);
@@ -28,7 +28,7 @@ class ReplyForumController extends Controller
         ReplyForum::create([
             'user_id' => auth()->user()->id,
             'forum_id' => $request->forum_id,
-            'body' => $request->body,
+            'description' => $request->description,
             'file' => $file_name,
         ]);
 
@@ -38,7 +38,7 @@ class ReplyForumController extends Controller
     public function update(Request $request, ReplyForum $reply_forum)
     {
         $request->validate([
-            'body' => 'required|string',
+            'description' => 'required|string',
             'file' => 'nullable|max:4999|file',
         ]);
 
@@ -52,7 +52,7 @@ class ReplyForumController extends Controller
         }
 
         $reply_forum->update([
-            'body' => $request->body,
+            'description' => $request->description,
             'file' => $file_name,
         ]);
 
