@@ -49,8 +49,7 @@ class ClassSubjectController extends Controller
     public function store($classId, Request $request){
 
         $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string'
+            'name' => 'required|string'
         ]);
         
         ClassSubject::create([
