@@ -30,6 +30,30 @@ class AssignmentSeeder extends Seeder
                 'end_time' => '2023-04-04T15:24',
                 'created_at' => '2023-03-27 15:26:38',
                 'updated_at' => '2023-03-27 15:26:38'
+            ],
+            [
+                'class_subject_id' => '1',
+                'title' => 'Offers & Suggestions',
+                'file' => 'ASG_Offers & Suggestions_1681679311.txt',
+                'end_time' => '2023-04-21T00:00',
+                'created_at' => '2023-04-17 04:07:38',
+                'updated_at' => '2023-04-17 04:07:38'
+            ],
+            [
+                'class_subject_id' => '1',
+                'title' => 'Opinions & Thoughts',
+                'file' => 'ASG_Opinions & Thoughts_1681679635.txt',
+                'end_time' => '2023-04-20T00:00',
+                'created_at' => '2023-04-17 04:07:38',
+                'updated_at' => '2023-04-17 04:07:38'
+            ],
+            [
+                'class_subject_id' => '1',
+                'title' => 'Types of Invitations',
+                'file' => 'ASG_Types of Invitations_1681679775.txt',
+                'end_time' => '2023-04-19T00:00',
+                'created_at' => '2023-04-17 04:07:38',
+                'updated_at' => '2023-04-17 04:07:38'
             ]
         ]);
         DB::table('assignment_details')->insert([
