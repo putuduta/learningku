@@ -23,11 +23,12 @@
                 <tbody>
                     @php($i = 1)
                     @foreach($assignmentScore as $score)
-
+                        @php($tempStudentId = null)
+                        @php($tempAsgCreatedAt = null)
                         @if($assignments->count() > 0)
                             @foreach($assignments as $assignment)
                                 @if ($score->assignmentHeaderId == $assignment->assignmentId && $score->studentUserId == $assignment->studentUserId)
-                                    @if ($score->score == 0 && $assignment->file === null)
+                                    @if ($score->score == 0 && $assignment->file === null)                                  
                                     <tr>
                                         <td class="align-middle text-center">{{ $i }}</td>
                                         <td class="align-middle text-center">{{ $score->nisn }}</td>
@@ -43,6 +44,8 @@
                                         </td>
                                     </tr>
                                     @else
+                                    {{-- @if (($tempStudentId == $assignment->studentUserId && $assignment->createdAt == $tempAsgCreatedAt))
+                                         --}}
                                     <tr>
                                         <td class="align-middle text-center">{{ $i }}</td>
                                         <td class="align-middle text-center">{{ $score->nisn }}</td>
@@ -75,7 +78,10 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    {{-- @endif --}}
                                     @endif
+                                    @php($tempStudentId = $assignment->studentUserId)
+                                    @php($tempAsgCreatedAt = $assignment->createdAt)
                                 @else 
                                     @if ($score->score === 0)
                                     <tr>
