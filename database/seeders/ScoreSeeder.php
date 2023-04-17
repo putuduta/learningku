@@ -328,7 +328,479 @@ class ScoreSeeder extends Seeder
                 'student_user_id' => 34,
                 'score' => '88',
                 'notes' => '<h5>Good Job!</h5>'
+            ],
+            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 4,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],
+            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 5,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 6,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 7,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 8,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 9,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 10,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 11,
+                'score' => '98',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 12,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 13,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 14,
+                'score' => '78',
+                'notes' => '<h5>Tolong lebih semangat lagi!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 15,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 16,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 17,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 18,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 19,
+                'score' => '99',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 20,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 21,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 22,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 23,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 24,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 25,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 26,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 27,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 28,
+                'score' => '98',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 29,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 30,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 31,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 32,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 33,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 3,
+                'student_user_id' => 34,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],
+            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 4,
+                'score' => '80',
+                'notes' => '<h5>Sudah Bagus! Lebih semangat lagi ya</h5>'
+            ],
+            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 5,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 6,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 7,
+                'score' => '95',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 8,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 9,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 10,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 11,
+                'score' => '98',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 12,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 13,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 14,
+                'score' => '78',
+                'notes' => '<h5>Tolong lebih semangat lagi!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 15,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 16,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 17,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 18,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 19,
+                'score' => '99',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 20,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 21,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 22,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 23,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 24,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 25,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 26,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 27,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 28,
+                'score' => '98',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 29,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 30,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 31,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 32,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 33,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 4,
+                'student_user_id' => 34,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],
+            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 4,
+                'score' => '90',
+                'notes' => '<h5>Good job!</h5>'
+            ],
+            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 5,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 6,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 7,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 8,
+                'score' => '82',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 9,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 10,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 11,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 12,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 13,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 14,
+                'score' => '78',
+                'notes' => '<h5>Tolong lebih semangat lagi!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 15,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 16,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 17,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 18,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 19,
+                'score' => '99',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 20,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 21,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 22,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 23,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 24,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 25,
+                'score' => '85',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 26,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 27,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 28,
+                'score' => '98',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 29,
+                'score' => '80',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 30,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 31,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 32,
+                'score' => '88',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 33,
+                'score' => '92',
+                'notes' => '<h5>Good Job!</h5>'
+            ],            [
+                'assignment_header_id' => 5,
+                'student_user_id' => 34,
+                'score' => '90',
+                'notes' => '<h5>Good Job!</h5>'
             ]
+            
         ]);
     }
 }
