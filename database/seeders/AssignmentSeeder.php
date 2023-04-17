@@ -17,7 +17,7 @@ class AssignmentSeeder extends Seeder
         DB::table('assignment_headers')->insert([
             [
                 'class_subject_id' => '1',
-                'title' => 'Membuat Personal Letter',
+                'title' => 'Personal Letter',
                 'file' => 'ASG_Membuat Personal Letter_1680605006.txt',
                 'end_time' => '2023-02-01T23:59',
                 'created_at' => '2023-01-15 07:00:10',
@@ -25,32 +25,32 @@ class AssignmentSeeder extends Seeder
             ],
             [
                 'class_subject_id' => '1',
-                'title' => 'Writing Connection',
-                'file' => 'ASG_Writing Connection_1680855997.txt',
+                'title' => 'Cause & Effect',
+                'file' => 'ASG_Cause & Effects_1681679311',
                 'end_time' => '2023-02-15T23:59',
                 'created_at' => '2023-02-01 15:26:38',
                 'updated_at' => '2023-02-01 15:26:38'
             ],
             [
                 'class_subject_id' => '1',
-                'title' => 'Offers & Suggestions',
-                'file' => 'ASG_Offers & Suggestions_1681679311.txt',
+                'title' => 'Meaning Through Music',
+                'file' => 'ASG_Meaning Through Music_1681679635',
                 'end_time' => '2023-03-01T23:59',
                 'created_at' => '2023-02-17 04:07:38',
                 'updated_at' => '2023-02-17 04:07:38'
             ],
             [
                 'class_subject_id' => '1',
-                'title' => 'Opinions & Thoughts',
-                'file' => 'ASG_Opinions & Thoughts_1681679635.txt',
+                'title' => 'Writing Connection',
+                'file' => 'ASG_Writing Connection_1680855997.txt',
                 'end_time' => '2023-03-15T23:59',
                 'created_at' => '2023-03-01 04:07:38',
                 'updated_at' => '2023-03-01 04:07:38'
             ],
             [
                 'class_subject_id' => '1',
-                'title' => 'Types of Invitations',
-                'file' => 'ASG_Types of Invitations_1681679775.txt',
+                'title' => 'Enrichment',
+                'file' => 'ASG_ENRICHMENT_1680855997.docx',
                 'end_time' => '2023-04-01T23:59',
                 'created_at' => '2023-03-15 04:07:38',
                 'updated_at' => '2023-03-15 04:07:38'
