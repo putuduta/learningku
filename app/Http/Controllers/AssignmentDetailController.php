@@ -26,8 +26,7 @@ class AssignmentDetailController extends Controller
                 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                ->join('users', 'users.id', 'teachers.user_id')
+                ->join('users', 'users.id', 'class_subjects.teacher_user_id')
                 ->where('class_subjects.id', $classSubjectId)->first(),
             'assignmentScore' => Score::select('scores.id as id', 'scores.assignment_header_id as assignmentHeaderId', 'scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'users.user_code as nisn',  'scores.notes as notes')
                                 ->where('assignment_header_id', $assignmentId)

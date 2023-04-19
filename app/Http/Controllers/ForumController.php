@@ -15,7 +15,7 @@ class ForumController extends Controller
     {
         if (auth()->user()->role->name == 'Teacher') {
             return view('forum.index', [
-                'forums' => Forum::select('forums.id', 'forums.user_id', 'forums.title', 'forums.class_subject_id')
+                'forums' => Forum::select('forums.id', 'forums.teacher_user_id', 'forums.title', 'forums.class_subject_id')
                     ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
@@ -29,7 +29,7 @@ class ForumController extends Controller
             ]);
         } else {
             return view('forum.index', [
-                'forums' => Forum::select('forums.id', 'forums.user_id', 'forums.title', 'forums.class_subject_id')
+                'forums' => Forum::select('forums.id', 'forums.teacher_user_id', 'forums.title', 'forums.class_subject_id')
                     ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
                     ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
@@ -63,7 +63,7 @@ class ForumController extends Controller
         }
 
         Forum::create([
-            'user_id' => auth()->user()->id,
+            'teacher_user_id' => auth()->user()->id,
             'class_subject_id' => $request->class_subject_id,
             'title' => $request->title,
             'description' => $request->description,

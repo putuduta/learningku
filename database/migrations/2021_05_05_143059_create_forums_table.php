@@ -17,8 +17,8 @@ class CreateForumsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('class_subject_id');
             $table->foreign('class_subject_id')->references('id')->on('class_subjects')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('teacher_user_id');
+            $table->foreign('teacher_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->mediumText('description');
             $table->string('file')->nullable();

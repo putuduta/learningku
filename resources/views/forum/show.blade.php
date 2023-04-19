@@ -22,13 +22,13 @@
                     <span class="smallFont" style="font-weight: normal !important;">
                         @if ($forum->user->role->name == 'Student')
                         @foreach ($students as $student)
-                            @if ($student->id == $forum->user_id)
+                            @if ($student->id == $forum->teacher_user_id)
                                 NISN: {{ $student->nisn }}
                             @endif
                         @endforeach
                         @else 
                             @foreach ($teachers as $teacher)
-                                @if ($teacher->id == $forum->user_id)
+                                @if ($teacher->id == $forum->teacher_user_id)
                                     NUPTK: {{ $teacher->nuptk }}
                                 @endif 
                             @endforeach
@@ -48,7 +48,7 @@
                         </button>
                     </div>
                     <div class="mx-1">
-                        @if($forum->user_id == auth()->user()->id)
+                        @if($forum->teacher_user_id == auth()->user()->id)
                             <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
                             data-bs-target="#editThread">
                             Edit Forum

@@ -77,7 +77,7 @@
                             {{ date_format(date_create($forum->created_at),"d F Y H:i") }}
                         </td>
                         <td class="align-middle text-center">{{ count($forum->replies) }}</td>
-                        @if($forum->user_id == auth()->user()->id)
+                        @if($forum->teacher_user_id == auth()->user()->id)
                         <td class="align-middle text-center bg-info text-white">Creator</td>
                         @elseif(count($forum->replyAuthUser) > 0)
                         <td class="align-middle text-center bg-success text-white">Replied</td>
