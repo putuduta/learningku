@@ -22,6 +22,7 @@ class TeacherController extends Controller
     public function store(Request $request){
         
         $role = Role::where('name', 'Teacher')->first();
+        $password = Hash::make("BHKLearningku");
 
         $request->validate([
             'name' => 'required|string',
@@ -29,37 +30,29 @@ class TeacherController extends Controller
             'email' => 'required|email',
             'image' => 'image|max:5120',
             'gender' => 'required|string',
-            'position' => 'required|string',
-            'last_education' => 'required|string',
-            'subject_taught' => 'required|string'
         ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->gender = $request->gender;
-        $user->role_id = $role->id;
-        $user->password = Hash::make("BHKLearningku");
-
+        $photo_profile = null;
         if($request->image){
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
 
             Storage::putFileAs('public/images', $file, $imageName);
             $imagePath = 'images/'.$imageName;
-            $user->photo_profile = $imagePath;
+            $photo_profile = $imagePath;
         }
 
-        $user->save();
 
         $student = DB::table('users')->find(DB::table('users')->max('id'));
         
-        Teacher::create([
-            'user_id' => $student->id,
-            'nuptk' => $request->nuptk,
-            'last_education' => $request->last_education,
-            'position' => $request->position,
-            'subject_taught' => $request->subject_taught,
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'role_id' => $role->id,
+            'user_code' => $request->nuptk,
+            'password' => $password,
+            'photo_profile' => $photo_profile 
         ]);
 
         return redirect()->back()->with('success','Success Add Teacher');
@@ -67,7 +60,8 @@ class TeacherController extends Controller
 
     public function destroy($id){
         // dd($id);
-        DB::table('teachers')->where('user_id', $id)->delete();
+        $teacher = User::find($id);
+    	$teacher->delete();
 
         return redirect()->back()->with('success', 'Teacher Deleted');
     }
@@ -77,14 +71,11 @@ class TeacherController extends Controller
 
         $request->validate([
             'name' => 'required|string',
-            'nuptk' => 'required|string',
+            'user_code' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
             'image' => 'image|max:5120',
-            'gender' => 'required|string',
-            'position' => 'required|string',
-            'last_education' => 'required|string',
-            'subject_taught' => 'required|string'
+            'gender' => 'required|string'
         ]);
 
         $teacher = User::find($id);
@@ -92,6 +83,7 @@ class TeacherController extends Controller
         $teacher->name = $request->name;
         $teacher->email = $request->email;
         $teacher->gender = $request->gender;
+        $teacher->nuptk = $request->nuptk;
 
         if(Hash::check($request->password, $teacher->password)){
             $teacher->password = Hash::make($request->password);
@@ -105,15 +97,8 @@ class TeacherController extends Controller
             $imagePath = 'images/'.$imageName;
             $teacher->photo_profile = $imagePath;
         }
-
-        $teacherDetail = Teacher::find($id);
-        $teacherDetail->nuptk = $request->nuptk;
-        $teacherDetail->position = $request->position;
-        $teacherDetail->last_education = $request->last_education;
-        $teacherDetail->subject_taught = $request->subject_taught;
         
         $teacher->save();
-        $teacherDetail->save();
 
         return redirect()->back()->with('success', 'Teacher Data Updated');
     }
@@ -127,10 +112,9 @@ class TeacherController extends Controller
         ]);*/
 
         return view('admin.teacher-list',[
-            'teachers' => User::select('users.id','users.name','teachers.nuptk','users.email','users.password', 
-                        'users.gender', 'teachers.last_education', 'teachers.position', 'teachers.subject_taught')
+            'teachers' => User::select('users.id','users.name','users.user_code as nuptk','users.email','users.password', 
+                        'users.gender')
                         ->join('roles','roles.id','users.role_id')
-                        ->join('teachers','teachers.user_id','users.id')
                         ->where([['roles.name','Teacher']])
                         ->get()
         ]);

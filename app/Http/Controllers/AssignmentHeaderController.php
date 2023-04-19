@@ -25,13 +25,11 @@ class AssignmentHeaderController extends Controller
                     ->where('class_subjects.teacher_user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         } else {
@@ -41,13 +39,11 @@ class AssignmentHeaderController extends Controller
                     ->where('class_subjects.id',   $classSubjectId)->orderBy('id', 'desc')->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         }
@@ -80,8 +76,7 @@ class AssignmentHeaderController extends Controller
         $assignment = DB::table('assignment_headers')->find(DB::table('assignment_headers')->max('id'));
 
         $students = ClassDetail::select('users.id as id')
-        ->join('students', 'students.user_id', 'class_details.student_user_id')
-        ->join('users', 'users.id', 'students.user_id')
+        ->join('users', 'users.id', 'class_details.student_user_id')
         ->join('roles','roles.id','users.role_id')
         ->where('roles.name','Student')
         ->where('class_details.class_header_id', $classSubjectId)

@@ -18,7 +18,7 @@ class ClassSeeder extends Seeder
             [
                 'name' => 'XI IPA 2',
                 'school_year_id' => 1,
-                'homeroom_teacher_id' => 2
+                'homeroom_teacher_user_id' => 2
             ]
         ]);
         DB::table('class_subjects')->insert([

@@ -4,18 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Score extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
     protected $table = "scores";
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
+    protected $dates = ['deleted_at'];
 
     public function user()
     {
-        return $this->hasOne('App\Models\User', 'student_id', 'id')->withDefault();
+        return $this->hasOne('App\Models\User', 'student_user_id', 'id')->withDefault();
     }
 
     public function assignment_header(){

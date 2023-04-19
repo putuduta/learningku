@@ -58,30 +58,25 @@ class ScoreController extends Controller
                 'scores' => Score::where('student_user_id', auth()->user()->id)->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk', 'minimum_score')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
             ]);
         } else {
             return view('score.index', [
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk', 'minimum_score')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
-                'class_details' => User::select('users.id as studentId','users.name as studentName', 'students.nisn as studentNisn')
+                'class_details' => User::select('users.id as studentId','users.name as studentName', 'users.user_code as studentNisn')
                 ->join('class_details','class_details.student_user_id','users.id')
-                ->join('students', 'students.user_id', 'class_details.student_user_id')
                 ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
                 ->get(),
                 'scores' => Score::get()

@@ -36,24 +36,22 @@ class AppServiceProvider extends ServiceProvider
                 $classes = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester')
                 ->join('school_years','school_years.id','class_headers.school_year_id')
                 ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                ->join('students', 'students.user_id', 'class_details.student_user_id')
-                ->where('students.user_id', auth()->user()->id)
+                ->join('users', 'users.id', 'class_details.student_user_id')
+                ->where('users.id', auth()->user()->id)
                 ->get();
 
-                $student = User::select('users.id','users.name','students.nisn','users.email','users.password', 
+                $student = User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 
                 'users.gender')
                 ->join('roles','roles.id','users.role_id')
-                ->join('students','students.user_id','users.id')
-                ->where('students.user_id',  auth()->user()->id)
+                ->where('users.id',  auth()->user()->id)
                 ->first();
 
                 $view->with(compact('classes', 'student'));
             } else if (auth()->user()->role->name == 'Teacher') {
-                $view->with('teacher', User::select('users.id','users.name','teachers.nuptk','users.email','users.password', 
-                'users.gender', 'teachers.last_education', 'teachers.position', 'teachers.subject_taught')
+                $view->with('teacher', User::select('users.id','users.name','users.user_code  as nuptk','users.email','users.password', 
+                'users.gender')
                 ->join('roles','roles.id','users.role_id')
-                ->join('teachers','teachers.user_id','users.id')
-                ->where('teachers.user_id',  auth()->user()->id)
+                ->where('users.id',  auth()->user()->id)
                 ->first());
             }
         });

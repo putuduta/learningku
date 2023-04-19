@@ -54,7 +54,7 @@
                          </div>
                          <div class="my-3">
                               <label for="nuptk" class="form-label">NUPTK <span class="required">*</span></label>
-                              <input type="text" class="form-control" name="nuptk" maxlength="20" required>
+                              <input type="text" class="form-control" name="nuptk" maxlength="16" required>
                          </div>
                          <div class="my-3">
                               <label for="email" class="form-label">Email <span class="required">*</span></label>
@@ -74,18 +74,6 @@
                                         </label>
                                    </div>
                               </div>
-                         </div>
-                         <div class="my-3">
-                              <label for="last_education" class="form-label">Last Education <span class="required">*</span></label>
-                              <input type="text" class="form-control" name="last_education" required>
-                         </div>
-                         <div class="my-3">
-                              <label for="position" class="form-label">Position <span class="required">*</span></label>
-                              <input type="text" class="form-control" name="position" required>
-                         </div>
-                         <div class="my-3">
-                              <label for="subject_taught" class="form-label">Subject Taught <span class="required">*</span></label>
-                              <input type="text" class="form-control" name="subject_taught" required>
                          </div>
                          <div class="my-3">
                               <label for="image" class="form-label">Teacher Image</label>
@@ -120,7 +108,7 @@
                             </div>
                             <div class="my-3">
                                  <label for="nuptk" class="form-label">NUPTK <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="nuptk" value="{{ $teacher->nuptk }}" maxlength="20" required>
+                                 <input type="text" class="form-control" name="nuptk" value="{{ $teacher->nuptk }}" maxlength="16" required>
                             </div>
                             <div class="my-3">
                                  <label for="email" class="form-label">Email <span class="required">*</span></label>
@@ -148,18 +136,6 @@
                                              </label>
                                         </div>
                                    </div>
-                            </div>
-                            <div class="my-3">
-                              <label for="last_education" class="form-label">Last Education <span class="required">*</span></label>
-                              <input type="text" class="form-control" name="last_education" value="{{ $teacher->last_education }}" required>
-                            </div>
-                            <div class="my-3">
-                                 <label for="position" class="form-label">Position <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="position" value="{{ $teacher->position }}" required>
-                            </div>
-                            <div class="my-3">
-                                 <label for="subject_taught" class="form-label">Subject Taught <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="subject_taught" value="{{ $teacher->subject_taught }}" required>
                             </div>
                             <div class="my-3">
                               <label for="image" class="form-label">Teacher Image</label>

@@ -19,10 +19,9 @@ class ClassSubjectController extends Controller
 {
     public function index(ClassHeader $class){
 
-        $teacherInClass = Teacher::select('users.id as id')
-            ->join('users', 'users.id', 'teachers.user_id')
+        $teacherInClass = User::select('users.id as id')
             ->join('roles','roles.id','users.role_id')
-            ->join('class_subjects', 'class_subjects.teacher_user_id', 'teachers.user_id')
+            ->join('class_subjects', 'class_subjects.teacher_user_id', 'users.id')
             ->where('roles.name','Teacher')
             ->where('class_subjects.class_header_id', $class->id)->get()->toArray();
 
@@ -35,8 +34,7 @@ class ClassSubjectController extends Controller
                 ->where('class_subjects.class_header_id', $class->id)
                 ->get(),
             'class' => $class,
-            'teachersNotAssigned' => Teacher::select('users.id as id', 'users.name as name', 'teachers.nuptk as nuptk')
-                ->join('users', 'users.id', 'teachers.user_id')
+            'teachersNotAssigned' => User::select('users.id as id', 'users.name as name', 'users.user_code as nuptk')
                 ->join('roles','roles.id','users.role_id')
                 ->where('roles.name','Teacher')
                 ->whereNotIn('users.id', $teacherInClass)

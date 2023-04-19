@@ -27,17 +27,14 @@ class AttendanceController extends Controller
                     ->where('class_subjects.teacher_user_id', auth()->user()->id)->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
-                'students' => ClassDetail::select('users.id as studentId', 'users.name as studentName', 'students.nisn as studentNisn', 'class_details.id as classDetailId')
-                    ->join('students', 'students.user_id', 'class_details.student_user_id')
-                    ->join('users', 'users.id', 'students.user_id')
+                'students' => ClassDetail::select('users.id as studentId', 'users.name as studentName', 'users.user_code as studentNisn', 'class_details.id as classDetailId')
+                    ->join('users', 'users.id', 'class_details.student_user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->join('class_subjects', 'class_subjects.class_header_id', 'class_details.class_header_id')
                     ->where('roles.name','Student')
@@ -49,14 +46,12 @@ class AttendanceController extends Controller
                 'attendances' => AttendanceDetail::where('student_user_id', auth()->user()->id)->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
-                    ->where('class_subjects.id', $classSubjectId)->first()
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
+                    ->where('class_subjects.id', $classSubjectId)->first(),
             ]);           
         }
     }
@@ -77,9 +72,8 @@ class AttendanceController extends Controller
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                 ->where('roles.name','Teacher')
                 ->where('class_subjects.id', $classSubjectId)->first(),
-                'class_details' => ClassDetail::select('users.id as studentId', 'users.name as studentName', 'class_details.id as classDetailId', 'students.nisn as studentNisn')
-                    ->join('students', 'students.user_id', 'class_details.student_user_id')
-                    ->join('users', 'users.id', 'students.user_id')
+                'class_details' => ClassDetail::select('users.id as studentId', 'users.name as studentName', 'class_details.id as classDetailId', 'users.user_code as studentNisn')
+                    ->join('users', 'users.id', 'class_details.student_user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->join('class_subjects', 'class_subjects.class_header_id', 'class_details.class_header_id')
                     ->where('roles.name','Student')
@@ -100,8 +94,7 @@ class AttendanceController extends Controller
         $last_attendance = AttendanceHeader::where('class_subject_id', request('class_subject_id'))->latest('created_at')->first();
 
         $students = ClassDetail::select('users.id as studentId', 'users.name as studentName', 'class_details.id as classDetailId')
-                    ->join('students', 'students.user_id', 'class_details.student_user_id')
-                    ->join('users', 'users.id', 'students.user_id')
+                    ->join('users', 'users.id', 'class_details.student_user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->join('class_subjects', 'class_subjects.class_header_id', 'class_details.class_header_id')
                     ->where('roles.name','Student')

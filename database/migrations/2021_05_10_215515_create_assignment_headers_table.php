@@ -21,6 +21,7 @@ class CreateAssignmentHeadersTable extends Migration
             $table->string('file');
             $table->string('end_time');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

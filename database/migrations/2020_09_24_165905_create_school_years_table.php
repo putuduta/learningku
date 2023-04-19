@@ -18,6 +18,7 @@ class CreateSchoolYearsTable extends Migration
             $table->string('year');
             $table->string('semester');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

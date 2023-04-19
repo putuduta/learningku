@@ -15,28 +15,24 @@ class MaterialController extends Controller
         if (auth()->user()->role->name == 'Student') {
             return view('material.index', [
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
-                'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName'
-                ,'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
-                ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-                ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                ->join('users', 'users.id', 'teachers.user_id')
-                ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
-                ->where('class_subjects.id', $classSubjectId)->first(),
+                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
+                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
+                    ->where('class_subjects.id', $classSubjectId)->first(),
                 'materials' => Material::where('class_subject_id', $classSubjectId)->get()
             ]);
         } else {
             return view('material.index', [
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $classSubjectId)->first(),
                 'materials' => Material::where('class_subject_id', $classSubjectId)->get()
             ]);

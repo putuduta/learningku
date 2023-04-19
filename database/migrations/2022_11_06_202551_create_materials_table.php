@@ -21,6 +21,7 @@ class CreateMaterialsTable extends Migration
             $table->mediumText('description');
             $table->string('resource');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

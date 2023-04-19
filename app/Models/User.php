@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,11 +18,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'user_code',
         'name',
         'email',
         'role_id',
         'photo_profile',
         'password',
+        'gender'
     ];
 
     /**
@@ -43,23 +46,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function role(){
         return $this->hasOne('App\Models\Role', 'id','role_id')->withDefault();
     }
 
     public function teacherclass(){
-        return $this->hasMany('App\Models\ClassHeader', 'teacher_id','id')->withDefault();
+        return $this->hasMany('App\Models\ClassHeader', 'teacher_user_id','id')->withDefault();
     }
 
     public function studentClass(){
-        return $this->hasMany('App\Models\ClassDetail', 'student_id','id')->withDefault();
+        return $this->hasMany('App\Models\ClassDetail', 'student_user_id','id')->withDefault();
     }
 
-    // public function classes(){
-    //     return $this->belongsToMany('App\Models\ClassHeader');
-    // }
-
-    public function studentRequestClass(){
-        return $this->hasMany('App\Models\RequestClass','student_id','id')->withDefault();
-    }
 }

@@ -22,16 +22,14 @@ class ClassDetailController extends Controller
             $class = ClassHeader::where('id', $id)->first();
 
             return view('admin.class-student-list',[
-                'students' => ClassDetail::select('users.id as id', 'users.name as name', 'class_details.id as classDetailId','students.nisn as nisn')
-                    ->join('students', 'students.user_id', 'class_details.student_user_id')
-                    ->join('users', 'users.id', 'students.user_id')
+                'students' => ClassDetail::select('users.id as id', 'users.name as name', 'class_details.id as classDetailId','users.user_code as nisn')
+                    ->join('users', 'users.id', 'class_details.student_user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->where('roles.name','Student')
                     ->where('class_details.class_header_id', $class->id)
                     ->get(),
                 'class' => $class,
-                'studentsNotAssigned' => Student::select('users.id as id', 'users.name as name', 'students.nisn as nisn', 'users.email as email')
-                    ->join('users', 'users.id', 'students.user_id')
+                'studentsNotAssigned' => User::select('users.id as id', 'users.name as name', 'users.user_code as nisn', 'users.email as email')
                     ->join('roles','roles.id','users.role_id')
                     ->leftJoin('class_details', 'class_details.student_user_id', 'students.user_id')
                     ->where('roles.name','Student')
@@ -41,9 +39,8 @@ class ClassDetailController extends Controller
             ]);
         } else {
             return view('class.student-list',[
-                'students' => ClassDetail::select('users.id as id', 'users.name as name', 'students.nisn as nisn', 'class_details.id as classDetailId')
-                    ->join('students', 'students.user_id', 'class_details.student_user_id')
-                    ->join('users', 'users.id', 'students.user_id')
+                'students' => ClassDetail::select('users.id as id', 'users.name as name', 'users.user_code as nisn', 'class_details.id as classDetailId')
+                    ->join('users', 'users.id', 'class_details.student_user_id')
                     ->join('roles','roles.id','users.role_id')
                     ->join('class_subjects', 'class_subjects.class_header_id', 'class_details.class_header_id')
                     ->where('roles.name','Student')
@@ -52,13 +49,11 @@ class ClassDetailController extends Controller
                     ->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'teacherB.nuptk as homeRoomTeacherNuptk', 'teachers.nuptk as teacherNuptk')
+                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                     ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                    ->join('users', 'users.id', 'teachers.user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_id')
-                    ->join('teachers as teacherB', 'teacherB.user_id', 'class_headers.homeroom_teacher_id')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                     ->where('class_subjects.id', $id)->first(),
             ]);
         }

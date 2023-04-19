@@ -48,12 +48,14 @@
     </section>
 
     <div id="content" class="container my-3">
+        @if (auth()->user()->role->name == 'Teacher')
         <div class="text-end">
             <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
                 data-bs-target="#exampleModal" data-bs-focus="false">
                 Create New Forum
             </button>
         </div>
+        @endif
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">

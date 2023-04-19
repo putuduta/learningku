@@ -30,29 +30,24 @@ class StudentController extends Controller
             'gender' => 'required|string',
         ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->gender = $request->gender;
-        $user->role_id = $role->id;
-        $user->password = Hash::make("BHKLearningku");
-
+        $photo_profile = null;
         if($request->image){
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
 
             Storage::putFileAs('public/images', $file, $imageName);
             $imagePath = 'images/'.$imageName;
-            $user->photo_profile = $imagePath;
+            $photo_profile = $imagePath;
         }
 
-        $user->save();
-
-        $student = DB::table('users')->find(DB::table('users')->max('id'));
-        
-        Student::create([
-            'user_id' => $student->id,
-            'nisn' => $request->nisn,
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'role_id' => $role->id,
+            'password' => Hash::make("BHKLearningku"),
+            'user_code' => $request->nisn,
+            'photo_profile' => $photo_profile
         ]);
 
         return redirect()->back()->with('success','Success to Add Student');
@@ -60,7 +55,8 @@ class StudentController extends Controller
 
 
     public function destroy($id){
-        DB::table('students')->where('user_id', $id)->delete();
+        $student = User::find($id);
+    	$student->delete();
 
         return redirect()->back()->with('success', 'Student Deleted');
     }
@@ -81,6 +77,7 @@ class StudentController extends Controller
         $student->name = $request->name;
         $student->email = $request->email;
         $student->gender = $request->gender;
+        $student->user_code = $request->nisn;
 
         if(Hash::check($request->password, $student->password)){
             $student->password = Hash::make($request->password);
@@ -94,21 +91,16 @@ class StudentController extends Controller
             $imagePath = 'images/'.$imageName;
             $student->photo_profile = $imagePath;
         }
-
-        $studentDetail = Student::find($id);
-        $studentDetail->nisn = $request->nisn;
         
         $student->save();
-        $studentDetail->save();
 
         return redirect()->back()->with('success', 'Student Data Updated');
     }
 
     public function index(){
         return view('admin.student-list',[
-            'students' => User::select('users.id','users.name','students.nisn','users.email','users.password', 'users.gender')
+            'students' => User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 'users.gender')
                         ->join('roles','roles.id','users.role_id')
-                        ->join('students','students.user_id','users.id')
                         ->where([['roles.name','Student']])
                         ->get()
         ]);
