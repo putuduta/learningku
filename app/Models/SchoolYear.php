@@ -9,11 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SchoolYear extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = "school_years";
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
 }

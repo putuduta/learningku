@@ -20,7 +20,6 @@ class CreateClassDetailsTable extends Migration
             $table->unsignedBigInteger('student_user_id');
             $table->foreign('student_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

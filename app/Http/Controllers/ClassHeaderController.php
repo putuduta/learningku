@@ -32,19 +32,18 @@ class ClassHeaderController extends Controller
     public function viewAdminClassList($schoolYearId){
         return view('admin.class-list',[
             'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId'
-                       , 'teachers.nuptk as teacherNuptk', 'teachers.subject_taught as teachersSubjectTaught')
+                       , 'users.user_code as teacherNuptk')
                 ->join('school_years','school_years.id','class_headers.school_year_id')
-                ->join('teachers', 'teachers.user_id', 'class_headers.homeroom_teacher_user_id')
-                ->join('users', 'users.id', 'teachers.user_id')
+                ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
                 ->where('class_headers.school_year_id', $schoolYearId)
                 ->get(),
-            'teachers' => User::select('users.id as id', 'users.name as name', 'users.user_code as teacherNuptk', 'teachers.subject_taught as teachersSubjectTaught')
+            'teachers' => User::select('users.id as id', 'users.name as name', 'users.user_code as teacherNuptk')
                 ->join('roles','roles.id','users.role_id')
                 ->where('roles.name','Teacher')
                 ->get(),
-            'teachersNotAssigned' => User::select('users.id as id', 'users.name as name', 'users.user_code as teacherNuptk', 'teachers.subject_taught as teachersSubjectTaught')
+            'teachersNotAssigned' => User::select('users.id as id', 'users.name as name', 'users.user_code as teacherNuptk')
                 ->join('roles','roles.id','users.role_id')
-                ->leftJoin('class_headers', 'class_headers.homeroom_teacher_user_id', 'teachers.user_id')
+                ->leftJoin('class_headers', 'class_headers.homeroom_teacher_user_id', 'users.id')
                 ->where('roles.name','Teacher')
                 ->whereNull('class_headers.homeroom_teacher_user_id')
                 ->get(),

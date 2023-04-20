@@ -22,7 +22,6 @@ class CreateScoresTable extends Migration
             $table->foreign('student_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('notes')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

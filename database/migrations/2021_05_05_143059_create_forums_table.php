@@ -23,7 +23,6 @@ class CreateForumsTable extends Migration
             $table->mediumText('description');
             $table->string('file')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

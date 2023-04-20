@@ -31,7 +31,7 @@ class ClassDetailController extends Controller
                 'class' => $class,
                 'studentsNotAssigned' => User::select('users.id as id', 'users.name as name', 'users.user_code as nisn', 'users.email as email')
                     ->join('roles','roles.id','users.role_id')
-                    ->leftJoin('class_details', 'class_details.student_user_id', 'students.user_id')
+                    ->leftJoin('class_details', 'class_details.student_user_id', 'users.id')
                     ->where('roles.name','Student')
                     ->whereNull('class_details.student_user_id')
                 ->get(),

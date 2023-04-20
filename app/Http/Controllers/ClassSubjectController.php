@@ -26,9 +26,8 @@ class ClassSubjectController extends Controller
             ->where('class_subjects.class_header_id', $class->id)->get()->toArray();
 
         return view('admin.class-subject-list',[
-            'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'teachers.nuptk as teacherNuptk', 'class_subjects.minimum_score')
-                ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                ->join('users', 'users.id', 'teachers.user_id')
+            'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'class_subjects.minimum_score')
+                ->join('users', 'users.id', 'class_subjects.teacher_user_id')
                 ->join('roles','roles.id','users.role_id')
                 ->where('roles.name','Teacher')
                 ->where('class_subjects.class_header_id', $class->id)

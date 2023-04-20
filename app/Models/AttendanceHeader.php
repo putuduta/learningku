@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AttendanceHeader extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = 'attendance_headers';
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
 
     public function classSubject(){
         return $this->hasOne('App\Models\ClassSubject','id','class_subject_id')->withDefault();

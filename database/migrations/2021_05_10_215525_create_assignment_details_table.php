@@ -21,7 +21,6 @@ class CreateAssignmentDetailsTable extends Migration
             $table->foreign('assignment_header_id')->references('id')->on('assignment_headers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('student_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

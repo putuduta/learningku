@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ReplyForum extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = 'reply_forums';
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
 
     public function forum()
     {

@@ -21,7 +21,6 @@ class CreateAttendanceDetailsTable extends Migration
             $table->foreign('student_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

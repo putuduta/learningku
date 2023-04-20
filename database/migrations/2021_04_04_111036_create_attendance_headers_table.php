@@ -19,7 +19,6 @@ class CreateAttendanceHeadersTable extends Migration
             $table->foreign('class_subject_id')->references('id')->on('class_subjects')->onUpdate('cascade')->onDelete('cascade');
             $table->string('date');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

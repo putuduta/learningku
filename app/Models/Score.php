@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Score extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = "scores";
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
 
     public function user()
     {

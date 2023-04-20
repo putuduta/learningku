@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Material extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = 'materials';
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
 
     public function class(){
         return $this->hasOne('App\Models\ClassHeader','id','class_id')->withDefault();

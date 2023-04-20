@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AttendanceDetail extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = 'attendance_details';
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
-	protected $dates = ['deleted_at'];
     
     public function student()
     {

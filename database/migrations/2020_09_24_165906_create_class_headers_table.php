@@ -21,7 +21,6 @@ class CreateClassHeadersTable extends Migration
             $table->unsignedBigInteger('homeroom_teacher_user_id');
             $table->foreign('homeroom_teacher_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

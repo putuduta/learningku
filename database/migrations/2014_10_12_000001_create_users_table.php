@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('photo_profile')->nullable();
             $table->string('password');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

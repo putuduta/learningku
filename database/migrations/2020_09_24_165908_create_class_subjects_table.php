@@ -22,7 +22,6 @@ class CreateClassSubjectsTable extends Migration
             $table->foreign('teacher_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('minimum_score');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
