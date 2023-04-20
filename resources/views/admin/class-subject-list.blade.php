@@ -32,8 +32,11 @@
                                         Edit
                                     </button>
 
-                                    <a href="{{ route('admin-class-remove-subject', $subject->id) }}"
-                                        class="btn btn-danger text-white justify-content-between" onclick="return confirm('Are you sure?')">Remove</a>
+                                    <button type="button" class="btn btn-danger text-white justify-content-between"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#delete-{{ $subject->id }}">
+                                        Remove
+                                    </button>
                                   </th>
                              </tr>
                         @endforeach
@@ -41,6 +44,47 @@
               </table>
          </div>
     </div>
+
+    @foreach ($classSubjects as $subject)
+        <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $subject->id }}"
+            tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content rounded-20 border-0">
+                    <div class="modal-header border-bottom-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-12 mb-3 text-center">
+                                <span class="fa-stack fa-4x">
+                                    <i class="fas fa-circle fa-stack-2x text-danger"></i>
+                                    <i class="fas fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </div>
+                            <div class="col-12 my-2 text-center">
+                                <h4 class="font-weight-bold">Are you sure want to remove this data?</h4>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-light text-dark justify-content-between mx-2"
+                                        data-bs-dismiss="modal">
+                                        Cancel
+                                    </button>
+                                    <form action="{{ route('admin-class-remove-subject', $subject->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger text-white justify-content-between">
+                                            Yes, remove it
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
     <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubject"
     aria-hidden="true">
