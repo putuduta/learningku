@@ -16,7 +16,7 @@
                    <thead class="table-light">
                          <th class="align-middle text-center">No</th>
                          <th class="align-middle text-center">Class Name</th>
-                         <th class="align-middle text-center">Homeroom Teacher/Wali Kelas</th>
+                         <th class="align-middle text-center">Homeroom Teacher</th>
                          <th class="align-middle text-center" colspan="4">Action</th>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                                              Edit
                                         </button>
                                         <a href="{{route('admin-class-view-subject',$class)}}"
-                                        class="btn btn-success text-white">Subject and Teacher List</a>
+                                        class="btn btn-success text-white">Subject List</a>
                                         <a href="{{route('admin-class-view-student',$class->id)}}"
                                              class="btn btn-secondary text-white">Students</a>
 
@@ -108,8 +108,8 @@
                                    <input type="text" class="form-control" name="class_name" required>
                               </div>
                               <div class="my-3">
-                                   <label for="homeroom_teacher_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
-                                   <select name="homeroom_teacher_id" class="form-select" required>
+                                   <label for="homeroom_teacher_user_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
+                                   <select name="homeroom_teacher_user_id" class="form-select" required>
                                         <option value="" selected>--Please Choose--</option>
                                         @foreach ($teachersNotAssigned as $teacher)
                                             <option value="{{$teacher->id}}">{{$teacher->teacherNuptk}} - {{$teacher->name}}</option>
@@ -149,8 +149,8 @@
                                        <input type="text" class="form-control" value="{{$class->name}}" name="class_name" required>
                                   </div>
                                   <div class="my-3">
-                                       <label for="homeroom_teacher_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
-                                       <select name="homeroom_teacher_id" class="form-select" required>
+                                       <label for="homeroom_teacher_user_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
+                                       <select name="homeroom_teacher_user_id" class="form-select" required>
                                             <option value="" selected>--Please Choose--</option>
                                             <option value="{{$class->homeroomTeacherId}}" selected>{{$class->teacherNuptk}} - {{$class->homeroomTeacherName}}</option> 
                             

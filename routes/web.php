@@ -47,7 +47,7 @@ Route::prefix('admin/school-year')->middleware('auth')->name('admin-school-year-
     Route::get('/view', [SchoolYearController::class, 'index'])->name('view');
     Route::post('/create', [SchoolYearController::class, 'store'])->name('create');
     Route::put('/update/{id}', [SchoolYearController::class, 'update'])->name('update');
-    Route::get('/remove/{id}', [SchoolYearController::class, 'destroy'])->name('remove');
+    Route::delete('/remove/{id}', [SchoolYearController::class, 'destroy'])->name('remove');
 });
 
 // Admin Manage Class, Class Details, Class Subject
@@ -57,16 +57,16 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
     Route::get('view/{schoolYearId}', [ClassHeaderController::class, 'viewAdminClassList'])->name('view');
     Route::post('create/{schoolYearId}', [ClassHeaderController::class, 'store'])->name('create');
     Route::put('update/{id}', [ClassHeaderController::class, 'update'])->name('update');
-    Route::get('remove/{id}', [ClassHeaderController::class, 'destroy'])->name('remove');
+    Route::delete('remove/{id}', [ClassHeaderController::class, 'destroy'])->name('remove');
     
     Route::get('student/{class}', [ClassDetailController::class, 'viewClassDetails'])->name('view-student');
     Route::post('assign-student/{class}', [ClassDetailController::class, 'assignStudentToClass'])->name('assign-student');
-    Route::get('remove-student/{student}', [ClassDetailController::class, 'removeStudentFromClass'])->name('remove-student');
+    Route::delete('remove-student/{student}', [ClassDetailController::class, 'removeStudentFromClass'])->name('remove-student');
 
     Route::get('subject/{class}', [ClassSubjectController::class, 'index'])->name('view-subject');
     Route::post('assign-subject/{class}', [ClassSubjectController::class, 'store'])->name('assign-subject');
     Route::put('update-subject/{class}', [ClassSubjectController::class, 'update'])->name('update-subject');
-    Route::get('remove-subject/{subject}', [ClassSubjectController::class, 'destroy'])->name('remove-subject');
+    Route::delete('remove-subject/{subject}', [ClassSubjectController::class, 'destroy'])->name('remove-subject');
 });
 
 // Admin Manage Teacher
@@ -74,14 +74,14 @@ Route::prefix('admin/teacher')->middleware('auth')->name('admin-teacher-')->grou
     Route::get('list', [TeacherController::class, 'index'])->name('view-list');
     Route::post('add', [TeacherController::class, 'store'])->name('add');
     Route::put('update/{teacher}', [TeacherController::class, 'update'])->name('update');
-    Route::get('remove/{teacher}', [TeacherController::class, 'destroy'])->name('remove');
+    Route::delete('remove/{teacher}', [TeacherController::class, 'destroy'])->name('remove');
 });
 
 // Admin Manage Student
 Route::prefix('admin/student')->middleware('auth')->name('student-')->group(function () {
     Route::get('list', [StudentController::class, 'index'])->name('view-list');
     Route::post('add', [StudentController::class, 'store'])->name('add');
-    Route::get('/remove/{student}', [StudentController::class, 'destroy'])->name('remove');
+    Route::delete('/remove/{student}', [StudentController::class, 'destroy'])->name('remove');
     Route::put('/update/{student}', [StudentController::class, 'update'])->name('update');
 });
 

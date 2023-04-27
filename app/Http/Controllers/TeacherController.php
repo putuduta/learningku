@@ -71,7 +71,7 @@ class TeacherController extends Controller
 
         $request->validate([
             'name' => 'required|string',
-            'user_code' => 'required|string',
+            'nuptk' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
             'image' => 'image|max:5120',
@@ -83,7 +83,7 @@ class TeacherController extends Controller
         $teacher->name = $request->name;
         $teacher->email = $request->email;
         $teacher->gender = $request->gender;
-        $teacher->nuptk = $request->nuptk;
+        $teacher->user_code = $request->nuptk;
 
         if(Hash::check($request->password, $teacher->password)){
             $teacher->password = Hash::make($request->password);

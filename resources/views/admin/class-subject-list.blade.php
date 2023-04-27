@@ -2,13 +2,13 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
-         <h3 class="fw-bold">Subject and Teacher List - {{$class->name}} {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
+         <h3 class="fw-bold">Subject List - {{$class->name}} {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
          <a type="button" class="btn btn-dark text-white mb-3" href="{{ route('admin-class-view', $schoolYear->id) }}">
               Back
          </a>
          <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
          data-bs-target="#addSubject">
-         Add Subject and Teacher
+         Add Subject
          </button>
          <div class="table-responsive">
             <table class="table table-hover table-bordered">
@@ -91,7 +91,7 @@
          <div class="modal-dialog modal-dialog-centered modal-lg">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h5 class="modal-title" id="submitLabel">Add Subject and Teacher</h5>
+                     <h5 class="modal-title" id="submitLabel">Add Subject</h5>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body">
@@ -138,7 +138,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="submitLabel">Edit Subject and Teacher</h5>
+                        <h5 class="modal-title" id="submitLabel">Edit Subject</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
