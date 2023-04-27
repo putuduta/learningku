@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'email' => 'agus@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '1',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '5543758660300003',
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'email' => 'desi@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '2',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '8347762663230123',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                 'email' => 'ambar@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '2',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064345599',
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
                 'email' => 'beben@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0056315346',
@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
                 'email' => 'benedictus@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0065465212',
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                 'email' => 'briant@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0051456124',
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
                 'email' => 'christianus@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0066001550',
@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
                 'email' => 'delza@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0062952225',
@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
                 'email' => 'emanuel@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064286281',
@@ -94,7 +94,7 @@ class UserSeeder extends Seeder
                 'email' => 'emmanuela@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0068520363',
@@ -102,7 +102,7 @@ class UserSeeder extends Seeder
                 'email' => 'gabrielle@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064002098',
@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
                 'email' => 'gavriella@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0063805698',
@@ -118,7 +118,7 @@ class UserSeeder extends Seeder
                 'email' => 'giovanni@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064121035',
@@ -126,7 +126,7 @@ class UserSeeder extends Seeder
                 'email' => 'irene@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064085909',
@@ -134,7 +134,7 @@ class UserSeeder extends Seeder
                 'email' => 'janetta@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0061189414',
@@ -142,7 +142,7 @@ class UserSeeder extends Seeder
                 'email' => 'jefanya@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0065024616',
@@ -150,7 +150,7 @@ class UserSeeder extends Seeder
                 'email' => 'jeremy@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0061223255',
@@ -158,7 +158,7 @@ class UserSeeder extends Seeder
                 'email' => 'jimmy@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064338054',
@@ -166,7 +166,7 @@ class UserSeeder extends Seeder
                 'email' => 'jovanka@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '009019207971',
@@ -174,7 +174,7 @@ class UserSeeder extends Seeder
                 'email' => 'lance@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0055842812',
@@ -182,7 +182,7 @@ class UserSeeder extends Seeder
                 'email' => 'marcello@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0067070910',
@@ -190,7 +190,7 @@ class UserSeeder extends Seeder
                 'email' => 'nathaniel@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0068911967',
@@ -198,7 +198,7 @@ class UserSeeder extends Seeder
                 'email' => 'raphael@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0069509784',
@@ -206,7 +206,7 @@ class UserSeeder extends Seeder
                 'email' => 'renata@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0067157231',
@@ -214,7 +214,7 @@ class UserSeeder extends Seeder
                 'email' => 'sevira@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0067133057',
@@ -222,7 +222,7 @@ class UserSeeder extends Seeder
                 'email' => 'shawn@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0062152461',
@@ -230,7 +230,7 @@ class UserSeeder extends Seeder
                 'email' => 'stefanus@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0063596168',
@@ -238,7 +238,7 @@ class UserSeeder extends Seeder
                 'email' => 'stefhanie@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0067739874',
@@ -246,7 +246,7 @@ class UserSeeder extends Seeder
                 'email' => 'teodosius@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0067751210',
@@ -254,7 +254,7 @@ class UserSeeder extends Seeder
                 'email' => 'trevian@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0068891133',
@@ -262,7 +262,7 @@ class UserSeeder extends Seeder
                 'email' => 'vallerie@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0064402706',
@@ -270,7 +270,7 @@ class UserSeeder extends Seeder
                 'email' => 'william@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0069196179',
@@ -278,7 +278,7 @@ class UserSeeder extends Seeder
                 'email' => 'yosef@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '0067541925',
@@ -286,7 +286,7 @@ class UserSeeder extends Seeder
                 'email' => 'edward@gmail.com',
                 'gender' => 'Male',
                 'role_id' => '3',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ],
             [
                 'user_code'=> '9748755657300032',
@@ -294,7 +294,7 @@ class UserSeeder extends Seeder
                 'email' => 'nina@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '2',
-                'password' => Hash::make('kualat')
+                'password' => Hash::make('bhklearningku')
             ]
         ]);
     }
