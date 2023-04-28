@@ -1,4 +1,4 @@
-<x-app title="Assignment Detail - Learningku">
+<x-app title="Assignment Show - Learningku">
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
@@ -73,7 +73,7 @@
                                             @else
                                                 <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
                                                     data-bs-target="#updateScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
-                                                    Edit Score
+                                                    Update Score
                                                 </button>
                                             @endif
                                         </td>
@@ -119,7 +119,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.store-assignment') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
@@ -146,11 +146,11 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newAssignmentLabel">Edit Score ({{$score->nisn}} - {{$score->studentName}})</h5>
+                <h5 class="modal-title" id="newAssignmentLabel">Update Score ({{$score->nisn}} - {{$score->studentName}})</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.update', $score->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.update-assignment', $score->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="">

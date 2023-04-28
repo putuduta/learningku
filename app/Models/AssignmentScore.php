@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Score extends Model
+class AssignmentScore extends Model
 {
     use HasFactory;
 
-    protected $table = "scores";
+    protected $table = "assignment_scores";
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
@@ -20,7 +20,7 @@ class Score extends Model
         return $this->hasOne('App\Models\User', 'student_user_id', 'id')->withDefault();
     }
 
-    public function assignment_header(){
+    public function assignmentHeader(){
         return $this->belongsTo(AssignmentHeader::class);
     }
 

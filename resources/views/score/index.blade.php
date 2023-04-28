@@ -48,6 +48,7 @@
     </section>
     <div id="content" class="container my-3">
         
+        <h5 class="modal-title pb-2 px-3" id="staticBackdropLabel">Assignment Scores</h5>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
@@ -58,25 +59,85 @@
                 </thead>
                 <tbody>
                     @php $score = 0; $count = 0; @endphp
-                    @foreach ($scores as $index => $s)
-                        @if (!(strtotime($s->assignment_header->end_time) > time()) && $s->score != null)
-                        <tr>
-                            <td class="align-middle text-center">{{ $index + 1 }}</td>
-                            <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
-                            <td class="align-middle text-center">{{ $s->score }}</td>
-                            <td class="align-middle text-center">
-                                <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                data-bs-target="#notes{{ $s->id }}">
-                                    Show
-                                </button>
-                            </td>
-                        </tr>
-                        @php $score += $s->score; $count += 1; @endphp
+                    @foreach ($assignmentScores as $s)
+                        @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
+                            @php $score += $s->score; $count += 1; @endphp
+                            <tr>
+                                <td class="align-middle text-center">{{ $count }}</td>
+                                <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                <td class="align-middle text-center">{{ $s->score }}</td>
+                                <td class="align-middle text-center">
+                                    <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
+                                    data-bs-target="#notes{{ $s->id }}">
+                                        Show
+                                    </button>
+                                </td>
+                            </tr>
                         @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
+        <h5 class="modal-title pb-2 px-3" id="staticBackdropLabel">Exam Scores</h5>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                    <th class="align-middle text-center">No</th>
+                    <th class="align-middle text-center">Exam Name</th>
+                    <th class="align-middle text-center">Score</th>
+                </thead>
+                <tbody>
+                    @php $countExam = 0; $isUTS = false; $isUAS = false; @endphp
+                    @foreach ($examScores as $s)
+                        @php $score += $s->score; $count += 1; $countExam += 1; @endphp
+                        @if ($s->name == "UTS")
+                            @php $isUTS = true; @endphp
+                        @endif
+                        @if ($s->name == "UAS")
+                            @php $isUAS = true; @endphp
+                        @endif
+                        <tr>
+                            <td class="align-middle text-center">{{ $countExam }}</td>
+                            <td class="align-middle text-center">{{ $s->name }}</td>
+                            <td class="align-middle text-center">{{ $s->score }}</td>
+                        </tr>
+                    @endforeach                
+                   
+                    @if ($countExam === 0)
+                    <tr>
+                        <td class="align-middle text-center">1</td>
+                        <td class="align-middle text-center">UTS</td>
+                        <td class="align-middle text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-center">2</td>
+                        <td class="align-middle text-center">UAS</td>
+                        <td class="align-middle text-center">-</td>
+                    </tr>   
+                    @endif
+
+                    @if ($countExam > 0)
+                        @if (!$isUTS)
+                            <tr>
+                                <td class="align-middle text-center">1</td>
+                                <td class="align-middle text-center">UTS</td>
+                                <td class="align-middle text-center">-</td>
+                            </tr> 
+                        @endif
+
+                        @if (!$isUAS)
+                        <tr>
+                            <td class="align-middle text-center">2</td>
+                            <td class="align-middle text-center">UAS</td>
+                            <td class="align-middle text-center">-</td>
+                        </tr> 
+                        @endif
+                    @endif
+
+                </tbody>
+            </table>
+        </div>
+        <h5 class="modal-title pb-2 px-3" id="staticBackdropLabel">Overall Score</h5>
         <div class="table-responsive-sm">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
@@ -84,21 +145,30 @@
                     <th class="align-middle text-center">Minimum Score</th>
                 </thead>
                 <tbody>
-                    @if ( $score/$count > $classSubject->minimum_score)
-                    <td class="align-middle text-center bg-success">  
+                    @if ($countExam === 2)
+                        @if ( $score/$count > $classSubject->minimum_score)
+                        <td class="align-middle text-center bg-success">  
+                        @else
+                        <td class="align-middle text-center bg-danger">
+                        @endif
+                            {{ round($score/$count) }}</td>
+                        <td class="align-middle text-center">
+                            {{ $classSubject->minimum_score }}</td></td>  
                     @else
-                    <td class="align-middle text-center bg-danger">
+                        <td class="align-middle text-center">
+                        
+                                -</td>
+                            <td class="align-middle text-center">
+                                {{ $classSubject->minimum_score }}</td></td>  
                     @endif
-                        {{ round($score/$count) }}</td>
-                    <td class="align-middle text-center">
-                        {{ $classSubject->minimum_score }}</td></td>                         
                 </tbody>
             </table>
         </div>
+
     </div>
 
-    @foreach($scores as $score)
-    @if (!(strtotime($s->assignment_header->end_time) > time()))
+    @foreach($assignmentScores as $score)
+    @if (!(strtotime($score->assignmentHeader->end_time) > time()))
     <div class="modal fade" id="notes{{ $score->id }}" tabindex="-1" aria-labelledby="notesModal"
         aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -182,10 +252,10 @@
                                     <td class="align-middle text-center">{{ $student->studentNisn }}</td>
                                     <td class="align-middle text-center">{{ $student->studentName }}</td>
                                     <td class="align-middle text-center">
-                                        <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                        data-bs-target="#detail-{{ $student->studentId }}">
+                                        <a href="{{ route('score.show', ['classSubjectId' => $classSubject->id, 'studentId' => $student->studentId]) }}"
+                                            class="btn btn-primary text-white">
                                             Show Scores
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                     @endforeach
@@ -194,64 +264,5 @@
         </div>
     </div>
 </x-app>
-
-@foreach($class_details as $student)
-<div class="modal fade" id="detail-{{ $student->studentId }}" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Scores -  ({{ $student->studentName }} - {{ $student->studentNisn }})</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead class="table-dark">
-                            <th class="align-middle text-center">No</th>
-                            <th class="align-middle text-center">Assignment Name</th>
-                            <th class="align-middle text-center">Score</th>
-                        </thead>
-                        <tbody>
-                            @php $score = 0; $count = 0; @endphp
-                            @foreach ($scores as $s)
-                                @if ($s->student_user_id == $student->studentId)
-                                    @if (!(strtotime($s->assignment_header->end_time) > time()) && $s->score !== null)
-                                    @php $score += $s->score; $count += 1; @endphp
-                                    <tr>
-                                        <td class="align-middle text-center">{{ $count }}</td>
-                                        <td class="align-middle text-center">{{ $s->assignment_header->title }}</td>
-                                        <td class="align-middle text-center">{{ $s->score }}</td>
-                                    </tr>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="table-responsive-sm">
-                    <table class="table table-hover table-bordered">
-                        <thead class="table-dark">
-                            <th class="align-middle text-center">Overall Score</th>
-                            <th class="align-middle text-center">Minimum Score</th>
-                        </thead>
-                        <tbody>
-                            @if ( $score/$count > $classSubject->minimum_score)
-                            <td class="align-middle text-center bg-success">  
-                            @else
-                            <td class="align-middle text-center bg-danger">
-                            @endif
-                                {{ round($score/$count) }}</td>
-                            <td class="align-middle text-center">
-                                {{ $classSubject->minimum_score }}</td></td>                         
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
 @endif
+

@@ -14,7 +14,7 @@ class ScoreSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('scores')->insert([
+        DB::table('assignment_scores')->insert([
             [
                 'assignment_header_id' => 1,
                 'student_user_id' => 4,

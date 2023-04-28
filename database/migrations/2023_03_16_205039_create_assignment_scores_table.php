@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScoresTable extends Migration
+class CreateAssignmentScoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateScoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('scores', function (Blueprint $table) {
+        Schema::create('assignment_scores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('assignment_header_id');
             $table->foreign('assignment_header_id')->references('id')->on('assignment_headers')->onUpdate('cascade')->onDelete('cascade');
@@ -32,6 +32,6 @@ class CreateScoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scores');
+        Schema::dropIfExists('assignment_scores');
     }
 }

@@ -19,4 +19,8 @@ class ClassSubject extends Model
     public function teacher(){
         return $this->hasOne('App\Models\User','id','teacher_user_id')->withDefault();
     }
+
+    public function examScore(){
+        return $this->hasMany('App\Models\ExamScore', 'class_subject_id', 'id');
+    }
 }

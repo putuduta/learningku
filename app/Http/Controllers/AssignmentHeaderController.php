@@ -83,7 +83,7 @@ class AssignmentHeaderController extends Controller
         ->get();
 
         foreach ($students as $s) {
-            Score::create([
+            AssignmentScore::create([
                 'assignment_header_id' => $assignment->id,
                 'student_user_id' => $s->id,
                 'score' => 0

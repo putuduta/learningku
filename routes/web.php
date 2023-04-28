@@ -131,10 +131,13 @@ Route::post('assignment/submit/{assignmentHeader}', [AssignmentDetailController:
 
 // Score
 Route::get('score/{classId}', [ScoreController::class, 'index'])->name('score.index');
+Route::get('score/show/{studentId}/{classSubjectId}', [ScoreController::class, 'show'])->name('score.show');
 // Route::get('score/detail/{student}', [ScoreController::class, 'detail'])->name('score.detail');
-Route::get('score/detail/{classId}/{student}', [ScoreController::class, 'detail'])->name('score.detail');
-Route::get('score/edit/{classId}/{score}', [ScoreController::class, 'change'])->name('score.change');
-Route::resource('score', ScoreController::class)->except('create', 'index');
+Route::post('score/store/assignment-score', [ScoreController::class, 'storeAssignmentScore'])->name('score.store-assignment');
+Route::put('score/update/assignment-score/{score}', [ScoreController::class, 'updateAssignmentScore'])->name('score.update-assignment');
+Route::post('score/store/exam-score', [ScoreController::class, 'storeExamScore'])->name('score.store-exam');
+Route::put('score/update/exam-score/{score}', [ScoreController::class, 'updateExamScore'])->name('score.update-exam');
+Route::resource('score', ScoreController::class)->except('create', 'index', 'show');
 Route::get('score/create/{classCourseId}/{userId}', [ScoreController::class, 'create'])->name('score.create');
 // Route::put('/update/{student}', [ScoreController::class, 'update'])->name('update');
 

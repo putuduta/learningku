@@ -65,8 +65,7 @@ class AttendanceController extends Controller
             return view('attendance.create', [
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName'
                 , 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester')
-                ->join('teachers', 'teachers.user_id', 'class_subjects.teacher_user_id')
-                ->join('users', 'users.id', 'teachers.user_id')
+                ->join('users', 'users.id', 'class_subjects.teacher_user_id')
                 ->join('roles','roles.id','users.role_id')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')

@@ -28,10 +28,10 @@ class AssignmentDetailController extends Controller
                 ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
                 ->join('users', 'users.id', 'class_subjects.teacher_user_id')
                 ->where('class_subjects.id', $classSubjectId)->first(),
-            'assignmentScore' => Score::select('scores.id as id', 'scores.assignment_header_id as assignmentHeaderId', 'scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'users.user_code as nisn',  'scores.notes as notes')
+            'assignmentScore' => AssignmentScore::select('assignment_scores.id as id', 'assignment_scores.assignment_header_id as assignmentHeaderId', 'assignment_scores.score as score', 'users.id as studentUserId', 'users.name as studentName', 'users.user_code as nisn',  'assignment_scores.notes as notes')
                                 ->where('assignment_header_id', $assignmentId)
-                                ->join('class_details', 'class_details.student_user_id', 'scores.student_user_id')
-                                ->join('users', 'users.id', 'scores.student_user_id')->get(),
+                                ->join('class_details', 'class_details.student_user_id', 'assignment_scores.student_user_id')
+                                ->join('users', 'users.id', 'assignment_scores.student_user_id')->get(),
             'assignmentHeader' => AssignmentHeader::where('id', $assignmentId)->first()
         ]);
     }
@@ -58,7 +58,7 @@ class AssignmentDetailController extends Controller
         ]);
 
         // Students submit assignment set score back to null
-        $asg_score = Score::where('assignment_header_id', $assignmentHeader->id)->first();
+        $asg_score = AssignmentScore::where('assignment_header_id', $assignmentHeader->id)->first();
         $asg_score->score = null;
         $asg_score->save();
 
