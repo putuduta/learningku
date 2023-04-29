@@ -184,7 +184,7 @@
 </x-app>
 
 @foreach($assignmentScores as $score)
-<div class="modal fade" id="newAssignmentScore{{ $score->id }}" tabindex="-1" aria-labelledby="newScoreLabel" aria-hidden="true">
+<div class="modal fade" id="newAssignmentScore-{{ $score->id }}" tabindex="-1" aria-labelledby="newScoreLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
