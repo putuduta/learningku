@@ -23,9 +23,4 @@ class ExamScore extends Model
     public function classSubject(){
         return $this->belongsTo(ClassSubject::class);
     }
-
-    // public function class_course()
-    // {
-    //     return $this->belongsTo('App\Models\ClassCourse', 'class_header_id', 'id')->withDefault();
-    // }
 }
