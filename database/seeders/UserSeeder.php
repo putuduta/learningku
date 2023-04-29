@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'email' => 'desi@gmail.com',
                 'gender' => 'Female',
                 'role_id' => '2',
-                'password' => Hash::make('bhklearningku')
+                'password' => Hash::make('desi5543')
             ],
             [
                 'user_code'=> '8347762663230123',
