@@ -65,7 +65,7 @@
                     <div class="left d-flex justify-content-between">
                         <div>
                             @if ($material->resource != null || $material->resource != "")                       
-                                <a class="btn btn-success text-white" href="{{ route('material.download', $material->id)}}" target="_blank">Download File</a>
+                                <a class="btn btn-success text-white" href="/storage/material/{{ $material->resource }}" target="_blank">Download File</a></div>
                             @endif
                         </div>
                         <div class="d-flex">
@@ -137,7 +137,7 @@
                     <h2 class="card-title pb-3">{{ $material->title }}</h2>
                     {!! $material->description !!}
                     @if ($material->resource != null || $material->resource != "") 
-                        <div class="pt-3"><a class="btn btn-primary text-white" href="{{ $material->resource }}">Download File</a></div>
+                        <div class="pt-3"><a class="btn btn-primary text-white" href="/storage/material/{{ $material->resource }}" target="_blank">Download File</a></div>
                     @endif
                 </div>
             </div>

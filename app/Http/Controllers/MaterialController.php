@@ -51,13 +51,13 @@ class MaterialController extends Controller
             $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
             $image = $request->file('file')->storeAs('public/material', $file_name);
         } else {
-            $image = "";
+            $file_name = "";
         }
 
         $material->class_subject_id = $request->class_subject_id;
         $material->title = $request->title;
         $material->description = $request->description;
-        $material->resource = $image;
+        $material->resource = $file_name;
 
         $material->save();
 
@@ -80,13 +80,13 @@ class MaterialController extends Controller
             $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
             $image = $request->file('file')->storeAs('public/material', $file_name);
         } else {
-            $image = $updateMaterial->resource;
+            $file_name = $updateMaterial->resource;
         }
 
         $updateMaterial->class_subject_id = $request->class_subject_id;
         $updateMaterial->title = $request->title;
         $updateMaterial->description = $request->description;
-        $updateMaterial->resource = $image;
+        $updateMaterial->resource = $file_name;
         
         $updateMaterial->save();
 
