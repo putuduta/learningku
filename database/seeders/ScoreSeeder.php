@@ -802,5 +802,326 @@ class ScoreSeeder extends Seeder
             ]
             
         ]);
+
+
+        DB::table('exam_scores')->insert([
+            [
+                'class_subject_id' => 1,
+                'student_user_id' => 4,
+                'score' => '90',
+                'name' => 'UTS'
+            ],
+            [
+                'class_subject_id' => 1,
+                'student_user_id' => 5,
+                'score' => '88',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 6,
+                'score' => '86',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 7,
+                'score' => '95',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 8,
+                'score' => '98',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 9,
+                'score' => '98',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 10,
+                'score' => '90',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 11,
+                'score' => '95',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 12,
+                'score' => '90',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 13,
+                'score' => '90',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 14,
+                'score' => '85',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 15,
+                'score' => '85',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 16,
+                'score' => '80',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 17,
+                'score' => '90',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 18,
+                'score' => '92',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 19,
+                'score' => '95',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 20,
+                'score' => '98',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 21,
+                'score' => '88',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 22,
+                'score' => '88',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 23,
+                'score' => '85',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 24,
+                'score' => '82',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 25,
+                'score' => '80',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 26,
+                'score' => '90',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 27,
+                'score' => '95',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 28,
+                'score' => '98',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 29,
+                'score' => '88',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 30,
+                'score' => '88',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 31,
+                'score' => '90',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 32,
+                'score' => '92',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 33,
+                'score' => '80',
+                'name' => 'UTS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 34,
+                'score' => '80',
+                'name' => 'UTS'
+            ]
+        ]);
+
+        DB::table('exam_scores')->insert([
+            [
+                'class_subject_id' => 1,
+                'student_user_id' => 4,
+                'score' => '88',
+                'name' => 'UAS'
+            ],
+            [
+                'class_subject_id' => 1,
+                'student_user_id' => 5,
+                'score' => '85',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 6,
+                'score' => '80',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 7,
+                'score' => '95',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 8,
+                'score' => '98',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 9,
+                'score' => '98',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 10,
+                'score' => '90',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 11,
+                'score' => '95',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 12,
+                'score' => '90',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 13,
+                'score' => '90',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 14,
+                'score' => '85',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 15,
+                'score' => '85',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 16,
+                'score' => '80',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 17,
+                'score' => '90',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 18,
+                'score' => '92',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 19,
+                'score' => '95',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 20,
+                'score' => '98',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 21,
+                'score' => '88',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 22,
+                'score' => '88',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 23,
+                'score' => '85',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 24,
+                'score' => '82',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 25,
+                'score' => '80',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 26,
+                'score' => '90',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 27,
+                'score' => '95',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 28,
+                'score' => '98',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 29,
+                'score' => '88',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 30,
+                'score' => '88',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 31,
+                'score' => '90',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 32,
+                'score' => '92',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 33,
+                'score' => '80',
+                'name' => 'UAS'
+            ],            [
+                'class_subject_id' => 1,
+                'student_user_id' => 34,
+                'score' => '80',
+                'name' => 'UAS'
+            ]
+        ]);
     }
 }
