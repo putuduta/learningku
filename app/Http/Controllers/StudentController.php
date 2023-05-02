@@ -25,9 +25,10 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|string',
             'nisn' => 'required|string',
-            'email' => 'required|email',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'image' => 'image|max:5120',
             'gender' => 'required|string',
+            'password' => ['required', 'string', 'min:8', 'alpha_num']
         ]);
 
         $photo_profile = null;

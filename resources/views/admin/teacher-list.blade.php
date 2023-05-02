@@ -64,6 +64,10 @@
                               <input type="email" class="form-control" name="email" required>
                          </div>
                          <div class="my-3">
+                              <label for="password" class="form-label">Password <span class="required">*</span></label>
+                              <input type="password" class="form-control" name="password" required>
+                         </div>
+                         <div class="my-3">
                               <label for="gender" class="form-label">Gender <span class="required">*</span></label>
                               <div>
                                    <div class="form-check-inline">

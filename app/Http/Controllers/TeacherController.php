@@ -22,14 +22,14 @@ class TeacherController extends Controller
     public function store(Request $request){
         
         $role = Role::where('name', 'Teacher')->first();
-        $password = Hash::make("BHKLearningku");
-
+        
         $request->validate([
             'name' => 'required|string',
             'nuptk' => 'required|string',
-            'email' => 'required|email',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'image' => 'image|max:5120',
             'gender' => 'required|string',
+            'password' => ['required', 'string', 'min:8', 'alpha_num']
         ]);
 
         $photo_profile = null;
@@ -42,16 +42,13 @@ class TeacherController extends Controller
             $photo_profile = $imagePath;
         }
 
-
-        $student = DB::table('users')->find(DB::table('users')->max('id'));
-        
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
             'role_id' => $role->id,
             'user_code' => $request->nuptk,
-            'password' => $password,
+            'password' => $request->password,
             'photo_profile' => $photo_profile 
         ]);
 
