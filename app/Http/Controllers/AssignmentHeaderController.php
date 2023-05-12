@@ -78,8 +78,10 @@ class AssignmentHeaderController extends Controller
         $students = ClassDetail::select('users.id as id')
         ->join('users', 'users.id', 'class_details.student_user_id')
         ->join('roles','roles.id','users.role_id')
+        ->join('class_headers', 'class_headers.id', 'class_details.class_header_id')
+        ->join('class_subjects', 'class_subjects.class_header_id', 'class_headers.id')
         ->where('roles.name','Student')
-        ->where('class_details.class_header_id', $classSubjectId)
+        ->where('class_subjects.id', $classSubjectId)
         ->get();
 
         foreach ($students as $s) {
