@@ -22,7 +22,7 @@
                 <tbody>
                     @php $score = 0; $count = 0; @endphp
                     @foreach ($assignmentScores as $s)
-                        @if ($s->student_user_id == $student->studentId)
+                        @if ($s->student_user_id == $student->studentId && $s->assignmentHeader->class_subject_id == $classSubject->id)
                             @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
                             @php $score += $s->score; $count += 1; @endphp
                             <tr>

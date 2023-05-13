@@ -24,11 +24,12 @@
                     @php($i = 1)
                     @foreach($assignmentScore as $score)
                         @php($tempStudentId = null)
+                        @php($tempStudentScoreId = null)
                         @php($tempAsgCreatedAt = null)
                         @if($assignments->count() > 0)
                             @foreach($assignments as $assignment)
                                 @if ($score->assignmentHeaderId == $assignment->assignmentId && $score->studentUserId == $assignment->studentUserId)
-                                    @if ($score->score == 0 && $assignment->file === null)                                  
+                                    @if ($score->score === 0 && $assignment->file === null)                                  
                                     <tr>
                                         <td class="align-middle text-center">{{ $i }}</td>
                                         <td class="align-middle text-center">{{ $score->nisn }}</td>
@@ -83,7 +84,7 @@
                                     @php($tempStudentId = $assignment->studentUserId)
                                     @php($tempAsgCreatedAt = $assignment->createdAt)
                                 @else 
-                                    @if ($score->score === 0)
+                                    @if ($score->score === 0 && ($tempStudentScoreId != $score->studentUserId))
                                     <tr>
                                         <td class="align-middle text-center">{{ $i }}</td>
                                         <td class="align-middle text-center">{{ $score->nisn }}</td>
@@ -98,6 +99,7 @@
                                             -
                                         </td>
                                     </tr> 
+                                    @php($tempStudentScoreId = $score->studentUserId)
                                     @endif
                                 @endif
                             @endforeach

@@ -86,74 +86,75 @@ class ClassHeaderController extends Controller
         return redirect()->back()->with('success', 'Class deleted');
     }
 
-    public function viewClassStudentDashboard($route = null) {
-        $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
+    public function viewClassDashboard($route = null) {
+        if (auth()->user()->role->name == 'Student') {
+            $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
 
-        $class = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as teacherNuptk')
-                ->join('school_years','school_years.id','class_headers.school_year_id')
-                ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
-                ->where('class_headers.school_year_id', $lastSchoolYearId->id)
-                ->where('class_details.student_user_id', auth()->user()->id)
-                ->first();
-
-        $classes = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as teacherNuptk')
-                ->join('school_years','school_years.id','class_headers.school_year_id')
-                ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
-                ->where('class_details.student_user_id', auth()->user()->id)
-                ->orderBy('class_headers.school_year_id', 'DESC')->get();
-
-        $title = "";
-        if($route != "index" && $route != "assignment-score") { 
-            $title = ucfirst($route)."s"; 
-        } else if($route == "assignment-score") { 
-            $title = substr_replace($route,"Assignment Scores",0); 
+            $class = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as teacherNuptk')
+                    ->join('school_years','school_years.id','class_headers.school_year_id')
+                    ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
+                    ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
+                    ->where('class_headers.school_year_id', $lastSchoolYearId->id)
+                    ->where('class_details.student_user_id', auth()->user()->id)
+                    ->first();
+    
+            $classes = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as teacherNuptk')
+                    ->join('school_years','school_years.id','class_headers.school_year_id')
+                    ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
+                    ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
+                    ->where('class_details.student_user_id', auth()->user()->id)
+                    ->orderBy('class_headers.school_year_id', 'DESC')->get();
+    
+            $title = "";
+            if($route != "index" && $route != "assignment-score") { 
+                $title = ucfirst($route)."s"; 
+            } else if($route == "assignment-score") { 
+                $title = substr_replace($route,"Assignment Scores",0); 
+            } else {
+                $title = "Class and Subject"; 
+            }
+    
+            return view('dashboard.class-student', [
+                'class' => $class,
+                'classes' => $classes,
+                'subjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk')
+                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                    ->join('roles','roles.id','users.role_id')
+                    ->where('roles.name','Teacher')
+                    ->where('class_subjects.class_header_id', $class->id)
+                    ->get(),
+                'route' => $route,
+                'title' => $title
+            ]);
         } else {
-            $title = "Class and Subject"; 
-        }
+            $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
 
-        return view('dashboard.class-student', [
-            'class' => $class,
-            'classes' => $classes,
-            'subjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk')
+            // dd($lastSchoolYearId);
+            $title = "";
+            if($route != "index" && $route != "assignment-score") { 
+                $title = ucfirst($route)."s"; 
+            } else if($route == "assignment-score") { 
+                $title = substr_replace($route,"Assignment Scores",0); 
+            } else {
+                $title = "Class and Subject"; 
+            }
+    
+            return view('dashboard.class-teacher',[
+                'schoolYears' => SchoolYear::orderBy('id', 'DESC')->get(),
+                'classAndSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'userB.name as homeroomTeacherName', 'userB.user_code as homeroomTeacherNuptk')
                 ->join('users', 'users.id', 'class_subjects.teacher_user_id')
                 ->join('roles','roles.id','users.role_id')
+                ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                 ->where('roles.name','Teacher')
-                ->where('class_subjects.class_header_id', $class->id)
+                ->where('class_headers.school_year_id', $lastSchoolYearId->id)
+                ->where('class_subjects.teacher_user_id', auth()->user()->id)
                 ->get(),
-            'route' => $route,
-            'title' => $title
-        ]);
-    }
-
-    public function viewClassTeacherDashboard($route = null){
-        $lastSchoolYearId = SchoolYear::select('school_years.id as id')->orderBy('id', 'DESC')->first();
-
-        // dd($lastSchoolYearId);
-        $title = "";
-        if($route != "index" && $route != "assignment-score") { 
-            $title = ucfirst($route)."s"; 
-        } else if($route == "assignment-score") { 
-            $title = substr_replace($route,"Assignment Scores",0); 
-        } else {
-            $title = "Class and Subject"; 
+                'route' => $route,
+                'title' => $title
+            ]);
         }
 
-        return view('dashboard.class-teacher',[
-            'schoolYears' => SchoolYear::orderBy('id', 'DESC')->get(),
-            'classAndSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'userB.name as homeroomTeacherName', 'userB.user_code as homeroomTeacherNuptk')
-            ->join('users', 'users.id', 'class_subjects.teacher_user_id')
-            ->join('roles','roles.id','users.role_id')
-            ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-            ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
-            ->where('roles.name','Teacher')
-            ->where('class_headers.school_year_id', $lastSchoolYearId->id)
-            ->where('class_subjects.teacher_user_id', auth()->user()->id)
-            ->get(),
-            'route' => $route,
-            'title' => $title
-        ]);
     }
 
     public function getTeacherClassTaught($schoolYearId) {

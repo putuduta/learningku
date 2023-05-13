@@ -24,7 +24,7 @@ class ScoreController extends Controller
         if (auth()->user()->role->name == 'Student') {
             return view('score.index', [
                 'assignmentScores' => AssignmentScore::where('student_user_id', auth()->user()->id)->get(),
-                'examScores' => ExamScore::where('student_user_id', auth()->user()->id)->get(),
+                'examScores' => ExamScore::where([['student_user_id', auth()->user()->id],['class_subject_id', $classSubjectId]])->get(),
                 'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                     'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                     'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk', 'minimum_score')
@@ -49,7 +49,7 @@ class ScoreController extends Controller
                 ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
                 ->get(),
                 'assignmentScores' => AssignmentScore::get(),
-                'examScores' => ExamScore::get()
+                'examScores' => ExamScore::where('class_subject_id', $classSubjectId)->get()
             ]);
         }
     }

@@ -60,19 +60,21 @@
                 <tbody>
                     @php $score = 0; $count = 0; @endphp
                     @foreach ($assignmentScores as $s)
-                        @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
-                            @php $score += $s->score; $count += 1; @endphp
-                            <tr>
-                                <td class="align-middle text-center">{{ $count }}</td>
-                                <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
-                                <td class="align-middle text-center">{{ $s->score }}</td>
-                                <td class="align-middle text-center">
-                                    <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                    data-bs-target="#notes{{ $s->id }}">
-                                        Show
-                                    </button>
-                                </td>
-                            </tr>
+                        @if($s->assignmentHeader->class_subject_id == $classSubject->id)
+                            @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
+                                @php $score += $s->score; $count += 1; @endphp
+                                <tr>
+                                    <td class="align-middle text-center">{{ $count }}</td>
+                                    <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                    <td class="align-middle text-center">{{ $s->score }}</td>
+                                    <td class="align-middle text-center">
+                                        <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
+                                        data-bs-target="#notes{{ $s->id }}">
+                                            Show
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endif
                         @endif
                     @endforeach
                 </tbody>

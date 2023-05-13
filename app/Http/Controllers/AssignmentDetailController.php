@@ -58,7 +58,7 @@ class AssignmentDetailController extends Controller
         ]);
 
         // Students submit assignment set score back to null
-        $asg_score = AssignmentScore::where('assignment_header_id', $assignmentHeader->id)->first();
+        $asg_score = AssignmentScore::where([['assignment_header_id', $assignmentHeader->id],['student_user_id', auth()->user()->id]])->first();
         $asg_score->score = null;
         $asg_score->save();
 
