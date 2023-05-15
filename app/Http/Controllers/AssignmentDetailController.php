@@ -8,6 +8,7 @@ use App\Models\AssignmentScore;
 use App\Models\ClassDetail;
 use App\Models\ClassSubject;
 use App\Models\Score;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
@@ -17,11 +18,16 @@ class AssignmentDetailController extends Controller
 
     public function viewAssignmentSubmission($assignmentId, $classSubjectId)
     {
-        // dd(DB::table('assignment_details as a')->select('a.id as id', 'a.assignment_header_id as assignmentId', 'c.title as assignmentTitle', 'a.file as file', 'a.created_at as createdAt', 'a.student_user_id as studentUserId', 'u.name as studentName')->where('a.assignment_header_id', $assignmentId)
-        //  ->join('assignment_headers as c','c.id','a.assignment_header_id')->join('users as u','u.id','a.student_user_id')->get());
+
+        $assignmentDetails = AssignmentDetail::select(DB::raw('assignment_details.*'))
+        ->join(DB::raw('(select assignment_header_id, student_user_id, max(id) as maxid from assignment_details group by assignment_header_id,student_user_id) b'), 'assignment_details.id','b.maxid')
+        ->where('assignment_details.assignment_header_id', $assignmentId);
+
         return view('assignment.show', [
-            'assignments' => DB::table('assignment_details as a')->select('a.id as id', 'a.assignment_header_id as assignmentId', 'c.title as assignmentTitle', 'a.file as file', 'a.created_at as createdAt', 'a.student_user_id as studentUserId', 'u.name as studentName')->where('a.assignment_header_id', $assignmentId)
-                            ->join('assignment_headers as c','c.id','a.assignment_header_id')->join('users as u','u.id','a.student_user_id')->get(),
+            'assignments' => DB::table('assignment_headers as c')->select('assignment_details.id as id', 'assignment_details.assignment_header_id as assignmentId', 'c.title as assignmentTitle', 'assignment_details.file as file', 'assignment_details.created_at as createdAt', 'assignment_details.student_user_id as studentUserId', 'u.name as studentName')
+            ->joinSub($assignmentDetails, 'assignment_details', function (JoinClause $join) {
+                $join->on('c.id', '=', 'assignment_details.assignment_header_id');
+            })->join('users as u','u.id','assignment_details.student_user_id')->where('c.id', $assignmentId)->get(),
             'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
