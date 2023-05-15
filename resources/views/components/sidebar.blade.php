@@ -70,37 +70,37 @@
                 @if (auth()->user()->role->name == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                        href="{{ route('dashboard-class-student', 'index') }}" role="button" id="dropdownMenuLink">
+                        href="{{ route('dashboard-class', 'index') }}" role="button" id="dropdownMenuLink">
                             <span class="ms-2">Class and Subject</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-student', 'material') }}">
+                            href="{{ route('dashboard-class', 'material') }}">
                             <span class="ms-2">Materials</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-student', 'forum') }}">
+                            href="{{ route('dashboard-class', 'forum') }}">
                             <span class="ms-2">Forums</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-student', 'assignment') }}">
+                            href="{{ route('dashboard-class', 'assignment') }}">
                             <span class="ms-2">Assignments</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-student', 'score') }}">
+                            href="{{ route('dashboard-class', 'score') }}">
                             <span class="ms-2">Scores</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-student', 'attendance') }}">
+                            href="{{ route('dashboard-class', 'attendance') }}">
                             <span class="ms-2">Attendances</span>
                         </a>
                     </li>
@@ -108,43 +108,43 @@
                 @if (auth()->user()->role->name == 'Teacher')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'index') }}">
+                            href="{{ route('dashboard-class', 'index') }}">
                             <span class="ms-2">Class and Subject</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'material') }}">
+                            href="{{ route('dashboard-class', 'material') }}">
                             <span class="ms-2">Materials</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'forum') }}">
+                            href="{{ route('dashboard-class', 'forum') }}">
                             <span class="ms-2">Forums</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'assignment') }}">
+                            href="{{ route('dashboard-class', 'assignment') }}">
                             <span class="ms-2">Assignments</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'score') }}">
+                            href="{{ route('dashboard-class', 'score') }}">
                             <span class="ms-2">Scores</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'attendance') }}">
+                            href="{{ route('dashboard-class', 'attendance') }}">
                             <span class="ms-2">Attendances</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class-teacher', 'student') }}">
+                            href="{{ route('dashboard-class', 'student') }}">
                             <span class="ms-2">Students</span>
                         </a>
                     </li>
