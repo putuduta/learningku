@@ -799,8 +799,478 @@ class ScoreSeeder extends Seeder
                 'student_user_id' => 34,
                 'score' => '90',
                 'notes' => '<h5>Good Job!</h5>'
+            ],
+            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 4,
+                'score' => null,
+                'notes' =>null
+            ],
+            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 5,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 6,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 7,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 8,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 9,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 10,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 11,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 12,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 13,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 14,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 15,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 16,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 17,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 18,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 19,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 20,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 21,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 22,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 23,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 24,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 25,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 26,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 27,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 28,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 29,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 30,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 31,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 32,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 33,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 6,
+                'student_user_id' => 34,
+                'score' => null,
+                'notes' =>null
+            ],
+            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 4,
+                'score' => null,
+                'notes' =>null
+            ],
+            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 5,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 6,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 7,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 8,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 9,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 10,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 11,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 12,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 13,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 14,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 15,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 16,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 17,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 18,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 19,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 20,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 21,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 22,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 23,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 24,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 25,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 26,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 27,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 28,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 29,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 30,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 31,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 32,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 33,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 7,
+                'student_user_id' => 34,
+                'score' => null,
+                'notes' =>null
+            ],
+            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 4,
+                'score' => null,
+                'notes' =>null
+            ],
+            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 5,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 6,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 7,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 8,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 9,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 10,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 11,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 12,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 13,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 14,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 15,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 16,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 17,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 18,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 19,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 20,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 21,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 22,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 23,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 24,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 25,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 26,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 27,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 28,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 29,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 30,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 31,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 32,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 33,
+                'score' => null,
+                'notes' =>null
+            ],            [
+                'assignment_header_id' => 8,
+                'student_user_id' => 34,
+                'score' => null,
+                'notes' =>null
             ]
-            
         ]);
 
 

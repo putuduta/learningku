@@ -46,7 +46,9 @@ class ScoreController extends Controller
                     ->where('class_subjects.id', $classSubjectId)->first(),
                 'class_details' => User::select('users.id as studentId','users.name as studentName', 'users.user_code as studentNisn')
                 ->join('class_details','class_details.student_user_id','users.id')
-                ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId]])
+                ->join('class_headers', 'class_headers.id', 'class_details.class_header_id')
+                ->join('class_subjects', 'class_headers.id', 'class_subjects.class_header_id')
+                ->where([['users.role_id','3'],['class_subjects.id', $classSubjectId]])
                 ->get(),
                 'assignmentScores' => AssignmentScore::get(),
                 'examScores' => ExamScore::where('class_subject_id', $classSubjectId)->get()
@@ -131,10 +133,12 @@ class ScoreController extends Controller
                 ->where('class_subjects.id', $classSubjectId)->first(),
             'student' => User::select('users.id as studentId','users.name as studentName', 'users.user_code as studentNisn')
             ->join('class_details','class_details.student_user_id','users.id')
-            ->where([['users.role_id','3'],['class_details.class_header_id', $classSubjectId],['users.id', $studentId]])
+            ->join('class_headers', 'class_headers.id', 'class_details.class_header_id')
+            ->join('class_subjects', 'class_headers.id', 'class_subjects.class_header_id')
+            ->where([['users.role_id','3'],['class_subjects.id', $classSubjectId],['users.id', $studentId]])
             ->first(),
             'assignmentScores' => AssignmentScore::where('student_user_id', $studentId)->get(),
-            'examScores' => ExamScore::where('student_user_id', $studentId)->get()
+            'examScores' => ExamScore::where([['student_user_id', $studentId],['class_subject_id', $classSubjectId]])->get()
         ]);
     }
 

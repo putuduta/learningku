@@ -58,7 +58,7 @@
                     <th class="align-middle text-center">Notes/Feedback</th>
                 </thead>
                 <tbody>
-                    @php $score = 0; $count = 0; @endphp
+                    @php $score = 0; $count = 0; $isAllAsgNotScored = true; @endphp
                     @foreach ($assignmentScores as $s)
                         @if($s->assignmentHeader->class_subject_id == $classSubject->id)
                             @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
@@ -72,6 +72,17 @@
                                         data-bs-target="#notes{{ $s->id }}">
                                             Show
                                         </button>
+                                    </td>
+                                </tr>
+                            @endif
+                            @if ($s->score === null)
+                                @php $score += $s->score; $count += 1; $isAllAsgNotScored = false; @endphp
+                                <tr>
+                                    <td class="align-middle text-center">{{ $count }}</td>
+                                    <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                    <td class="align-middle text-center">-</td>
+                                    <td class="align-middle text-center">
+                                        -
                                     </td>
                                 </tr>
                             @endif
@@ -147,7 +158,7 @@
                     <th class="align-middle text-center">Minimum Score</th>
                 </thead>
                 <tbody>
-                    @if ($countExam === 2)
+                    @if ($countExam === 2 && $isAllAsgNotScored)
                         @if ( $score/$count > $classSubject->minimum_score)
                         <td class="align-middle text-center bg-success">  
                         @else
