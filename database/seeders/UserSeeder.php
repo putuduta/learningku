@@ -169,7 +169,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('bhklearningku')
             ],
             [
-                'user_code'=> '009019207971',
+                'user_code'=> '9019207971',
                 'name' => 'Lance Ayson Winarto',
                 'email' => 'lance@gmail.com',
                 'gender' => 'Male',
