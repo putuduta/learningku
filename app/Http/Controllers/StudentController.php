@@ -19,17 +19,8 @@ use Illuminate\Support\Facades\Storage;
 class StudentController extends Controller
 {
     public function store(Request $request){
-        
-        $role = Role::where('name', 'Student')->first();
-
-        $request->validate([
-            'name' => 'required|string',
-            'nisn' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'image' => 'image|max:5120',
-            'gender' => 'required|string',
-            'password' => ['required', 'string', 'min:8', 'alpha_num']
-        ]);
+    
+        $this->validateData($request, false);
 
         $photo_profile = null;
         if($request->image){
@@ -45,8 +36,8 @@ class StudentController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
-            'role_id' => $role->id,
-            'password' => Hash::make("BHKLearningku"),
+            'role_id' => 3,
+            'password' => $request->password,
             'user_code' => $request->nisn,
             'photo_profile' => $photo_profile
         ]);
@@ -56,32 +47,17 @@ class StudentController extends Controller
 
 
     public function destroy($id){
-        $student = User::find($id);
-    	$student->delete();
+    	User::destroy($id);
 
         return redirect()->back()->with('success', 'Student Deleted');
     }
 
-    public function update($id, Request $request){
+    public function update(User $student, Request $request){
+        $this->validateData($request, true);
 
-        $request->validate([
-            'name' => 'required|string',
-            'nisn' => 'required|string',
-            'email' => 'required|email',
-            'password' => 'required|string',
-            'image' => 'image|max:5120',
-            'gender' => 'required|string',
-        ]);
-
-        $student = User::find($id);
-
-        $student->name = $request->name;
-        $student->email = $request->email;
-        $student->gender = $request->gender;
-        $student->user_code = $request->nisn;
-
-        if(Hash::check($request->password, $student->password)){
-            $student->password = Hash::make($request->password);
+        $password = $student->password;
+        if(Hash::check($request->password,  $password)){
+            $password = Hash::make($request->password);
         }
 
         if($request->image){
@@ -90,20 +66,44 @@ class StudentController extends Controller
 
             Storage::putFileAs('public/images', $file, $imageName);
             $imagePath = 'images/'.$imageName;
-            $student->photo_profile = $imagePath;
+        } else {
+            $imagePath = $student->imagePath;
         }
         
-        $student->save();
+        $student->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'user_code' => $request->nisn,
+            'password' => $password,
+            'photo_profile' => $imagePath 
+        ]);
 
         return redirect()->back()->with('success', 'Student Data Updated');
     }
 
     public function index(){
         return view('admin.student-list',[
-            'students' => User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 'users.gender')
+            'studentList' => User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 'users.gender')
                         ->join('roles','roles.id','users.role_id')
                         ->where([['roles.name','Student']])
                         ->get()
         ]);
+    }
+
+    public function validateData($request, $isUpdate) {
+        $request->validate([
+            'name' => 'required|string',
+            'nisn' => 'required|string',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'image' => 'image|max:5120',
+            'gender' => 'required|string'
+        ]);
+
+        if (!$isUpdate) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'alpha_num']
+            ]);
+        }
     }
 }

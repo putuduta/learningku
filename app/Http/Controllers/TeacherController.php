@@ -19,18 +19,8 @@ use Illuminate\Support\Facades\Storage;
 class TeacherController extends Controller
 {
 
-    public function store(Request $request){
-        
-        $role = Role::where('name', 'Teacher')->first();
-        
-        $request->validate([
-            'name' => 'required|string',
-            'nuptk' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'image' => 'image|max:5120',
-            'gender' => 'required|string',
-            'password' => ['required', 'string', 'min:8', 'alpha_num']
-        ]);
+    public function store(Request $request){      
+        $this->validateData($request, false);
 
         $photo_profile = null;
         if($request->image){
@@ -46,7 +36,7 @@ class TeacherController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
-            'role_id' => $role->id,
+            'role_id' => 2,
             'user_code' => $request->nuptk,
             'password' => $request->password,
             'photo_profile' => $photo_profile 
@@ -56,60 +46,46 @@ class TeacherController extends Controller
     }
 
     public function destroy($id){
-        // dd($id);
-        $teacher = User::find($id);
-    	$teacher->delete();
+        User::destroy($id);
 
         return redirect()->back()->with('success', 'Teacher Deleted');
     }
 
 
-    public function update($id, Request $request){
+    public function update(User $teacher, Request $request){
 
-        $request->validate([
-            'name' => 'required|string',
-            'nuptk' => 'required|string',
-            'email' => 'required|email',
-            'password' => 'required|string',
-            'image' => 'image|max:5120',
-            'gender' => 'required|string'
-        ]);
+        $this->validateData($request, true);
 
-        $teacher = User::find($id);
-
-        $teacher->name = $request->name;
-        $teacher->email = $request->email;
-        $teacher->gender = $request->gender;
-        $teacher->user_code = $request->nuptk;
-
-        if(Hash::check($request->password, $teacher->password)){
-            $teacher->password = Hash::make($request->password);
+        $password = $teacher->password;
+        if(Hash::check($request->password,  $password)){
+            $password = Hash::make($request->password);
         }
-        
+
         if($request->image){
             $file = $request->file('image');
             $imageName = time().'_'.$file->getClientOriginalName();
 
             Storage::putFileAs('public/images', $file, $imageName);
             $imagePath = 'images/'.$imageName;
-            $teacher->photo_profile = $imagePath;
+        } else {
+            $imagePath = $teacher->imagePath;
         }
         
-        $teacher->save();
+        $teacher->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'user_code' => $request->nuptk,
+            'password' => $password,
+            'photo_profile' => $imagePath 
+        ]);
 
         return redirect()->back()->with('success', 'Teacher Data Updated');
     }
 
     public function index(){
-        /*return view('admin.teacher-list',[
-            'teachers' => User::select('users.id','users.name')
-                        ->join('roles','roles.id','users.role_id')
-                        ->where([['roles.name','Teacher'],['institution_id',auth()->user()->institution_id]])
-                        ->get()
-        ]);*/
-
         return view('admin.teacher-list',[
-            'teachers' => User::select('users.id','users.name','users.user_code as nuptk','users.email','users.password', 
+            'teacherList' => User::select('users.id','users.name','users.user_code as nuptk','users.email','users.password', 
                         'users.gender')
                         ->join('roles','roles.id','users.role_id')
                         ->where([['roles.name','Teacher']])
@@ -117,5 +93,20 @@ class TeacherController extends Controller
         ]);
     }
 
+    public function validateData($request, $isUpdate) {
+        $request->validate([
+            'name' => 'required|string',
+            'nuptk' => 'required|string',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'image' => 'image|max:5120',
+            'gender' => 'required|string'
+        ]);
+
+        if (!$isUpdate) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'alpha_num']
+            ]);
+        }
+    }
     
 }

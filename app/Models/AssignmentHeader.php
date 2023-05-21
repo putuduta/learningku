@@ -11,7 +11,6 @@ class AssignmentHeader extends Model
     use HasFactory;
     protected $table = 'assignment_headers';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function submission()

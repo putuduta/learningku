@@ -1,0 +1,7 @@
+1. 0,15 mol asam asetat (CH3COOH, Ka = 2 × 10− 5) dan 0,10 mol NaOH dilarutkan dalam air sehingga diperoleh larutan penyangga dengan volume 1 liter. Tentukan pH larutan penyangga tersebut!
+Jawab:
+Data:0,15 mol CH3COOH direaksikan dengan 0,10 mol NaOHReaksi yang terjadi: Tersisa 0,05 mol CH3COOH (asam lemah) dan 0,10 mol CH3COONa (garam). Dari sini dapat ditentukan [H+] dengan rumus berikut: Terakhir, pH larutan adalah:pH = − log [H+] = − log 10−5= 5
+
+2. Sebanyak 200 mL larutan HCOOH 0,1 M direaksikan dengan 50 mL larutan NaOH 0,2 M. Bila Ka HCOOH = 2 × 10−4dan log 2 = 0,3, harga pH larutan setelah reaksi adalah..
+Jawab:
+200 mL larutan HCOOH 0,1 M → 20 mmol50 mL larutan NaOH 0,2 M → 10 mmolReaksi yang terjadi sebagai berikut: Tersisa 10 mmol HCOOH dan 10 mmol HCOONaTerakhir, pH larutan adalah:pH = − log [H+] = − log (2 × 10−4)= 4 − log2 = 4 − 0,3 = 3,7

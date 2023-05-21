@@ -12,7 +12,6 @@ class AssignmentScore extends Model
 
     protected $table = "assignment_scores";
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function user()

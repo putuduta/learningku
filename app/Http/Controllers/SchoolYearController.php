@@ -19,19 +19,15 @@ use Illuminate\Support\Facades\Storage;
 class SchoolYearController extends Controller
 {
 
-    // School Year
     public function index(){
         return view('admin.school-year-list',[
-            'schoolYears' => SchoolYear::get()
+            'schoolYearList' => SchoolYear::get()
         ]);
     }
 
     public function store(Request $request){
 
-        $request->validate([
-            'year' => 'required|string',
-            'semester' => 'required|string'
-        ]);
+        $this->validateData($request);
 
         SchoolYear::create([
             'year' => $request->year,
@@ -41,22 +37,29 @@ class SchoolYearController extends Controller
         return redirect()->route('admin-school-year-view')->with('success','New School Year Created');
     }
 
-    public function update($id, Request $request){
-        $schoolYear = SchoolYear::find($id);
+    public function update(SchoolYear $schoolYear, Request $request){
+        $this->validateData($request);
 
-        $schoolYear->year = $request->year;
-        $schoolYear->semester = $request->semester;
-        
-        $schoolYear->save();
+        $schoolYear->update([
+            'year' => $request->year,
+            'semester' => $request->semester,
+        ]);
 
         return redirect()->back()->with('success', 'School Year Updated');
     }
     
     public function destroy($id)
     {
-        $schoolYear = SchoolYear::find($id);
-        $schoolYear->delete();
+        SchoolYear::destroy($id);
 
         return redirect()->back()->with('success', 'School Year deleted');
+    }
+
+    public function validateData($request) 
+    {
+        $request->validate([
+            'year' => 'required|string',
+            'semester' => 'required|string'
+        ]);
     }
 }

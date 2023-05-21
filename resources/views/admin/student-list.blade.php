@@ -16,7 +16,7 @@
                          <th class="align-middle text-center">Action</th>
                     </thead>
                     <tbody>
-                         @foreach ($students as $index => $student)
+                         @foreach ($studentList as $index => $student)
                               <tr>
                                    <td class="align-middle text-center">{{$index+1}}</td>
                                    <td class="align-middle text-center">{{$student->name}}</td>
@@ -96,7 +96,7 @@
     </div>
 </div>
 
-@foreach($students as $student)
+@foreach($studentList as $student)
         <div class="modal fade" id="updateStudent{{ $student->id }}" tabindex="-1" aria-labelledby="updateStudent"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -106,7 +106,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('student-update', $student->id) }}" method="POST"
+                        <form action="{{ route('student-update', $student) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
@@ -160,7 +160,7 @@
     @endforeach
 
 
-    @foreach ($students as $student)
+    @foreach ($studentList as $student)
     <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $student->id }}"
         tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -12,7 +12,6 @@ class AttendanceDetail extends Model
 
     protected $table = 'attendance_details';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
     
     public function student()

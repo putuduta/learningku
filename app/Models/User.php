@@ -46,13 +46,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $dates = ['deleted_at'];
-
     public function role(){
         return $this->hasOne('App\Models\Role', 'id','role_id')->withDefault();
     }
 
-    public function teacherclass(){
+    public function teacherManageClass(){
         return $this->hasMany('App\Models\ClassHeader', 'teacher_user_id','id')->withDefault();
     }
 
@@ -60,4 +58,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ClassDetail', 'student_user_id','id')->withDefault();
     }
 
+    public function teacherSubjectTeach(){
+        return $this->hasMany('App\Models\ClassSubject', 'teacher_user_id','id')->withDefault();
+    }
 }

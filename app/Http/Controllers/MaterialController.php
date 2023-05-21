@@ -12,39 +12,22 @@ use Illuminate\Support\Facades\Storage;
 class MaterialController extends Controller
 {
     public function index($classSubjectId){
-        if (auth()->user()->role->name == 'Student') {
-            return view('material.index', [
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
-                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
-                    ->where('class_subjects.id', $classSubjectId)->first(),
-                'materials' => Material::where('class_subject_id', $classSubjectId)->get()
-            ]);
-        } else {
-            return view('material.index', [
-                'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
-                    'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
-                    'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
-                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-                    ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
-                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
-                    ->where('class_subjects.id', $classSubjectId)->first(),
-                'materials' => Material::where('class_subject_id', $classSubjectId)->get()
-            ]);
-        }
+        return view('material.index', [
+            'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
+                'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+                'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
+                ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+                ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
+                ->find($classSubjectId),
+            'materials' => Material::where('class_subject_id', $classSubjectId)->get()
+        ]);
     }
 
-    public function create(){
-
-    }
 
     public function store(Request $request){   
-        $material = new Material();
+        $this->validateData($request);
 
         if ($request->hasFile('file')) {
             $extension = $request->file('file')->getClientOriginalExtension();
@@ -54,48 +37,41 @@ class MaterialController extends Controller
             $file_name = "";
         }
 
-        $material->class_subject_id = $request->class_subject_id;
-        $material->title = $request->title;
-        $material->description = $request->description;
-        $material->resource = $file_name;
-
-        $material->save();
+        Material::create([
+            'class_subject_id' => $request->class_subject_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'resource' => $file_name,
+        ]);
 
         return redirect()->back()->with('success', 'New Material Created');
     }
 
-    public function show($id){
+    public function update(Material $material, Request $request){
 
-    }
+        $this->validateData($request);
 
-    public function edit($id){
-
-    }
-
-    public function update(Request $request){
-        $updateMaterial = Material::find($request->id);
-        
         if ($request->hasFile('file')) {
             $extension = $request->file('file')->getClientOriginalExtension();
             $file_name = 'Material_' . $request->title . '_' . time() . '.' . $extension;
             $image = $request->file('file')->storeAs('public/material', $file_name);
         } else {
-            $file_name = $updateMaterial->resource;
+            $file_name = $material->resource;
         }
 
-        $updateMaterial->class_subject_id = $request->class_subject_id;
-        $updateMaterial->title = $request->title;
-        $updateMaterial->description = $request->description;
-        $updateMaterial->resource = $file_name;
-        
-        $updateMaterial->save();
+        $material->update([
+            'class_subject_id' => $request->class_subject_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'resource' => $file_name,
+        ]);
 
         return redirect()->back()->with('success', 'Material Updated');
     }
 
     public function destroy($id){
-        $deleteMaterial = Material::find($id);
-        $deleteMaterial->delete();
+        Material::destroy($id);
+
         return redirect()->back()->with('success', 'Material Deleted');
     }
     
@@ -114,5 +90,43 @@ class MaterialController extends Controller
         }
 
         //return response()->download(storage_path('app\material\Material_BAB 1_1674658639.txt'));
+    }
+
+    public function validateData($request) {
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string'
+        ]);
+    }
+
+    public function viewChooseClassSubject() {
+        if (auth()->user()->role->name === 'Student') {
+            return view('material.index', [
+                'classSubjects' => ClassSubject::select('class_headers.id as classId','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as homeRoomTeacherNuptk',
+                                    'class_subjects.id as subjectId', 'class_subjects.name as subjectName','user2.id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
+                                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')    
+                                    ->join('school_years','school_years.id','class_headers.school_year_id')
+                                    ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
+                                    ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
+                                    ->join('users as user2', 'user2.id', 'class_subjects.teacher_user_id')
+                                    ->join('roles','roles.id','users.role_id')
+                                    ->where('roles.name','Teacher')
+                                    ->where('class_details.student_user_id', auth()->user()->id)
+                                    ->orderBy('class_headers.school_year_id', 'DESC')->get()
+            ]);
+        } else {
+
+            return view('material.index',[
+                'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'userB.name as homeroomTeacherName', 'userB.user_code as homeroomTeacherNuptk', 'school_years.year as schoolYear', 'school_years.semester as semester', 'school_years.id as schoolYearId')
+                                    ->join('users', 'users.id', 'class_subjects.teacher_user_id')
+                                    ->join('roles','roles.id','users.role_id')
+                                    ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
+                                    ->join('school_years','school_years.id','class_headers.school_year_id')
+                                    ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
+                                    ->where('roles.name','Teacher')
+                                    ->where('class_subjects.teacher_user_id', auth()->user()->id)
+                                    ->orderBy('class_headers.school_year_id', 'DESC')->get()
+            ]);
+        }
     }
 }

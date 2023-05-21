@@ -12,6 +12,5 @@ class SchoolYear extends Model
 
     protected $table = "school_years";
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 }

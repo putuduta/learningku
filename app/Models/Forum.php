@@ -12,7 +12,6 @@ class Forum extends Model
 
     protected $table = 'forums';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function replies()

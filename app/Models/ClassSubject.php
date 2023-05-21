@@ -12,7 +12,6 @@ class ClassSubject extends Model
 
     protected $table = 'class_subjects';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     

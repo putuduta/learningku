@@ -12,7 +12,6 @@ class ExamScore extends Model
 
     protected $table = "exam_scores";
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function user()

@@ -1,0 +1,14 @@
+Data Tugas
+id tugas Nama Tugas, file tugas, batas waktu, mata pelajaran, nama kelas
+Data Jawaban Tugas
+Id jawaban tugas, Nama siswa, file jawaban tugas, id tugas, Nama Tugas
+Data Kehadiran
+Hari, status, (id mata pelajaran, nama mata pelajaran, id kelas, nama kelas, (nama siswa, kode unik siswa)))
+Data Nilai Ujian
+Nama ujian, nilai ujian, nama siswa, kode unik siswa, nilai minimum mata pelajaran, mata pelajaran, nama kelas
+Data Kelas
+tahun ajaran, semester, nama, nama guru wali kelas, kode unik guru wali kelas, nama siswa, kode unik siswa
+Data Materi
+judul materi, deskripsi materi, file materi, (id mata pelajaran, nama mata pelajaran, id kelas, nama kelas)
+Data Forum
+Judul, deskripsi, file, mata pelajaran, nama guru yang membuat, kode unik guru, deskripsi balasan forum, file balasan forum, nama guru atau siswa yang membalas, kode unik guru atau siswa yang membalas 

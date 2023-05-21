@@ -1,4 +1,4 @@
-<x-app title="Attendance - {{ $classSubject->name }} {{ $classSubject->className }}">
+<x-app title="Attendance - {{ $classDetails->first()->name }} {{ $classDetails->first()->className }}">
 
     <x-slot name="navbar"></x-slot>
 
@@ -11,8 +11,8 @@
         </div>
         <div class="">
             <div class="">
-                <h3>Attendance - Subject {{ $classSubject->name }}</h3>
-                <h5>{{ $classSubject->className }} - {{ $classSubject->schoolYear }} {{ $classSubject->semester }}</h5>
+                <h3>Attendance - Subject {{ $classDetails->first()->name }}</h3>
+                <h5>{{ $classDetails->first()->className }} - {{ $classDetails->first()->schoolYear }} {{ $classDetails->first()->semester }}</h5>
                 <hr>
                 <form action="{{ route('attendance.create') }}" method="POST">
                     @csrf
@@ -36,7 +36,7 @@
                                     <th class="align-middle text-center">Absent</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($class_details as $index=>$student)
+                                    @foreach($classDetails as $index=>$student)
                                     <tr>
                                         <td class="align-middle text-center">{{ $index+1 }}</td>
                                         <td class="align-middle text-center">{{ $student->studentNisn }}</td>
@@ -63,7 +63,7 @@
                             </table>
                         </div>
                     </div>
-                    <input type="hidden" name="class_subject_id" value="{{ $classSubject->id }}">
+                    <input type="hidden" name="class_subject_id" value="{{ $classDetails->first()->id }}">
                     <button type="submit" class="btn btn-primary text-white">Submit</button>
                 </form>
             </div>

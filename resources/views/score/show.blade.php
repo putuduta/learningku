@@ -5,10 +5,10 @@
         <div class="mb-3">
             <span class="fa-stack fa-md ms-n1">
                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
-                <a href="{{ route('score.index', $classSubject->id)}}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+                <a href="{{ route('score.index-teacher', $classSubject->id)}}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
-        <h3 class="fw-bold">Scores - ({{ $student->studentName }} - {{ $student->studentNisn }}) - ({{ $classSubject->name }} - {{ $classSubject->className }})</h3>
+        <h3 class="fw-bold">Scores - ({{ $classSubject->studentName }} - {{ $classSubject->studentNisn }}) - ({{ $classSubject->name }} - {{ $classSubject->className }})</h3>
         <hr>
         <h5 class="modal-title pb-2" id="staticBackdropLabel">Assignment Scores</h5>
         <div class="table-responsive">
@@ -22,7 +22,7 @@
                 <tbody>
                     @php $score = 0; $count = 0;$isAllAsgNotScored = true; @endphp
                     @foreach ($assignmentScores as $s)
-                        @if ($s->student_user_id == $student->studentId && $s->assignmentHeader->class_subject_id == $classSubject->id)
+                        @if ($s->student_user_id == $classSubject->studentId && $s->assignmentHeader->class_subject_id == $classSubject->id)
                             @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
                             @php $score += $s->score; $count += 1; @endphp
                             <tr>
@@ -37,7 +37,7 @@
                                     </button>
                                 </td>
                             </tr>
-                            @elseif (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score === null) 
+                            @elseif (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score === null)
                             @php $count += 1; $isAllAsgNotScored = false; @endphp
                             <tr>
                                 <td class="align-middle text-center">{{ $count }}</td>
@@ -69,7 +69,7 @@
                 <tbody>
                     @php $countExam = 0; $isUTS = false; $isUAS = false; @endphp
                     @foreach ($examScores as $s)
-                        @if ($s->student_user_id == $student->studentId)
+                        @if ($s->student_user_id == $classSubject->studentId)
                             @php $score += $s->score; $count += 1; $countExam += 1; @endphp
                             @if ($s->name == "UTS")
                                 @php $isUTS = true; @endphp
@@ -193,7 +193,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.store-assignment') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.store-assignment', $score) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
@@ -228,7 +228,7 @@
                     @csrf
                     <input type="text" class="form-control" name="name" id="name" value="UTS" hidden>
                     <input type="text" class="form-control" name="classSubjectId" id="classSubjectId" value="{{$classSubject->id}}" hidden>
-                    <input type="text" class="form-control" name="studentId" id="studentId" value="{{ $student->studentId}}" hidden>
+                    <input type="text" class="form-control" name="studentId" id="studentId" value="{{ $classSubject->studentId}}" hidden>
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
@@ -255,7 +255,7 @@
                     @csrf
                     <input type="text" class="form-control" name="name" id="name" value="UAS" hidden>
                     <input type="text" class="form-control" name="classSubjectId" id="classSubjectId" value="{{$classSubject->id}}" hidden>
-                    <input type="text" class="form-control" name="studentId" id="studentId" value="{{ $student->studentId}}" hidden>
+                    <input type="text" class="form-control" name="studentId" id="studentId" value="{{ $classSubject->studentId}}" hidden>
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
@@ -310,7 +310,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.update-assignment', $score->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.update-assignment', $score) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="">

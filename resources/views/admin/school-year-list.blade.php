@@ -16,7 +16,7 @@
                         <th class="align-middle text-center" colspan="3">Action</th>
                    </thead>
                    <tbody>
-                        @foreach ($schoolYears as $index => $schoolYear)
+                        @foreach ($schoolYearList as $index => $schoolYear)
                              <tr>
                                   <td class="align-middle text-center">{{$index+1}}</td>
                                   <td class="align-middle text-center">{{$schoolYear->year}}</td>
@@ -41,7 +41,7 @@
               </table>
          </div>
    
-         @foreach ($schoolYears as $schoolYear)
+         @foreach ($schoolYearList as $schoolYear)
          <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $schoolYear->id }}"
              tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
              <div class="modal-dialog modal-dialog-centered" role="document">
@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        @foreach($schoolYears as $schoolYear)
+        @foreach($schoolYearList as $schoolYear)
             <div class="modal fade" id="updateSchoolYear{{ $schoolYear->id }}" tabindex="-1" aria-labelledby="updateSchoolYear"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -124,7 +124,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin-school-year-update', $schoolYear->id) }}" method="POST"
+                            <form action="{{ route('admin-school-year-update', $schoolYear) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('put')

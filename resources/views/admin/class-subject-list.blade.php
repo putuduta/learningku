@@ -1,9 +1,9 @@
-<x-app title="Subject List - {{$class->name}} {{$schoolYear->year}} - {{$schoolYear->semester}}">
+<x-app title="Subject List - {{$classSubjects->first()->className}} {{$classSubjects->first()->year}} - {{$classSubjects->first()->semester}}">
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
-         <h3 class="fw-bold">Subject List - {{$class->name}} {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
-         <a type="button" class="btn btn-dark text-white mb-3" href="{{ route('admin-class-view', $schoolYear->id) }}">
+         <h3 class="fw-bold">Subject List - {{$classSubjects->first()->className}} {{$classSubjects->first()->year}} - {{$classSubjects->first()->semester}}</h3>
+         <a type="button" class="btn btn-dark text-white mb-3" href="{{ route('admin-class-view', $classSubjects->first()->schoolYearId) }}">
               Back
          </a>
          <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
@@ -95,18 +95,18 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body">
-                   <form method="POST" action="{{route('admin-class-assign-subject',$class->id)}}">
+                   <form method="POST" action="{{route('admin-class-assign-subject',$classSubjects->first()->classId)}}">
                         @csrf
                         <div class="">
                             <label for="school_year" class="form-label">School Year</label>
-                            <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
+                            <input type="text" class="form-control" name="school_year" value="{{$classSubjects->first()->year}} - {{$classSubjects->first()->semester}}" readonly>
                        </div>
                        <div class="my-3">
                             <label for="class_name" class="form-label">Class</label>
-                            <input type="text" class="form-control" name="class_name" value="{{$class->name}}"  readonly>
+                            <input type="text" class="form-control" name="class_name" value="{{$classSubjects->first()->className}}"  readonly>
                        </div>
                         <div class="my-3">
-                            <input type="text" class="form-control" name="class_id" value="{{$class->id}}"  hidden>
+                            <input type="text" class="form-control" name="class_id" value="{{$classSubjects->first()->classId}}"  hidden>
                              <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
                              <input type="text" class="form-control" name="name" value="" required>
                         </div>
@@ -118,7 +118,7 @@
                              <label for="teacher_id" class="form-label">Teacher <span class="required">*</span></label>
                              <select name="teacher_id" class="form-select" required>
                                   <option value="" selected>--Please Choose--</option>
-                                  @foreach ($teachersNotAssigned as $teacher)
+                                  @foreach ($teachers as $teacher)
                                       <option value="{{$teacher->id}}">{{$teacher->nuptk}} - {{$teacher->name}}</option>
                                   @endforeach
                              </select>
@@ -142,20 +142,20 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('admin-class-update-subject', $subject->id) }}" method="POST"
+                        <form action="{{ route('admin-class-update-subject', $subject) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="">
                               <label for="school_year" class="form-label">School Year</label>
-                                <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
+                                <input type="text" class="form-control" name="school_year" value="{{$classSubjects->first()->year}} - {{$classSubjects->first()->semester}}" readonly>
                             </div>
                             <div class="my-3">
                                 <label for="class_name" class="form-label">Class</label>
-                                <input type="text" class="form-control" name="class_name" value="{{$class->name}}"  readonly>
+                                <input type="text" class="form-control" name="class_name" value="{{$classSubjects->first()->className}}"  readonly>
                             </div>
                             <div class="my-3">
-                                <input type="text" class="form-control" name="class_id" value="{{$class->id}}"  hidden>
+                                <input type="text" class="form-control" name="class_id" value="{{$classSubjects->first()->classId}}"  hidden>
                                  <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
                                  <input type="text" class="form-control" name="name" value="{{$subject->name}}" required>
                             </div>
@@ -168,7 +168,7 @@
                                  <select name="teacher_id" class="form-select" required>
                                       <option value="" selected>--Please Choose--</option>
                                       <option value="{{$subject->teacherId}}" selected>{{$subject->teacherNuptk}} - {{$subject->teacherName}}</option> 
-                                      @foreach ($teachersNotAssigned as $teacher)
+                                      @foreach ($teachers as $teacher)
                                           <option value="{{$teacher->id}}">{{$teacher->nuptk}} - {{$teacher->name}}</option>
                                       @endforeach
                                  </select>

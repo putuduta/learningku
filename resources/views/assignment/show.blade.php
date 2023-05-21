@@ -5,10 +5,10 @@
         <div class="mb-3">
             <span class="fa-stack fa-md ms-n1">
                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
-                <a href="{{ route('assignment.index', $classSubject->id)}}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+                <a href="{{ route('assignment.index', $assignmentSubmissions->first()->subjectId)}}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
-        <h3 class="fw-bold">Assignment Submissions - {{ $assignmentHeader->title }} - ({{ $classSubject->name }} - {{ $classSubject->className }})</h3>
+        <h3 class="fw-bold">Assignment Submissions - {{ $assignmentSubmissions->first()->assignmentTitle }} - ({{ $assignmentSubmissions->first()->name }} - {{ $assignmentSubmissions->first()->className }})</h3>
         <hr>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
@@ -26,8 +26,8 @@
                         @php($tempStudentId = null)
                         @php($tempStudentScoreId = null)
                         @php($tempAsgCreatedAt = null)
-                        @if($assignments->count() > 0)
-                            @foreach($assignments as $assignment)
+                        @if($assignmentSubmissions->count() > 0)
+                            @foreach($assignmentSubmissions as $assignment)
                                 @if ($score->assignmentHeaderId == $assignment->assignmentId && $score->studentUserId == $assignment->studentUserId)
                                     @if ($score->score === 0 && $assignment->file === null)                                  
                                     <tr>
@@ -55,7 +55,7 @@
                                             {{ date_format(date_create($assignment->createdAt),"d F Y H:i") }}
                                         </td>
                                         <td class="align-middle text-center">
-                                            @if ($score->score == null)
+                                            @if (($score->score === null || $score->score === 0) && $assignment->file !== null)
                                                 -
                                             @else
                                                 {{ $score->score }}
@@ -66,7 +66,7 @@
                                                 class="btn btn-success text-white">
                                                 Download Submission
                                             </a>
-                                            @if ($score->score == null)
+                                            @if (($score->score === null || $score->score === 0) && $assignment->file !== null)
                                                 <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
                                                     data-bs-target="#newScore{{ $assignment->assignmentId }}{{ $assignment->studentUserId }}">
                                                     Give Score
@@ -121,7 +121,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.store-assignment') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.store-assignment', $score) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
@@ -152,7 +152,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.update-assignment', $score->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.update-assignment', $score) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="">

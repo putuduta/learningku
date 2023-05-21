@@ -21,17 +21,9 @@
                     <br>
                     <span class="smallFont" style="font-weight: normal !important;">
                         @if ($forum->user->role->name == 'Student')
-                        @foreach ($students as $student)
-                            @if ($student->id == $forum->teacher_user_id)
-                                NISN: {{ $student->nisn }}
-                            @endif
-                        @endforeach
+                                NISN: {{ $forum->user->user_code }}
                         @else 
-                            @foreach ($teachers as $teacher)
-                                @if ($teacher->id == $forum->teacher_user_id)
-                                    NUPTK: {{ $teacher->nuptk }}
-                                @endif 
-                            @endforeach
+                                NUPTK: {{ $forum->user->user_code }}
                         @endif
                     </span>
                 </h5>
@@ -106,17 +98,9 @@
                     <br>
                     <span class="smallFont" style="font-weight: normal !important;">
                         @if ($reply->user->role->name == 'Student')
-                            @foreach ($students as $student)
-                                @if ($student->id == $reply->user_id)
-                                    NISN: {{ $student->nisn }}
-                                @endif
-                            @endforeach
+                            NISN: {{ $reply->user->user_code }}
                         @else 
-                            @foreach ($teachers as $teacher)
-                                @if ($teacher->id == $reply->user_id)
-                                    NUPTK: {{ $teacher->nuptk }}
-                                @endif 
-                            @endforeach
+                            NUPTK: {{ $reply->user->user_code }}
                         @endif
                     </span>
                     <br>

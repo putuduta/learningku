@@ -70,37 +70,37 @@
                 @if (auth()->user()->role->name == 'Student')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                        href="{{ route('dashboard-class', 'index') }}" role="button" id="dropdownMenuLink">
+                        href="{{ route('dashboard-class') }}" role="button" id="dropdownMenuLink">
                             <span class="ms-2">Class and Subject</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'material') }}">
+                            href="{{ route('material.view-choose-class-subject') }}">
                             <span class="ms-2">Materials</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'forum') }}">
+                            href="{{ route('forum.view-choose-class-subject') }}">
                             <span class="ms-2">Forums</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'assignment') }}">
+                            href="{{ route('assignment.view-choose-class-subject') }}">
                             <span class="ms-2">Assignments</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'score') }}">
+                            href="{{ route('score.view-choose-class-subject') }}">
                             <span class="ms-2">Scores</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'attendance') }}">
+                            href="{{ route('attendance.view-choose-class-subject') }}">
                             <span class="ms-2">Attendances</span>
                         </a>
                     </li>
@@ -108,43 +108,43 @@
                 @if (auth()->user()->role->name == 'Teacher')
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'index') }}">
+                            href="{{ route('dashboard-class') }}">
                             <span class="ms-2">Class and Subject</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'material') }}">
+                            href="{{ route('material.view-choose-class-subject') }}">
                             <span class="ms-2">Materials</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'forum') }}">
+                            href="{{ route('forum.view-choose-class-subject') }}">
                             <span class="ms-2">Forums</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'assignment') }}">
+                            href="{{ route('assignment.view-choose-class-subject') }}">
                             <span class="ms-2">Assignments</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'score') }}">
+                            href="{{ route('score.view-choose-class-subject') }}">
                             <span class="ms-2">Scores</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'attendance') }}">
+                            href="{{ route('attendance.view-choose-class-subject') }}">
                             <span class="ms-2">Attendances</span>
                         </a>
                     </li>
                     <li class="side-item">
                         <a class="d-flex align-items-center text-decoration-none position-relative py-1 px-0 text-reset"
-                            href="{{ route('dashboard-class', 'student') }}">
+                            href="{{ route('class-view-student-choose-class') }}">
                             <span class="ms-2">Students</span>
                         </a>
                     </li>

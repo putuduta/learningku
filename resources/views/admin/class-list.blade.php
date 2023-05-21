@@ -1,8 +1,8 @@
-<x-app title="Class List - {{$schoolYear->year}} {{$schoolYear->semester}}">
+<x-app title="Class List - {{$classes->first()->year}} - {{$classes->first()->semester}}">
      <x-slot name="navbar"></x-slot>
 
      <div id="content" class="container py-5 my-5">
-          <h3 class="fw-bold">Class List - Tahun Ajaran {{$schoolYear->year}} - {{$schoolYear->semester}}</h3>
+          <h3 class="fw-bold">Class List - School Year {{$classes->first()->year}} - {{$classes->first()->semester}}</h3>
 
           <a type="button" class="btn btn-dark text-white mb-3" href="{{ url()->previous() }}">
           Back
@@ -97,11 +97,12 @@
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
-                         <form method="POST" action="{{route('admin-class-create', $schoolYear->id)}}">
+              
+                         <form method="POST" action="{{route('admin-class-create', $classes->first()->id)}}">
                               @csrf
                               <div class="">
                                    <label for="school_year" class="form-label">School Year</label>
-                                   <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
+                                   <input type="text" class="form-control" name="school_year" value="{{$classes->first()->year}} - {{$classes->first()->semester}}" readonly>
                               </div>
                               <div class="my-3">
                                    <label for="class_name" class="form-label">Class Name <span class="required">*</span></label>
@@ -111,7 +112,7 @@
                                    <label for="homeroom_teacher_user_id" class="form-label">Homeroom Teacher <span class="required">*</span></label>
                                    <select name="homeroom_teacher_user_id" class="form-select" required>
                                         <option value="" selected>--Please Choose--</option>
-                                        @foreach ($teachersNotAssigned as $teacher)
+                                        @foreach ($teachers as $teacher)
                                             <option value="{{$teacher->id}}">{{$teacher->teacherNuptk}} - {{$teacher->name}}</option>
                                         @endforeach
                                    </select>
@@ -135,14 +136,14 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              <form action="{{ route('admin-class-update', $class->id) }}" method="POST"
+                              <form action="{{ route('admin-class-update', $class) }}" method="POST"
                                   enctype="multipart/form-data">
                                   @csrf
                                   @method('put')
                                   <div class="">
-                                       <input type="text" class="form-control" name="school_year_id" value="{{$schoolYear->id}}" hidden>
+                                       <input type="text" class="form-control" name="school_year_id" value="{{$classes->first()->schoolYearId}}" hidden>
                                        <label for="school_year" class="form-label">School Year</label>
-                                       <input type="text" class="form-control" name="school_year" value="{{$schoolYear->year}} - {{$schoolYear->semester}}" readonly>
+                                       <input type="text" class="form-control" name="school_year" value="{{$classes->first()->year}} - {{$classes->first()->semester}}" readonly>
                                   </div>
                                   <div class="my-3">
                                        <label for="class_name" class="form-label">Class Name <span class="required">*</span></label>
@@ -154,7 +155,7 @@
                                             <option value="" selected>--Please Choose--</option>
                                             <option value="{{$class->homeroomTeacherId}}" selected>{{$class->teacherNuptk}} - {{$class->homeroomTeacherName}}</option> 
                             
-                                            @foreach ($teachersNotAssigned as $teacher)
+                                            @foreach ($teachers as $teacher)
                                                 <option value="{{$teacher->id}}" {{($class->homeroom_teacher_id === $teacher->id) ? 'selected' : ''}}>{{$teacher->teacherNuptk}} - {{$teacher->name}}</option>
                                             @endforeach
                                        </select>

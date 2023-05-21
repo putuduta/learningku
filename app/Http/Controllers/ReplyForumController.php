@@ -10,12 +10,8 @@ class ReplyForumController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'description' => 'required|string',
-            'file' => 'nullable|max:4999|file',
-            'forum_id' => 'required'
-        ]);
-
+        $this->validateData($request);
+        
         if ($request->hasFile('file')) {
             $extension = $request->file('file')->getClientOriginalExtension();
             $file_name = 'REPLY_' . $request->forum_id . '_' . time() . '.' . $extension;
@@ -37,10 +33,7 @@ class ReplyForumController extends Controller
 
     public function update(Request $request, ReplyForum $reply_forum)
     {
-        $request->validate([
-            'description' => 'required|string',
-            'file' => 'nullable|max:4999|file',
-        ]);
+        $this->validateData($request);
 
         if ($request->hasFile('file')) {
             $extension = $request->file('file')->getClientOriginalExtension();
@@ -59,9 +52,16 @@ class ReplyForumController extends Controller
         return redirect()->back()->with('success', 'Reply Forum Updated');
     }
 
-    public function destroy(ReplyForum $reply_forum)
+    public function destroy($reply_forum)
     {
-        $reply_forum->delete();
+        ReplyForum::destroy($reply_forum->id);
         return redirect()->back()->with('success', 'Reply forum deleted');
+    }
+
+    public function validateData($request) {
+        $request->validate([
+            'description' => 'required|string',
+            'file' => 'nullable|max:4999|file'
+        ]);
     }
 }

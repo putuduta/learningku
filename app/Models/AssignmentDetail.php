@@ -12,7 +12,6 @@ class AssignmentDetail extends Model
 
     protected $table = 'assignment_details';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function student()

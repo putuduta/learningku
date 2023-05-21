@@ -12,7 +12,6 @@ class AttendanceHeader extends Model
 
     protected $table = 'attendance_headers';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function classSubject(){

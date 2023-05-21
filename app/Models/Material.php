@@ -12,7 +12,6 @@ class Material extends Model
 
     protected $table = 'materials';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
     public function class(){

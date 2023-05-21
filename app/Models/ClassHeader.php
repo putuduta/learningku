@@ -12,7 +12,6 @@ class ClassHeader extends Model
 
     protected $table = 'class_headers';
     protected $primaryKey = 'id';
-    protected $timestamp = true;
     protected $guarded = [];
 
 
