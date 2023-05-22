@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -47,18 +46,42 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->hasOne('App\Models\Role', 'id','role_id')->withDefault();
+        return $this->belongsTo('App\Models\Role', 'role_id','id');
     }
 
     public function teacherManageClass(){
-        return $this->hasMany('App\Models\ClassHeader', 'teacher_user_id','id')->withDefault();
+        return $this->hasMany('App\Models\ClassHeader', 'teacher_user_id','id');
     }
 
     public function studentClass(){
-        return $this->hasMany('App\Models\ClassDetail', 'student_user_id','id')->withDefault();
+        return $this->hasMany('App\Models\ClassDetail', 'student_user_id','id');
     }
 
-    public function teacherSubjectTeach(){
-        return $this->hasMany('App\Models\ClassSubject', 'teacher_user_id','id')->withDefault();
+    public function assignmentSubmissions(){
+        return $this->hasMany('App\Models\AssignmentDetail', 'student_user_id','id');
+    }
+
+    public function assignmentScores(){
+        return $this->hasMany('App\Models\AssignmentScore', 'student_user_id','id');
+    }
+
+    public function examScores(){
+        return $this->hasMany('App\Models\ExamScore', 'student_user_id','id');
+    }
+    
+    public function forums(){
+        return $this->hasMany('App\Models\Forums', 'user_id','id');
+    }
+
+    public function forumReplies(){
+        return $this->hasMany('App\Models\ReplyForum', 'user_id','id');
+    }
+
+    public function attendances(){
+        return $this->hasMany('App\Models\AttendanceDetail', 'student_user_id','id');
+    }
+
+    public function teacherSubjectsTeach(){
+        return $this->hasMany('App\Models\ClassSubject', 'teacher_user_id','id');
     }
 }

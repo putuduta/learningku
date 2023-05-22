@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class AttendanceDetail extends Model
 {
@@ -16,10 +16,10 @@ class AttendanceDetail extends Model
     
     public function student()
     {
-        return $this->hasOne('App\Models\User', 'id', 'student_user_id')->withDefault();
+        return $this->belongsTo('App\Models\User', 'student_user_id', 'id');
     }
 
-    public function header()
+    public function attendanceHeader()
     {
         return $this->belongsTo('App\Models\AttendanceHeader', 'attendance_header_id', 'id');
     }

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ExamScore extends Model
 {
@@ -14,12 +13,12 @@ class ExamScore extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function user()
+    public function student()
     {
-        return $this->hasOne('App\Models\User', 'student_user_id', 'id')->withDefault();
+        return $this->belongsTo('App\Models\User', 'student_user_id', 'id');
     }
 
     public function classSubject(){
-        return $this->belongsTo(ClassSubject::class);
+        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','id');
     }
 }

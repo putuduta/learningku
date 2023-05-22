@@ -22,12 +22,12 @@
                 <tbody>
                     @php $score = 0; $count = 0;$isAllAsgNotScored = true; @endphp
                     @foreach ($assignmentScores as $s)
-                        @if ($s->student_user_id == $classSubject->studentId && $s->assignmentHeader->class_subject_id == $classSubject->id)
-                            @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
+                        @if ($s->student_user_id == $classSubject->studentId && $s->assignment->class_subject_id == $classSubject->id)
+                            @if (!(strtotime($s->assignment->end_time) > time()) && $s->score !== null)
                             @php $score += $s->score; $count += 1; @endphp
                             <tr>
                                 <td class="align-middle text-center">{{ $count }}</td>
-                                <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                <td class="align-middle text-center">{{ $s->assignment->title }}</td>
                                 <td class="align-middle text-center">{{ $s->score }}</td>
                                 <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white"
@@ -37,11 +37,11 @@
                                     </button>
                                 </td>
                             </tr>
-                            @elseif (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score === null)
+                            @elseif (!(strtotime($s->assignment->end_time) > time()) && $s->score === null)
                             @php $count += 1; $isAllAsgNotScored = false; @endphp
                             <tr>
                                 <td class="align-middle text-center">{{ $count }}</td>
-                                <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                <td class="align-middle text-center">{{ $s->assignment->title }}</td>
                                 <td class="align-middle text-center">-</td>
                                 <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white"
@@ -189,7 +189,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newAssignmentLabel">Give Assignment Score - {{$score->assignmentHeader->title}}</h5>
+                <h5 class="modal-title" id="newAssignmentLabel">Give Assignment Score - {{$score->assignment->title}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -201,7 +201,7 @@
                     </div>
                     <div class="pt-2">
                         <label for="score" class="form-label">Notes/Feedback (Optional)</label>
-                        <textarea name="notes" id="bodyNewScore{{ $score->assignmentHeaderId }}{{ $score->studentUserId }}" cols="20" rows="10" class="form-control"
+                        <textarea name="notes" id="bodyNewScore{{ $score->assignmentId }}{{ $score->studentUserId }}" cols="20" rows="10" class="form-control"
                         ></textarea>
                     </div>
                     <div class="d-grid">
@@ -306,7 +306,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newAssignmentLabel">Update Assignment Score - {{$score->assignmentHeader->title}}</h5>
+                <h5 class="modal-title" id="newAssignmentLabel">Update Assignment Score - {{$score->assignment->title}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class AttendanceHeader extends Model
 {
@@ -15,7 +15,7 @@ class AttendanceHeader extends Model
     protected $guarded = [];
 
     public function classSubject(){
-        return $this->hasOne('App\Models\ClassSubject','id','class_subject_id')->withDefault();
+        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','id');
     }
 
     public function details(){

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ClassSubject extends Model
 {
@@ -16,10 +15,30 @@ class ClassSubject extends Model
 
     
     public function teacher(){
-        return $this->hasOne('App\Models\User','id','teacher_user_id')->withDefault();
+        return $this->belongsTo('App\Models\User','teacher_user_id','id');
     }
 
-    public function examScore(){
+    public function examScores(){
         return $this->hasMany('App\Models\ExamScore', 'class_subject_id', 'id');
+    }
+
+    public function materials(){
+        return $this->hasMany('App\Models\Material', 'class_subject_id', 'id');
+    }
+
+    public function assignments(){
+        return $this->hasMany('App\Models\AssignmentHeader', 'class_subject_id', 'id');
+    }
+
+    public function attendances(){
+        return $this->hasMany('App\Models\Attendance', 'class_subject_id', 'id');
+    }
+
+    public function forums(){
+        return $this->hasMany('App\Models\Forum', 'class_subject_id', 'id');
+    }
+
+    public function class(){
+        return $this->belongsTo('App\Models\ClassHeader', 'class_header_id', 'id');
     }
 }

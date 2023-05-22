@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Forum extends Model
 {
@@ -27,5 +26,9 @@ class Forum extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'teacher_user_id', 'id');
+    }
+
+    public function classSubject(){
+        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','id');
     }
 }

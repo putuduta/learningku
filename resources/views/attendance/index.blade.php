@@ -155,7 +155,7 @@
                     <th class="align-middle text-center">Total Absent</th>
                 </thead>
                 <tbody>
-                    @if ($attendances->first()->header->class_subject_id === $classSubject->id) 
+                    @if ($attendances->first()->attendanceHeader->class_subject_id === $classSubject->id) 
                     <td class="align-middle text-center">
                         {{ count($attendances->where("status", "Present")) }} </td>
                     <td class="align-middle text-center">
@@ -177,11 +177,11 @@
                 </thead>
                 <tbody>
                     @foreach($attendances as $index=>$attendance)
-                    @if ($attendance->header->class_subject_id === $classSubject->id)
+                    @if ($attendance->attendanceHeader->class_subject_id === $classSubject->id)
                     <tr>
                         <td class="align-middle text-center">{{ $index+1 }}</td>
                         <td class="align-middle text-center">
-                            {{ date_format(date_create($attendance->header->date),"d F Y") }}
+                            {{ date_format(date_create($attendance->attendanceHeader->date),"d F Y") }}
                         </td>
                         @if($attendance->status == 'Present')
                         <td class="align-middle text-center bg-success text-white">
@@ -389,7 +389,7 @@
 <div class="modal fade" id="detail-{{ $attendance->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-attendanceHeader">
                 <h5 class="modal-title" id="staticBackdropLabel">Attendance Detail - {{ $attendance->id }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

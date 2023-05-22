@@ -156,12 +156,12 @@
                 <tbody>
                     @php $score = 0; $count = 0; $isAllAsgNotScored = true; @endphp
                     @foreach ($assignmentScores as $s)
-                        @if($s->assignmentHeader->class_subject_id == $classSubject->id)
-                        @if (!(strtotime($s->assignmentHeader->end_time) > time()) && $s->score !== null)
+                        @if($s->assignment->class_subject_id == $classSubject->id)
+                        @if (!(strtotime($s->assignment->end_time) > time()) && $s->score !== null)
                                 @php $score += $s->score; $count += 1; @endphp
                                 <tr>
                                     <td class="align-middle text-center">{{ $count }}</td>
-                                    <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                    <td class="align-middle text-center">{{ $s->assignment->title }}</td>
                                     <td class="align-middle text-center">{{ $s->score }}</td>
                                     <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
@@ -175,7 +175,7 @@
                                 @php $score += $s->score; $count += 1; $isAllAsgNotScored = false; @endphp
                                 <tr>
                                     <td class="align-middle text-center">{{ $count }}</td>
-                                    <td class="align-middle text-center">{{ $s->assignmentHeader->title }}</td>
+                                    <td class="align-middle text-center">{{ $s->assignment->title }}</td>
                                     <td class="align-middle text-center">-</td>
                                     <td class="align-middle text-center">
                                         -
@@ -277,7 +277,7 @@
     </div>
 
     @foreach($assignmentScores as $score)
-    @if (!(strtotime($score->assignmentHeader->end_time) > time()))
+    @if (!(strtotime($score->assignment->end_time) > time()))
     <div class="modal fade" id="notes{{ $score->id }}" tabindex="-1" aria-labelledby="notesModal"
         aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Material extends Model
 {
@@ -14,11 +13,7 @@ class Material extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function class(){
-        return $this->hasOne('App\Models\ClassHeader','id','class_id')->withDefault();
-    }
-
-    public function details(){
-        return $this->hasMany('App\Models\AttendanceDetail','attendance_id','id');
+    public function classSubject(){
+        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','id');
     }
 }

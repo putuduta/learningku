@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class ClassHeader extends Model
 {
@@ -15,15 +15,15 @@ class ClassHeader extends Model
     protected $guarded = [];
 
 
-    public function homeroom(){
-        return $this->hasOne('App\Models\User','id','homeroom_teacher_user_id')->withDefault();
+    public function homeroomTeacher(){
+        return $this->belongsTo('App\Models\User','id','homeroom_teacher_user_id');
     }
 
     public function schoolYear(){
-        return $this->hasOne('App\Models\SchoolYear','id','school_year_id')->withDefault();
+        return $this->belongsTo('App\Models\SchoolYear','school_year_id','id');
     }
 
-    public function classDetail(){
-        return $this->hasMany('App\Models\ClassDetail','class_header_id','id')->withDefault();
+    public function details(){
+        return $this->hasMany('App\Models\ClassDetail','class_header_id','id');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class AssignmentDetail extends Model
 {
@@ -17,5 +17,9 @@ class AssignmentDetail extends Model
     public function student()
     {
         return $this->belongsTo('App\Models\User', 'student_user_id', 'id');
+    }
+    
+    public function assignmentHeader(){
+        return $this->belongsTo('App\Models\AssignmentHeader','assignment_header_id','id');
     }
 }
