@@ -12,21 +12,21 @@ class ClassSubjectController extends Controller
     public function index(ClassHeader $class){
         return view('admin.class-subject-list',[
             'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'class_subjects.minimum_score'
-                ,'class_headers.name as className','class_headers.id as classId', 'school_years.semester as semester', 'school_years.year as year', 'school_years.id as schoolYearId')
+                ,'class_headers.name as className','class_headers.id as classId', 'school_year.semester as semester', 'school_year.year as year', 'school_year.school_year_id as schoolYearId')
                 ->join('users', 'users.id', 'class_subjects.teacher_user_id')
-                ->join('roles','roles.id','users.role_id')
+                ->join('role','role.role_id','users.role_id')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-                ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
-                ->where('roles.name','Teacher')
+                ->join('school_year', 'school_year.school_year_id', 'class_headers.school_year_id')
+                ->where('role.name','Teacher')
                 ->where('class_subjects.class_header_id', $class->id)
                 ->get(),
             'teachers' => User::select('users.id as id', 'users.name as name', 'users.user_code as nuptk')
-                ->join('roles','roles.id','users.role_id')
-                ->where('roles.name','Teacher')
+                ->join('role','role.role_id','users.role_id')
+                ->where('role.name','Teacher')
                 ->whereNotIn('users.id', User::select('users.id as id')
-                ->join('roles','roles.id','users.role_id')
+                ->join('role','role.role_id','users.role_id')
                 ->join('class_subjects', 'class_subjects.teacher_user_id', 'users.id')
-                ->where('roles.name','Teacher')
+                ->where('role.name','Teacher')
                 ->where('class_subjects.class_header_id', $class->id)->get()->toArray())
             ->get()
         ]);
@@ -78,30 +78,30 @@ class ClassSubjectController extends Controller
     public function viewClassAndSubject() {
         if (auth()->user()->role->name === 'Student') {
             return view('dashboard.class-subject', [
-                'classSubjects' => ClassSubject::select('class_headers.id as classId','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as homeRoomTeacherNuptk',
+                'classSubjects' => ClassSubject::select('class_headers.id as classId','class_headers.name','school_year.year as schoolYear', 'school_year.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId', 'users.user_code as homeRoomTeacherNuptk',
                                     'class_subjects.id as subjectId', 'class_subjects.name as subjectName','user2.id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
                                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')    
-                                    ->join('school_years','school_years.id','class_headers.school_year_id')
+                                    ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                                     ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
                                     ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
                                     ->join('users as user2', 'user2.id', 'class_subjects.teacher_user_id')
-                                    ->join('roles','roles.id','users.role_id')
-                                    ->where('roles.name','Teacher')
+                                    ->join('role','role.id','users.role_id')
+                                    ->where('role.name','Teacher')
                                     ->where('class_details.student_user_id', auth()->user()->id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get(),
             ]);
         } else {
 
             return view('dashboard.class-subject',[
-                'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'userB.name as homeroomTeacherName', 'userB.user_code as homeroomTeacherNuptk', 'school_years.year as schoolYear', 'school_years.semester as semester', 'school_years.id as schoolYearId')
+                'classSubjects' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'users.user_code as teacherNuptk', 'userB.name as homeroomTeacherName', 'userB.user_code as homeroomTeacherNuptk', 'school_year.year as schoolYear', 'school_year.semester as semester', 'school_year.school_year_id as schoolYearId')
                                     ->join('users', 'users.id', 'class_subjects.teacher_user_id')
-                                    ->join('roles','roles.id','users.role_id')
+                                    ->join('role','role.role_id','users.role_id')
                                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-                                    ->join('school_years','school_years.id','class_headers.school_year_id')
+                                    ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                                     ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
-                                    ->where('roles.name','Teacher')
+                                    ->where('role.name','Teacher')
                                     ->where('class_subjects.teacher_user_id', auth()->user()->id)
-                                    ->orderBy('class_headers.school_year_id', 'DESC')->get(),
+                                    ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         }
 
@@ -110,9 +110,9 @@ class ClassSubjectController extends Controller
     public function getTeacherClassTaught($schoolYearId) {
         $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name', 'class_headers.name as className', 'class_headers.id as classId','users.id as teacherId', 'users.name as teacherName', 'users.nuptk as teacherNuptk')
         ->join('users', 'users.id', 'class_subjects.teacher_user_id')
-        ->join('roles','roles.id','users.role_id')
+        ->join('role','role.role_id','users.role_id')
         ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-        ->where('roles.name','Teacher')
+        ->where('role.name','Teacher')
         ->where('class_headers.school_year_id', $schoolYearId)
         ->where('class_subjects.teacher_user_id', auth()->user()->id)
         ->get();
@@ -122,10 +122,10 @@ class ClassSubjectController extends Controller
 
     public function getStudentClass($classId) {
         $classAndSubjects = ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
-            'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
+            'class_headers.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'users.name as teacherName',
             'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
             ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
-            ->join('school_years', 'school_years.id', 'class_headers.school_year_id')
+            ->join('school_year', 'school_year.school_year_id', 'class_headers.school_year_id')
             ->join('users', 'users.id', 'class_subjects.teacher_user_id')
             ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
             ->where('class_headers.id', $classId)->get();

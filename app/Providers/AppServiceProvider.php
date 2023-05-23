@@ -33,8 +33,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('components.sidebar', function ($view) {
             if (auth()->user()->role->name == 'Student') {
 
-                $classes = ClassHeader::select('class_headers.id','class_headers.name','school_years.year as schoolYear', 'school_years.semester as semester')
-                ->join('school_years','school_years.id','class_headers.school_year_id')
+                $classes = ClassHeader::select('class_headers.id','class_headers.name','school_year.year as schoolYear', 'school_year.semester as semester')
+                ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                 ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
                 ->join('users', 'users.id', 'class_details.student_user_id')
                 ->where('users.id', auth()->user()->id)

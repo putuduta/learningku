@@ -15,7 +15,7 @@ class SchoolYearSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('school_years')->insert([
+        DB::table('school_year')->insert([
             [
                 'year' => '2023',
                 'semester' => 'Semester 2'
