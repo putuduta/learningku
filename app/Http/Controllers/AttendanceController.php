@@ -71,6 +71,7 @@ class AttendanceController extends Controller
 
     public function create(Request $request)
     {
+        $this->validateData($request);
 
         $lastAttendance = AttendanceHeader::create([
             'class_subject_id' => $request->class_subject_id,
@@ -93,7 +94,13 @@ class AttendanceController extends Controller
             ]);
         }
 
-        return redirect()->route('attendance.view', $request->class_subject_id)->with('success', 'New Attendance created');
+        return redirect()->route('attendance.view-teacher', $request->class_subject_id)->with('success', 'New Attendance created');
+    }
+
+    public function validateData($request) {
+        $request->validate([
+            'class_subject_id' => 'required'
+        ]);
     }
 
 
