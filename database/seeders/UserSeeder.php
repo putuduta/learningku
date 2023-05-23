@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('user')->insert([
             [
                 'user_code'=> abs(crc32(uniqid())),
                 'name' => 'Agustinus Dwi Wibowo',

@@ -18,152 +18,152 @@ class ClassSeeder extends Seeder
             [
                 'name' => 'XI IPA 2',
                 'school_year_id' => 1,
-                'homeroom_teacher_user_id' => 2
+                'user_id' => 2
             ]
         ]);
         DB::table('class_subjects')->insert([
             [
                 'name' => 'Bahasa Inggris',
                 'class_header_id' => 1,
-                'teacher_user_id' => 2,
+                'user_id' => 2,
                 'minimum_score' => 75
             ],
             [
                 'name' => 'Kimia', 
                 'class_header_id' => 1,
-                'teacher_user_id' => 3,
+                'user_id' => 3,
                 'minimum_score' => 75
             ],
             [
                 'name' => 'Matematika Wajib',
                 'class_header_id' => 1,
-                'teacher_user_id' => 35,
+                'user_id' => 35,
                 'minimum_score' => 75
             ]
         ]);
         DB::table('class_details')->insert([
             [
-                'student_user_id' => '4',
+                'user_id' => '4',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '5',
+                'user_id' => '5',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '6',
+                'user_id' => '6',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '7',
+                'user_id' => '7',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '8',
+                'user_id' => '8',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '9',
+                'user_id' => '9',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '10',
+                'user_id' => '10',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '11',
+                'user_id' => '11',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '12',
+                'user_id' => '12',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '13',
+                'user_id' => '13',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '14',
+                'user_id' => '14',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '15',
+                'user_id' => '15',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '16',
+                'user_id' => '16',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '17',
+                'user_id' => '17',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '18',
+                'user_id' => '18',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '19',
+                'user_id' => '19',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '20',
+                'user_id' => '20',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '21',
+                'user_id' => '21',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '22',
+                'user_id' => '22',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '23',
+                'user_id' => '23',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '24',
+                'user_id' => '24',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '25',
+                'user_id' => '25',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '26',
+                'user_id' => '26',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '27',
+                'user_id' => '27',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '28',
+                'user_id' => '28',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '29',
+                'user_id' => '29',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '30',
+                'user_id' => '30',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '31',
+                'user_id' => '31',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '32',
+                'user_id' => '32',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '33',
+                'user_id' => '33',
                 'class_header_id' => '1'
             ],
             [
-                'student_user_id' => '34',
+                'user_id' => '34',
                 'class_header_id' => '1'
             ]
         ]);

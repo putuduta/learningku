@@ -18,7 +18,7 @@ class ForumSeeder extends Seeder
         DB::table('forums')->insert([
             [
                 'class_subject_id' => '1',
-                'teacher_user_id' => '2',
+                'user_id' => '2',
                 'title' => 'Personal Letter',
                 'description' => '<p><strong>Pengertian Personal Letter</strong><br>Surat dalam bahasa Inggris disebut dengan Letter. Personal Letter merupakan surat tidak resmi yang ditulis untuk perseorangan, biasanya yang terlibat hanyalah dua orang yang saling mengenal.</p><p>Menurut kalian , apa saja struktur dari personal letter?</p>',
                 'created_at' => '2023-04-04 13:58:10',

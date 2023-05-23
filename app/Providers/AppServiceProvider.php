@@ -36,22 +36,22 @@ class AppServiceProvider extends ServiceProvider
                 $classes = ClassHeader::select('class_headers.id','class_headers.name','school_year.year as schoolYear', 'school_year.semester as semester')
                 ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                 ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                ->join('users', 'users.id', 'class_details.student_user_id')
-                ->where('users.id', auth()->user()->id)
+                ->join('user', 'user.user_id', 'class_details.student_user_id')
+                ->where('user.user_id', auth()->user()->user_id)
                 ->get();
 
-                $student = User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 
-                'users.gender')
-                ->join('role','role.role_id','users.role_id')
-                ->where('users.id',  auth()->user()->id)
+                $student = User::select('user.user_id','user.name','user.user_code as nisn','user.email','user.password', 
+                'user.gender')
+                ->join('role','role.role_id','user.role_id')
+                ->where('user.user_id',  auth()->user()->user_id)
                 ->first();
 
                 $view->with(compact('classes', 'student'));
             } else if (auth()->user()->role->name == 'Teacher') {
-                $view->with('teacher', User::select('users.id','users.name','users.user_code  as nuptk','users.email','users.password', 
-                'users.gender')
-                ->join('role','role.role_id','users.role_id')
-                ->where('users.id',  auth()->user()->id)
+                $view->with('teacher', User::select('user.user_id','user.name','user.user_code as nuptk','user.email','user.password', 
+                'user.gender')
+                ->join('role','role.role_id','user.role_id')
+                ->where('user.user_id',  auth()->user()->user_id)
                 ->first());
             }
         });

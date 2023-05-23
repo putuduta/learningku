@@ -18,8 +18,8 @@ class CreateClassHeadersTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('school_year_id');
             $table->foreign('school_year_id')->references('school_year_id')->on('school_year')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('homeroom_teacher_user_id');
-            $table->foreign('homeroom_teacher_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
