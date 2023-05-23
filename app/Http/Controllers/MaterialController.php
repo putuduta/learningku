@@ -18,7 +18,7 @@ class MaterialController extends Controller
                 'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'user.user_code as teacherNuptk')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                 ->join('school_year', 'school_year.school_year_id', 'class_headers.school_year_id')
-                ->join('user', 'user.user_id', 'class_subjects.teacher_user_id')
+                ->join('user', 'user.user_id', 'class_subjects.user_id')
                 ->join('user as userB', 'userB.user_id', 'class_headers.user_id')
                 ->find($classSubjectId),
             'materials' => Material::where('class_subject_id', $classSubjectId)->get()

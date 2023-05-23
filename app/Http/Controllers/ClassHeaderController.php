@@ -19,34 +19,34 @@ class ClassHeaderController extends Controller
     // Class
     public function postChooseSchoolYear(Request $request){
         return view('admin.class-list',[
-            'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.id as schoolYearId','school_years.year as year', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId'
+            'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.id as schoolYearId','school_years.year as year', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.user_id as homeroomTeacherId'
                        , 'users.user_code as teacherNuptk')
                 ->join('school_years','school_years.id','class_headers.school_year_id')
-                ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
+                ->join('users', 'users.id', 'class_headers.user_id')
                 ->where('class_headers.school_year_id', $request->school_year_id)
                 ->get(),
             'teachers' => User::select('users.id as id', 'users.name as name', 'users.user_code as teacherNuptk')
                 ->join('roles','roles.id','users.role_id')
-                ->leftJoin('class_headers', 'class_headers.homeroom_teacher_user_id', 'users.id')
+                ->leftJoin('class_headers', 'class_headers.user_id', 'users.id')
                 ->where('roles.name','Teacher')
-                ->whereNull('class_headers.homeroom_teacher_user_id')
+                ->whereNull('class_headers.user_id')
                 ->get()
         ]);
     }
 
     public function viewAdminClassList($schoolYearId){
         return view('admin.class-list',[
-            'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.id as schoolYearId','school_years.year as year', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.homeroom_teacher_user_id as homeroomTeacherId'
+            'classes' => ClassHeader::select('class_headers.id','class_headers.name','school_years.id as schoolYearId','school_years.year as year', 'school_years.semester as semester', 'users.name as homeroomTeacherName', 'class_headers.user_id as homeroomTeacherId'
                        , 'users.user_code as teacherNuptk')
                 ->join('school_years','school_years.id','class_headers.school_year_id')
-                ->join('users', 'users.id', 'class_headers.homeroom_teacher_user_id')
+                ->join('users', 'users.id', 'class_headers.user_id')
                 ->where('class_headers.school_year_id', $schoolYearId)
                 ->get(),
             'teachers' => User::select('users.id as id', 'users.name as name', 'users.user_code as teacherNuptk')
                 ->join('roles','roles.id','users.role_id')
-                ->leftJoin('class_headers', 'class_headers.homeroom_teacher_user_id', 'users.id')
+                ->leftJoin('class_headers', 'class_headers.user_id', 'users.id')
                 ->where('roles.name','Teacher')
-                ->whereNull('class_headers.homeroom_teacher_user_id')
+                ->whereNull('class_headers.user_id')
                 ->get()
         ]);
     }
