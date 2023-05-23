@@ -16,7 +16,7 @@ class AssignmentDetailController extends Controller
 
         if ($request->hasFile('file')) {
             $extension = $request->file('file')->getClientOriginalExtension();
-            $file_name = 'SUB_ASG_' . $assignmentHeader->title . '_' . auth()->user()->id . '_' . time() . '.' . $extension;
+            $file_name = 'SUB_ASG_' . $assignmentHeader->title . '_' . auth()->user()->user_id . '_' . time() . '.' . $extension;
 
             $request->file('file')->storeAs('public/assignment/submission', $file_name);
         } else {
@@ -25,12 +25,12 @@ class AssignmentDetailController extends Controller
 
         AssignmentDetail::create([
             'assignment_header_id' => $assignmentHeader->id,
-            'student_user_id' => auth()->user()->id,
+            'student_user_id' => auth()->user()->user_id,
             'file' => $file_name
         ]);
 
         // Students submit assignment set score back to null
-        AssignmentScore::where([['assignment_header_id', $assignmentHeader->id],['student_user_id', auth()->user()->id]])
+        AssignmentScore::where([['assignment_header_id', $assignmentHeader->id],['student_user_id', auth()->user()->user_id]])
             ->update([
                 'score' => null
             ]);

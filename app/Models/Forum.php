@@ -20,7 +20,7 @@ class Forum extends Model
 
     public function replyAuthUser()
     {
-        return $this->replies()->where('user_id', auth()->user()->id);
+        return $this->replies()->where('user_id', auth()->user()->user_id);
     }
 
     public function user()

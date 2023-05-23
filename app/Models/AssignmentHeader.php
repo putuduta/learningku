@@ -20,7 +20,7 @@ class AssignmentHeader extends Model
 
     public function submissionUser()
     {
-        return $this->submissions()->where('student_user_id', auth()->user()->id);
+        return $this->submissions()->where('user_id', auth()->user()->user_id);
     }
     
     public function scores(){

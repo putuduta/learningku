@@ -261,7 +261,7 @@
                             {{ date_format(date_create($forum->created_at),"d F Y H:i") }}
                         </td>
                         <td class="align-middle text-center">{{ count($forum->replies) }}</td>
-                        @if($forum->teacher_user_id == auth()->user()->id)
+                        @if($forum->teacher_user_id == auth()->user()->user_id)
                         <td class="align-middle text-center bg-info text-white">Creator</td>
                         @elseif(count($forum->replyAuthUser) > 0)
                         <td class="align-middle text-center bg-success text-white">Replied</td>
@@ -272,7 +272,7 @@
                             <a href="{{ route('forum.show', ['forumId' => $forum->id, 'classSubjectId' => $classSubject->id]) }}" class="btn btn-primary text-white">
                                 Show
                             </a>
-                            @if($forum->teacher_user_id == auth()->user()->id)
+                            @if($forum->teacher_user_id == auth()->user()->user_id)
                             <button type="button" class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
                                 data-bs-target="#delete-{{ $forum->id }}">

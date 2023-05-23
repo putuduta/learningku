@@ -21,7 +21,7 @@ class AttendanceController extends Controller
                     'class_headers.name as className')
                 ->join('class_subjects', 'attendance_headers.class_subject_id', 'class_subjects.id')
                 ->join('class_headers', 'class_subjects.class_header_id', 'class_headers.id')
-                ->where('class_subjects.teacher_user_id', auth()->user()->id)->get(),
+                ->where('class_subjects.teacher_user_id', auth()->user()->user_id)->get(),
             'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                 'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
@@ -36,7 +36,7 @@ class AttendanceController extends Controller
     public function viewAttendanceStudent($classSubjectId)
     {
         return view('attendance.index', [
-            'attendances' => AttendanceDetail::where('student_user_id', auth()->user()->id)->get(),
+            'attendances' => AttendanceDetail::where('student_user_id', auth()->user()->user_id)->get(),
             'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_years.year as schoolYear', 'school_years.semester as semester', 'users.name as teacherName',
                 'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'users.user_code as teacherNuptk')
@@ -116,7 +116,7 @@ class AttendanceController extends Controller
                                     ->join('users as user2', 'user2.id', 'class_subjects.teacher_user_id')
                                     ->join('roles','roles.id','users.role_id')
                                     ->where('roles.name','Teacher')
-                                    ->where('class_details.student_user_id', auth()->user()->id)
+                                    ->where('class_details.student_user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         } else {
@@ -129,7 +129,7 @@ class AttendanceController extends Controller
                                     ->join('school_years','school_years.id','class_headers.school_year_id')
                                     ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                                     ->where('roles.name','Teacher')
-                                    ->where('class_subjects.teacher_user_id', auth()->user()->id)
+                                    ->where('class_subjects.teacher_user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         }

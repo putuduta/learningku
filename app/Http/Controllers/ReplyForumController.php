@@ -22,7 +22,7 @@ class ReplyForumController extends Controller
         }
 
         ReplyForum::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->user()->user_id,
             'forum_id' => $request->forum_id,
             'description' => $request->description,
             'file' => $file_name,

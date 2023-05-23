@@ -33,7 +33,7 @@ class AssignmentHeaderController extends Controller
             ->where('class_subjects.id',   $classSubjectId)->orderBy('id', 'desc')->get();
 
         return view('assignment.index', [
-            'assignments' => (auth()->user()->role->name == 'Teacher') ? $assignments->where('teacher_user_id', auth()->user()->id) : $assignments,
+            'assignments' => (auth()->user()->role->name == 'Teacher') ? $assignments->where('teacher_user_id', auth()->user()->user_id) : $assignments,
             'classSubject' => $classSubjects,
         ]);
     }
@@ -153,7 +153,7 @@ class AssignmentHeaderController extends Controller
                                     ->join('users as user2', 'user2.id', 'class_subjects.teacher_user_id')
                                     ->join('roles','roles.id','users.role_id')
                                     ->where('roles.name','Teacher')
-                                    ->where('class_details.student_user_id', auth()->user()->id)
+                                    ->where('class_details.student_user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         } else {
@@ -166,7 +166,7 @@ class AssignmentHeaderController extends Controller
                                     ->join('school_years','school_years.id','class_headers.school_year_id')
                                     ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                                     ->where('roles.name','Teacher')
-                                    ->where('class_subjects.teacher_user_id', auth()->user()->id)
+                                    ->where('class_subjects.teacher_user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         }

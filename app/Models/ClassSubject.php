@@ -15,7 +15,7 @@ class ClassSubject extends Model
 
     
     public function teacher(){
-        return $this->belongsTo('App\Models\User','teacher_user_id','id');
+        return $this->belongsTo('App\Models\User','user_id','user_id');
     }
 
     public function examScores(){

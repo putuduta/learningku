@@ -40,7 +40,7 @@
                         </button>
                     </div>
                     <div class="mx-1">
-                        @if($forum->teacher_user_id == auth()->user()->id)
+                        @if($forum->teacher_user_id == auth()->user()->user_id)
                             <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
                             data-bs-target="#editThread">
                             Edit Forum
@@ -114,7 +114,7 @@
                     download="">{{ $reply->file }}</a>
                 @endif
 
-                @if($reply->user_id == auth()->user()->id)
+                @if($reply->user_id == auth()->user()->user_id)
                 <div class="d-flex mt-3 justify-content-start my-1">
                     <div class="mx-1">
                         <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"

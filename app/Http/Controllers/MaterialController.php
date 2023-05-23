@@ -111,7 +111,7 @@ class MaterialController extends Controller
                                     ->join('users as user2', 'user2.id', 'class_subjects.teacher_user_id')
                                     ->join('role','role.role_id','users.role_id')
                                     ->where('role.name','Teacher')
-                                    ->where('class_details.student_user_id', auth()->user()->id)
+                                    ->where('class_details.student_user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         } else {
@@ -124,7 +124,7 @@ class MaterialController extends Controller
                                     ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                                     ->join('users as userB', 'userB.id', 'class_headers.homeroom_teacher_user_id')
                                     ->where('role.name','Teacher')
-                                    ->where('class_subjects.teacher_user_id', auth()->user()->id)
+                                    ->where('class_subjects.teacher_user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         }

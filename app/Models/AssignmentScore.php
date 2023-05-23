@@ -16,7 +16,7 @@ class AssignmentScore extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Models\User', 'student_user_id', 'id');
+        return $this->belongsTo('App\Models\User', 'student_user_id', 'user_id');
     }
 
     public function assignment(){
