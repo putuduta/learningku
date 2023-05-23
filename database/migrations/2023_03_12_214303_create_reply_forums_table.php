@@ -13,8 +13,8 @@ class CreateReplyForumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reply_forums', function (Blueprint $table) {
-            $table->id();
+        Schema::create('reply_forum', function (Blueprint $table) {
+            $table->id('reply_forum_id');
             $table->unsignedBigInteger('forum_id');
             $table->foreign('forum_id')->references('id')->on('forums')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
