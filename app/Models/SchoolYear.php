@@ -14,6 +14,6 @@ class SchoolYear extends Model
     protected $guarded = [];
 
     public function classes(){
-        return $this->hasMany('App\Models\ClassHeader', 'class_header_id','school_year_id');
+        return $this->hasMany('App\Models\ClassHeader', 'school_year_id','school_year_id');
     }
 }

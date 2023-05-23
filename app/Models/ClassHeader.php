@@ -16,11 +16,11 @@ class ClassHeader extends Model
 
 
     public function homeroomTeacher(){
-        return $this->belongsTo('App\Models\User','id','homeroom_teacher_user_id');
+        return $this->belongsTo('App\Models\User','user_id','user_id');
     }
 
     public function schoolYear(){
-        return $this->belongsTo('App\Models\SchoolYear','school_year_id','id');
+        return $this->belongsTo('App\Models\SchoolYear','school_year_id','school_year_id');
     }
 
     public function details(){

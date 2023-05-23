@@ -20,6 +20,6 @@ class ReplyForum extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+        return $this->belongsTo('App\Models\User', 'user_id', 'user_id');
     }
 }
