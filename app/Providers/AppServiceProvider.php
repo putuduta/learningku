@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
 
                 $student = User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 
                 'users.gender')
-                ->join('roles','roles.id','users.role_id')
+                ->join('role','role.role_id','users.role_id')
                 ->where('users.id',  auth()->user()->id)
                 ->first();
 
@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
             } else if (auth()->user()->role->name == 'Teacher') {
                 $view->with('teacher', User::select('users.id','users.name','users.user_code  as nuptk','users.email','users.password', 
                 'users.gender')
-                ->join('roles','roles.id','users.role_id')
+                ->join('role','role.role_id','users.role_id')
                 ->where('users.id',  auth()->user()->id)
                 ->first());
             }

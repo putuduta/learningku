@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
-    protected $table = 'roles';
+    protected $table = 'role';
     protected $primaryKey = 'role_id';
     protected $guarded = [];
 
     public function users(){
-        return $this->hasMany('App\Models\User', 'role_id','id');
+        return $this->hasMany('App\Models\User', 'role_id','role_id');
     }
 }
