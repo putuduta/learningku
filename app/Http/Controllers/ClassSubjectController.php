@@ -40,7 +40,7 @@ class ClassSubjectController extends Controller
         ClassSubject::create([
             'name' => $request->name,
             'class_header_id' => $classId,
-            'teacher_user_id' => $request->teacher_id,
+            'user_id' => $request->teacher_id,
             'minimum_score' => $request->minimum_score
         ]);
 
@@ -54,7 +54,7 @@ class ClassSubjectController extends Controller
         $classSubject->update([
             'name' => $request->name,
             'class_header_id' => $request->class_id,
-            'teacher_user_id' => $request->teacher_id,
+            'user_id' => $request->teacher_id,
             'minimum_score' => $request->minimum_score
         ]);
 
@@ -79,12 +79,12 @@ class ClassSubjectController extends Controller
         if (auth()->user()->role->name === 'Student') {
             return view('dashboard.class-subject', [
                 'classSubjects' => ClassSubject::select('class_headers.id as classId','class_headers.name','school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as homeroomTeacherName', 'class_headers.user_id as homeroomTeacherId', 'user.user_code as homeRoomTeacherNuptk',
-                                    'class_subjects.id as subjectId', 'class_subjects.name as subjectName','user2.id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
+                                    'class_subjects.id as subjectId', 'class_subjects.name as subjectName','user2.user_id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
                                     ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')    
                                     ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                                     ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
                                     ->join('user', 'user.user_id', 'class_headers.user_id')
-                                    ->join('user as user2', 'user2.id', 'class_subjects.user_id')
+                                    ->join('user as user2', 'user2.user_id', 'class_subjects.user_id')
                                     ->join('role','role.id','user.role_id')
                                     ->where('role.name','Teacher')
                                     ->where('class_details.student_user_id', auth()->user()->user_id)
