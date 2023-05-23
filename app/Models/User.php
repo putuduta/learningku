@@ -52,38 +52,38 @@ class User extends Authenticatable
     }
 
     public function teacherManageClass(){
-        return $this->hasMany('App\Models\ClassHeader', 'teacher_user_id','id');
+        return $this->hasMany('App\Models\ClassHeader', 'user_id','user_id');
     }
 
     public function studentClass(){
-        return $this->hasMany('App\Models\ClassDetail', 'student_user_id','id');
+        return $this->hasMany('App\Models\ClassDetail', 'user_id','user_id');
     }
 
     public function assignmentSubmissions(){
-        return $this->hasMany('App\Models\AssignmentDetail', 'student_user_id','id');
+        return $this->hasMany('App\Models\AssignmentDetail', 'student_user_id','user_id');
     }
 
     public function assignmentScores(){
-        return $this->hasMany('App\Models\AssignmentScore', 'student_user_id','id');
+        return $this->hasMany('App\Models\AssignmentScore', 'user_id','user_id');
     }
 
     public function examScores(){
-        return $this->hasMany('App\Models\ExamScore', 'student_user_id','id');
+        return $this->hasMany('App\Models\ExamScore', 'user_id','user_id');
     }
     
     public function forums(){
-        return $this->hasMany('App\Models\Forums', 'user_id','id');
+        return $this->hasMany('App\Models\Forums', 'user_id','user_id');
     }
 
     public function forumReplies(){
-        return $this->hasMany('App\Models\ReplyForum', 'user_id','id');
+        return $this->hasMany('App\Models\ReplyForum', 'user_id','user_id');
     }
 
     public function attendances(){
-        return $this->hasMany('App\Models\AttendanceDetail', 'student_user_id','id');
+        return $this->hasMany('App\Models\AttendanceDetail', 'user_id','user_id');
     }
 
     public function teacherSubjectsTeach(){
-        return $this->hasMany('App\Models\ClassSubject', 'teacher_user_id','id');
+        return $this->hasMany('App\Models\ClassSubject', 'user_id','user_id');
     }
 }
