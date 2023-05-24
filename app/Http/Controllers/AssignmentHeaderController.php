@@ -33,8 +33,8 @@ class AssignmentHeaderController extends Controller
             ->where('class_subjects.id',   $classSubjectId)->orderBy('id', 'desc')->get();
 
         return view('assignment.index', [
-            'assignments' => (auth()->user()->role->name == 'Teacher') ? $assignments->where('teacher_user_id', auth()->user()->user_id) : $assignments,
-            'classSubject' => $classSubjects,
+            'assignments' => (auth()->user()->role->name == 'Teacher') ? $assignments->where('user_id', auth()->user()->user_id) : $assignments,
+            'classSubject' => $classSubjects
         ]);
     }
 

@@ -15,7 +15,7 @@ class MaterialSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('materials')->insert([
+        DB::table('material')->insert([
             [
                 'class_subject_id' => 2,
                 'title' => 'Asam dan Basa',

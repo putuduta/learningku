@@ -13,8 +13,8 @@ class CreateMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('materials', function (Blueprint $table) {
-            $table->id();
+        Schema::create('material', function (Blueprint $table) {
+            $table->id('material_id');
             $table->unsignedBigInteger('class_subject_id');
             $table->foreign('class_subject_id')->references('id')->on('class_subjects')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
