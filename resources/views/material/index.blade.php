@@ -255,14 +255,14 @@
                         <div class="d-flex">
                             <div class="me-2">
                                 <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                data-bs-target="#updateMaterial{{ $material->id }}">
+                                data-bs-target="#updateMaterial{{ $material->material_id }}">
                                     Update
                                 </button>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-danger text-white"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#delete-{{ $material->id }}">
+                                    data-bs-target="#delete-{{ $material->material_id }}">
                                     Delete
                                 </button>
                             </div>
@@ -274,7 +274,7 @@
         @endif
 
         @foreach ($materials as $material)
-            <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $material->id }}"
+            <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $material->material_id }}"
             tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content rounded-20 border-0">
@@ -297,7 +297,7 @@
                                             data-bs-dismiss="modal">
                                             Cancel
                                         </button>
-                                        <form action="{{ route('material.delete', $material->id) }}"
+                                        <form action="{{ route('material.delete', $material->material_id) }}"
                                             method="POST">
                                             @csrf
                                             @method('delete')
@@ -368,7 +368,7 @@
 </div>
 
 @foreach($materials as $material)
-    <div class="modal fade" id="updateMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="updateMaterial"
+    <div class="modal fade" id="updateMaterial{{ $material->material_id }}" tabindex="-1" aria-labelledby="updateMaterial"
         aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -391,7 +391,7 @@
                         </div>
                         <div class="my-3">
                             <label for="description" class="form-label">Description <span class="required">*</span></label>
-                            <textarea id="updateDescription-{{ $material->id }}" name="description" value="{{ $material->description }}" cols="30" rows="10" class="form-control">{{ $material->description }}</textarea>
+                            <textarea id="updateDescription-{{ $material->material_id }}" name="description" value="{{ $material->description }}" cols="30" rows="10" class="form-control">{{ $material->description }}</textarea>
                         </div>
                         <div class="my-3">
                             <label for="resource" class="form-label">Resource</label>
