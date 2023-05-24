@@ -87,7 +87,7 @@ class ClassSubjectController extends Controller
                                     ->join('user as user2', 'user2.user_id', 'class_subjects.user_id')
                                     ->join('role','role.id','user.role_id')
                                     ->where('role.name','Teacher')
-                                    ->where('class_details.student_user_id', auth()->user()->user_id)
+                                    ->where('class_details.user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get(),
             ]);
         } else {

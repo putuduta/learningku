@@ -59,7 +59,7 @@ class AssignmentHeaderController extends Controller
                             ->get(),
             'assignmentScore' => AssignmentScore::select('assignment_scores.id as id', 'assignment_scores.assignment_header_id as assignmentHeaderId', 'assignment_scores.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_scores.notes as notes')
                                 ->where('assignment_header_id', $assignmentId)
-                                ->join('class_details', 'class_details.student_user_id', 'assignment_scores.student_user_id')
+                                ->join('class_details', 'class_details.user_id', 'assignment_scores.student_user_id')
                                 ->join('user', 'user.user_id', 'assignment_scores.student_user_id')->get()
         ]);
     }
@@ -85,7 +85,7 @@ class AssignmentHeaderController extends Controller
         ]);
 
         $classDetails = ClassDetail::select('user.user_id as id')
-                    ->join('user', 'user.user_id', 'class_details.student_user_id')
+                    ->join('user', 'user.user_id', 'class_details.user_id')
                     ->join('role','role.role_id','user.role_id')
                     ->join('class_headers', 'class_headers.id', 'class_details.class_header_id')
                     ->join('class_subjects', 'class_subjects.class_header_id', 'class_headers.id')
@@ -153,7 +153,7 @@ class AssignmentHeaderController extends Controller
                                     ->join('user as user2', 'user2.id', 'class_subjects.user_id')
                                     ->join('role','role.role_id','user.role_id')
                                     ->where('role.name','Teacher')
-                                    ->where('class_details.student_user_id', auth()->user()->user_id)
+                                    ->where('class_details.user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         } else {

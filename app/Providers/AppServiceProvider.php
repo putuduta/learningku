@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
                 $classes = ClassHeader::select('class_headers.id','class_headers.name','school_year.year as schoolYear', 'school_year.semester as semester')
                 ->join('school_year','school_year.school_year_id','class_headers.school_year_id')
                 ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                ->join('user', 'user.user_id', 'class_details.student_user_id')
+                ->join('user', 'user.user_id', 'class_details.user_id')
                 ->where('user.user_id', auth()->user()->user_id)
                 ->get();
 

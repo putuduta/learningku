@@ -29,7 +29,7 @@ class ScoreController extends Controller
                 ->join('school_year', 'school_year.school_year_id', 'class_headers.school_year_id')
                 ->join('user', 'user.user_id', 'class_subjects.user_id')
                 ->join('user as userB', 'userB.user_id', 'class_headers.user_id')
-                ->find($classSubjectId),
+                ->find($classSubjectId)
         ]);
     }
 
@@ -45,7 +45,7 @@ class ScoreController extends Controller
                 ->join('user as userB', 'userB.user_id', 'class_headers.user_id')
                 ->find($classSubjectId),
             'classDetails' => ClassDetail::select('user.user_id as studentId','user.name as studentName', 'user.user_code as studentNisn')
-                        ->join('user','user.user_id','class_details.student_user_id')
+                        ->join('user','user.user_id','class_details.user_id')
                         ->join('class_headers', 'class_headers.id', 'class_details.class_header_id')
                         ->join('class_subjects', 'class_headers.id', 'class_subjects.class_header_id')
                         ->where([['user.role_id','3'],['class_subjects.id', $classSubjectId]])
@@ -103,14 +103,14 @@ class ScoreController extends Controller
         return view('score.show', [
             'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as teacherName',
-                'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'user.user_code as teacherNuptk', 'minimum_score', 'userc.id as studentId','userc.name as studentName', 'userc.user_code as studentNisn')
+                'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'user.user_code as teacherNuptk', 'minimum_score', 'userc.user_id as studentId','userc.name as studentName', 'userc.user_code as studentNisn')
                 ->join('class_headers', 'class_headers.id', 'class_subjects.class_header_id')
                 ->join('school_year', 'school_year.school_year_id', 'class_headers.school_year_id')
                 ->join('user', 'user.user_id', 'class_subjects.user_id')
                 ->join('user as userB', 'userB.user_id', 'class_headers.user_id')
                 ->join('class_details', 'class_details.class_header_id', 'class_headers.id')
-                ->join('user as userc', 'userc.id', 'class_details.student_user_id')
-                ->where([['userc.role_id','3'],['userc.id', $studentId]])
+                ->join('user as userc', 'userc.user_id', 'class_details.user_id')
+                ->where([['userc.role_id','3'],['userc.user_id', $studentId]])
                 ->find($classSubjectId),
             'assignmentScores' => AssignmentScore::where('student_user_id', $studentId)->get(),
             'examScores' => ExamScore::where([['student_user_id', $studentId],['class_subject_id', $classSubjectId]])->get()
@@ -182,7 +182,7 @@ class ScoreController extends Controller
                                     ->join('user as user2', 'user2.id', 'class_subjects.user_id')
                                     ->join('role','role.role_id','user.role_id')
                                     ->where('role.name','Teacher')
-                                    ->where('class_details.student_user_id', auth()->user()->user_id)
+                                    ->where('class_details.user_id', auth()->user()->user_id)
                                     ->orderBy('class_headers.school_year_id', 'DESC')->get()
             ]);
         } else {
