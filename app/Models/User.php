@@ -72,7 +72,7 @@ class User extends Authenticatable
     }
     
     public function forums(){
-        return $this->hasMany('App\Models\Forums', 'user_id','user_id');
+        return $this->hasMany('App\Models\Forum', 'user_id','user_id');
     }
 
     public function forumReplies(){

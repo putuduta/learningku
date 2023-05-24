@@ -13,8 +13,8 @@ class CreateExamScoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('exam_scores', function (Blueprint $table) {
-            $table->id();
+        Schema::create('exam_score', function (Blueprint $table) {
+            $table->id('exam_score_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('class_subject_id');

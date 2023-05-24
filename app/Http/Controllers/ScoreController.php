@@ -21,7 +21,7 @@ class ScoreController extends Controller
     {
         return view('score.index', [
             'assignmentScores' => AssignmentScore::where('student_user_id', auth()->user()->user_id)->get(),
-            'examScores' => ExamScore::where([['student_user_id', auth()->user()->user_id],['class_subject_id', $classSubjectId]])->get(),
+            'examScores' => ExamScore::where([['user_id', auth()->user()->user_id],['class_subject_id', $classSubjectId]])->get(),
             'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as teacherName',
                 'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'user.user_code as teacherNuptk', 'minimum_score')
@@ -82,7 +82,7 @@ class ScoreController extends Controller
         $this->validateAsgScore($request);
 
         ExamScore::create([
-            'student_user_id' => $request->studentId,
+            'user_id' => $request->studentId,
             'class_subject_id' => $request->classSubjectId,
             'name' => $request->name,
             'score' => $request->score
@@ -113,7 +113,7 @@ class ScoreController extends Controller
                 ->where([['userc.role_id','3'],['userc.user_id', $studentId]])
                 ->find($classSubjectId),
             'assignmentScores' => AssignmentScore::where('student_user_id', $studentId)->get(),
-            'examScores' => ExamScore::where([['student_user_id', $studentId],['class_subject_id', $classSubjectId]])->get()
+            'examScores' => ExamScore::where([['user_id', $studentId],['class_subject_id', $classSubjectId]])->get()
         ]);
     }
 

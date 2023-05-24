@@ -9,8 +9,8 @@ class ExamScore extends Model
 {
     use HasFactory;
 
-    protected $table = "exam_scores";
-    protected $primaryKey = 'id';
+    protected $table = "exam_score";
+    protected $primaryKey = 'exam_score_id';
     protected $guarded = [];
 
     public function student()

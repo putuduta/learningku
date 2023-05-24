@@ -1274,7 +1274,7 @@ class ScoreSeeder extends Seeder
         ]);
 
 
-        DB::table('exam_scores')->insert([
+        DB::table('exam_score')->insert([
             [
                 'class_subject_id' => 1,
                 'user_id' => 4,
@@ -1434,7 +1434,7 @@ class ScoreSeeder extends Seeder
             ]
         ]);
 
-        DB::table('exam_scores')->insert([
+        DB::table('exam_score')->insert([
             [
                 'class_subject_id' => 1,
                 'user_id' => 4,

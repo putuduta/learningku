@@ -84,7 +84,7 @@
                                 <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#updateExamScore-{{ $s->id }}">
+                                        data-bs-target="#updateExamScore-{{ $s->exam_score_id }}">
                                         <i class='fas fa-pencil-alt'></i>
                                     </button>
                                 </td>
@@ -234,7 +234,7 @@
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
                     </div>
                     <div class="d-grid">
-                        <input type="hidden" name="score_id" value="{{ $score->id }}">
+                        <input type="hidden" name="score_id" value="{{ $score->exam_score_id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>
@@ -261,7 +261,7 @@
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
                     </div>
                     <div class="d-grid">
-                        <input type="hidden" name="score_id" value="{{ $score->id }}">
+                        <input type="hidden" name="score_id" value="{{ $score->exam_score_id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>
@@ -271,7 +271,7 @@
 </div>
 
 @foreach($examScores as $score)
-<div class="modal fade" id="updateExamScore-{{ $score->id }}" tabindex="-1" aria-labelledby="updateAssignmentScore" aria-hidden="true">
+<div class="modal fade" id="updateExamScore-{{ $score->exam_score_id }}" tabindex="-1" aria-labelledby="updateAssignmentScore" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -279,7 +279,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('score.update-exam', $score->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('score.update-exam', $score->exam_score_id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <input type="text" class="form-control" name="name" id="name" value="{{ $score->name }}" hidden>
