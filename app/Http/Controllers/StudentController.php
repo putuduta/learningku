@@ -84,9 +84,9 @@ class StudentController extends Controller
 
     public function index(){
         return view('admin.student-list',[
-            'studentList' => User::select('users.id','users.name','users.user_code as nisn','users.email','users.password', 'users.gender')
-                        ->join('roles','roles.id','users.role_id')
-                        ->where([['roles.name','Student']])
+            'studentList' => User::select('user.user_id','user.name','user.user_code as nisn','user.email','user.password', 'user.gender')
+                        ->join('role','role.role_id','user.role_id')
+                        ->where([['role.name','Student']])
                         ->get()
         ]);
     }
@@ -95,7 +95,7 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|string',
             'nisn' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'image' => 'image|max:5120',
             'gender' => 'required|string'
         ]);

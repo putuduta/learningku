@@ -37,7 +37,7 @@ class TeacherController extends Controller
             'email' => $request->email,
             'gender' => $request->gender,
             'role_id' => 2,
-            'user_code' => $request->nuptk,
+            'user.user_id_code' => $request->nuptk,
             'password' => $request->password,
             'photo_profile' => $photo_profile 
         ]);
@@ -75,7 +75,7 @@ class TeacherController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
-            'user_code' => $request->nuptk,
+            'user.user_id_code' => $request->nuptk,
             'password' => $password,
             'photo_profile' => $imagePath 
         ]);
@@ -85,10 +85,10 @@ class TeacherController extends Controller
 
     public function index(){
         return view('admin.teacher-list',[
-            'teacherList' => User::select('users.id','users.name','users.user_code as nuptk','users.email','users.password', 
-                        'users.gender')
-                        ->join('roles','roles.id','users.role_id')
-                        ->where([['roles.name','Teacher']])
+            'teacherList' => User::select('user.user_id','user.name','user.user_code as nuptk','user.email','user.password', 
+                        'user.gender')
+                        ->join('role','role.role_id','user.role_id')
+                        ->where([['role.name','Teacher']])
                         ->get()
         ]);
     }
@@ -97,7 +97,7 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required|string',
             'nuptk' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user.user_ids'],
             'image' => 'image|max:5120',
             'gender' => 'required|string'
         ]);

@@ -15,7 +15,7 @@ class ReplyForumSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('reply_forums')->insert([
+        DB::table('reply_forum')->insert([
             [
                 'forum_id' => '1',
                 'user_id' => '34',
