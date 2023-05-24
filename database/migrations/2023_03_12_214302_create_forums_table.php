@@ -13,8 +13,8 @@ class CreateForumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function (Blueprint $table) {
-            $table->id();
+        Schema::create('forum', function (Blueprint $table) {
+            $table->id('forum_id');
             $table->unsignedBigInteger('class_subject_id');
             $table->foreign('class_subject_id')->references('id')->on('class_subjects')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
@@ -33,6 +33,6 @@ class CreateForumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forums');
+        Schema::dropIfExists('forum');
     }
 }

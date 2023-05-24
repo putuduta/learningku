@@ -269,13 +269,13 @@
                         <td class="align-middle text-center bg-danger text-white">Not Replied</td>
                         @endif
                         <td class="d-flex justify-content-around align-middle text-center">
-                            <a href="{{ route('forum.show', ['forumId' => $forum->id, 'classSubjectId' => $classSubject->id]) }}" class="btn btn-primary text-white">
+                            <a href="{{ route('forum.show', ['forumId' => $forum->forum_id, 'classSubjectId' => $classSubject->id]) }}" class="btn btn-primary text-white">
                                 Show
                             </a>
                             @if($forum->teacher_user_id == auth()->user()->user_id)
                             <button type="button" class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete-{{ $forum->id }}">
+                                data-bs-target="#delete-{{ $forum->forum_id }}">
                                 Delete
                             </button>
 
@@ -290,7 +290,7 @@
 </x-app>
 
 @foreach ($forums as $forum)
-    <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $forum->id }}"
+    <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $forum->forum_id }}"
     tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content rounded-20 border-0">
@@ -313,7 +313,7 @@
                                     data-bs-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="{{ route('forum.destroy', $forum->id) }}"
+                                <form action="{{ route('forum.destroy', $forum->forum_id) }}"
                                     method="POST">
                                     @csrf
                                     @method('delete')

@@ -12,8 +12,8 @@ class ForumController extends Controller
     public function index($classSubjectId)
     {
         return view('forum.index', [
-            'forums' => Forum::select('forums.id', 'forums.user_id', 'forums.title', 'forums.class_subject_id')
-                ->join('class_subjects', 'forums.class_subject_id', 'class_subjects.id')
+            'forums' => Forum::select('forum.forum_id', 'forum.user_id', 'forum.title', 'forum.class_subject_id')
+                ->join('class_subjects', 'forum.class_subject_id', 'class_subjects.id')
                 ->where('class_subjects.id', $classSubjectId)->orderBy('id', 'desc')->get(),
             'classSubject' => ClassSubject::select('class_subjects.id as id', 'class_subjects.name as name',
                 'class_headers.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as teacherName',
@@ -22,7 +22,7 @@ class ForumController extends Controller
                 ->join('school_year', 'school_year.school_year_id', 'class_headers.school_year_id')
                 ->join('user', 'user.user_id', 'class_subjects.user_id')
                 ->join('user as userB', 'userB.user_id', 'class_headers.user_id')
-                ->find($classSubjectId),
+                ->find($classSubjectId)
         ]);
     }
 
@@ -44,7 +44,7 @@ class ForumController extends Controller
             'class_subject_id' => $request->class_subject_id,
             'title' => $request->title,
             'description' => $request->description,
-            'file' => $file_name,
+            'file' => $file_name
         ]);
 
         return redirect()->back()->with('success', 'New Forum Created');
@@ -74,7 +74,7 @@ class ForumController extends Controller
         $forum->update([
             'title' => $request->title,
             'description' => $request->description,
-            'file' => $file_name,
+            'file' => $file_name
         ]);
 
         return redirect()->back()->with('success', 'Forum Updated');
@@ -90,7 +90,7 @@ class ForumController extends Controller
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'file' => 'nullable|max:4999|file',
+            'file' => 'nullable|max:4999|file'
         ]);
     }
 

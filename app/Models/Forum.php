@@ -9,13 +9,13 @@ class Forum extends Model
 {
     use HasFactory;
 
-    protected $table = 'forums';
-    protected $primaryKey = 'id';
+    protected $table = 'forum';
+    protected $primaryKey = 'forum_id';
     protected $guarded = [];
 
     public function replies()
     {
-        return $this->hasMany('App\Models\ReplyForum', 'forum_id', 'id');
+        return $this->hasMany('App\Models\ReplyForum', 'forum_id', 'forum_id');
     }
 
     public function replyAuthUser()

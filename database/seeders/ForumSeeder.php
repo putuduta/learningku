@@ -15,7 +15,7 @@ class ForumSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('forums')->insert([
+        DB::table('forum')->insert([
             [
                 'class_subject_id' => '1',
                 'user_id' => '2',
