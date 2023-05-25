@@ -14,7 +14,7 @@ class AssignmentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('assignment_headers')->insert([
+        DB::table('assignment_header')->insert([
             [
                 'class_subject_id' => '1',
                 'title' => 'Personal Letter',

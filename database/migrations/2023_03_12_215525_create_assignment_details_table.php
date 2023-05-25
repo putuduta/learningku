@@ -18,7 +18,7 @@ class CreateAssignmentDetailsTable extends Migration
             $table->unsignedBigInteger('assignment_header_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('file');
-            $table->foreign('assignment_header_id')->references('id')->on('assignment_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('assignment_header_id')->references('assignment_header_id')->on('assignment_header')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });

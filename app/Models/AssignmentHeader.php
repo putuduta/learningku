@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class AssignmentHeader extends Model
 {
     use HasFactory;
-    protected $table = 'assignment_headers';
-    protected $primaryKey = 'id';
+    protected $table = 'assignment_header';
+    protected $primaryKey = 'assignment_header_id';
     protected $guarded = [];
 
     public function submissions()
     {
-        return $this->hasMany('App\Models\AssignmentDetail', 'assignment_header_id', 'id');
+        return $this->hasMany('App\Models\AssignmentDetail', 'assignment_header_id', 'assignment_header_id');
     }
 
     public function submissionUser()
@@ -24,11 +24,11 @@ class AssignmentHeader extends Model
     }
     
     public function scores(){
-        return $this->hasMany('App\Models\AssignmentScore', 'assignment_header_id', 'id');
+        return $this->hasMany('App\Models\AssignmentScore', 'assignment_header_id', 'assignment_header_id');
     }
 
     public function classSubject(){
-        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','id');
+        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','class_subject_id');
     }
 
 }
