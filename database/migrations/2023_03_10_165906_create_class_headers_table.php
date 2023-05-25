@@ -13,8 +13,8 @@ class CreateClassHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_headers', function (Blueprint $table) {
-            $table->id();
+        Schema::create('class_header', function (Blueprint $table) {
+            $table->id('class_header_id');
             $table->string('name');
             $table->unsignedBigInteger('school_year_id');
             $table->foreign('school_year_id')->references('school_year_id')->on('school_year')->onUpdate('cascade')->onDelete('cascade');

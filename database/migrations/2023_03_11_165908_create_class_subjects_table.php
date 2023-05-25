@@ -17,7 +17,7 @@ class CreateClassSubjectsTable extends Migration
             $table->id('class_subject_id');
             $table->string('name');
             $table->unsignedBigInteger('class_header_id');
-            $table->foreign('class_header_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('class_header_id')->references('class_header_id')->on('class_header')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('minimum_score');

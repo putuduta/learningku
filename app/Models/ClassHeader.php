@@ -10,8 +10,8 @@ class ClassHeader extends Model
 {
     use HasFactory;
 
-    protected $table = 'class_headers';
-    protected $primaryKey = 'id';
+    protected $table = 'class_header';
+    protected $primaryKey = 'class_header_id';
     protected $guarded = [];
 
 
@@ -24,6 +24,6 @@ class ClassHeader extends Model
     }
 
     public function details(){
-        return $this->hasMany('App\Models\ClassDetail','class_header_id','id');
+        return $this->hasMany('App\Models\ClassDetail','class_header_id','class_header_id');
     }
 }
