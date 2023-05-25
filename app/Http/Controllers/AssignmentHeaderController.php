@@ -40,27 +40,33 @@ class AssignmentHeaderController extends Controller
     public function viewAssignmentSubmission($assignmentId)
     {
 
-        // $assignmentDetails = AssignmentDetail::select(DB::raw('assignment_details.*'))
-        // ->join(DB::raw('(select assignment_header_id, user_id, max(id) as maxid from assignment_details group by assignment_header_id,user_id) b'), 'assignment_details.id','b.maxid')
-        // ->where('assignment_details.assignment_header_id', $assignmentId);
+        // $assignmentDetails = AssignmentDetail::select(DB::raw('assignment_detail.*'))
+        // ->join(DB::raw('(select assignment_header_id, user_id, max(id) as maxid from assignment_detail group by assignment_header_id,user_id) b'), 'assignment_detail.assignment_detail_id','b.maxid')
+        // ->where('assignment_detail.assignment_header_id', $assignmentId);
+
+        // dd(AssignmentScore::select('assignment_score.assignment_score_id as id', 'assignment_score.assignment_header_id as assignmentHeaderId', 'assignment_score.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_score.notes as notes')
+        // ->where('assignment_header_id', $assignmentId)
+        // ->join('class_detail', 'class_detail.user_id', 'assignment_score.user_id')
+        // ->join('user', 'user.user_id', 'assignment_score.user_id')->get());
 
         return view('assignment.show', [
-            'assignmentSubmissions' => AssignmentHeader::select('assignment_details.id as id', 'assignment_details.assignment_header_id as assignmentId', 'assignment_header.title as assignmentTitle', 'assignment_details.file as file', 'assignment_details.created_at as createdAt', 'assignment_details.user_id as studentUserId', 'u.name as studentName', 'class_subject.class_subject_id as subjectId', 'class_subject.name as name',
+            'assignmentSubmissions' => AssignmentHeader::select('assignment_detail.assignment_detail_id as id', 'assignment_detail.assignment_header_id as assignmentId', 'assignment_header.title as assignmentTitle', 'assignment_detail.file as file', 'assignment_detail.created_at as createdAt', 'assignment_detail.user_id as studentUserId', 'u.name as studentName', 'class_subject.class_subject_id as subjectId', 'class_subject.name as name',
                             'class_header.name as className')
-                            ->joinSub(AssignmentDetail::select(DB::raw('assignment_details.*'))
-                            ->join(DB::raw('(select assignment_header_id, user_id, max(id) as maxid from assignment_details group by assignment_header_id,user_id) b'), 'assignment_details.id','b.maxid')
-                            ->where('assignment_details.assignment_header_id', $assignmentId), 'assignment_details', function (JoinClause $join) {
-                                $join->on('assignment_header.assignment_header_id', '=', 'assignment_details.assignment_header_id');
-                            })->join('user as u','u.id','assignment_details.user_id')
+                            ->joinSub(AssignmentDetail::select(DB::raw('assignment_detail.*'))
+                            ->join(DB::raw('(select assignment_header_id, user_id, max(assignment_detail_id) as maxid from assignment_detail group by assignment_header_id,user_id) b'), 'assignment_detail.assignment_detail_id','b.maxid')
+                            ->where('assignment_detail.assignment_header_id', $assignmentId), 'assignment_detail', function (JoinClause $join) {
+                                $join->on('assignment_header.assignment_header_id', '=', 'assignment_detail.assignment_header_id');
+                            })->join('user as u','u.user_id','assignment_detail.user_id')
                             ->join('class_subject', 'class_subject.class_subject_id', 'assignment_header.class_subject_id')
                             ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
                             ->where('assignment_header.assignment_header_id', $assignmentId)
                             ->get(),
-            'assignmentScore' => AssignmentScore::select('assignment_score.assignment_score_id as id', 'assignment_score.assignment_header_id as assignmentHeaderId', 'assignment_score.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_score.notes as notes')
+            'assignmentScore' => AssignmentScore::select('assignment_score.assignment_score_id as assignment_score_id', 'assignment_score.assignment_header_id as assignmentHeaderId', 'assignment_score.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_score.notes as notes')
                                 ->where('assignment_header_id', $assignmentId)
                                 ->join('class_detail', 'class_detail.user_id', 'assignment_score.user_id')
                                 ->join('user', 'user.user_id', 'assignment_score.user_id')->get()
         ]);
+
     }
 
     public function store($classSubjectId, Request $request)

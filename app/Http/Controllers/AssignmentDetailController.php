@@ -24,13 +24,13 @@ class AssignmentDetailController extends Controller
         }
 
         AssignmentDetail::create([
-            'assignment_header_id' => $assignmentHeader->id,
+            'assignment_header_id' => $assignmentHeader->assignment_header_id,
             'user_id' => auth()->user()->user_id,
             'file' => $file_name
         ]);
 
         // Students submit assignment set score back to null
-        AssignmentScore::where([['assignment_header_id', $assignmentHeader->id],['user_id', auth()->user()->user_id]])
+        AssignmentScore::where([['assignment_header_id', $assignmentHeader->assignment_header_id],['user_id', auth()->user()->user_id]])
             ->update([
                 'score' => null
             ]);

@@ -13,8 +13,8 @@ class CreateAssignmentDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignment_details', function (Blueprint $table) {
-            $table->id();
+        Schema::create('assignment_detail', function (Blueprint $table) {
+            $table->id('assignment_detail_id');
             $table->unsignedBigInteger('assignment_header_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('file');
@@ -31,6 +31,6 @@ class CreateAssignmentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignment_details');
+        Schema::dropIfExists('assignment_detail');
     }
 }
