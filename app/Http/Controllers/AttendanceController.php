@@ -51,13 +51,13 @@ class AttendanceController extends Controller
     public function viewCreate($classSubjectId)
     {
         return view('attendance.create', [
-            'classDetails' => ClassDetail::select('user.user_id as studentId', 'user.name as studentName', 'user.user_code as studentNisn', 'class_details.id as classDetailId',
+            'classDetails' => ClassDetail::select('user.user_id as studentId', 'user.name as studentName', 'user.user_code as studentNisn', 'class_detail.class_detail_id as classDetailId',
                 'class_subject.class_subject_id as id', 'class_subject.name as name',
                 'class_header.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'userC.name as teacherName',
                 'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'userC.user_code as teacherNuptk')
-                ->join('user', 'user.user_id', 'class_details.user_id')
+                ->join('user', 'user.user_id', 'class_detail.user_id')
                 ->join('role','role.role_id','user.role_id')
-                ->join('class_subject', 'class_subject.class_header_id', 'class_details.class_header_id')
+                ->join('class_subject', 'class_subject.class_header_id', 'class_detail.class_header_id')
                 ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
                 ->join('school_year', 'school_year.school_year_id', 'class_header.school_year_id')
                 ->join('user as userB', 'userB.user_id', 'class_header.user_id')
@@ -78,10 +78,10 @@ class AttendanceController extends Controller
             'date' => date('y-m-d'),
         ]);
 
-        $classDetails = ClassDetail::select('user.user_id as studentId', 'user.name as studentName', 'class_details.id as classDetailId')
-                    ->join('user', 'user.user_id', 'class_details.user_id')
+        $classDetails = ClassDetail::select('user.user_id as studentId', 'user.name as studentName', 'class_detail.class_detail_id as classDetailId')
+                    ->join('user', 'user.user_id', 'class_detail.user_id')
                     ->join('role','role.role_id','user.role_id')
-                    ->join('class_subject', 'class_subject.class_header_id', 'class_details.class_header_id')
+                    ->join('class_subject', 'class_subject.class_header_id', 'class_detail.class_header_id')
                     ->where('role.name','Student')
                     ->where('class_subject.class_subject_id', $request->class_subject_id)
                     ->get();
@@ -111,12 +111,12 @@ class AttendanceController extends Controller
                                     'class_subject.class_subject_id as subjectId', 'class_subject.name as subjectName','user2.id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
                                     ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')    
                                     ->join('school_year','school_year.school_year_id','class_header.school_year_id')
-                                    ->join('class_details', 'class_details.class_header_id', 'class_header.class_header_id')
+                                    ->join('class_detail', 'class_detail.class_header_id', 'class_header.class_header_id')
                                     ->join('user', 'user.user_id', 'class_header.user_id')
                                     ->join('user as user2', 'user2.id', 'class_subject.user_id')
                                     ->join('role','role.role_id','user.role_id')
                                     ->where('role.name','Teacher')
-                                    ->where('class_details.user_id', auth()->user()->user_id)
+                                    ->where('class_detail.user_id', auth()->user()->user_id)
                                     ->orderBy('class_header.school_year_id', 'DESC')->get()
             ]);
         } else {
