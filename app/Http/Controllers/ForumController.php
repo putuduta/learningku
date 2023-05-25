@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\ClassSubject;
 use App\Models\Forum;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller

@@ -399,12 +399,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('assignment.submit', $assignment) }}" method="POST"
+                        <form action="{{ route('assignment.submit') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="my-3">
                                 <label for="file" class="form-label">Submission File</label>
                                 <input class="form-control" name="file" type="file" id="file">
+                                <input class="form-control" name="assignment_header_id" type="text" id="assignment_header_id" value="{{ $assignment->id }}" hidden>
+                                <input class="form-control" name="assignment_title" type="text" id="assignment_title" value="{{ $assignment->title }}" hidden>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>

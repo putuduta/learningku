@@ -2,19 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassDetail;
-use App\Models\ClassHeader;
-use App\Models\ClassSubject;
-use App\Models\Forum;
 use App\Models\SchoolYear;
-use App\Models\Student;
-use App\Models\Teacher;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class SchoolYearController extends Controller
 {

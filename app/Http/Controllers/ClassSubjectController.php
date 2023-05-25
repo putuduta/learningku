@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassHeader;
 use App\Models\ClassSubject;
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class ClassSubjectController extends Controller
 {
-    public function index(ClassHeader $class){
+    public function index($class){
         return view('admin.class-subject-list',[
             'classSubjects' => ClassSubject::select('class_subject.class_subject_id as id', 'class_subject.name as name','user.user_id as teacherId', 'user.name as teacherName', 'user.user_code as teacherNuptk', 'class_subject.minimum_score'
                 ,'class_header.name as className','class_header.class_header_id as classId', 'school_year.semester as semester', 'school_year.year as year', 'school_year.school_year_id as schoolYearId')
@@ -18,7 +17,7 @@ class ClassSubjectController extends Controller
                 ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
                 ->join('school_year', 'school_year.school_year_id', 'class_header.school_year_id')
                 ->where('role.name','Teacher')
-                ->where('class_subject.class_header_id', $class->id)
+                ->where('class_subject.class_header_id', $class)
                 ->get(),
             'teachers' => User::select('user.user_id as id', 'user.name as name', 'user.user_code as nuptk')
                 ->join('role','role.role_id','user.role_id')
@@ -27,7 +26,7 @@ class ClassSubjectController extends Controller
                 ->join('role','role.role_id','user.role_id')
                 ->join('class_subject', 'class_subject.user_id', 'user.user_id')
                 ->where('role.name','Teacher')
-                ->where('class_subject.class_header_id', $class->id)->get()->toArray())
+                ->where('class_subject.class_header_id', $class)->get()->toArray())
             ->get()
         ]);
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\AssignmentScore;
 use App\Models\ClassDetail;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\ClassSubject;
 use App\Models\ExamScore;
 

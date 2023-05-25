@@ -133,7 +133,7 @@ Route::get('assignment-show/{assignmentId}', [AssignmentHeaderController::class,
 // Route::resource('assignment', AssignmentController::class)->only('store');
 Route::post('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'store'])->name('assignment.add')->middleware('auth');
 Route::put('assignment/update/{assignment}', [AssignmentHeaderController::class, 'update'])->name('assignment.update')->middleware('auth');
-Route::post('assignment/submit/{assignmentHeader}', [AssignmentDetailController::class, 'submitAssignmentAnswer'])->name('assignment.submit')->middleware('auth');
+Route::post('assignment/submit', [AssignmentDetailController::class, 'submitAssignmentAnswer'])->name('assignment.submit')->middleware('auth');
 // Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');
 
 // Score

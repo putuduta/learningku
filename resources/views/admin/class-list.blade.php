@@ -30,7 +30,7 @@
                                         data-bs-target="#updateClass{{ $class->id }}">
                                              Edit
                                         </button>
-                                        <a href="{{route('admin-class-view-subject',$class)}}"
+                                        <a href="{{route('admin-class-view-subject',$class->id)}}"
                                         class="btn btn-success text-white">Subject List</a>
                                         <a href="{{route('admin-class-view-student',$class->id)}}"
                                              class="btn btn-secondary text-white">Students</a>
