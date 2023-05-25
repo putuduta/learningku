@@ -21,7 +21,7 @@ class ClassSeeder extends Seeder
                 'user_id' => 2
             ]
         ]);
-        DB::table('class_subjects')->insert([
+        DB::table('class_subject')->insert([
             [
                 'name' => 'Bahasa Inggris',
                 'class_header_id' => 1,

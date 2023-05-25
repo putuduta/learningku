@@ -18,7 +18,7 @@ class CreateExamScoresTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('class_subject_id');
-            $table->foreign('class_subject_id')->references('id')->on('class_subjects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('class_subject_id')->references('class_subject_id')->on('class_subject')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->integer('score');
             $table->timestamps();

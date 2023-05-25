@@ -13,8 +13,8 @@ class CreateClassSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_subjects', function (Blueprint $table) {
-            $table->id();
+        Schema::create('class_subject', function (Blueprint $table) {
+            $table->id('class_subject_id');
             $table->string('name');
             $table->unsignedBigInteger('class_header_id');
             $table->foreign('class_header_id')->references('id')->on('class_headers')->onUpdate('cascade')->onDelete('cascade');
