@@ -31,6 +31,6 @@ class CreateAssignmentHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignment_headers');
+        Schema::dropIfExists('assignment_header');
     }
 }
