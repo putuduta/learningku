@@ -10,8 +10,8 @@ class AttendanceDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'attendance_details';
-    protected $primaryKey = 'id';
+    protected $table = 'attendance_detail';
+    protected $primaryKey = 'attendance_detail_id';
     protected $guarded = [];
     
     public function student()
@@ -21,6 +21,6 @@ class AttendanceDetail extends Model
 
     public function attendanceHeader()
     {
-        return $this->belongsTo('App\Models\AttendanceHeader', 'attendance_header_id', 'id');
+        return $this->belongsTo('App\Models\AttendanceHeader', 'attendance_header_id', 'attendance_detail_id');
     }
 }
