@@ -60,7 +60,7 @@ class User extends Authenticatable
     }
 
     public function assignmentSubmissions(){
-        return $this->hasMany('App\Models\AssignmentDetail', 'student_user_id','user_id');
+        return $this->hasMany('App\Models\AssignmentDetail', 'user_id','user_id');
     }
 
     public function assignmentScores(){

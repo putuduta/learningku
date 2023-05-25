@@ -22,7 +22,7 @@
                 <tbody>
                     @php $score = 0; $count = 0;$isAllAsgNotScored = true; @endphp
                     @foreach ($assignmentScores as $s)
-                        @if ($s->student_user_id == $classSubject->studentId && $s->assignment->class_subject_id == $classSubject->id)
+                        @if ($s->user_id == $classSubject->studentId && $s->assignment->class_subject_id == $classSubject->id)
                             @if (!(strtotime($s->assignment->end_time) > time()) && $s->score !== null)
                             @php $score += $s->score; $count += 1; @endphp
                             <tr>
@@ -69,7 +69,7 @@
                 <tbody>
                     @php $countExam = 0; $isUTS = false; $isUAS = false; @endphp
                     @foreach ($examScores as $s)
-                        @if ($s->student_user_id == $classSubject->studentId)
+                        @if ($s->user_id == $classSubject->studentId)
                             @php $score += $s->score; $count += 1; $countExam += 1; @endphp
                             @if ($s->name == "UTS")
                                 @php $isUTS = true; @endphp
@@ -284,7 +284,7 @@
                     @method('put')
                     <input type="text" class="form-control" name="name" id="name" value="{{ $score->name }}" hidden>
                     <input type="text" class="form-control" name="classSubjectId" id="classSubjectId" value="{{$score->class_subject_id}}" hidden>
-                    <input type="text" class="form-control" name="studentId" id="studentId" value="{{ $score->student_user_id}}" hidden>
+                    <input type="text" class="form-control" name="studentId" id="studentId" value="{{ $score->user_id}}" hidden>
                     <div class="">
                         <label for="score" class="form-label">Score <span class="required">*</span></label>
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" value="{{ $score->score }}" required>

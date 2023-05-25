@@ -36,7 +36,7 @@ class AttendanceController extends Controller
     public function viewAttendanceStudent($classSubjectId)
     {
         return view('attendance.index', [
-            'attendances' => AttendanceDetail::where('student_user_id', auth()->user()->user_id)->get(),
+            'attendances' => AttendanceDetail::where('user_id', auth()->user()->user_id)->get(),
             'classSubject' => ClassSubject::select('class_subject.class_subject_id as id', 'class_subject.name as name',
                 'class_headers.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as teacherName',
                 'userB.name as homeRoomTeacherName', 'userB.user_code as homeRoomTeacherNuptk', 'user.user_code as teacherNuptk')
@@ -89,7 +89,7 @@ class AttendanceController extends Controller
         foreach ($classDetails as $student) {
             AttendanceDetail::create([
                 'attendance_header_id' => $lastAttendance->id,
-                'student_user_id' => $student->studentId,
+                'user_id' => $student->studentId,
                 'status' => request('present-'.$student->studentId) ? 'Present' : (request('sick-'.$student->studentId) ? 'Sick' : (request('absencePermit-'.$student->studentId) ? 'Absence Permit' : (request('absent-'.$student->studentId) ? 'Absent' : '')))
             ]);
         }

@@ -42,25 +42,25 @@ class AssignmentHeaderController extends Controller
     {
 
         // $assignmentDetails = AssignmentDetail::select(DB::raw('assignment_details.*'))
-        // ->join(DB::raw('(select assignment_header_id, student_user_id, max(id) as maxid from assignment_details group by assignment_header_id,student_user_id) b'), 'assignment_details.id','b.maxid')
+        // ->join(DB::raw('(select assignment_header_id, user_id, max(id) as maxid from assignment_details group by assignment_header_id,user_id) b'), 'assignment_details.id','b.maxid')
         // ->where('assignment_details.assignment_header_id', $assignmentId);
 
         return view('assignment.show', [
-            'assignmentSubmissions' => AssignmentHeader::select('assignment_details.id as id', 'assignment_details.assignment_header_id as assignmentId', 'assignment_headers.title as assignmentTitle', 'assignment_details.file as file', 'assignment_details.created_at as createdAt', 'assignment_details.student_user_id as studentUserId', 'u.name as studentName', 'class_subject.class_subject_id as subjectId', 'class_subject.name as name',
+            'assignmentSubmissions' => AssignmentHeader::select('assignment_details.id as id', 'assignment_details.assignment_header_id as assignmentId', 'assignment_headers.title as assignmentTitle', 'assignment_details.file as file', 'assignment_details.created_at as createdAt', 'assignment_details.user_id as studentUserId', 'u.name as studentName', 'class_subject.class_subject_id as subjectId', 'class_subject.name as name',
                             'class_headers.name as className')
                             ->joinSub(AssignmentDetail::select(DB::raw('assignment_details.*'))
-                            ->join(DB::raw('(select assignment_header_id, student_user_id, max(id) as maxid from assignment_details group by assignment_header_id,student_user_id) b'), 'assignment_details.id','b.maxid')
+                            ->join(DB::raw('(select assignment_header_id, user_id, max(id) as maxid from assignment_details group by assignment_header_id,user_id) b'), 'assignment_details.id','b.maxid')
                             ->where('assignment_details.assignment_header_id', $assignmentId), 'assignment_details', function (JoinClause $join) {
                                 $join->on('assignment_headers.id', '=', 'assignment_details.assignment_header_id');
-                            })->join('user as u','u.id','assignment_details.student_user_id')
+                            })->join('user as u','u.id','assignment_details.user_id')
                             ->join('class_subject', 'class_subject.class_subject_id', 'assignment_headers.class_subject_id')
                             ->join('class_headers', 'class_headers.id', 'class_subject.class_header_id')
                             ->where('assignment_headers.id', $assignmentId)
                             ->get(),
             'assignmentScore' => AssignmentScore::select('assignment_scores.id as id', 'assignment_scores.assignment_header_id as assignmentHeaderId', 'assignment_scores.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_scores.notes as notes')
                                 ->where('assignment_header_id', $assignmentId)
-                                ->join('class_details', 'class_details.user_id', 'assignment_scores.student_user_id')
-                                ->join('user', 'user.user_id', 'assignment_scores.student_user_id')->get()
+                                ->join('class_details', 'class_details.user_id', 'assignment_scores.user_id')
+                                ->join('user', 'user.user_id', 'assignment_scores.user_id')->get()
         ]);
     }
 
@@ -97,7 +97,7 @@ class AssignmentHeaderController extends Controller
         foreach ($classDetails as $s) {
             AssignmentScore::create([
                 'assignment_header_id' => $assignment->id,
-                'student_user_id' => $s->id,
+                'user_id' => $s->id,
                 'score' => 0
             ]);
         }

@@ -16,7 +16,7 @@ class AssignmentDetail extends Model
 
     public function student()
     {
-        return $this->belongsTo('App\Models\User', 'user_id', 'student_user_id');
+        return $this->belongsTo('App\Models\User', 'user_id', 'user_id');
     }
     
     public function assignmentHeader(){
