@@ -28,6 +28,6 @@ class CreateSchoolYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_headers');
+        Schema::dropIfExists('class_header');
     }
 }
