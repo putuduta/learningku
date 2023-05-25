@@ -13,8 +13,8 @@ class CreateAttendanceHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance_headers', function (Blueprint $table) {
-            $table->id();
+        Schema::create('attendance_header', function (Blueprint $table) {
+            $table->id('attendance_header_id');
             $table->unsignedBigInteger('class_subject_id');
             $table->foreign('class_subject_id')->references('class_subject_id')->on('class_subject')->onUpdate('cascade')->onDelete('cascade');
             $table->string('date');
@@ -29,6 +29,6 @@ class CreateAttendanceHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance_headers');
+        Schema::dropIfExists('attendance_header');
     }
 }

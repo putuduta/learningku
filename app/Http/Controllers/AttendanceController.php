@@ -14,12 +14,12 @@ class AttendanceController extends Controller
     {
         return view('attendance.index', [
             'attendances' => AttendanceHeader::select(
-                    'attendance_headers.id',
-                    'attendance_headers.class_subject_id',
-                    'attendance_headers.date',
+                    'attendance_header.attendance_header_id',
+                    'attendance_header.class_subject_id',
+                    'attendance_header.date',
                     'class_subject.name as subjectName',
                     'class_header.name as className')
-                ->join('class_subject', 'attendance_headers.class_subject_id', 'class_subject.class_subject_id')
+                ->join('class_subject', 'attendance_header.class_subject_id', 'class_subject.class_subject_id')
                 ->join('class_header', 'class_subject.class_header_id', 'class_header.class_header_id')
                 ->where('class_subject.user_id', auth()->user()->user_id)->get(),
             'classSubject' => ClassSubject::select('class_subject.class_subject_id as id', 'class_subject.name as name',

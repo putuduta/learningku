@@ -10,15 +10,15 @@ class AttendanceHeader extends Model
 {
     use HasFactory;
 
-    protected $table = 'attendance_headers';
-    protected $primaryKey = 'id';
+    protected $table = 'attendance_header';
+    protected $primaryKey = 'attendance_header_id';
     protected $guarded = [];
 
     public function classSubject(){
-        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','id');
+        return $this->belongsTo('App\Models\ClassSubject','class_subject_id','class_subject_id');
     }
 
     public function details(){
-        return $this->hasMany('App\Models\AttendanceDetail','attendance_header_id','id');
+        return $this->hasMany('App\Models\AttendanceDetail','attendance_header_id','attendance_header_id');
     }
 }

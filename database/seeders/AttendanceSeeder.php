@@ -14,7 +14,7 @@ class AttendanceSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('attendance_headers')->insert([
+        DB::table('attendance_header')->insert([
             [
                 'class_subject_id' => '1',
                 'date' => '23-03-28',
