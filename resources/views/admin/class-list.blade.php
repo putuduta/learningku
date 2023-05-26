@@ -27,17 +27,17 @@
                                    <td class="align-middle text-center">{{$class->homeroomTeacherName}}</td>
                                    <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                        data-bs-target="#updateClass{{ $class->id }}">
+                                        data-bs-target="#updateClass{{ $class->class_header_id }}">
                                              Edit
                                         </button>
                                         <a href="{{route('admin-class-view-subject',$class)}}"
                                         class="btn btn-success text-white">Subject List</a>
-                                        <a href="{{route('admin-class-view-student',$class->id)}}"
+                                        <a href="{{route('admin-class-view-student',$class->class_header_id)}}"
                                              class="btn btn-secondary text-white">Students</a>
 
                                         <button type="button" class="btn btn-danger text-white justify-content-between"
                                              data-bs-toggle="modal"
-                                             data-bs-target="#delete-{{ $class->id }}">
+                                             data-bs-target="#delete-{{ $class->class_header_id }}">
                                              Remove
                                         </button>
                                    </td>
@@ -48,7 +48,7 @@
           </div>
 
           @foreach ($classes as $class)
-               <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $class->id }}"
+               <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $class->class_header_id }}"
                tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                          <div class="modal-content rounded-20 border-0">
@@ -71,7 +71,7 @@
                                                   data-bs-dismiss="modal">
                                                   Cancel
                                              </button>
-                                             <form action="{{ route('admin-class-remove', $class->id) }}"
+                                             <form action="{{ route('admin-class-remove', $class->class_header_id) }}"
                                                   method="POST">
                                                   @csrf
                                                   @method('delete')
@@ -98,7 +98,7 @@
                        </div>
                        <div class="modal-body">
               
-                         <form method="POST" action="{{route('admin-class-create', $classes->first()->id)}}">
+                         <form method="POST" action="{{route('admin-class-create', $classes->first()->class_header_id)}}">
                               @csrf
                               <div class="">
                                    <label for="school_year" class="form-label">School Year</label>
@@ -127,7 +127,7 @@
           </div>
 
           @foreach($classes as $class)
-              <div class="modal fade" id="updateClass{{ $class->id }}" tabindex="-1" aria-labelledby="updateSchoolYear"
+              <div class="modal fade" id="updateClass{{ $class->class_header_id }}" tabindex="-1" aria-labelledby="updateSchoolYear"
                   aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
