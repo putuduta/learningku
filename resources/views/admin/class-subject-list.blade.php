@@ -28,13 +28,13 @@
                                   <td class="align-middle text-center">{{$subject->teacherNuptk}}</td>
                                   <th class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                    data-bs-target="#updateSubject{{ $subject->id }}">
+                                    data-bs-target="#updateSubject{{ $subject->class_subject_id }}">
                                         Edit
                                     </button>
 
                                     <button type="button" class="btn btn-danger text-white justify-content-between"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#delete-{{ $subject->id }}">
+                                        data-bs-target="#delete-{{ $subject->class_subject_id }}">
                                         Remove
                                     </button>
                                   </th>
@@ -46,7 +46,7 @@
     </div>
 
     @foreach ($classSubjects as $subject)
-        <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $subject->id }}"
+        <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $subject->class_subject_id }}"
             tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content rounded-20 border-0">
@@ -69,7 +69,7 @@
                                         data-bs-dismiss="modal">
                                         Cancel
                                     </button>
-                                    <form action="{{ route('admin-class-remove-subject', $subject->id) }}"
+                                    <form action="{{ route('admin-class-remove-subject', $subject->class_subject_id) }}"
                                         method="POST">
                                         @csrf
                                         @method('delete')
@@ -133,7 +133,7 @@
     </div>
 
     @foreach($classSubjects as $subject)
-        <div class="modal fade" id="updateSubject{{ $subject->id }}" tabindex="-1" aria-labelledby="updateSubject"
+        <div class="modal fade" id="updateSubject{{ $subject->class_subject_id }}" tabindex="-1" aria-labelledby="updateSubject"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -155,9 +155,9 @@
                                 <input type="text" class="form-control" name="class_name" value="{{$classSubjects->first()->className}}"  readonly>
                             </div>
                             <div class="my-3">
-                                <input type="text" class="form-control" name="class_id" value="{{$classSubjects->first()->classId}}"  hidden>
+                                <input type="class_id" class="form-control" name="class_id" value="{{$classSubjects->first()->classId}}"  hidden>
                                  <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="name" value="{{$subject->name}}" required>
+                                 <input type="text" class="form-control" name="class_id" value="{{$subject->name}}" required>
                             </div>
                            <div class="my-3">
                                 <label for="minimum_score" class="form-label">Minimum Score <span class="required">*</span></label>
