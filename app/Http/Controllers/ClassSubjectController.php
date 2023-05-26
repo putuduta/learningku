@@ -85,7 +85,7 @@ class ClassSubjectController extends Controller
                                     ->join('class_detail', 'class_detail.class_header_id', 'class_header.class_header_id')
                                     ->join('user', 'user.user_id', 'class_header.user_id')
                                     ->join('user as user2', 'user2.user_id', 'class_subject.user_id')
-                                    ->join('role','role.id','user.role_id')
+                                    ->join('role','role.role_id','user.role_id')
                                     ->where('role.name','Teacher')
                                     ->where('class_detail.user_id', auth()->user()->user_id)
                                     ->orderBy('class_header.school_year_id', 'DESC')->get(),

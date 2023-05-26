@@ -74,12 +74,12 @@ class ClassDetailController extends Controller
         if (auth()->user()->role->name === 'Student') {
             return view('students.index', [
                 'classSubjects' => ClassSubject::select('class_header.class_header_id as classId','class_header.name','school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as homeroomTeacherName', 'class_header.user_id as homeroomTeacherId', 'user.user_code as homeRoomTeacherNuptk',
-                                    'class_subject.class_subject_id as subjectId', 'class_subject.name as subjectName','user2.id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
+                                    'class_subject.class_subject_id as subjectId', 'class_subject.name as subjectName','user2.user_id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
                                     ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')    
                                     ->join('school_year','school_year.school_year_id','class_header.school_year_id')
                                     ->join('class_detail', 'class_detail.class_header_id', 'class_header.class_header_id')
                                     ->join('user', 'user.user_id', 'class_header.user_id')
-                                    ->join('user as user2', 'user2.id', 'class_subject.user_id')
+                                    ->join('user as user2', 'user2.user_id', 'class_subject.user_id')
                                     ->join('role','role.role_id','user.role_id')
                                     ->where('role.name','Teacher')
                                     ->where('class_detail.user_id', auth()->user()->user_id)
