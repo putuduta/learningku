@@ -23,15 +23,15 @@
                                   <td class="align-middle text-center">{{$schoolYear->semester}}</td>
                                   <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                    data-bs-target="#updateSchoolYear{{ $schoolYear->id }}">
+                                    data-bs-target="#updateSchoolYear{{ $schoolYear->school_year_id }}">
                                         Edit School Year
                                     </button>
-                                    <a href="{{route('admin-class-view', $schoolYear->id)}}"
+                                    <a href="{{route('admin-class-view', $schoolYear->school_year_id)}}"
                                     class="btn btn-success  text-white justify-content-between">Class List</a>
 
                                     <button type="button" class="btn btn-danger text-white justify-content-between"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#delete-{{ $schoolYear->id }}">
+                                        data-bs-target="#delete-{{ $schoolYear->school_year_id }}">
                                         Remove
                                    </button>
                                   </td>
@@ -65,7 +65,7 @@
                                          data-bs-dismiss="modal">
                                          Cancel
                                      </button>
-                                     <form action="{{ route('admin-school-year-remove', $schoolYear->id) }}"
+                                     <form action="{{ route('admin-school-year-remove', $schoolYear->school_year_id) }}"
                                          method="POST">
                                          @csrf
                                          @method('delete')
