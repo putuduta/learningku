@@ -42,7 +42,7 @@
          </div>
    
          @foreach ($schoolYearList as $schoolYear)
-         <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $schoolYear->id }}"
+         <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $schoolYear->school_year_id }}"
              tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
              <div class="modal-dialog modal-dialog-centered" role="document">
                  <div class="modal-content rounded-20 border-0">
@@ -115,7 +115,7 @@
         </div>
 
         @foreach($schoolYearList as $schoolYear)
-            <div class="modal fade" id="updateSchoolYear{{ $schoolYear->id }}" tabindex="-1" aria-labelledby="updateSchoolYear"
+            <div class="modal fade" id="updateSchoolYear{{ $schoolYear->school_year_id }}" tabindex="-1" aria-labelledby="updateSchoolYear"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
