@@ -405,7 +405,7 @@
                             <div class="my-3">
                                 <label for="file" class="form-label">Submission File</label>
                                 <input class="form-control" name="file" type="file" id="file">
-                                <input class="form-control" name="assignment_header_id" type="text" id="assignment_header_id" value="{{ $assignment->id }}" hidden>
+                                <input class="form-control" name="assignment_header_id" type="text" id="assignment_header_id" value="{{ $assignment->assignment_header_id }}" hidden>
                                 <input class="form-control" name="assignment_title" type="text" id="assignment_title" value="{{ $assignment->title }}" hidden>
                             </div>
                             <div class="d-grid">
