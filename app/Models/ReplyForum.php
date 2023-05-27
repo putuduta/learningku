@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReplyForum extends Model
 {
-    use HasFactory;
-
     protected $table = 'reply_forum';
     protected $primaryKey = 'reply_forum_id';
     protected $guarded = [];

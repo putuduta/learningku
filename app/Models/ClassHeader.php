@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassHeader extends Model
 {
-    use HasFactory;
 
     protected $table = 'class_header';
     protected $primaryKey = 'class_header_id';
     protected $guarded = [];
-
-
+    
     public function homeroomTeacher(){
         return $this->belongsTo('App\Models\User','user_id','user_id');
     }

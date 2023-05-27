@@ -7,13 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassSubject extends Model
 {
-    use HasFactory;
-
     protected $table = 'class_subject';
     protected $primaryKey = 'class_subject_id';
     protected $guarded = [];
 
-    
     public function teacher(){
         return $this->belongsTo('App\Models\User','user_id','user_id'); 
     }

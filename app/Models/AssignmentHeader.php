@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AssignmentHeader extends Model
 {
-    use HasFactory;
+
     protected $table = 'assignment_header';
     protected $primaryKey = 'assignment_header_id';
     protected $guarded = [];

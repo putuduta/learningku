@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassDetail extends Model
 {
-    use HasFactory;
 
     protected $table = 'class_detail';
     protected $primaryKey = 'class_detail_id';

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamScore extends Model
 {
-    use HasFactory;
 
     protected $table = "exam_score";
     protected $primaryKey = 'exam_score_id';
