@@ -13,10 +13,10 @@ class CreateAssignmentScoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignment_scores', function (Blueprint $table) {
-            $table->id();
+        Schema::create('assignment_score', function (Blueprint $table) {
+            $table->id('assignment_score_id');
             $table->unsignedBigInteger('assignment_header_id');
-            $table->foreign('assignment_header_id')->references('id')->on('assignment_headers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('assignment_header_id')->references('assignment_header_id')->on('assignment_header')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('score')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
@@ -32,6 +32,6 @@ class CreateAssignmentScoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignment_scores');
+        Schema::dropIfExists('assignment_score');
     }
 }

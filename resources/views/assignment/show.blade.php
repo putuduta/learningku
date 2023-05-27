@@ -117,6 +117,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                {{ $score }}
                 <h5 class="modal-title" id="newAssignmentLabel">Give Score ({{$score->nisn}} - {{$score->studentName}})</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -133,7 +134,7 @@
                         ></textarea>
                     </div>
                     <div class="d-grid">
-                        <input type="hidden" name="score_id" value="{{ $score->id }}">
+                        <input type="hidden" name="score_id" value="{{ $score->assignment_score_id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>

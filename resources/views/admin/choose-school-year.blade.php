@@ -12,7 +12,7 @@
                              <label for="school_year_id" class="form-label">School Year/Tahun Ajaran</label>
                              <select name="school_year_id" class="form-select" required>
                                   @foreach ($schoolYears as $schoolYear)
-                                      <option value="{{$schoolYear->id}}">{{$schoolYear->year}} - {{$schoolYear->semester}}</option>
+                                      <option value="{{$schoolYear->school_year_id}}">{{$schoolYear->year}} - {{$schoolYear->semester}}</option>
                                   @endforeach
                              </select>
                         </div>

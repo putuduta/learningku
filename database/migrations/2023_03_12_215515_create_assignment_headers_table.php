@@ -13,8 +13,8 @@ class CreateAssignmentHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignment_headers', function (Blueprint $table) {
-            $table->id();
+        Schema::create('assignment_header', function (Blueprint $table) {
+            $table->id('assignment_header_id');
             $table->unsignedBigInteger('class_subject_id');
             $table->foreign('class_subject_id')->references('class_subject_id')->on('class_subject')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
@@ -31,6 +31,6 @@ class CreateAssignmentHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignment_headers');
+        Schema::dropIfExists('assignment_header');
     }
 }

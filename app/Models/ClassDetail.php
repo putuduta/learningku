@@ -10,8 +10,8 @@ class ClassDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'class_details';
-    protected $primaryKey = 'id';
+    protected $table = 'class_detail';
+    protected $primaryKey = 'class_detail_id';
     protected $guarded = [];
 
     public function user(){
@@ -19,6 +19,6 @@ class ClassDetail extends Model
     }
 
     public function classHeader(){
-        return $this->belongsTo('App\Models\ClassHeader','class_header_id','id');
+        return $this->belongsTo('App\Models\ClassHeader','class_header_id','class_header_id');
     }
 }

@@ -182,7 +182,7 @@
                                     data-bs-dismiss="modal">
                                     Cancel
                                 </button>
-                                <form action="{{ route('admin-teacher-remove', $teacher->id) }}"
+                                <form action="{{ route('admin-teacher-remove', $teacher->user_id) }}"
                                     method="POST">
                                     @csrf
                                     @method('delete')

@@ -10,8 +10,8 @@ class AssignmentScore extends Model
 {
     use HasFactory;
 
-    protected $table = "assignment_scores";
-    protected $primaryKey = 'id';
+    protected $table = "assignment_score";
+    protected $primaryKey = 'assignment_score_id';
     protected $guarded = [];
 
     public function student()
@@ -20,6 +20,6 @@ class AssignmentScore extends Model
     }
 
     public function assignment(){
-        return $this->belongsTo('App\Models\AssignmentHeader', 'assignment_header_id', 'id');
+        return $this->belongsTo('App\Models\AssignmentHeader', 'assignment_header_id', 'assignment_header_id');
     }
 }

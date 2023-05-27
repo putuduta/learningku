@@ -41,7 +41,7 @@ class ClassSeeder extends Seeder
                 'minimum_score' => 75
             ]
         ]);
-        DB::table('class_details')->insert([
+        DB::table('class_detail')->insert([
             [
                 'user_id' => '4',
                 'class_header_id' => '1'

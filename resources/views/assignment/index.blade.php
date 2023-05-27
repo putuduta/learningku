@@ -274,27 +274,27 @@
                                 @if (auth()->user()->role->name == 'Student')
                                     @if (strtotime($assignment->end_time) > time())
                                         <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#submit-{{ $assignment->id }}">
+                                            data-bs-target="#submit-{{ $assignment->assignment_header_id }}">
                                             Submit
                                         </button>
                                     @else
                                         <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#submit-{{ $assignment->id }}" disabled>
+                                            data-bs-target="#submit-{{ $assignment->assignment_header_id }}" disabled>
                                             Submit
                                         </button>
                                     @endif
                                     <button type="button" class="btn btn-dark text-white" data-bs-toggle="modal"
-                                        data-bs-target="#history-{{ $assignment->id }}">
+                                        data-bs-target="#history-{{ $assignment->assignment_header_id }}">
                                         Submission History
                                     </button>
                                 @elseif(auth()->user()->role->name == 'Teacher')
                                     @if (!(strtotime($assignment->end_time) > time()))
-                                    <a href="{{ route('assignment.showDetails', ['assignmentId' => $assignment->id]) }}"
+                                    <a href="{{ route('assignment.showDetails', ['assignmentId' => $assignment->assignment_header_id]) }}"
                                         class="btn btn-primary text-white">
                                         Show Submissions
                                     </a>
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                    data-bs-target="#updateAssignment{{ $assignment->id }}" disabled>
+                                    data-bs-target="#updateAssignment{{ $assignment->assignment_header_id }}" disabled>
                                         Update
                                     </button>
                                     @else 
@@ -302,7 +302,7 @@
                                         Show Submissions
                                     </button>
                                     <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                    data-bs-target="#updateAssignment{{ $assignment->id }}">
+                                    data-bs-target="#updateAssignment{{ $assignment->assignment_header_id }}">
                                         Update
                                     </button>
                                     @endif
@@ -352,7 +352,7 @@
     </div>
 
     @foreach ($assignments as $assignment)
-    <div class="modal fade" id="updateAssignment{{ $assignment->id }}" tabindex="-1" aria-labelledby="updateAssignmentLabel" aria-hidden="true">
+    <div class="modal fade" id="updateAssignment{{ $assignment->assignment_header_id }}" tabindex="-1" aria-labelledby="updateAssignmentLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -390,7 +390,7 @@
 
 @if (auth()->user()->role->name == 'Student')
     @foreach ($assignments as $assignment)
-        <div class="modal fade" id="submit-{{ $assignment->id }}" tabindex="-1" aria-labelledby="submitLabel"
+        <div class="modal fade" id="submit-{{ $assignment->assignment_header_id }}" tabindex="-1" aria-labelledby="submitLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -417,7 +417,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="history-{{ $assignment->id }}" tabindex="-1" aria-labelledby="historyLabel"
+        <div class="modal fade" id="history-{{ $assignment->assignment_header_id }}" tabindex="-1" aria-labelledby="historyLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">

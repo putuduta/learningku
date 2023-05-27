@@ -5,7 +5,7 @@
         <div class="mb-3">
             <span class="fa-stack fa-md ms-n1">
                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
-                <a href="{{ route('forum.index', $classSubject->id ) }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+                <a href="{{ route('forum.index', $classSubject->class_subject_id ) }}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
         {{-- <a href="{{ route('forum.index', $classSubject->id) }}" class="btn btn-primary text-white mb-3">Back to forum list</a> --}}
@@ -59,7 +59,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('forum.update',$forum->id) }}" method="POST"
+                                <form action="{{ route('forum.update',$forum->forum_id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="my-3">
@@ -161,7 +161,7 @@
                                         data-bs-dismiss="modal">
                                         Cancel
                                     </button>
-                                    <form action="{{ route('reply-forum.destroy', $reply->id) }}"
+                                    <form action="{{ route('reply-forum.destroy', $reply->reply_forum_id) }}"
                                         method="POST">
                                         @csrf
                                         @method('delete')
@@ -187,12 +187,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('reply-forum.update',$reply->id) }}" method="POST"
+                    <form action="{{ route('reply-forum.update',$reply->reply_forum_id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="my-3">
                             <label for="description" class="form-label">Description <span class="required">*</span></label>
-                            <textarea name="description" id="bodyEditReply-{{ $reply->id }}" cols="30" rows="10" class="form-control"
+                            <textarea name="description" id="bodyEditReply-{{ $reply->reply_forum_id }}" cols="30" rows="10" class="form-control"
                                 >{{ $reply->description }}</textarea>
                         </div>
                         <div class="my-3">

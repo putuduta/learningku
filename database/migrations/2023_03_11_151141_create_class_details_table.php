@@ -13,8 +13,8 @@ class CreateClassDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_details', function (Blueprint $table) {
-            $table->id();
+        Schema::create('class_detail', function (Blueprint $table) {
+            $table->id('class_detail_id');
             $table->unsignedBigInteger('class_header_id');
             $table->foreign('class_header_id')->references('class_header_id')->on('class_header')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
@@ -30,6 +30,6 @@ class CreateClassDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_details');
+        Schema::dropIfExists('class_detail');
     }
 }

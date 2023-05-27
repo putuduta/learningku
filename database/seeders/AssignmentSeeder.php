@@ -14,7 +14,7 @@ class AssignmentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('assignment_headers')->insert([
+        DB::table('assignment_header')->insert([
             [
                 'class_subject_id' => '1',
                 'title' => 'Personal Letter',
@@ -80,7 +80,7 @@ class AssignmentSeeder extends Seeder
                 'updated_at' => '2023-03-17 04:07:38'
             ],
         ]);
-        DB::table('assignment_details')->insert([
+        DB::table('assignment_detail')->insert([
             [
                 'assignment_header_id' => 1,
                 'user_id' => 4,

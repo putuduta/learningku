@@ -10,8 +10,8 @@ class AssignmentDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'assignment_details';
-    protected $primaryKey = 'id';
+    protected $table = 'assignment_detail';
+    protected $primaryKey = 'assignment_detail_id';
     protected $guarded = [];
 
     public function student()
@@ -20,6 +20,6 @@ class AssignmentDetail extends Model
     }
     
     public function assignmentHeader(){
-        return $this->belongsTo('App\Models\AssignmentHeader','assignment_header_id','id');
+        return $this->belongsTo('App\Models\AssignmentHeader','assignment_header_id','assignment_header_id');
     }
 }
