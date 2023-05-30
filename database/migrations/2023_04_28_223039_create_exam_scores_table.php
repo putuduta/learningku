@@ -15,10 +15,8 @@ class CreateExamScoresTable extends Migration
     {
         Schema::create('exam_score', function (Blueprint $table) {
             $table->id('exam_score_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('class_subject_id');
-            $table->foreign('class_subject_id')->references('class_subject_id')->on('class_subject')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('class_subject_id')->constrained('class_subject', 'class_subject_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('user', 'user_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('name');
             $table->integer('score');
             $table->timestamps();

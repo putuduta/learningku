@@ -15,10 +15,8 @@ class CreateForumsTable extends Migration
     {
         Schema::create('forum', function (Blueprint $table) {
             $table->id('forum_id');
-            $table->unsignedBigInteger('class_subject_id');
-            $table->foreign('class_subject_id')->references('class_subject_id')->on('class_subject')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('class_subject_id')->constrained('class_subject', 'class_subject_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('user', 'user_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
             $table->mediumText('description');
             $table->string('file')->nullable();

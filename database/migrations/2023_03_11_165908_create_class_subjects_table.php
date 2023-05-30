@@ -16,10 +16,8 @@ class CreateClassSubjectsTable extends Migration
         Schema::create('class_subject', function (Blueprint $table) {
             $table->id('class_subject_id');
             $table->string('name');
-            $table->unsignedBigInteger('class_header_id');
-            $table->foreign('class_header_id')->references('class_header_id')->on('class_header')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('class_header_id')->constrained('class_header', 'class_header_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('user', 'user_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('minimum_score');
             $table->timestamps();
         });

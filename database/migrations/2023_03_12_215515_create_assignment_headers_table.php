@@ -15,8 +15,7 @@ class CreateAssignmentHeadersTable extends Migration
     {
         Schema::create('assignment_header', function (Blueprint $table) {
             $table->id('assignment_header_id');
-            $table->unsignedBigInteger('class_subject_id');
-            $table->foreign('class_subject_id')->references('class_subject_id')->on('class_subject')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('class_subject_id')->constrained('class_subject', 'class_subject_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
             $table->string('file');
             $table->string('end_time');

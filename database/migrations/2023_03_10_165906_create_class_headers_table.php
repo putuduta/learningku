@@ -16,10 +16,8 @@ class CreateClassHeadersTable extends Migration
         Schema::create('class_header', function (Blueprint $table) {
             $table->id('class_header_id');
             $table->string('name');
-            $table->unsignedBigInteger('school_year_id');
-            $table->foreign('school_year_id')->references('school_year_id')->on('school_year')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('school_year_id')->constrained('school_year', 'school_year_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('user', 'user_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

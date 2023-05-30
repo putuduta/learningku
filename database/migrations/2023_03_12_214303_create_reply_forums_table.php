@@ -15,10 +15,8 @@ class CreateReplyForumsTable extends Migration
     {
         Schema::create('reply_forum', function (Blueprint $table) {
             $table->id('reply_forum_id');
-            $table->unsignedBigInteger('forum_id');
-            $table->foreign('forum_id')->references('forum_id')->on('forum')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('forum_id')->constrained('forum', 'forum_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('user', 'user_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->mediumText('description');
             $table->string('file')->nullable();
             $table->timestamps();

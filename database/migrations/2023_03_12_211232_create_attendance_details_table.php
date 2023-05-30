@@ -15,10 +15,8 @@ class CreateAttendanceDetailsTable extends Migration
     {
         Schema::create('attendance_detail', function (Blueprint $table) {
             $table->id('attendance_detail_id');
-            $table->unsignedBigInteger('attendance_header_id');
-            $table->foreign('attendance_header_id')->references('attendance_header_id')->on('attendance_header')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('attendance_header_id')->constrained('attendance_header', 'attendance_header_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('user', 'user_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('status');
             $table->timestamps();
         });
