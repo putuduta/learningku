@@ -40,7 +40,7 @@
                         </button>
                     </div>
                     <div class="mx-1">
-                        @if($forum->teacher_user_id == auth()->user()->user_id)
+                        @if($forum->user_id == auth()->user()->user_id)
                             <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
                             data-bs-target="#editThread">
                             Edit Forum

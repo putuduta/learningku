@@ -191,6 +191,12 @@
 
     <section id="headerClassSubject">
         <div id="content" class="container pt-5 mt-5">
+            <div class="mb-3">
+                <span class="fa-stack fa-md ms-n1">
+                    <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                    <a href="javascript:history.back()" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+                </span>
+            </div>
             <section id="headerClassDetail">
 
                 <div class="card shadow-sm border-0 mb-3">
@@ -261,7 +267,7 @@
                             {{ date_format(date_create($forum->created_at),"d F Y H:i") }}
                         </td>
                         <td class="align-middle text-center">{{ count($forum->replies) }}</td>
-                        @if($forum->teacher_user_id == auth()->user()->user_id)
+                        @if($forum->user_id == auth()->user()->user_id)
                         <td class="align-middle text-center bg-info text-white">Creator</td>
                         @elseif(count($forum->replyAuthUser) > 0)
                         <td class="align-middle text-center bg-success text-white">Replied</td>
@@ -272,7 +278,7 @@
                             <a href="{{ route('forum.show', ['forumId' => $forum->forum_id, 'classSubjectId' => $classSubject->id]) }}" class="btn btn-primary text-white">
                                 Show
                             </a>
-                            @if($forum->teacher_user_id == auth()->user()->user_id)
+                            @if($forum->user_id == auth()->user()->user_id)
                             <button type="button" class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
                                 data-bs-target="#delete-{{ $forum->forum_id }}">

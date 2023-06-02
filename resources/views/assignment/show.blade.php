@@ -103,7 +103,22 @@
                                     @endif
                                 @endif
                             @endforeach
-                            @endif
+                        @else
+                        <tr>
+                            <td class="align-middle text-center">{{ $i }}</td>
+                            <td class="align-middle text-center">{{ $score->nisn }}</td>
+                            <td class="align-middle text-center">{{ $score->studentName }}</td>
+                            <td class="align-middle text-center bg-danger text-white">
+                            Not Submitted
+                            </td>
+                            <td class="align-middle text-center">
+                                {{ $score->score }}
+                            </td>
+                            <td class="align-middle text-center">
+                                -
+                            </td>
+                        </tr> 
+                        @endif
                     @php($i++)
                     @endforeach
                 </tbody>

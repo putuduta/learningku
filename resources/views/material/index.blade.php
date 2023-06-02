@@ -191,6 +191,12 @@
 
     <section id="headerClassSubject">
         <div id="content" class="container pt-5 mt-5">
+            <div class="mb-3">
+                <span class="fa-stack fa-md ms-n1">
+                    <i class="fas fa-circle fa-stack-2x text-orange"></i>
+                    <a href="javascript:history.back()" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+                </span>
+            </div>
             <section id="headerClassDetail">
     
                 <div class="card shadow-sm border-0 mb-3">
