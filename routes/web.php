@@ -1,16 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ThreadController;
-use App\Http\Controllers\ReplyThreadController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentDetailController;
 use App\Http\Controllers\AssignmentHeaderController;
 use App\Http\Controllers\ScoreController;
-use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassDetailController;
 use App\Http\Controllers\ClassHeaderController;
 use App\Http\Controllers\ClassSubjectController;
@@ -20,8 +15,6 @@ use App\Http\Controllers\ReplyForumController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
-use App\Models\ClassSubject;
-use App\Models\SchoolYear;
 
 /*
 |--------------------------------------------------------------------------
