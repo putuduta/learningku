@@ -20,6 +20,7 @@
                     </thead>
                     <tbody>
                          @foreach ($classDetails as $index => $student)
+                         @if ($student->classDetailId !== null)
                               <tr>
                                    <td class="align-middle text-center">{{$index+1}}</td>
                                    <td class="align-middle text-center">{{$student->nisn}}</td>
@@ -32,6 +33,7 @@
                                         </button>
                                    </td>
                               </tr>
+                         @endif
                          @endforeach
                     </tbody>
                </table>
@@ -39,6 +41,7 @@
      </div>
 
      @foreach ($classDetails as $student)
+     @if ($student->classDetailId !== null)
           <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $student->classDetailId }}"
           tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
@@ -77,6 +80,7 @@
                     </div>
                </div>
           </div>
+     @endif
      @endforeach
 
      <div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="addStudent"

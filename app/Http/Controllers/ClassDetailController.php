@@ -10,20 +10,24 @@ use App\Models\User;
 class ClassDetailController extends Controller
 {
     public function viewClassDetailsAdmin($id){
+            $classDetails = ClassDetail::select('user.user_id as id', 'user.name as name', 'class_detail.class_detail_id as classDetailId','user.user_code as nisn','class_header.name as className','class_header.class_header_id as classId', 'school_year.semester as semester', 'school_year.year as year', 'school_year.school_year_id as schoolYearId')
+            ->join('user', 'user.user_id', 'class_detail.user_id')
+            ->join('role','role.role_id','user.role_id')
+            ->rightJoin('class_header','class_header.class_header_id','class_detail.class_header_id')
+            ->rightJoin('school_year','school_year.school_year_id','class_header.school_year_id')
+            ->where(function($query) {$query->where('role.name', '=',null)->orWhere('role.name','Student');})
+            ->where('class_header.class_header_id', $id)
+            ->get();
             return view('admin.class-student-list',[
-                'classDetails' => ClassDetail::select('user.user_id as id', 'user.name as name', 'class_detail.class_detail_id as classDetailId','user.user_code as nisn','class_header.name as className','class_header.class_header_id as classId', 'school_year.semester as semester', 'school_year.year as year', 'school_year.school_year_id as schoolYearId')
-                    ->join('user', 'user.user_id', 'class_detail.user_id')
-                    ->join('role','role.role_id','user.role_id')
-                    ->join('class_header','class_header.class_header_id','class_detail.class_header_id')
-                    ->join('school_year','school_year.school_year_id','class_header.school_year_id')
-                    ->where('role.name','Student')
-                    ->where('class_detail.class_header_id', $id)
-                    ->get(),
+                'classDetails' => $classDetails,
                 'students' => User::select('user.user_id as id', 'user.name as name', 'user.user_code as nisn', 'user.email as email')
                     ->join('role','role.role_id','user.role_id')
-                    ->leftJoin('class_detail', 'class_detail.user_id', 'user.user_id')
                     ->where('role.name','Student')
-                    ->whereNull('class_detail.user_id')
+                    ->whereNotIn('user.user_id', User::select('user.user_id as id')
+                    ->join('role','role.role_id','user.role_id')
+                    ->join('class_detail', 'class_detail.user_id', 'user.user_id')
+                    ->join('class_header', 'class_header.class_header_id', 'class_detail.class_header_id')
+                    ->where([['role.name','Student'], ['class_header.school_year_id', $classDetails->first()->schoolYearId]])->get()->toArray())
                 ->get()
             ]);
     }

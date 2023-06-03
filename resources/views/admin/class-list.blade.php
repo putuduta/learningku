@@ -21,6 +21,7 @@
                     </thead>
                     <tbody>
                          @foreach ($classes as $index => $class)
+                              @if ($class->name !== null)
                               <tr>
                                    <td class="align-middle text-center">{{$index+1}}</td>
                                    <td class="align-middle text-center">{{$class->name}}</td>
@@ -42,12 +43,14 @@
                                         </button>
                                    </td>
                               </tr>
+                              @endif
                          @endforeach
                     </tbody>
                </table>
           </div>
 
           @foreach ($classes as $class)
+          @if ($class->name !== null)
                <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $class->class_header_id }}"
                tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -86,6 +89,7 @@
                          </div>
                     </div>
                </div>
+          @endif
           @endforeach
 
           <div class="modal fade" id="newClass" tabindex="-1" aria-labelledby="newClass"
@@ -98,7 +102,7 @@
                        </div>
                        <div class="modal-body">
               
-                         <form method="POST" action="{{route('admin-class-create', $classes->first()->class_header_id)}}">
+                         <form method="POST" action="{{route('admin-class-create', $classes->first()->schoolYearId)}}">
                               @csrf
                               <div class="">
                                    <label for="school_year" class="form-label">School Year</label>
@@ -127,6 +131,7 @@
           </div>
 
           @foreach($classes as $class)
+          @if ($class->name !== null)
               <div class="modal fade" id="updateClass{{ $class->class_header_id }}" tabindex="-1" aria-labelledby="updateSchoolYear"
                   aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -168,6 +173,7 @@
                       </div>
                   </div>
               </div>
+          @endif
           @endforeach
      </div>
 </x-app>

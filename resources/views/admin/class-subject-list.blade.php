@@ -21,6 +21,7 @@
                    </thead>
                    <tbody>
                         @foreach ($classSubjects as $index => $subject)
+                        @if ($subject->name !== null)
                              <tr>
                                   <td class="align-middle text-center">{{$index+1}}</td>
                                   <td class="align-middle text-center">{{$subject->name}}</td>
@@ -39,6 +40,7 @@
                                     </button>
                                   </th>
                              </tr>
+                        @endif
                         @endforeach
                    </tbody>
               </table>
@@ -46,6 +48,7 @@
     </div>
 
     @foreach ($classSubjects as $subject)
+    @if ($subject->name !== null)
         <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $subject->class_subject_id }}"
             tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -84,6 +87,7 @@
                 </div>
             </div>
         </div>
+    @endif
     @endforeach
 
     <div class="modal fade" id="addSubject" tabindex="-1" aria-labelledby="addSubject"
@@ -133,6 +137,7 @@
     </div>
 
     @foreach($classSubjects as $subject)
+    @if ($subject->name !== null)
         <div class="modal fade" id="updateSubject{{ $subject->class_subject_id }}" tabindex="-1" aria-labelledby="updateSubject"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -157,7 +162,7 @@
                             <div class="my-3">
                                 <input type="class_id" class="form-control" name="class_id" value="{{$classSubjects->first()->classId}}"  hidden>
                                  <label for="name" class="form-label">Subject Name <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="class_id" value="{{$subject->name}}" required>
+                                 <input type="text" class="form-control" name="name" value="{{$subject->name}}" required>
                             </div>
                            <div class="my-3">
                                 <label for="minimum_score" class="form-label">Minimum Score <span class="required">*</span></label>
@@ -181,6 +186,7 @@
                 </div>
             </div>
         </div>
+    @endif
     @endforeach
 </div>
 </x-app>

@@ -23,13 +23,13 @@
                                    <td class="align-middle text-center">{{$teacher->nuptk}}</td>
                                    <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                        data-bs-target="#updateTeacher{{ $teacher->id }}">
+                                        data-bs-target="#updateTeacher{{ $teacher->user_id }}">
                                             Update
                                         </button>
 
                                         <button type="button" class="btn btn-danger text-white justify-content-between"
                                              data-bs-toggle="modal"
-                                             data-bs-target="#delete-{{ $teacher->id }}">
+                                             data-bs-target="#delete-{{ $teacher->user_id }}">
                                              Remove
                                         </button>
                                    </td>
@@ -96,7 +96,7 @@
 </div>
 
 @foreach($teacherList as $teacher)
-        <div class="modal fade" id="updateTeacher{{ $teacher->id }}" tabindex="-1" aria-labelledby="updateTeacher"
+        <div class="modal fade" id="updateTeacher{{ $teacher->user_id }}" tabindex="-1" aria-labelledby="updateTeacher"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -159,7 +159,7 @@
     @endforeach
 
     @foreach ($teacherList as $teacher)
-    <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $teacher->id }}"
+    <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $teacher->user_id }}"
         tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content rounded-20 border-0">

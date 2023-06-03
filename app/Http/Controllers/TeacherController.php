@@ -28,7 +28,7 @@ class TeacherController extends Controller
             'email' => $request->email,
             'gender' => $request->gender,
             'role_id' => 2,
-            'user.user_id_code' => $request->nuptk,
+            'user_code' => $request->nuptk,
             'password' => $request->password,
             'photo_profile' => $photo_profile 
         ]);
@@ -66,7 +66,7 @@ class TeacherController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
-            'user.user_id_code' => $request->nuptk,
+            'user_code' => $request->nuptk,
             'password' => $password,
             'photo_profile' => $imagePath 
         ]);
@@ -88,7 +88,7 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required|string',
             'nuptk' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:user.user_ids'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'image' => 'image|max:5120',
             'gender' => 'required|string'
         ]);

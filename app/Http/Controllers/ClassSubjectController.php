@@ -11,14 +11,14 @@ class ClassSubjectController extends Controller
     public function index($class){
         return view('admin.class-subject-list',[
             'classSubjects' => ClassSubject::select('class_subject.class_subject_id as class_subject_id', 'class_subject.name as name','user.user_id as teacherId', 'user.name as teacherName', 'user.user_code as teacherNuptk', 'class_subject.minimum_score'
-                ,'class_header.name as className','class_header.class_header_id as classId', 'school_year.semester as semester', 'school_year.year as year', 'school_year.school_year_id as schoolYearId')
-                ->join('user', 'user.user_id', 'class_subject.user_id')
-                ->join('role','role.role_id','user.role_id')
-                ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
-                ->join('school_year', 'school_year.school_year_id', 'class_header.school_year_id')
-                ->where('role.name','Teacher')
-                ->where('class_subject.class_header_id', $class)
-                ->get(),
+                            ,'class_header.name as className','class_header.class_header_id as classId', 'school_year.semester as semester', 'school_year.year as year', 'school_year.school_year_id as schoolYearId')
+                            ->join('user', 'user.user_id', 'class_subject.user_id')
+                            ->join('role','role.role_id','user.role_id')
+                            ->rightJoin('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
+                            ->rightJoin('school_year', 'school_year.school_year_id', 'class_header.school_year_id')
+                            ->where(function($query) {$query->where('role.name', '=',null)->orWhere('role.name','Teacher');})
+                            ->where('class_header.class_header_id', $class)
+                            ->get(),
             'teachers' => User::select('user.user_id as id', 'user.name as name', 'user.user_code as nuptk')
                 ->join('role','role.role_id','user.role_id')
                 ->where('role.name','Teacher')

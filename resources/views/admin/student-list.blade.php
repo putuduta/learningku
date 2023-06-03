@@ -23,13 +23,13 @@
                                    <td class="align-middle text-center">{{$student->nisn}}</td>
                                    <td class="align-middle text-center">
                                         <button type="button" class="btn btn-primary text-white justify-content-between" data-bs-toggle="modal"
-                                        data-bs-target="#updateStudent{{ $student->id }}">
+                                        data-bs-target="#updateStudent{{ $student->user_id }}">
                                             Update
                                         </button>
 
                                         <button type="button" class="btn btn-danger text-white justify-content-between"
                                              data-bs-toggle="modal"
-                                             data-bs-target="#delete-{{ $student->id }}">
+                                             data-bs-target="#delete-{{ $student->user_id }}">
                                              Remove
                                         </button>
                                         
@@ -97,7 +97,7 @@
 </div>
 
 @foreach($studentList as $student)
-        <div class="modal fade" id="updateStudent{{ $student->id }}" tabindex="-1" aria-labelledby="updateStudent"
+        <div class="modal fade" id="updateStudent{{ $student->user_id }}" tabindex="-1" aria-labelledby="updateStudent"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -161,7 +161,7 @@
 
 
     @foreach ($studentList as $student)
-    <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $student->id }}"
+    <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $student->user_id }}"
         tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content rounded-20 border-0">
