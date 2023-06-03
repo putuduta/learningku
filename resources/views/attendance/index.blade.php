@@ -385,7 +385,7 @@
                         <td class="align-middle text-center">{{ $attendance->subjectName }}</td>
                         <td class="align-middle text-center">
                             <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                data-bs-target="#detail-{{ $attendance->attendance_detail_id }}">
+                                data-bs-target="#detail-{{ $attendance->attendance_header_id }}">
                                 Details
                             </button>
                         </td>
@@ -398,11 +398,11 @@
 </x-app>
 
 @foreach($attendances as $attendance)
-<div class="modal fade" id="detail-{{ $attendance->id }}" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="detail-{{ $attendance->attendance_header_id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-attendanceHeader">
-                <h5 class="modal-title" id="staticBackdropLabel">Attendance Detail - {{ $attendance->attendance_detail_id }}</h5>
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Attendance Detail - {{ $attendance->attendance_header_id }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

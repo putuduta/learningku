@@ -32,7 +32,7 @@
                                 <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#updateAssignmentScore-{{ $s->id }}">
+                                        data-bs-target="#updateAssignmentScore-{{ $s->assignment_score_id }}">
                                         <i class='fas fa-pencil-alt'></i>
                                     </button>
                                 </td>
@@ -46,7 +46,7 @@
                                 <td class="align-middle text-center">
                                     <button type="button" class="btn btn-primary text-white"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#newAssignmentScore-{{ $s->id }}">
+                                        data-bs-target="#newAssignmentScore-{{ $s->assignment_score_id }}">
                                         <i class='fas fa-pencil-alt'></i>
                                     </button>
                                 </td>
@@ -185,7 +185,8 @@
 </x-app>
 
 @foreach($assignmentScores as $score)
-<div class="modal fade" id="newAssignmentScore-{{ $score->id }}" tabindex="-1" aria-labelledby="newScoreLabel" aria-hidden="true">
+@if ($score->user_id == $classSubject->studentId && $score->assignment->class_subject_id == $classSubject->id)
+<div class="modal fade" id="newAssignmentScore-{{ $score->assignment_score_id }}" tabindex="-1" aria-labelledby="newScoreLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -201,11 +202,11 @@
                     </div>
                     <div class="pt-2">
                         <label for="score" class="form-label">Notes/Feedback (Optional)</label>
-                        <textarea name="notes" id="bodyNewScore{{ $score->assignmentId }}{{ $score->studentUserId }}" cols="20" rows="10" class="form-control"
+                        <textarea name="notes" id="bodyNewScore{{ $score->assignment_score_id }}" cols="20" rows="10" class="form-control"
                         ></textarea>
                     </div>
                     <div class="d-grid">
-                        <input type="hidden" name="score_id" value="{{ $score->id }}">
+                        <input type="hidden" name="score_id" value="{{ $score->assignment_score_id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>
@@ -213,6 +214,7 @@
         </div>
     </div>
 </div>
+@endif
 @endforeach
 
 
@@ -302,7 +304,7 @@
 
 
 @foreach($assignmentScores as $score)
-<div class="modal fade" id="updateAssignmentScore-{{ $score->id }}" tabindex="-1" aria-labelledby="updateAssignmentScore" aria-hidden="true">
+<div class="modal fade" id="updateAssignmentScore-{{ $score->assignment_score_id }}" tabindex="-1" aria-labelledby="updateAssignmentScore" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -319,7 +321,7 @@
                     </div>
                     <div class="">
                         <label for="score" class="form-label">Notes/Feedback (Optional)</label>
-                        <textarea name="notes" id="bodyUpdateScore{{ $score->id }}" cols="30" rows="10" class="form-control"
+                        <textarea name="notes" id="bodyUpdateScore{{ $score->assignment_score_id }}" cols="30" rows="10" class="form-control"
                         >{{ $score->notes }}</textarea>
                     </div>
                     <div class="d-grid">
@@ -335,15 +337,15 @@
 <script>
     var scores = {!! json_encode($assignmentScores->toArray()) !!};
     scores.forEach(function(item) {
-        console.log('#bodyNewScore' + item.id)
+        console.log('#bodyNewScore' + item.assignment_score_id)
         ClassicEditor
-            .create(document.querySelector('#bodyNewScore' + item.id))
+            .create(document.querySelector('#bodyNewScore' + item.assignment_score_id))
             .catch(error => {
                 console.error(error);
         });
 
         ClassicEditor
-            .create(document.querySelector('#bodyUpdateScore' + item.id))
+            .create(document.querySelector('#bodyUpdateScore' + item.assignment_score_id))
             .catch(error => {
                 console.error(error);
         });

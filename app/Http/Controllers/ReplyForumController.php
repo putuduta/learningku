@@ -52,9 +52,9 @@ class ReplyForumController extends Controller
         return redirect()->back()->with('success', 'Reply Forum Updated');
     }
 
-    public function destroy($reply_forum)
+    public function destroy($id)
     {
-        ReplyForum::destroy($reply_forum->id);
+        ReplyForum::destroy($id);
         return redirect()->back()->with('success', 'Reply forum deleted');
     }
 

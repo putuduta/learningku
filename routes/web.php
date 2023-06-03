@@ -131,7 +131,7 @@ Route::get('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'i
 Route::get('assignment-choose-class-subject', [AssignmentHeaderController::class, 'viewChooseClassSubject'])->name('assignment.view-choose-class-subject')->middleware('auth');
 Route::get('assignment-show/{assignmentId}', [AssignmentHeaderController::class, 'viewAssignmentSubmission'])->name('assignment.showDetails')->middleware('auth');
 // Route::resource('assignment', AssignmentController::class)->only('store');
-Route::post('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'store'])->name('assignment.add')->middleware('auth');
+Route::post('assignment/store/{classSubjectId}', [AssignmentHeaderController::class, 'store'])->name('assignment.add')->middleware('auth');
 Route::put('assignment/update/{assignment}', [AssignmentHeaderController::class, 'update'])->name('assignment.update')->middleware('auth');
 Route::post('assignment/submit', [AssignmentDetailController::class, 'submitAssignmentAnswer'])->name('assignment.submit')->middleware('auth');
 // Route::get('assignment/{assignmentHeader}', [AssignmentController::class, 'show'])->name('assignment.show');

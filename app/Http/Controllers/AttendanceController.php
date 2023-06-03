@@ -88,7 +88,7 @@ class AttendanceController extends Controller
 
         foreach ($classDetails as $student) {
             AttendanceDetail::create([
-                'attendance_header_id' => $lastAttendance->id,
+                'attendance_header_id' => $lastAttendance->attendance_header_id,
                 'user_id' => $student->studentId,
                 'status' => request('present-'.$student->studentId) ? 'Present' : (request('sick-'.$student->studentId) ? 'Sick' : (request('absencePermit-'.$student->studentId) ? 'Absence Permit' : (request('absent-'.$student->studentId) ? 'Absent' : '')))
             ]);
@@ -107,7 +107,7 @@ class AttendanceController extends Controller
     public function viewChooseClassSubject() {
         if (auth()->user()->role->name === 'Student') {
             return view('attendance.index', [
-                'classSubjects' => ClassSubject::select('class_header.class_header_id as classId','class_header.name','school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as homeroomTeacherName', 'class_header.user_id as homeroomTeacherId', 'user.user_code as teacherNuptk',
+                'classSubjects' => ClassSubject::select('class_header.class_header_id as classId','class_header.name','school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as homeroomTeacherName', 'class_header.user_id as homeroomTeacherId', 'user.user_code as homeRoomTeacherNuptk',
                                     'class_subject.class_subject_id as subjectId', 'class_subject.name as subjectName','user2.user_id as teacherId', 'user2.name as teacherName', 'user2.user_code as teacherNuptk')
                                     ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')    
                                     ->join('school_year','school_year.school_year_id','class_header.school_year_id')

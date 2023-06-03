@@ -59,7 +59,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('forum.update',$forum->forum_id) }}" method="POST"
+                                <form action="{{ route('forum.update',$forum) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="my-3">
@@ -118,7 +118,7 @@
                 <div class="d-flex mt-3 justify-content-start my-1">
                     <div class="mx-1">
                         <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
-                            data-bs-target="#editReply-{{ $reply->id }}">
+                            data-bs-target="#editReply-{{ $reply->reply_forum_id }}">
                             Edit Reply
                         </button>
                     </div>
@@ -126,7 +126,7 @@
                     <div class="mx-1">
                         <button type="button" class="btn btn-danger text-white"
                             data-bs-toggle="modal"
-                            data-bs-target="#delete-{{ $reply->id }}">
+                            data-bs-target="#delete-{{ $reply->reply_forum_id }}">
                             Delete
                         </button>
                     </div>
@@ -138,7 +138,7 @@
     </div>
 
     @foreach ($forum->replies as $reply)
-        <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $reply->id }}"
+        <div class="modal fade show pr-0" style="z-index: 9999;" id="delete-{{ $reply->reply_forum_id }}"
         tabindex="-1" role="dialog" aria-labelledby="alertTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content rounded-20 border-0">
@@ -179,7 +179,7 @@
     @endforeach
 
     @foreach($forum->replies as $reply)
-    <div class="modal fade" id="editReply-{{ $reply->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
+    <div class="modal fade" id="editReply-{{ $reply->reply_forum_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -230,7 +230,7 @@
                             <label for="file" class="form-label">Attached File</label>
                             <input class="form-control" name="file" type="file" id="file">
                         </div>
-                        <input type="hidden" name="forum_id" value="{{ $forum->id }}">
+                        <input type="hidden" name="forum_id" value="{{ $forum->forum_id }}">
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                         </div>
@@ -259,7 +259,7 @@
     var replies = {!! json_encode($forum->replies->toArray()) !!};
     replies.forEach(function(item) {
         ClassicEditor
-            .create(document.querySelector('#bodyEditReply-' + item.id))
+            .create(document.querySelector('#bodyEditReply-' + item.reply_forum_id))
             .catch(error => {
                 console.error(error);
         });

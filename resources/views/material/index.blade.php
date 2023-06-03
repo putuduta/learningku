@@ -423,7 +423,7 @@
     var materials = {!! json_encode($materials->toArray()) !!};
     materials.forEach(function(item) {
         ClassicEditor
-            .create(document.querySelector('#updateDescription-' + item.id))
+            .create(document.querySelector('#updateDescription-' + item.material_id))
             .catch(error => {
                 console.error(error);
         });
