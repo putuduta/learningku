@@ -57,7 +57,7 @@
                          </div>
                          <div class="my-3">
                               <label for="nuptk" class="form-label">NUPTK <span class="required">*</span></label>
-                              <input type="text" class="form-control" name="nuptk" maxlength="16" required>
+                              <input type="number" class="form-control" name="nuptk" maxlength="16" required>
                          </div>
                          <div class="my-3">
                               <label for="email" class="form-label">Email <span class="required">*</span></label>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="my-3">
                                  <label for="nuptk" class="form-label">NUPTK <span class="required">*</span></label>
-                                 <input type="text" class="form-control" name="nuptk" value="{{ $teacher->nuptk }}" maxlength="16" required>
+                                 <input type="number" class="form-control" name="nuptk" value="{{ $teacher->nuptk }}" maxlength="16" required>
                             </div>
                             <div class="my-3">
                                  <label for="email" class="form-label">Email <span class="required">*</span></label>

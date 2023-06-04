@@ -87,14 +87,15 @@ class TeacherController extends Controller
     public function validateData($request, $isUpdate) {
         $request->validate([
             'name' => 'required|string',
+            'email' => 'required|string',
             'nuptk' => 'required|string',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'image' => 'image|max:5120',
             'gender' => 'required|string'
         ]);
 
         if (!$isUpdate) {
             $request->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
                 'password' => ['required', 'string', 'min:8', 'alpha_num']
             ]);
         }
