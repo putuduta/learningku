@@ -95,7 +95,7 @@ Route::get('student/{classSubjectId}', [ClassDetailController::class, 'viewClass
 
 //Material
 Route::prefix('material')->middleware('auth')->name('material.')->group(function () {
-    Route::get('-choose-class-subject', [MaterialController::class, 'viewChooseClassSubject'])->name('view-choose-class-subject')->middleware('auth');
+    Route::get('choose-class-subject', [MaterialController::class, 'viewChooseClassSubject'])->name('view-choose-class-subject')->middleware('auth');
     Route::get('/{classSubjectId}', [MaterialController::class, 'index'])->name('index')->middleware('auth');
     Route::post('store', [MaterialController::class, 'store'])->name('create')->middleware('auth');
     Route::delete('destroy/{material}', [MaterialController::class, 'destroy'])->name('delete')->middleware('auth');
@@ -105,7 +105,7 @@ Route::prefix('material')->middleware('auth')->name('material.')->group(function
 
 // Attendance
 Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(function () {
-    Route::get('-choose-class-subject', [AttendanceController::class, 'viewChooseClassSubject'])->name('view-choose-class-subject')->middleware('auth');
+    Route::get('choose-class-subject', [AttendanceController::class, 'viewChooseClassSubject'])->name('view-choose-class-subject')->middleware('auth');
     Route::get('/teacher/{classSubjectId}', [AttendanceController::class, 'viewAttendanceTeacher'])->name('view-teacher')->middleware('auth');
     Route::get('/student/{classSubjectId}', [AttendanceController::class, 'viewAttendanceStudent'])->name('view-student')->middleware('auth');
     Route::get('create/{classSubjectId}', [AttendanceController::class, 'viewCreate'])->name('view-create')->middleware('auth');
