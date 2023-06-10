@@ -340,7 +340,7 @@
                    <div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="{{$classSubject->id}}">
                         <div class="card-body">
                              <h3 class="fw-bold">{{ $classSubject->className }} - {{ $classSubject->name }}</h3>
-                             <h8 class="pt-3">Teacher: {{ $classSubject->teacherName }} - {{ $classSubject->teacherNuptk }}</h8>
+                             <h8 class="pt-3">Teacher: {{ $classSubject->teacherName }} - {{ $classSubject->teacherNuptk }}</h8><br>
                              <h8 class="pt-3">Homeroom Teacher: {{ $classSubject->homeroomTeacherName }} - {{ $classSubject->homeroomTeacherNuptk }}</h8>
                         </div>
                    </div>
@@ -377,7 +377,7 @@
                                        '<div class="classSubject card shadow-sm border-0 mb-3 bg-white" data-id="' + item.id + '">' +
                                             '<div class="card-body">' +
                                                  '<h3 class="fw-bold">' + item.className + ' - ' + item.name + '</h3>' +
-                                                 '<h8 class="pt-3">Teacher: ' + item.teacherName + ' - ' + item.teacherNuptk + '</h8>' +
+                                                 '<h8 class="pt-3">Teacher: ' + item.teacherName + ' - ' + item.teacherNuptk + '</h8><br>' +
                                                  '<h8 class="pt-3">Teacher: ' + item.homeroomTeacherName + ' - ' + item.homeroomTeacherNuptk + '</h8>' +
                                             '</div>' +
                                        '</div>' +
