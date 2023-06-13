@@ -79,6 +79,22 @@ class AssignmentSeeder extends Seeder
                 'created_at' => '2023-03-17 04:07:38',
                 'updated_at' => '2023-03-17 04:07:38'
             ],
+            [
+                'class_subject_id' => '2',
+                'title' => 'Larutan Garam',
+                'file' => 'ASG_Larutan Garam.txt',
+                'end_time' => '2023-06-01T23:59',
+                'created_at' => '2023-05-17 04:07:38',
+                'updated_at' => '2023-05-17 04:07:38'
+            ],
+            [
+                'class_subject_id' => '2',
+                'title' => 'Kesetimbangan Kelarutan',
+                'file' => 'ASG_Kesetimbangan Kelarutan.txt',
+                'end_time' => '2023-06-02T23:59',
+                'created_at' => '2023-05-17 04:08:38',
+                'updated_at' => '2023-05-17 04:08:38'
+            ]
         ]);
         DB::table('assignment_detail')->insert([
             [
