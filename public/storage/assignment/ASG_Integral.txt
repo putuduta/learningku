@@ -1,0 +1,3 @@
+Tentukan hasil dari:
+1. ʃ(2x+1)cos(x+π) dx
+2. ∫(3x + 2)sin(3x+2) dx

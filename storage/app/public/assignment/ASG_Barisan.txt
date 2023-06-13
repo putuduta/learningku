@@ -1,0 +1,7 @@
+1. Diketahui 
+- barisan aritmetika 1,3,5,7,...
+- un = 225
+
+Tentukan banyaknya suku (n)!
+
+2. Diketahui suku ke-1 dari barisan aritmetika adalah 6 dan suku kelimanya 18, tentukan pembedanya!

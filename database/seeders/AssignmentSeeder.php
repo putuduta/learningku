@@ -94,6 +94,38 @@ class AssignmentSeeder extends Seeder
                 'end_time' => '2023-06-02T23:59',
                 'created_at' => '2023-05-17 04:08:38',
                 'updated_at' => '2023-05-17 04:08:38'
+            ],
+            [
+                'class_subject_id' => '3',
+                'title' => 'Barisan',
+                'file' => 'ASG_Barisan.txt',
+                'end_time' => '2023-06-02T23:59',
+                'created_at' => '2023-05-17 04:08:38',
+                'updated_at' => '2023-05-17 04:08:38'
+            ],
+            [
+                'class_subject_id' => '3',
+                'title' => 'Limit Fungsi',
+                'file' => 'ASG_Limit Fungsi.txt',
+                'end_time' => '2023-06-03T23:59',
+                'created_at' => '2023-05-17 04:08:38',
+                'updated_at' => '2023-05-17 04:08:38'
+            ],
+            [
+                'class_subject_id' => '3',
+                'title' => 'Turunan',
+                'file' => 'ASG_Turunan.docx',
+                'end_time' => '2023-06-04T23:59',
+                'created_at' => '2023-05-17 04:08:38',
+                'updated_at' => '2023-05-17 04:08:38'
+            ],
+            [
+                'class_subject_id' => '3',
+                'title' => 'Integral',
+                'file' => 'ASG_Integral.txt',
+                'end_time' => '2023-06-05T23:59',
+                'created_at' => '2023-05-17 04:08:38',
+                'updated_at' => '2023-05-17 04:08:38'
             ]
         ]);
         DB::table('assignment_detail')->insert([
