@@ -163,12 +163,12 @@
                 </thead>
                 <tbody>
                     @if ($countExam === 2 && $isAllAsgNotScored)
-                        @if ( $score/$count > $classSubject->minimum_score)
+                        @if ( $overallScore > $classSubject->minimum_score)
                         <td class="align-middle text-center bg-success">  
                         @else
                         <td class="align-middle text-center bg-danger">
                         @endif
-                            {{ round($score/$count) }}</td>
+                            {{ $overallScore }}</td>
                         <td class="align-middle text-center">
                             {{ $classSubject->minimum_score }}</td></td>  
                     @else

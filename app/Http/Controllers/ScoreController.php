@@ -19,7 +19,10 @@ class ScoreController extends Controller
     public function indexStudent($classSubjectId)
     {
         return view('score.index', [
-            'assignmentScores' => AssignmentScore::where('user_id', auth()->user()->user_id)->get(),
+            'assignmentScores' => AssignmentScore::join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                                    ->where('assignment_score.user_id', auth()->user()->user_id)
+                                    ->where('assignment_header.class_subject_id', $classSubjectId)
+                                    ->get(),
             'examScores' => ExamScore::where([['user_id', auth()->user()->user_id],['class_subject_id', $classSubjectId]])->get(),
             'classSubject' => ClassSubject::select('class_subject.class_subject_id as id', 'class_subject.name as name',
                 'class_header.name as className', 'school_year.year as schoolYear', 'school_year.semester as semester', 'user.name as teacherName',
@@ -28,7 +31,12 @@ class ScoreController extends Controller
                 ->join('school_year', 'school_year.school_year_id', 'class_header.school_year_id')
                 ->join('user', 'user.user_id', 'class_subject.user_id')
                 ->join('user as userB', 'userB.user_id', 'class_header.user_id')
-                ->find($classSubjectId)
+                ->find($classSubjectId),
+            'overallScore' => round((AssignmentScore::join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                                    ->where('assignment_score.user_id', auth()->user()->user_id)
+                                    ->where('assignment_header.class_subject_id', $classSubjectId)->sum('assignment_score.score') + ExamScore::where([['user_id', auth()->user()->user_id],['class_subject_id', $classSubjectId]])->sum('score')) / (AssignmentScore::join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                                    ->where('assignment_score.user_id', auth()->user()->user_id)
+                                    ->where('assignment_header.class_subject_id', $classSubjectId)->count() + ExamScore::where([['user_id', auth()->user()->user_id],['class_subject_id', $classSubjectId]])->count()))
         ]);
     }
 
@@ -111,8 +119,16 @@ class ScoreController extends Controller
                 ->join('user as userc', 'userc.user_id', 'class_detail.user_id')
                 ->where([['userc.role_id','3'],['userc.user_id', $studentId]])
                 ->find($classSubjectId),
-            'assignmentScores' => AssignmentScore::where('user_id', $studentId)->get(),
-            'examScores' => ExamScore::where([['user_id', $studentId],['class_subject_id', $classSubjectId]])->get()
+            'assignmentScores' => AssignmentScore::join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                    ->where('assignment_score.user_id', $studentId)
+                    ->where('assignment_header.class_subject_id', $classSubjectId)
+                    ->get(),
+            'examScores' => ExamScore::where([['user_id', $studentId],['class_subject_id', $classSubjectId]])->get(),
+            'overallScore' => round((AssignmentScore::join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                                    ->where('assignment_score.user_id', $studentId)
+                                    ->where('assignment_header.class_subject_id', $classSubjectId)->sum('assignment_score.score') + ExamScore::where([['user_id', $studentId],['class_subject_id', $classSubjectId]])->sum('score')) / (AssignmentScore::join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                                    ->where('assignment_score.user_id', $studentId)
+                                    ->where('assignment_header.class_subject_id', $classSubjectId)->count() + ExamScore::where([['user_id', $studentId],['class_subject_id', $classSubjectId]])->count()))
         ]);
     }
 
