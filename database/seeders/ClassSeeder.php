@@ -39,6 +39,24 @@ class ClassSeeder extends Seeder
                 'class_header_id' => 1,
                 'user_id' => 35,
                 'minimum_score' => 75
+            ],
+            [
+                'name' => 'Fisika',
+                'class_header_id' => 1,
+                'user_id' => 36,
+                'minimum_score' => 75
+            ],
+            [
+                'name' => 'Matematika Peminatan',
+                'class_header_id' => 1,
+                'user_id' => 37,
+                'minimum_score' => 75
+            ],
+            [
+                'name' => 'Biologi',
+                'class_header_id' => 1,
+                'user_id' => 38,
+                'minimum_score' => 75
             ]
         ]);
         DB::table('class_detail')->insert([

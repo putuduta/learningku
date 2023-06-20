@@ -295,6 +295,30 @@ class UserSeeder extends Seeder
                 'gender' => 'Female',
                 'role_id' => '2',
                 'password' => Hash::make('bhklearningku')
+            ],
+            [
+                'user_code'=> '9950152433915650',
+                'name' => 'Idang Indrianto',
+                'email' => 'idang@gmail.com',
+                'gender' => 'Male',
+                'role_id' => '2',
+                'password' => Hash::make('bhklearningku')
+            ],
+            [
+                'user_code'=> '4907254123960419',
+                'name' => 'Petty Fefiyana',
+                'email' => 'petty@gmail.com',
+                'gender' => 'Female',
+                'role_id' => '2',
+                'password' => Hash::make('bhklearningku')
+            ],
+            [
+                'user_code'=> '6748554856315829',
+                'name' => 'Bernadette Ririn',
+                'email' => 'bernadette@gmail.com',
+                'gender' => 'Female',
+                'role_id' => '2',
+                'password' => Hash::make('bhklearningku')
             ]
         ]);
     }
