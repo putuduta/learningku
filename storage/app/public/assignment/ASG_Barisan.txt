@@ -1,0 +1,3 @@
+1. Carilah suku ke-100 dari barisan aritmetika 2, 5, 8, 11, …
+
+2. Diketahui barisan aritmetika 1, 3, 5, 7, …. un = 225. Tentukan banyaknya suku (n).

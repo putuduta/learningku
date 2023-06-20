@@ -1,0 +1,2 @@
+1. Tentukan turunan f(x) = 3x4 + 2x2 − 5x
+2. Hitunglah turunan f(x) = 2x3 + 7x

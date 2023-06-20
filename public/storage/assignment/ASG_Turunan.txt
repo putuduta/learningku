@@ -1,0 +1,2 @@
+1. Tentukan turunan pertama dari fungsi f(x) = (x2 + 3x + 4)(2x + 3)
+2. Hitunglah turunan pertama dari f(x) = sin x . cos x 
