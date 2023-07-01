@@ -236,7 +236,6 @@
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
                     </div>
                     <div class="d-grid">
-                        <input type="hidden" name="score_id" value="{{ $score->exam_score_id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>
@@ -263,7 +262,6 @@
                         <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
                     </div>
                     <div class="d-grid">
-                        <input type="hidden" name="score_id" value="{{ $score->exam_score_id }}">
                         <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                     </div>
                 </form>
