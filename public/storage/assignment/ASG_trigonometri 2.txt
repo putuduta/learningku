@@ -1,0 +1,7 @@
+Tentukan nilai dari:
+ 
+1. lim sin(𝑥−2)/ x^2-4 = ...
+   𝑥→2
+
+2. lim cos 2x / cos x - sin x = ...
+   𝑥→𝜋/4

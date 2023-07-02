@@ -142,6 +142,22 @@ class AssignmentSeeder extends Seeder
                 'end_time' => '2023-04-15T23:59',
                 'created_at' => '2023-04-01 04:07:38',
                 'updated_at' => '2023-04-01 04:07:38'
+            ],
+            [
+                'class_subject_id' => '5',
+                'title' => 'Limit Trigonometri 1',
+                'file' => 'ASG_trigonometri 1.txt',
+                'end_time' => '2023-04-15T23:59',
+                'created_at' => '2023-04-01 04:07:38',
+                'updated_at' => '2023-04-01 04:07:38'
+            ],
+            [
+                'class_subject_id' => '5',
+                'title' => 'Limit Trigonometri 2',
+                'file' => 'ASG_trigonometri 2.txt',
+                'end_time' => '2023-04-15T23:59',
+                'created_at' => '2023-04-01 04:07:38',
+                'updated_at' => '2023-04-01 04:07:38'
             ]
         ]);
         DB::table('assignment_detail')->insert([

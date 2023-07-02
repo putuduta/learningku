@@ -105,6 +105,18 @@ class MaterialSeeder extends Seeder
                 'title' => 'Cahaya - Sudut Deviasi',
                 'description' => '<p>Besarnya sudut deviasi dapat dicari menggunakan rumus berikut.</p><p>D = i1 + r2 - E</p><p>Keterangan :&nbsp;</p><p>D = sudut deviasi i&nbsp;</p><p>1 = sudut datang pada prisma</p><p>r2 = sudut bias sinar meninggalkan prisma&nbsp;</p><p>E = sudut pembias prisma</p><p>&nbsp;</p><p>Besarnya sudut deviasi sinar bergantung pada sudut datangnya cahaya ke prisma. Apabila sudut datangnya sinar diperkecil, maka sudut deviasinya pun akan semakin kecil. Sudut deviasi akan mencapai minimum (Dm) jika sudut datang cahaya ke prisma sama dengan sudut bias cahaya meninggalkan prisma atau pada saat itu berkas cahaya yang masuk ke prisma akan memotong prisma itu menjadi segitiga sama kaki,sehingga berlaku i 1 = r2 = i (dengan i = sudut datang cahaya ke prisma) dan i 2 = r1 = r (dengan r = sudut bias cahaya memasuki prisma).</p>',
                 'resource' => ''
+            ],
+            [
+                'class_subject_id' => 5,
+                'title' => 'Limit Fungsi Trigonometri 1',
+                'description' => '<p>Cara menyelesaikan limit fungsi trigonometri:</p><p>1. Metode substitusi langsung&nbsp;</p><p>Penerapan metode substitusi langsung dalam menentukan atau menyelesaikan limit fungsi trigonometri sangat mudah, yakni dengan langsung mengganti x dengan angka yang tertera di soal atau&nbsp;</p><p><strong>lim𝑥→𝑎 𝑓(𝑥) = 𝑓(𝑎)&nbsp;</strong></p><p>2. Menggunakan rumus dasar limit fungsi trigonometri&nbsp;</p><p>Rumus dasar limit fungsi trigonometri tersebut adalah:&nbsp;</p><p>1. 𝐥𝐢𝐦 𝒙→𝟎 𝐬𝐢𝐧 𝒂𝒙 / 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>2. 𝒍𝒊𝒎 𝒙→𝟎 𝒂𝒙 / 𝐬𝐢𝐧 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>3. 𝒍𝒊𝒎 𝒙→𝟎 𝒕𝒂𝒏 𝒂𝒙 / 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>4. 𝒍𝒊𝒎 𝒙→𝟎 𝒂𝒙 / 𝐭𝐚𝐧 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>5. 𝐥𝐢𝐦 𝒙→𝟎 𝐭𝐚𝐧 𝒂𝒙 / 𝐭𝐚𝐧 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>6. 𝒍𝒊𝒎 𝒙→𝟎 𝐬𝐢𝐧 𝒂𝒙 / 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>7. 𝒍𝒊𝒎 𝒙→𝟎 𝐭𝐚𝐧 𝒂𝒙 / 𝐬𝐢𝐧 𝒃𝒙 = 𝒂 / 𝒃&nbsp;</p><p>8. 𝐥𝐢𝐦 𝒙→𝟎 𝐬𝐢𝐧 𝒂𝒙 / 𝐭𝐚𝐧 𝒃𝒙 = 𝒂 / 𝒃</p><p>&nbsp;</p><p>Rangkuman&nbsp;</p><p>Cara menyelesaikan limit fungsi trigonometri pada pembelajaran pertama ini dilakukan dengan dua cara yaitu cara substitusi dan pemfaktoran.&nbsp;</p><p>1. lim𝑥→𝑎 𝑓(𝑥) = 𝑓(𝑎)&nbsp;</p><p>2. lim𝑥→𝑎 𝑓(𝑥) 𝑔(𝑥) = (𝑥−𝑎)𝑓(𝑎) (𝑥−𝑎 )𝑔(𝑎)</p>',
+                'resource' => ''
+            ],
+            [
+                'class_subject_id' => 5,
+                'title' => 'Limit Fungsi Trigonometri 2',
+                'description' => '<p>Berikut adalah lampiran dari identitas trigonometri dan rumus trigonometri</p>',
+                'resource' => 'rumus trigonometri.png'
             ]
         ]);
     }

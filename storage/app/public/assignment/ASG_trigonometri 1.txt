@@ -1,0 +1,6 @@
+Tentukan nilai dari:
+1. lim sin2𝑥 / sin 6𝑥 = ...
+   𝑥→0
+
+2. lim sin ax / tan cx = ...
+   𝑥→0
