@@ -61,9 +61,12 @@ class AssignmentHeaderController extends Controller
                             ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
                             ->where('assignment_header.assignment_header_id', $assignmentId)
                             ->get(),
-            'assignmentScore' => AssignmentScore::select('assignment_score.assignment_score_id as assignment_score_id', 'assignment_score.assignment_header_id as assignmentHeaderId', 'assignment_score.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_score.notes as notes')
-                                ->where('assignment_header_id', $assignmentId)
-                                ->join('class_detail', 'class_detail.user_id', 'assignment_score.user_id')
+            'assignmentScore' => AssignmentScore::select('assignment_score.assignment_score_id as assignment_score_id', 'assignment_score.assignment_header_id as assignmentHeaderId', 'assignment_score.score as score', 'user.user_id as studentUserId', 'user.name as studentName', 'user.user_code as nisn',  'assignment_score.notes as notes'
+                                , 'assignment_header.title as asgTitle', 'class_header.name as className', 'class_subject.name as classSubject', 'class_subject.class_subject_id as classSubjectId')
+                                ->where('assignment_header.assignment_header_id', $assignmentId)
+                                ->join('assignment_header', 'assignment_header.assignment_header_id', 'assignment_score.assignment_header_id')
+                                ->join('class_subject', 'class_subject.class_subject_id', 'assignment_header.class_subject_id')
+                                ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
                                 ->join('user', 'user.user_id', 'assignment_score.user_id')->get()
         ]);
 

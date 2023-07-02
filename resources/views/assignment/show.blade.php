@@ -2,16 +2,14 @@
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
-        @if($assignmentSubmissions->count() > 0)
         <div class="mb-3">
             <span class="fa-stack fa-md ms-n1">
                 <i class="fas fa-circle fa-stack-2x text-orange"></i>
-                <a href="{{ route('assignment.index', $assignmentSubmissions->first()->subjectId)}}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
+                <a href="{{ route('assignment.index', $assignmentScore->first()->classSubjectId)}}" class="fas fa-arrow-left fa-stack-1x fa-inverse text-light" style="text-decoration: none;"></a>
             </span>
         </div>
-        <h3 class="fw-bold">Assignment Submissions - {{ $assignmentSubmissions->first()->assignmentTitle }} - ({{ $assignmentSubmissions->first()->name }} - {{ $assignmentSubmissions->first()->className }})</h3>
+        <h3 class="fw-bold">Assignment Submissions - {{ $assignmentScore->first()->asgTitle }} - ({{ $assignmentScore->first()->classSubject }} - {{ $assignmentScore->first()->className }})</h3>
         <hr>
-        @endif
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="table-dark">
