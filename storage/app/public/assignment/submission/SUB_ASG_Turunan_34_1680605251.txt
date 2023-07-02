@@ -1,0 +1,9 @@
+1. Tentukan turunan f(x) = 3x4 + 2x2 − 5x
+Jawab:
+f ‘(x) = 4⋅3x4− 1 + 2⋅2x2−1 − 5x1-1
+f ‘(x) = 12x3 + 4x1 − 5x0
+f ‘(x) = 12x3 + 4x − 5
+
+2. Hitunglah turunan f(x) = 2x3 + 7x
+Jawab:
+f ‘(x) = 6x2 + 7
