@@ -158,6 +158,22 @@ class AssignmentSeeder extends Seeder
                 'end_time' => '2023-04-15T23:59',
                 'created_at' => '2023-04-01 04:07:38',
                 'updated_at' => '2023-04-01 04:07:38'
+            ],
+            [
+                'class_subject_id' => '6',
+                'title' => 'Pertumbuhan dan Perkembangan Tumbuhan',
+                'file' => 'ASG_Pertumbuhan Tumbuhan.txt',
+                'end_time' => '2023-04-15T23:59',
+                'created_at' => '2023-04-01 04:07:38',
+                'updated_at' => '2023-04-01 04:07:38'
+            ],
+            [
+                'class_subject_id' => '6',
+                'title' => 'Proses Metabolisme Organisme',
+                'file' => 'ASG_Proses Metabolisme.txt',
+                'end_time' => '2023-04-15T23:59',
+                'created_at' => '2023-04-01 04:07:38',
+                'updated_at' => '2023-04-01 04:07:38'
             ]
         ]);
         DB::table('assignment_detail')->insert([
