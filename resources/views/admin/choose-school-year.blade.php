@@ -1,7 +1,5 @@
 <x-app title="View Class List">
 
-    <x-slot name="navbar"></x-slot>
-
     <div id="content" class="container my-5 py-5">
          <div class="row justify-content-center">
               <div class="col-md-6">

@@ -1,5 +1,4 @@
 <x-app title="Subject List - {{$classSubjects->first()->className}} {{$classSubjects->first()->year}} - {{$classSubjects->first()->semester}}">
-    <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
          <h3 class="fw-bold">Subject List - {{$classSubjects->first()->className}} {{$classSubjects->first()->year}} - {{$classSubjects->first()->semester}}</h3>

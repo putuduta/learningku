@@ -1,6 +1,4 @@
 <x-app title="Teacher List">
-     <x-slot name="navbar"></x-slot>
-
      <div id="content" class="container py-5 my-5">
           <h3 class="fw-bold">Teacher List</h3>
           <button type="button" class="btn btn-primary text-white mb-3" data-bs-toggle="modal"
