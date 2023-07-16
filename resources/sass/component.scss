@@ -18,3 +18,17 @@
     background: url('/storage/assets/landing_background.png') center center no-repeat, white;
     background-size: cover, cover;
 }
+
+.ck-editor__editable_inline {
+    min-height: 200px;
+}
+body {
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
+}
+.required {
+    color: red;
+}
+span.smallFont {
+    font-size: smaller;
+}

@@ -12,37 +12,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ mix('js/app.js') }}"></script>
-
-    <style>
-        .ck-editor__editable_inline {
-            min-height: 200px;
-        }
-        body {
-            --ck-z-default: 100;
-            --ck-z-modal: calc( var(--ck-z-default) + 999 );
-        }
-        .required {
-            color: red;
-        }
-        span.smallFont {
-            font-size: smaller;
-        }
-
-        @media screen and (min-width: 992px) {
-            .page-wrapper.toggled .page-content {
-                padding-left: 256px;
-                opacity: 1 !important;
-            }
-        }
-    </style>
 </head>
 
 <body class="bg-light">
     <div id="app">
         <x-alert></x-alert>
-        @if (isset($sidebar))
-            <x-sidebar></x-sidebar>
-        @endif
         @if (isset($navbar))
             <x-navbar></x-navbar>
         @endif
@@ -62,14 +36,6 @@
             </main>
         @endif
     </div>
-    
-    <script>
-        // var trigger = $('#close-sidebar');
- 
-        // $('#close-sidebar h2').click(function(){
-        //     $("#toggled").removeClass("toggled");
-        // });
-    </script>
 </body>
 
 </html>

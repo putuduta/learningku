@@ -16890,7 +16890,8 @@ readers do not read off random characters that represent icons */
 
 @media screen and (min-width: 992px) {
   .page-wrapper.toggled .page-content {
-    opacity: 0.3;
+      padding-left: 256px;
+      opacity: 1 !important;
   }
 }
 .sidebar-content {
@@ -16964,4 +16965,18 @@ readers do not read off random characters that represent icons */
   padding: 9rem 0 6rem 0;
   background: url("/storage/assets/landing_background.png") center center no-repeat, white;
   background-size: cover, cover;
+}
+
+.ck-editor__editable_inline {
+  min-height: 200px;
+}
+body {
+  --ck-z-default: 100;
+  --ck-z-modal: calc( var(--ck-z-default) + 999 );
+}
+.required {
+  color: red;
+}
+span.smallFont {
+  font-size: smaller;
 }

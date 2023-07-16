@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     //  Sidebar
      //     if($(window).width() < 1200) {
-             var trigger = $('.page-content');
+             var trigger = $('#close-sidebar h2');
  
              trigger.click(function(){
                  $("#toggled").removeClass("toggled");
@@ -47,6 +47,10 @@ $(document).ready(function () {
                  .addClass("active");
          }
      });
+
+     if ($(window).width() < 992) {
+        $("#toggled").removeClass("toggled");
+     }
 
      // Show Modal
     var myModal = new bootstrap.Modal(document.getElementById('alert'))
