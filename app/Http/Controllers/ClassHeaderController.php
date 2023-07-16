@@ -64,7 +64,7 @@ class ClassHeaderController extends Controller
         return redirect()->back()->with('success','New Class Created');
     }
 
-    public function update(ClassHeader $class, Request $request){
+    public function update(Request $request){
         $this->validateData($request);
 
         $class->update([
