@@ -50,7 +50,7 @@ Route::prefix('admin/class')->middleware('auth')->name('admin-class-')->group(fu
     Route::post('choose-school-year', [ClassHeaderController::class, 'postChooseSchoolYear'])->name('post-choose-school-year')->middleware('auth');
     Route::get('view/{schoolYearId}', [ClassHeaderController::class, 'viewAdminClassList'])->name('view')->middleware('auth');
     Route::post('create/{schoolYearId}', [ClassHeaderController::class, 'store'])->name('create')->middleware('auth');
-    Route::put('update/{class}', [ClassHeaderController::class, 'update'])->name('update')->middleware('auth');
+    Route::put('update', [ClassHeaderController::class, 'update'])->name('update')->middleware('auth');
     Route::delete('remove/{id}', [ClassHeaderController::class, 'destroy'])->name('remove')->middleware('auth');
     
     Route::get('student/{class}', [ClassDetailController::class, 'viewClassDetailsAdmin'])->name('view-student')->middleware('auth');

@@ -67,7 +67,7 @@ class ClassHeaderController extends Controller
     public function update(Request $request){
         $this->validateData($request);
 
-        $class->update([
+        ClassHeader::where('class_header_id', $request->class_header_id)->update([
             'name' => $request->class_name,
             'school_year_id' => $request->school_year_id,
             'user_id' => $request->homeroom_teacher_user_id,

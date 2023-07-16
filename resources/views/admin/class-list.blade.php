@@ -139,12 +139,13 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              <form action="{{ route('admin-class-update', $class) }}" method="POST"
+                              <form action="{{ route('admin-class-update') }}" method="POST"
                                   enctype="multipart/form-data">
                                   @csrf
                                   @method('put')
                                   <div class="">
                                        <input type="text" class="form-control" name="school_year_id" value="{{$classes->first()->schoolYearId}}" hidden>
+                                       <input type="text" class="form-control" name="class_header_id" value="{{$class->class_header_id}}" hidden>
                                        <label for="school_year" class="form-label">School Year</label>
                                        <input type="text" class="form-control" name="school_year" value="{{$classes->first()->year}} - {{$classes->first()->semester}}" readonly>
                                   </div>
