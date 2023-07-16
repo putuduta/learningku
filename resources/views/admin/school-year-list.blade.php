@@ -1,4 +1,4 @@
-<x-app title="School Year List - L-Man">
+<x-app title="School Year List">
     <x-slot name="navbar"></x-slot>
 
     <div id="content" class="container py-5 my-5">
