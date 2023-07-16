@@ -116,8 +116,10 @@ Route::prefix('attendance')->middleware('auth')->name('attendance.')->group(func
 Route::get('forum/{classSubjectId}', [ForumController::class, 'index'])->name('forum.index')->middleware('auth');
 Route::get('forum-choose-class-subject', [ForumController::class, 'viewChooseClassSubject'])->name('forum.view-choose-class-subject')->middleware('auth');
 Route::get('forum-show/{forumId}/{classSubjectId}', [ForumController::class, 'show'])->name('forum.show')->middleware('auth');
-Route::resource('forum', ForumController::class)->except('edit', 'create', 'index', 'show')->middleware('auth');
-Route::resource('reply-forum', ReplyForumController::class)->only('store', 'update', 'destroy')->middleware('auth');
+Route::resource('forum', ForumController::class)->except('edit', 'create', 'index', 'show', 'update')->middleware('auth');
+Route::resource('reply-forum', ReplyForumController::class)->only('store', 'destroy')->middleware('auth');
+Route::put('forum/update', [ForumController::class, 'update'])->name('forum.update')->middleware('auth');
+Route::put('reply-forum/update', [ReplyForumController::class, 'update'])->name('reply-forum.update')->middleware('auth');
 
 // Assignment
 Route::get('assignment/{classSubjectId}', [AssignmentHeaderController::class, 'index'])->name('assignment.index')->middleware('auth');

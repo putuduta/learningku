@@ -57,7 +57,7 @@ class ForumController extends Controller
         ]);
     }
 
-    public function update(Request $request, Forum $forum)
+    public function update(Request $request)
     {
         $this->validateData($request);
 
@@ -67,10 +67,10 @@ class ForumController extends Controller
 
             $request->file('file')->storeAs('public/forum', $file_name);
         } else {
-            $file_name = $forum->file;
+            $file_name = $request->old_file;
         }
 
-        $forum->update([
+        Forum::where('forum_id', $request->forum_id)->update([
             'title' => $request->title,
             'description' => $request->description,
             'file' => $file_name
@@ -79,9 +79,9 @@ class ForumController extends Controller
         return redirect()->back()->with('success', 'Forum Updated');
     }
 
-    public function destroy($forum)
+    public function destroy($id)
     {
-        Forum::destroy($forum);
+        Forum::destroy($id);
         return redirect()->back()->with('success', 'Forum Deleted');
     }
 

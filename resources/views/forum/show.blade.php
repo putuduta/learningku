@@ -59,9 +59,13 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('forum.update',$forum) }}" method="POST"
+                                <form action="{{ route('forum.update') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
+                                    <input type="text" class="form-control" name="forum_id" id="forum_id"
+                                    value="{{ $forum->forum_id }}" hidden>
+                                    <input type="text" class="form-control" name="old_file" id="old_file"
+                                    value="{{ $forum->file }}" hidden>
                                     <div class="my-3">
                                         <label for="title" class="form-label">Title <span class="required">*</span></label>
                                         <input type="text" class="form-control" name="title" id="title" required
@@ -187,9 +191,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('reply-forum.update',$reply->reply_forum_id) }}" method="POST"
+                    <form action="{{ route('reply-forum.update') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
+                        <input type="text" class="form-control" name="reply_forum_id" id="reply_forum_id"
+                        value="{{ $reply->reply_forum_id }}" hidden>
+                        <input type="text" class="form-control" name="old_file" id="old_file"
+                        value="{{ $reply->file }}" hidden>
                         <div class="my-3">
                             <label for="description" class="form-label">Description <span class="required">*</span></label>
                             <textarea name="description" id="bodyEditReply-{{ $reply->reply_forum_id }}" cols="30" rows="10" class="form-control"

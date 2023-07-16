@@ -31,7 +31,7 @@ class ReplyForumController extends Controller
         return redirect()->back()->with('success', 'Forum Replied');
     }
 
-    public function update(Request $request, ReplyForum $reply_forum)
+    public function update(Request $request)
     {
         $this->validateData($request);
 
@@ -41,10 +41,10 @@ class ReplyForumController extends Controller
 
             $request->file('file')->storeAs('public/forum', $file_name);
         } else {
-            $file_name = $reply_forum->file;
+            $file_name = $request->old_file;
         }
 
-        $reply_forum->update([
+        ReplyForum::where('reply_forum_id', $request->reply_forum_id)->update([
             'description' => $request->description,
             'file' => $file_name,
         ]);
