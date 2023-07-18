@@ -57,7 +57,7 @@
                          </div>
                          <div class="my-3">
                               <label for="nisn" class="form-label">NISN <span class="required">*</span></label>
-                              <input type="number" class="form-control" name="nisn" maxlength="10" required>
+                              <input type="number" class="form-control" name="nisn" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"  required>
                          </div>
                          <div class="my-3">
                               <label for="email" class="form-label">Email <span class="required">*</span></label>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="my-3">
                                  <label for="nisn" class="form-label">NISN <span class="required">*</span></label>
-                                 <input type="number" class="form-control" name="nisn" value="{{ $student->nisn }}" required>
+                                 <input type="number" class="form-control" name="nisn" value="{{ $student->nisn }}" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"  required>
                             </div>
                             <div class="my-3">
                                  <label for="email" class="form-label">Email <span class="required">*</span></label>

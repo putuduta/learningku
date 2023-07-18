@@ -29,7 +29,7 @@ class TeacherController extends Controller
             'gender' => $request->gender,
             'role_id' => 2,
             'user_code' => $request->nuptk,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
             'photo_profile' => $photo_profile 
         ]);
 
