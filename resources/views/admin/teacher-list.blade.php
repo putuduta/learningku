@@ -81,6 +81,10 @@
                               </div>
                          </div>
                          <div class="my-3">
+                              <label for="school" class="form-label">School</label>
+                              <input type="text" class="form-control" name="school" value="{{ auth()->user()->school }}" readonly>
+                         </div>
+                         <div class="my-3">
                               <label for="image" class="form-label">Teacher Image</label>
                               <input type="file" class="form-control" name="image">
                          </div>
@@ -142,6 +146,10 @@
                                         </div>
                                    </div>
                             </div>
+                            <div class="my-3">
+                              <label for="school" class="form-label">School</label>
+                              <input type="text" class="form-control" name="school" value="{{ $teacher->school }}"  readonly>
+                            </div>   
                             <div class="my-3">
                               <label for="image" class="form-label">Teacher Image</label>
                               <input type="file" class="form-control" name="image">

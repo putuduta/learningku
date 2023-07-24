@@ -30,6 +30,7 @@ class TeacherController extends Controller
             'role_id' => 2,
             'user_code' => $request->nuptk,
             'password' => Hash::make($request->password),
+            'school' => $request->school,
             'photo_profile' => $photo_profile 
         ]);
 
@@ -68,6 +69,7 @@ class TeacherController extends Controller
             'gender' => $request->gender,
             'user_code' => $request->nuptk,
             'password' => $password,
+            'school' => $request->school,
             'photo_profile' => $imagePath 
         ]);
 
@@ -77,9 +79,9 @@ class TeacherController extends Controller
     public function index(){
         return view('admin.teacher-list',[
             'teacherList' => User::select('user.user_id','user.name','user.user_code as nuptk','user.email','user.password', 
-                        'user.gender')
+                        'user.gender', 'user.school')
                         ->join('role','role.role_id','user.role_id')
-                        ->where([['role.name','Teacher']])
+                        ->where([['role.name','Teacher'], ['user.school', auth()->user()->school]])
                         ->get()
         ]);
     }
@@ -90,7 +92,8 @@ class TeacherController extends Controller
             'email' => 'required|string',
             'nuptk' => 'required|string',
             'image' => 'image|max:5120',
-            'gender' => 'required|string'
+            'gender' => 'required|string',
+            'school' => 'required|string'
         ]);
 
         if (!$isUpdate) {

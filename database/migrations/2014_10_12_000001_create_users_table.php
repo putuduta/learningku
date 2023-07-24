@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('role_id')->constrained('role', 'role_id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('photo_profile')->nullable();
             $table->string('password');
+            $table->string('school');
             $table->timestamps();
         });
     }

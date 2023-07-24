@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -51,9 +52,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'string', 'min:8', 'alpha_num'],
-            'role' => ['required', 'in:Teacher,Student']
+            'identityNumber' => 'required|string',
+            'photoProfile' => 'image|max:5120|nullable',
+            'gender' => 'required|string',
+            'school' => 'required|string'
         ]);
     }
 
@@ -65,13 +69,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        return User::create([
+
+        $photo_profile = null;
+        if($data['photoProfile']){
+            $file = $data['photoProfile'];
+            $imageName = time().'_'.$file->getClientOriginalName();
+
+            Storage::putFileAs('public/images', $file, $imageName);
+            $imagePath = 'images/'.$imageName;
+            $photo_profile = $imagePath;
+        }
+
+        return  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'gender' => $data['gender'],
+            'role_id' => 1,
             'password' => Hash::make($data['password']),
-            'role' => $data['role'],
-            'photo_profile' => ''
+            'user_code' => $data['identityNumber'],
+            'school' => strtoupper($data['school']),
+            'photo_profile' => $photo_profile
         ]);
     }
 }

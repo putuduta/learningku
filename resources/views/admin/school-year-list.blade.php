@@ -94,8 +94,12 @@
                             @csrf
                             <div class="my-3">
                                  <label for="year" class="form-label">Year <span class="required">*</span></label>
-                                 <input type="number" class="form-control" name="year" min="2023" required>
+                                 <input type="number" class="form-control" name="year" required>
                             </div>
+                            <div class="my-3">
+                                <label for="school" class="form-label">School</label>
+                                <input type="text" class="form-control" name="school" value="{{ auth()->user()->school }}" readonly>
+                           </div>
                             <div class="my-3">
                                  <label for="semester" class="form-label">Semester <span class="required">*</span></label>
                                  <select name="semester" class="form-select" required>
@@ -131,6 +135,10 @@
                                     <label for="year" class="form-label">Year <span class="required">*</span></label>
                                     <input type="text" class="form-control" value="{{ $schoolYear->year }}" name="year" required>
                                </div>
+                               <div class="my-3">
+                                    <label for="school" class="form-label">School</label>
+                                    <input type="text" class="form-control" name="school" value="{{ $schoolYear->school }}"  readonly>
+                                </div>                               
                                <div class="my-3">
                                     <label for="semester" class="form-label">Semester <span class="required">*</span></label>
                                     <select name="semester" class="form-select" required>

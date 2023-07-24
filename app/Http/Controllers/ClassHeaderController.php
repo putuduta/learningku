@@ -12,7 +12,7 @@ class ClassHeaderController extends Controller
 
     public function viewChooseSchoolYear(){
         return view('admin.choose-school-year',[
-            'schoolYears' => SchoolYear::get()
+            'schoolYears' => SchoolYear::where('school', auth()->user()->school)->get()
         ]);
     }
 

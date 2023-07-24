@@ -17,6 +17,7 @@ class CreateSchoolYearsTable extends Migration
             $table->id('school_year_id');
             $table->string('year');
             $table->string('semester');
+            $table->string('school');
             $table->timestamps();
         });
     }

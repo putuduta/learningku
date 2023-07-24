@@ -18,7 +18,8 @@ class SchoolYearSeeder extends Seeder
         DB::table('school_year')->insert([
             [
                 'year' => '2023',
-                'semester' => 'Semester 2'
+                'semester' => 'Semester 2',
+                'school' => 'SMA BHK KOTA WISATA'
             ]
         ]);
     }

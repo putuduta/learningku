@@ -10,7 +10,7 @@ class SchoolYearController extends Controller
 
     public function index(){
         return view('admin.school-year-list',[
-            'schoolYearList' => SchoolYear::get()
+            'schoolYearList' => SchoolYear::where('school', auth()->user()->school)->get()
         ]);
     }
 
@@ -21,6 +21,7 @@ class SchoolYearController extends Controller
         SchoolYear::create([
             'year' => $request->year,
             'semester' => $request->semester,
+            'school' => $request->school
         ]);
 
         return redirect()->route('admin-school-year-view')->with('success','New School Year Created');
@@ -48,7 +49,8 @@ class SchoolYearController extends Controller
     {
         $request->validate([
             'year' => 'required|string',
-            'semester' => 'required|string'
+            'semester' => 'required|string',
+            'school' => 'required|string'
         ]);
     }
 }

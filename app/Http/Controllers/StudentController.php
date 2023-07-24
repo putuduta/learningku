@@ -30,6 +30,7 @@ class StudentController extends Controller
             'role_id' => 3,
             'password' => Hash::make($request->password),
             'user_code' => $request->nisn,
+            'school' => $request->school,
             'photo_profile' => $photo_profile
         ]);
 
@@ -67,6 +68,7 @@ class StudentController extends Controller
             'gender' => $request->gender,
             'user_code' => $request->nisn,
             'password' => $password,
+            'school' => $request->school,
             'photo_profile' => $imagePath 
         ]);
 
@@ -75,9 +77,9 @@ class StudentController extends Controller
 
     public function index(){
         return view('admin.student-list',[
-            'studentList' => User::select('user.user_id','user.name','user.user_code as nisn','user.email','user.password', 'user.gender')
+            'studentList' => User::select('user.user_id','user.name','user.user_code as nisn','user.email','user.password', 'user.gender', 'user.school')
                         ->join('role','role.role_id','user.role_id')
-                        ->where([['role.name','Student']])
+                        ->where([['role.name','Student'], ['user.school', auth()->user()->school]])
                         ->get()
         ]);
     }
@@ -88,7 +90,8 @@ class StudentController extends Controller
             'email' => 'required|string',
             'nisn' => 'required|string',
             'image' => 'image|max:5120',
-            'gender' => 'required|string'
+            'gender' => 'required|string',
+            'school' => 'required|string'
         ]);
 
         if (!$isUpdate) {
