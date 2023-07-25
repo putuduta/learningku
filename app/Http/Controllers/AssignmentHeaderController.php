@@ -53,9 +53,9 @@ class AssignmentHeaderController extends Controller
             'assignmentSubmissions' => AssignmentHeader::select('assignment_detail.assignment_detail_id as id', 'assignment_detail.assignment_header_id as assignmentId', 'assignment_header.title as assignmentTitle', 'assignment_detail.file as file', 'assignment_detail.created_at as createdAt', 'assignment_detail.user_id as studentUserId', 'u.name as studentName', 'class_subject.class_subject_id as subjectId', 'class_subject.name as name',
                             'class_header.name as className')
                             ->joinSub(AssignmentDetail::select(DB::raw('assignment_detail.*'))
-                            ->join(DB::raw('(select assignment_header_id, user_id, max(assignment_detail_id) as maxid from assignment_detail group by assignment_header_id,user_id) b'), 'assignment_detail.assignment_detail_id','b.maxid')
-                            ->where('assignment_detail.assignment_header_id', $assignmentId), 'assignment_detail', function (JoinClause $join) {
-                                $join->on('assignment_header.assignment_header_id', '=', 'assignment_detail.assignment_header_id');
+                                ->join(DB::raw('(select assignment_header_id, user_id, max(assignment_detail_id) as maxid from assignment_detail group by assignment_header_id,user_id) b'), 'assignment_detail.assignment_detail_id','b.maxid')
+                                ->where('assignment_detail.assignment_header_id', $assignmentId), 'assignment_detail', function (JoinClause $join) {
+                                    $join->on('assignment_header.assignment_header_id', '=', 'assignment_detail.assignment_header_id');
                             })->join('user as u','u.user_id','assignment_detail.user_id')
                             ->join('class_subject', 'class_subject.class_subject_id', 'assignment_header.class_subject_id')
                             ->join('class_header', 'class_header.class_header_id', 'class_subject.class_header_id')
