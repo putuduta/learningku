@@ -97,16 +97,16 @@
                                  <input type="number" class="form-control" name="year" required>
                             </div>
                             <div class="my-3">
-                                <label for="school" class="form-label">School</label>
-                                <input type="text" class="form-control" name="school" value="{{ auth()->user()->school }}" readonly>
-                           </div>
-                            <div class="my-3">
                                  <label for="semester" class="form-label">Semester <span class="required">*</span></label>
                                  <select name="semester" class="form-select" required>
                                     <option value="" selected>--Please Choose--</option>
                                     <option value="Semester 1">Semester 1</option>
                                     <option value="Semester 2">Semester 2</option>
                                  </select>
+                            </div>
+                            <div class="my-3">
+                                <label for="school" class="form-label">School</label>
+                                <input type="text" class="form-control" name="school" value="{{ auth()->user()->school }}" readonly>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
@@ -134,11 +134,7 @@
                                 <div class="my-3">
                                     <label for="year" class="form-label">Year <span class="required">*</span></label>
                                     <input type="text" class="form-control" value="{{ $schoolYear->year }}" name="year" required>
-                               </div>
-                               <div class="my-3">
-                                    <label for="school" class="form-label">School</label>
-                                    <input type="text" class="form-control" name="school" value="{{ $schoolYear->school }}"  readonly>
-                                </div>                               
+                               </div>                    
                                <div class="my-3">
                                     <label for="semester" class="form-label">Semester <span class="required">*</span></label>
                                     <select name="semester" class="form-select" required>
@@ -147,6 +143,10 @@
                                        <option value="Semester 2" {{($schoolYear->semester === 'Semester 2') ? 'selected' : ''}}>Semester 2</option>
                                     </select>
                                </div>
+                               <div class="my-3">
+                                    <label for="school" class="form-label">School</label>
+                                    <input type="text" class="form-control" name="school" value="{{ $schoolYear->school }}"  readonly>
+                                </div>           
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary my-4 text-white">Submit</button>
                                 </div>
