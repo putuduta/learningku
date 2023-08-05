@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             // InstitutionSeeder::class,
-            RoleSeeder::class,
-            UserSeeder::class,
-            SchoolYearSeeder::class,
-            ClassSeeder::class,
-            MaterialSeeder::class,
-            AttendanceSeeder::class,
-            AssignmentSeeder::class,
-            ForumSeeder::class,
-            ReplyForumSeeder::class,
-            ScoreSeeder::class
+            // RoleSeeder::class,
+            // UserSeeder::class,
+            // SchoolYearSeeder::class,
+            // ClassSeeder::class,
+            // MaterialSeeder::class,
+            // AttendanceSeeder::class,
+            // AssignmentSeeder::class,
+            // ForumSeeder::class,
+            // ReplyForumSeeder::class,
+            // ScoreSeeder::class
         ]);
     }
 }
