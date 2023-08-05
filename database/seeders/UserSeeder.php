@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '5543758660300003',
+                'user_code'=> '555556665555555',
                 'name' => 'Natalia Desi Aryani',
                 'email' => 'desi@gmail.com',
                 'gender' => 'Female',
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '8347762663230123',
+                'user_code'=> '555554447755555',
                 'name' => 'Ambar Prasetyaningsih',
                 'email' => 'ambar@gmail.com',
                 'gender' => 'Female',
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0056315346',
+                'user_code'=> '0056315326',
                 'name' => 'Benedictus Nathaniel Xu',
                 'email' => 'benedictus@gmail.com',
                 'gender' => 'Female',
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0065465212',
+                'user_code'=> '00643462212',
                 'name' => 'Briant Yoel Mula Halomoan Sitompul',
                 'email' => 'briant@gmail.com',
                 'gender' => 'Male',
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0051456124',
+                'user_code'=> '0031256124',
                 'name' => 'Christianus Abel Datu Putra Adhityaswara',
                 'email' => 'christianus@gmail.com',
                 'gender' => 'Male',
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0066001550',
+                'user_code'=> '0077101550',
                 'name' => 'Delza Abigail Suryono',
                 'email' => 'delza@gmail.com',
                 'gender' => 'Female',
@@ -89,7 +89,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0062952225',
+                'user_code'=> '0012952225',
                 'name' => 'Emanuel Yoga Mahardhika',
                 'email' => 'emanuel@gmail.com',
                 'gender' => 'Male',
@@ -98,7 +98,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0064286281',
+                'user_code'=> '0012386281',
                 'name' => 'Emmanuela Aliana Manullang',
                 'email' => 'emmanuela@gmail.com',
                 'gender' => 'Female',
@@ -107,7 +107,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0068520363',
+                'user_code'=> '0043120363',
                 'name' => 'Gabrielle Dorasima Manullang',
                 'email' => 'gabrielle@gmail.com',
                 'gender' => 'Female',
@@ -116,7 +116,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0064002098',
+                'user_code'=> '0058002098',
                 'name' => 'Gavriella Meilida Sitorus',
                 'email' => 'gavriella@gmail.com',
                 'gender' => 'Female',
@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0063805698',
+                'user_code'=> '0067505698',
                 'name' => 'Giovanni Joaquine Mulya',
                 'email' => 'giovanni@gmail.com',
                 'gender' => 'Female',
@@ -143,7 +143,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0064085909',
+                'user_code'=> '0065585909',
                 'name' => 'Janetta Lirianya Putri Siahaan',
                 'email' => 'janetta@gmail.com',
                 'gender' => 'Female',
@@ -152,7 +152,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0061189414',
+                'user_code'=> '0087989414',
                 'name' => 'Jefanya Malau',
                 'email' => 'jefanya@gmail.com',
                 'gender' => 'Female',
@@ -161,7 +161,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0065024616',
+                'user_code'=> '0078924616',
                 'name' => 'Jeremy Julio Caesar Tarigan',
                 'email' => 'jeremy@gmail.com',
                 'gender' => 'Male',
@@ -170,7 +170,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0061223255',
+                'user_code'=> '0111223255',
                 'name' => 'Jimmy Stephen',
                 'email' => 'jimmy@gmail.com',
                 'gender' => 'Male',
@@ -179,7 +179,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0064338054',
+                'user_code'=> '0064444054',
                 'name' => 'Jovanka Florecita Gunawan',
                 'email' => 'jovanka@gmail.com',
                 'gender' => 'Female',
@@ -188,7 +188,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '9019207971',
+                'user_code'=> '9033307971',
                 'name' => 'Lance Ayson Winarto',
                 'email' => 'lance@gmail.com',
                 'gender' => 'Male',
@@ -197,7 +197,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0055842812',
+                'user_code'=> '0055542812',
                 'name' => 'Marcello Jonathan Mulia',
                 'email' => 'marcello@gmail.com',
                 'gender' => 'Male',
@@ -206,7 +206,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0067070910',
+                'user_code'=> '0067770910',
                 'name' => 'Nathaniel Rudolf Solata Mangari',
                 'email' => 'nathaniel@gmail.com',
                 'gender' => 'Male',
@@ -215,7 +215,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0068911967',
+                'user_code'=> '0066611967',
                 'name' => 'Raphael Nicku Ariadhi',
                 'email' => 'raphael@gmail.com',
                 'gender' => 'Male',
@@ -224,7 +224,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0069509784',
+                'user_code'=> '0066669784',
                 'name' => 'Renata Sandyanputri',
                 'email' => 'renata@gmail.com',
                 'gender' => 'Female',
@@ -233,7 +233,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0067157231',
+                'user_code'=> '0067777231',
                 'name' => 'Sevira',
                 'email' => 'sevira@gmail.com',
                 'gender' => 'Female',
@@ -242,7 +242,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0067133057',
+                'user_code'=> '0067773057',
                 'name' => 'Shawn Michael Pesik',
                 'email' => 'shawn@gmail.com',
                 'gender' => 'Male',
@@ -251,7 +251,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0062152461',
+                'user_code'=> '0066662461',
                 'name' => 'Stefanus Hendro Wibowo',
                 'email' => 'stefanus@gmail.com',
                 'gender' => 'Male',
@@ -260,7 +260,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0063596168',
+                'user_code'=> '0065596168',
                 'name' => 'Stefhanie Chintya Eliza',
                 'email' => 'stefhanie@gmail.com',
                 'gender' => 'Female',
@@ -269,7 +269,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0067739874',
+                'user_code'=> '0067777774',
                 'name' => 'Teodosius Adifta Tjandra',
                 'email' => 'teodosius@gmail.com',
                 'gender' => 'Male',
@@ -278,7 +278,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0067751210',
+                'user_code'=> '0067777210',
                 'name' => 'Trevian Fernando',
                 'email' => 'trevian@gmail.com',
                 'gender' => 'Male',
@@ -287,7 +287,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0068891133',
+                'user_code'=> '0068888833',
                 'name' => 'Vallerie Mae Widjaja',
                 'email' => 'vallerie@gmail.com',
                 'gender' => 'Female',
@@ -296,7 +296,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0064402706',
+                'user_code'=> '0064444706',
                 'name' => 'William Jonathan Sugiharto',
                 'email' => 'william@gmail.com',
                 'gender' => 'Male',
@@ -305,7 +305,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0069196179',
+                'user_code'=> '0069199979',
                 'name' => 'Yosef Wisnu Fandy Chrisanto',
                 'email' => 'yosef@gmail.com',
                 'gender' => 'Male',
@@ -314,7 +314,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '0067541925',
+                'user_code'=> '0067551925',
                 'name' => 'Edward Melvin Gandakusuma',
                 'email' => 'edward@gmail.com',
                 'gender' => 'Male',
@@ -323,7 +323,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '9748755657300032',
+                'user_code'=> '9748755555300032',
                 'name' => 'Gabriella Nina Suharlina',
                 'email' => 'nina@gmail.com',
                 'gender' => 'Female',
@@ -332,7 +332,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '9950152433915650',
+                'user_code'=> '555553335555555',
                 'name' => 'Idang Indrianto',
                 'email' => 'idang@gmail.com',
                 'gender' => 'Male',
@@ -341,7 +341,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '4907254123960419',
+                'user_code'=> '555554445555555',
                 'name' => 'Petty Fefiyana',
                 'email' => 'petty@gmail.com',
                 'gender' => 'Female',
@@ -350,7 +350,7 @@ class UserSeeder extends Seeder
                 'school' => 'SMA BHK KOTA WISATA'
             ],
             [
-                'user_code'=> '6748554856315829',
+                'user_code'=> '555555555555555',
                 'name' => 'Bernadette Ririn',
                 'email' => 'bernadette@gmail.com',
                 'gender' => 'Female',
